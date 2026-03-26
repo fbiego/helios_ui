@@ -1,0 +1,192 @@
+<globals>
+	<api>
+		<!-- Add <enumdefs> here -->
+		<enumdef name="screen_size">
+			<enum name="sc_466" value="0" />
+			<enum name="sc_360" value="1" />
+			<enum name="sc_240" value="2" />
+		</enumdef>
+	</api>
+
+	<consts>
+		<!-- Add <px>, <int>, <color> etc here -->
+		<color name="color_primary" value="0x0534ff" />
+	</consts>
+
+	<styles>
+		<!-- Add <style> tags here -->
+		<style name="style_dark" bg_color="0x000000" text_color="0xffffff" />
+
+		<style name="style_primary_bg" bg_color="#color_primary" />
+		<style name="style_white_bg" bg_color="0xffffff" />
+
+		<style name="style_icon_recolor" />
+
+		<style name="style_text_small_466" text_font="NS_Medium_20" />
+		<style name="style_text_small_360" text_font="NS_Medium_18" />
+		<style name="style_text_small_240" text_font="NS_Medium_14" />
+
+		<style name="style_text_normal_466" text_font="NS_Medium_40" />
+		<style name="style_text_normal_360" text_font="NS_Medium_30" />
+		<style name="style_text_normal_240" text_font="NS_Medium_20" />
+
+		<style name="style_text_large_466" text_font="NS_Medium_140" />
+		<style name="style_text_large_360" text_font="NS_Medium_100" />
+		<style name="style_text_large_240" text_font="NS_Medium_70" />
+	</styles>
+
+	<subjects>
+		<!-- Add <int>, <string>, or <float> subjects here -->
+
+		<int name="sb_screen_size" value="0" />
+		<int name="sb_screen_type" value="0" />
+
+		<int name="sb_app_list_mode" value="0" min_value="0" max_value="1" />
+		<int name="sb_list_circular_mode" value="1" min_value="0" max_value="1" />
+		<int name="sb_screen_brightness" value="80" min_value="1" max_value="100" />
+		<int name="sb_screen_rotation" value="0" min_value="0" max_value="3" />
+		<int name="sb_screen_timeout" value="0" min_value="0" max_value="4" />
+		<int name="sb_screen_rtw" value="1" min_value="0" max_value="1" />
+
+		<int name="sb_battery_percent" value="70" min_value="0" max_value="100" />
+		<int name="sb_sound_volume" value="40" min_value="0" max_value="100" />
+		<int name="sb_focusable" value="1" min_value="0" max_value="1" />
+	</subjects>
+
+	<images>
+		<!-- Add <file> or <data> tags here -->
+
+		<data name="icon_empty" src_path="images/actions/empty.png" color_format="rgb565a8" />
+		<data name="icon_wifi" src_path="images/actions/wifi.png" color_format="rgb565a8" />
+		<data name="icon_list" src_path="images/actions/list.png" color_format="rgb565a8" />
+		<data name="icon_brightness_full" src_path="images/actions/brightness-full.png" color_format="rgb565a8" />
+		<data name="icon_brightness_empty" src_path="images/actions/brightness-empty.png" color_format="rgb565a8" />
+		<data name="icon_volume_high" src_path="images/actions/volume_high.png" color_format="rgb565a8" />
+		<data name="icon_volume_low" src_path="images/actions/volume_low.png" color_format="rgb565a8" />
+		<data name="icon_mute" src_path="images/actions/mute.png" color_format="rgb565a8" />
+		<data name="icon_play" src_path="images/actions/play.png" color_format="rgb565a8" />
+		<data name="icon_back" src_path="images/actions/back.png" color_format="rgb565a8" />
+		<data name="icon_next" src_path="images/actions/next.png" color_format="rgb565a8" />
+
+		<data name="icon_connect" src_path="images/actions/connect.png" color_format="rgb565a8" />
+		<data name="icon_vibration" src_path="images/actions/vibration.png" color_format="rgb565a8" />
+		<data name="icon_dnd" src_path="images/actions/dnd.png" color_format="rgb565a8" />
+		<data name="icon_qr" src_path="images/actions/qr_icon.png" color_format="rgb565a8" />
+
+		<data name="icon_settings_harddisk" src_path="images/settings/005-harddisk.png" color_format="rgb565a8" />
+		<data name="icon_settings_brightness" src_path="images/settings/007-brightness.png" color_format="rgb565a8" />
+		<data name="icon_settings_monitor" src_path="images/settings/001-monitor.png" color_format="rgb565a8" />
+		<data name="icon_settings_information" src_path="images/settings/004-information.png" color_format="rgb565a8" />
+		<data name="icon_settings_smartwatch" src_path="images/settings/006-smartwatch.png" color_format="rgb565a8" />
+		<data name="icon_settings_rotate" src_path="images/settings/008-rotate.png" color_format="rgb565a8" />
+		<data name="icon_settings_power" src_path="images/settings/003-power.png" color_format="rgb565a8" />
+		<data name="icon_settings_bell" src_path="images/settings/002-bell.png" color_format="rgb565a8" />
+
+		<data name="icon_application" src_path="images/apps/application.png" color_format="rgb565a8" />
+		<data name="icon_chat" src_path="images/apps/chat.png" color_format="rgb565a8" />
+		<data name="icon_weather" src_path="images/apps/weather.png" color_format="rgb565a8" />
+		<data name="icon_gear" src_path="images/apps/gear.png" color_format="rgb565a8" />
+		<data name="icon_measurement" src_path="images/apps/measurement.png" color_format="rgb565a8" />
+		<data name="icon_stopwatch" src_path="images/apps/stopwatch.png" color_format="rgb565a8" />
+		<data name="icon_contacts" src_path="images/apps/contacts.png" color_format="rgb565a8" />
+		<data name="icon_navigation" src_path="images/apps/navigation.png" color_format="rgb565a8" />
+		<data name="icon_timer" src_path="images/apps/timer.png" color_format="rgb565a8" />
+		<data name="icon_music" src_path="images/apps/music.png" color_format="rgb565a8" />
+		<data name="icon_folder" src_path="images/apps/folder.png" color_format="rgb565a8" />
+		<data name="icon_running" src_path="images/apps/running.png" color_format="rgb565a8" />
+		<data name="icon_sleep" src_path="images/apps/sleep.png" color_format="rgb565a8" />
+	</images>
+
+	<fonts>
+		<!-- Add <bin> , <tiny_ttf>, <freetype> tags here -->
+
+		<bin
+			name="NS_Medium_14"
+			size="14"
+			src_path="fonts/raw/NotoSans-Medium.ttf"
+			bpp="4"
+			range="0x20-0x7f"
+			symbols="’°"
+			as_file="false"
+		/>
+
+		<bin
+			name="NS_Medium_16"
+			size="16"
+			src_path="fonts/raw/NotoSans-Medium.ttf"
+			bpp="4"
+			range="0x20-0x7f"
+			symbols="’°"
+			as_file="false"
+		/>
+
+		<bin
+			name="NS_Medium_18"
+			size="18"
+			src_path="fonts/raw/NotoSans-Medium.ttf"
+			bpp="4"
+			range="0x20-0x7f"
+			symbols="’°"
+			as_file="false"
+		/>
+
+		<bin
+			name="NS_Medium_20"
+			size="20"
+			src_path="fonts/raw/NotoSans-Medium.ttf"
+			bpp="4"
+			range="0x20-0x7f"
+			symbols="’°"
+			as_file="false"
+		/>
+
+		<bin
+			name="NS_Medium_30"
+			size="30"
+			src_path="fonts/raw/NotoSans-Medium.ttf"
+			bpp="4"
+			range="0x20-0x7f"
+			symbols="’°"
+			as_file="false"
+		/>
+
+		<bin
+			name="NS_Medium_40"
+			size="40"
+			src_path="fonts/raw/NotoSans-Medium.ttf"
+			bpp="4"
+			range="0x20-0x7f"
+			symbols="’°"
+			as_file="false"
+		/>
+
+		<bin
+			name="NS_Medium_70"
+			size="70"
+			src_path="fonts/raw/NotoSans-Medium.ttf"
+			bpp="4"
+			range="0x3-0x39"
+			symbols=":°CF"
+			as_file="false"
+		/>
+		<bin
+			name="NS_Medium_100"
+			size="100"
+			src_path="fonts/raw/NotoSans-Medium.ttf"
+			bpp="4"
+			range="0x3-0x39"
+			symbols=":°"
+			as_file="false"
+		/>
+
+		<bin
+			name="NS_Medium_140"
+			size="140"
+			src_path="fonts/raw/NotoSans-Medium.ttf"
+			bpp="4"
+			range="0x3-0x39"
+			symbols=":°CF"
+			as_file="false"
+		/>
+	</fonts>
+</globals>

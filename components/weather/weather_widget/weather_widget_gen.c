@@ -1,0 +1,146 @@
+/**
+ * @file weather_widget_gen.c
+ * @brief Template source file for LVGL objects
+ */
+
+/*********************
+ *      INCLUDES
+ *********************/
+
+#include "weather_widget_gen.h"
+#include "../../../helios_ui.h"
+
+/*********************
+ *      DEFINES
+ *********************/
+
+/**********************
+ *      TYPEDEFS
+ **********************/
+
+/***********************
+ *  STATIC VARIABLES
+ **********************/
+
+/***********************
+ *  STATIC PROTOTYPES
+ **********************/
+
+/**********************
+ *   GLOBAL FUNCTIONS
+ **********************/
+
+lv_obj_t * weather_widget_create(lv_obj_t * parent)
+{
+    LV_TRACE_OBJ_CREATE("begin");
+
+    static lv_style_t style_base;
+    static lv_style_t style_pad_360;
+    static lv_style_t style_pad_240;
+    static lv_style_t style_cont;
+    static lv_style_t style_pad_cont;
+
+    static bool style_inited = false;
+
+    if (!style_inited) {
+        lv_style_init(&style_base);
+        lv_style_set_width(&style_base, lv_pct(100));
+        lv_style_set_height(&style_base, lv_pct(100));
+        lv_style_set_pad_row(&style_base, 10);
+        lv_style_set_pad_ver(&style_base, 60);
+        lv_style_set_text_color(&style_base, lv_color_hex3(0xfff));
+        lv_style_set_layout(&style_base, LV_LAYOUT_FLEX);
+        lv_style_set_flex_flow(&style_base, LV_FLEX_FLOW_COLUMN);
+        lv_style_set_flex_cross_place(&style_base, LV_FLEX_ALIGN_CENTER);
+        lv_style_set_flex_track_place(&style_base, LV_FLEX_ALIGN_CENTER);
+
+        lv_style_init(&style_pad_360);
+        lv_style_set_pad_ver(&style_pad_360, 40);
+        lv_style_set_pad_hor(&style_pad_360, 25);
+        lv_style_set_pad_row(&style_pad_360, 6);
+
+        lv_style_init(&style_pad_240);
+        lv_style_set_pad_ver(&style_pad_240, 20);
+        lv_style_set_pad_hor(&style_pad_240, 20);
+        lv_style_set_pad_row(&style_pad_240, 4);
+
+        lv_style_init(&style_cont);
+        lv_style_set_width(&style_cont, LV_SIZE_CONTENT);
+        lv_style_set_height(&style_cont, LV_SIZE_CONTENT);
+        lv_style_set_layout(&style_cont, LV_LAYOUT_FLEX);
+
+        lv_style_init(&style_pad_cont);
+        lv_style_set_pad_column(&style_pad_cont, 10);
+
+        style_inited = true;
+    }
+
+    lv_obj_t * lv_obj_0 = lv_obj_create(parent);
+    lv_obj_set_name_static(lv_obj_0, "weather_widget_#");
+    lv_obj_set_flag(lv_obj_0, LV_OBJ_FLAG_SCROLLABLE, false);
+
+    lv_obj_remove_style_all(lv_obj_0);
+    lv_obj_add_style(lv_obj_0, &style_base, 0);
+    lv_obj_bind_style(lv_obj_0, &style_pad_360, 0, &sb_screen_size, 1);
+    lv_obj_bind_style(lv_obj_0, &style_pad_240, 0, &sb_screen_size, 2);
+    lv_obj_t * hs_text_normal_0 = hs_text_normal_create(lv_obj_0);
+    lv_label_set_text(hs_text_normal_0, "Nairobi");
+    lv_obj_set_style_text_align(hs_text_normal_0, LV_TEXT_ALIGN_CENTER, 0);
+    
+    lv_obj_t * wd_image_0 = wd_image_create(lv_obj_0);
+    lv_obj_set_flag(wd_image_0, LV_OBJ_FLAG_CLICKABLE, false);
+    wd_image_set_src(wd_image_0, icon_weather);
+    wd_image_set_scale_0(wd_image_0, 256);
+    wd_image_set_scale_1(wd_image_0, 190);
+    wd_image_set_scale_2(wd_image_0, 120);
+    wd_image_set_size_1(wd_image_0, 50);
+    wd_image_set_size_2(wd_image_0, 30);
+    wd_image_bind_scale(wd_image_0, &sb_screen_size);
+    
+    lv_obj_t * hs_text_small_0 = hs_text_small_create(lv_obj_0);
+    lv_label_set_text(hs_text_small_0, "Cloudy");
+    lv_obj_set_style_text_align(hs_text_small_0, LV_TEXT_ALIGN_CENTER, 0);
+    
+    lv_obj_t * lv_obj_1 = lv_obj_create(lv_obj_0);
+    lv_obj_remove_style_all(lv_obj_1);
+    lv_obj_add_style(lv_obj_1, &style_cont, 0);
+    lv_obj_t * hs_text_large_0 = hs_text_large_create(lv_obj_1);
+    lv_label_set_text(hs_text_large_0, "22");
+    
+    lv_obj_t * hs_text_normal_1 = hs_text_normal_create(lv_obj_1);
+    lv_label_set_text(hs_text_normal_1, "°C");
+    lv_obj_set_style_text_align(hs_text_normal_1, LV_TEXT_ALIGN_CENTER, 0);
+    
+    lv_obj_t * lv_obj_2 = lv_obj_create(lv_obj_0);
+    lv_obj_remove_style_all(lv_obj_2);
+    lv_obj_add_style(lv_obj_2, &style_cont, 0);
+    lv_obj_add_style(lv_obj_2, &style_pad_cont, 0);
+    lv_obj_t * hs_text_normal_2 = hs_text_normal_create(lv_obj_2);
+    lv_label_set_text(hs_text_normal_2, "H:28°");
+    lv_obj_set_style_text_align(hs_text_normal_2, LV_TEXT_ALIGN_CENTER, 0);
+    
+    lv_obj_t * hs_text_normal_3 = hs_text_normal_create(lv_obj_2);
+    lv_label_set_text(hs_text_normal_3, "L:19°");
+    lv_obj_set_style_text_align(hs_text_normal_3, LV_TEXT_ALIGN_CENTER, 0);
+    
+    lv_obj_t * lv_obj_3 = lv_obj_create(lv_obj_0);
+    lv_obj_remove_style_all(lv_obj_3);
+    lv_obj_add_style(lv_obj_3, &style_cont, 0);
+    lv_obj_add_style(lv_obj_3, &style_pad_cont, 0);
+    lv_obj_t * hs_text_normal_4 = hs_text_normal_create(lv_obj_3);
+    lv_label_set_text(hs_text_normal_4, "1023kpa");
+    lv_obj_set_style_text_align(hs_text_normal_4, LV_TEXT_ALIGN_CENTER, 0);
+    
+    lv_obj_t * hs_text_normal_5 = hs_text_normal_create(lv_obj_3);
+    lv_label_set_text(hs_text_normal_5, "UV:4");
+    lv_obj_set_style_text_align(hs_text_normal_5, LV_TEXT_ALIGN_CENTER, 0);
+
+    LV_TRACE_OBJ_CREATE("finished");
+
+    return lv_obj_0;
+}
+
+/**********************
+ *   STATIC FUNCTIONS
+ **********************/
+

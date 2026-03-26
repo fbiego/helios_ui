@@ -1,0 +1,47 @@
+<component>
+	<previews>
+		<preview width="400" style_bg_color="0x000" />
+		<preview width="300" style_bg_color="0x000" />
+		<preview width="200" style_bg_color="0x000" />
+	</previews>
+	<styles>
+		<style name="style_button" width="110" height="110" radius="55" bg_color="0x282828" bg_opa="255" />
+		<style name="style_button_360" width="90" height="90" />
+		<style name="style_button_240" width="60" height="60" />
+		<style name="style_checked" bg_color="0x0534ff" />
+		<style name="style_pressed" bg_color="0xffffff" bg_opa="127" />
+	</styles>
+	<api>
+		<prop name="icon" type="image" default="icon_dnd" />
+	</api>
+	<view checkable="true" scrollable="false" event_bubble="true">
+		<remove_style_all />
+		<style name="style_button" />
+		<style name="style_checked" selector="checked" />
+		<style name="style_pressed" selector="pressed" />
+		<bind_style name="style_button_360" subject="sb_screen_size" ref_value="1" />
+		<bind_style name="style_button_240" subject="sb_screen_size" ref_value="2" />
+
+		<wd_image
+			clickable="false"
+			align="center"
+			src="$icon"
+			scale_0="256"
+			scale_1="190"
+			scale_2="130"
+			bind_scale="sb_screen_size"
+		/>
+		<!-- <lv_image src="$icon" align="center">
+			<bind_flag_if_not_eq subject="sb_screen_size" flag="hidden" ref_value="0" />
+			<style name="style_icon_recolor" />
+		</lv_image>
+		<lv_image src="$icon" align="center" scale_x="190" scale_y="190">
+			<bind_flag_if_not_eq subject="sb_screen_size" flag="hidden" ref_value="1" />
+			<style name="style_icon_recolor" />
+		</lv_image>
+		<lv_image src="$icon" align="center" scale_x="130" scale_y="130">
+			<bind_flag_if_not_eq subject="sb_screen_size" flag="hidden" ref_value="2" />
+			<style name="style_icon_recolor" />
+		</lv_image> -->
+	</view>
+</component>

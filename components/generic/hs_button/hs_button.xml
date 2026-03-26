@@ -1,0 +1,42 @@
+<component>
+	<previews>
+		<preview width="400" style_bg_color="0x000" />
+		<preview width="300" style_bg_color="0x000" />
+		<preview width="200" style_bg_color="0x000" />
+	</previews>
+
+	<api>
+		<prop name="label" type="string" default="Circular Scroll" />
+		<prop name="text_color" type="color" default="#color_primary" />
+	</api>
+
+	<styles>
+		<style
+			name="style_base"
+			width="100%"
+			height="content"
+			bg_color="0x191919"
+			radius="10"
+			pad_all="10"
+			bg_opa="255"
+		/>
+		<style name="style_switch" bg_color="0xffffff" width="96" height="46" text_color="0xfff" />
+		<style name="style_switch_360" width="72" height="36" />
+		<style name="style_switch_240" width="48" height="24" />
+		<style name="style_pressed" bg_color="0xbcbcbc" bg_opa="155" />
+	</styles>
+
+	<view extends="lv_obj">
+		<remove_style_all />
+		<style name="style_base" />
+		<style name="style_pressed" selector="pressed" />
+
+		<hs_text_normal
+			text="$label"
+			width="100%"
+			style_pad_top="5"
+			style_text_color="$text_color"
+			style_text_align="center"
+		/>
+	</view>
+</component>

@@ -1,0 +1,17 @@
+<screen>
+	<styles>
+		<style name="style_cont" width="100%" height="100%" layout="flex" />
+		<style name="style_cont_360" pad_hor="30" pad_top="80" pad_bottom="100" />
+		<style name="style_cont_240" pad_hor="20" pad_row="5" pad_top="60" pad_bottom="80" />
+	</styles>
+	<view scrollbar_mode="off" scroll_snap_x="center">
+		<style name="style_dark" />
+		<style name="style_cont" />
+
+		<!-- <bind_style name="style_cont_360" subject="sb_screen_size" ref_value="1" />
+		<bind_style name="style_cont_240" subject="sb_screen_size" ref_value="2" /> -->
+
+		<weather_widget />
+		<weather_widget />
+	</view>
+</screen>

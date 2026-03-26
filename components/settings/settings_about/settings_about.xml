@@ -1,0 +1,43 @@
+<component>
+	<previews>
+		<preview width="466" height="466" style_radius="233" style_bg_color="0x000" />
+		<preview width="360" height="360" style_radius="180" style_bg_color="0x000" />
+		<preview width="240" height="240" style_radius="120" style_bg_color="0x000" />
+	</previews>
+
+	<styles>
+		<style name="style_base" pad_row="10" pad_ver="150" />
+		<style name="style_pad_360" pad_ver="90" pad_hor="30" />
+		<style name="style_pad_240" pad_ver="60" pad_hor="20" />
+	</styles>
+
+	<view extends="wd_list" bind_screen="sb_screen_size">
+		<wd_list-container>
+			<style name="style_base" />
+			<bind_style name="style_pad_360" subject="sb_screen_size" ref_value="1" />
+			<bind_style name="style_pad_240" subject="sb_screen_size" ref_value="2" />
+			<hs_card>
+				<hs_info label="Viewe Smart Ring" info="" />
+				<hs_line />
+				<hs_info label="ESP32 S3" info="" />
+				<hs_info label="" info="34:54:56:23:43:32" />
+				<hs_line />
+				<hs_info label="RAM" info="384KB" />
+				<hs_info label="PSRAM" info="8MB" />
+
+				<hs_line />
+				<hs_info label="Flash" info="16MB" />
+
+				<hs_line />
+				<hs_info label="Display" info="466x466" />
+
+				<hs_line />
+				<hs_info label="Firmware" info="v1.3" />
+			</hs_card>
+			<hs_card>
+				<hs_info label="Helios UI" info="v0.1" />
+				<hs_info label="LVGL" info="v9.4.0" />
+			</hs_card>
+		</wd_list-container>
+	</view>
+</component>

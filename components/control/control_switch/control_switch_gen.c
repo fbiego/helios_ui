@@ -1,0 +1,100 @@
+/**
+ * @file control_switch_gen.c
+ * @brief Template source file for LVGL objects
+ */
+
+/*********************
+ *      INCLUDES
+ *********************/
+
+#include "control_switch_gen.h"
+#include "../../../helios_ui.h"
+
+/*********************
+ *      DEFINES
+ *********************/
+
+/**********************
+ *      TYPEDEFS
+ **********************/
+
+/***********************
+ *  STATIC VARIABLES
+ **********************/
+
+/***********************
+ *  STATIC PROTOTYPES
+ **********************/
+
+/**********************
+ *   GLOBAL FUNCTIONS
+ **********************/
+
+lv_obj_t * control_switch_create(lv_obj_t * parent, const void * icon)
+{
+    LV_TRACE_OBJ_CREATE("begin");
+
+    static lv_style_t style_button;
+    static lv_style_t style_button_360;
+    static lv_style_t style_button_240;
+    static lv_style_t style_checked;
+    static lv_style_t style_pressed;
+
+    static bool style_inited = false;
+
+    if (!style_inited) {
+        lv_style_init(&style_button);
+        lv_style_set_width(&style_button, 110);
+        lv_style_set_height(&style_button, 110);
+        lv_style_set_radius(&style_button, 55);
+        lv_style_set_bg_color(&style_button, lv_color_hex(0x282828));
+        lv_style_set_bg_opa(&style_button, 255);
+
+        lv_style_init(&style_button_360);
+        lv_style_set_width(&style_button_360, 90);
+        lv_style_set_height(&style_button_360, 90);
+
+        lv_style_init(&style_button_240);
+        lv_style_set_width(&style_button_240, 60);
+        lv_style_set_height(&style_button_240, 60);
+
+        lv_style_init(&style_checked);
+        lv_style_set_bg_color(&style_checked, lv_color_hex(0x0534ff));
+
+        lv_style_init(&style_pressed);
+        lv_style_set_bg_color(&style_pressed, lv_color_hex(0xffffff));
+        lv_style_set_bg_opa(&style_pressed, 127);
+
+        style_inited = true;
+    }
+
+    lv_obj_t * lv_obj_0 = lv_obj_create(parent);
+    lv_obj_set_name_static(lv_obj_0, "control_switch_#");
+    lv_obj_set_flag(lv_obj_0, LV_OBJ_FLAG_CHECKABLE, true);
+    lv_obj_set_flag(lv_obj_0, LV_OBJ_FLAG_SCROLLABLE, false);
+    lv_obj_set_flag(lv_obj_0, LV_OBJ_FLAG_EVENT_BUBBLE, true);
+
+    lv_obj_remove_style_all(lv_obj_0);
+    lv_obj_add_style(lv_obj_0, &style_button, 0);
+    lv_obj_add_style(lv_obj_0, &style_checked, LV_STATE_CHECKED);
+    lv_obj_add_style(lv_obj_0, &style_pressed, LV_STATE_PRESSED);
+    lv_obj_bind_style(lv_obj_0, &style_button_360, 0, &sb_screen_size, 1);
+    lv_obj_bind_style(lv_obj_0, &style_button_240, 0, &sb_screen_size, 2);
+    lv_obj_t * wd_image_0 = wd_image_create(lv_obj_0);
+    lv_obj_set_flag(wd_image_0, LV_OBJ_FLAG_CLICKABLE, false);
+    lv_obj_set_align(wd_image_0, LV_ALIGN_CENTER);
+    wd_image_set_src(wd_image_0, icon);
+    wd_image_set_scale_0(wd_image_0, 256);
+    wd_image_set_scale_1(wd_image_0, 190);
+    wd_image_set_scale_2(wd_image_0, 130);
+    wd_image_bind_scale(wd_image_0, &sb_screen_size);
+
+    LV_TRACE_OBJ_CREATE("finished");
+
+    return lv_obj_0;
+}
+
+/**********************
+ *   STATIC FUNCTIONS
+ **********************/
+

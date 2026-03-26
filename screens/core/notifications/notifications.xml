@@ -1,0 +1,90 @@
+<screen>
+	<styles>
+		<style name="style_list" bg_color="0x000000" bg_opa="255" />
+		<style name="style_cont" pad_top="120" pad_bottom="150" pad_hor="33" />
+		<style name="style_cont_360" pad_hor="30" pad_top="80" pad_bottom="100" />
+		<style name="style_cont_240" pad_hor="20" pad_row="5" pad_top="60" pad_bottom="80" />
+	</styles>
+	<view>
+		<style name="style_dark" />
+
+		<lv_label
+			text="No notifications avaialble, check back later"
+			width="60%"
+			style_text_align="center"
+			align="center"
+		>
+			<bind_style name="style_text_small_466" subject="sb_screen_size" ref_value="0" />
+			<bind_style name="style_text_small_360" subject="sb_screen_size" ref_value="1" />
+			<bind_style name="style_text_small_240" subject="sb_screen_size" ref_value="2" />
+		</lv_label>
+
+		<wd_list name="notifications_list" bind_screen="sb_screen_size">
+			<style name="style_list" />
+			<wd_list-container>
+				<bind_style name="style_cont" subject="sb_screen_size" ref_value="0" />
+				<bind_style name="style_cont_360" subject="sb_screen_size" ref_value="1" />
+				<bind_style name="style_cont_240" subject="sb_screen_size" ref_value="2" />
+
+				<notification_item
+					title="Alex"
+					time="14:02"
+					message="Hey Felix, just confirming if we’re still meeting at 4 PM at the usual spot. Let me know if there are any changes so I can plan accordingly."
+				/>
+
+				<notification_item
+					title="Gmail"
+					time="14:18"
+					message="Your verification code is 482913. This code will expire in 10 minutes. If you did not request this code, please secure your account immediately."
+				/>
+
+				<notification_item
+					icon="icon_timer"
+					title="Reminder"
+					time="15:00"
+					message="Project review meeting starts in 30 minutes. Please prepare the latest UI mockups and performance reports before joining the call."
+				/>
+
+				<notification_item
+					icon="icon_gear"
+					title="System"
+					time="15:12"
+					message="Battery level has dropped below 20%. To avoid interruptions, connect your device to a charger or enable power saving mode from settings."
+				/>
+
+				<notification_item
+					icon="icon_music"
+					title="Now playing"
+					time="15:27"
+					message="Midnight Drive - Synthwave Mix.&#10;Enjoy uninterrupted music streaming with premium quality audio and no ads."
+				/>
+
+				<notification_item
+					title="Twitter"
+					time="16:03"
+					message="You have 5 new followers and 2 new mentions. Tap to see who interacted with your latest post and join the conversation."
+				/>
+
+				<notification_item
+					icon="icon_running"
+					title="Chronos"
+					time="16:15"
+					message="Health summary update: Your average heart rate today is 78 bpm and you have completed 6,540 steps so far. Keep moving to reach your daily goal."
+				/>
+
+				<notification_item
+					title="Google Drive"
+					time="16:40"
+					message="Your file 'LVGL_UI_Mockup.fig' has been uploaded successfully and is now available across all your devices. Share it with collaborators to continue working."
+				/>
+
+				<notification_item
+					icon="icon_weather"
+					title="Weather"
+					time="17:05"
+					message="Light rain is expected around 6 PM with temperatures dropping to 18°C. Consider carrying an umbrella and wearing a light jacket."
+				/>
+			</wd_list-container>
+		</wd_list>
+	</view>
+</screen>
