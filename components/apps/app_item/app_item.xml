@@ -14,6 +14,8 @@
 			radius="40"
 			bg_color="0xb7b7b7"
 			bg_opa="20"
+			pad_column="12"
+			pad_hor="22"
 		/>
 		<style name="style_text" height="50" pad_top="10" />
 		<style name="style_text_360" height="40" pad_top="7" />
@@ -38,6 +40,7 @@
 	<api>
 		<prop name="icon" type="image" help="Application icon, must be of size 64x64" default="icon_chat" />
 		<prop name="app_name" type="string" help="App Name" default="App Name" />
+		<prop name="tag" type="string" default="" />
 	</api>
 	<view scrollable="false" event_bubble="true">
 		<remove_style_all />
@@ -68,20 +71,8 @@
 		>
 			<bind_style name="style_icon" subject="sb_app_list_mode" ref_value="1" />
 		</wd_image>
-		<!-- <lv_image src="$icon" clickable="false">
-			<bind_style name="style_icon" subject="sb_app_list_mode" ref_value="1" />
-			<bind_flag_if_not_eq subject="sb_screen_size" flag="hidden" ref_value="0" />
-		</lv_image> -->
 
-		<!-- <lv_image src="$icon" height="55" width="55" scale_x="190" scale_y="190">
-			<bind_style name="style_icon" subject="sb_app_list_mode" ref_value="1" />
-			<bind_flag_if_not_eq subject="sb_screen_size" flag="hidden" ref_value="1" />
-		</lv_image>
-		<lv_image src="$icon" height="30" width="30" scale_x="120" scale_y="120">
-			<bind_style name="style_icon" subject="sb_app_list_mode" ref_value="1" />
-			<bind_flag_if_not_eq subject="sb_screen_size" flag="hidden" ref_value="2" />
-		</lv_image> -->
-		<lv_label text="$app_name" flex_grow="1" long_mode="clip">
+		<lv_label text="$app_name" flex_grow="1" long_mode="clip" translation_tag="$tag">
 			<style name="style_text" />
 			<bind_style name="style_text_360" subject="sb_screen_size" ref_value="1" />
 			<bind_style name="style_text_240" subject="sb_screen_size" ref_value="2" />

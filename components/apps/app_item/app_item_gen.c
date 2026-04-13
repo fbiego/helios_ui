@@ -30,7 +30,7 @@
  *   GLOBAL FUNCTIONS
  **********************/
 
-lv_obj_t * app_item_create(lv_obj_t * parent, const void * icon, const char * app_name)
+lv_obj_t * app_item_create(lv_obj_t * parent, const void * icon, const char * app_name, const char * tag)
 {
     LV_TRACE_OBJ_CREATE("begin");
 
@@ -59,6 +59,8 @@ lv_obj_t * app_item_create(lv_obj_t * parent, const void * icon, const char * ap
         lv_style_set_radius(&style_app, 40);
         lv_style_set_bg_color(&style_app, lv_color_hex(0xb7b7b7));
         lv_style_set_bg_opa(&style_app, 20);
+        lv_style_set_pad_column(&style_app, 12);
+        lv_style_set_pad_hor(&style_app, 22);
 
         lv_style_init(&style_text);
         lv_style_set_height(&style_text, 50);
@@ -149,6 +151,7 @@ lv_obj_t * app_item_create(lv_obj_t * parent, const void * icon, const char * ap
     lv_label_set_text(lv_label_0, app_name);
     lv_obj_set_flex_grow(lv_label_0, 1);
     lv_label_set_long_mode(lv_label_0, LV_LABEL_LONG_MODE_CLIP);
+    lv_label_set_translation_tag(lv_label_0, tag);
     lv_obj_add_style(lv_label_0, &style_text, 0);
     lv_obj_bind_style(lv_label_0, &style_text_360, 0, &sb_screen_size, 1);
     lv_obj_bind_style(lv_label_0, &style_text_240, 0, &sb_screen_size, 2);

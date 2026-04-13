@@ -33,7 +33,7 @@ extern "C" {
  * GLOBAL PROTOTYPES
  **********************/
 
-lv_obj_t * hs_dropdown_create(lv_obj_t * parent, const char * label, lv_subject_t * bind_value, const char * options);
+lv_obj_t * hs_dropdown_create(lv_obj_t * parent, const char * label, const char * tag, lv_subject_t * bind_value, const char * options);
 
 /**********************
  *      MACROS

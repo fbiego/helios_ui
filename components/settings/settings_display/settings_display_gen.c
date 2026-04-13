@@ -65,20 +65,27 @@ lv_obj_t * settings_display_create(lv_obj_t * parent)
     lv_obj_bind_style(wd_list_container_0, &style_pad_360, 0, &sb_screen_size, 1);
     lv_obj_bind_style(wd_list_container_0, &style_pad_240, 0, &sb_screen_size, 2);
     lv_obj_t * hs_card_0 = hs_card_create(wd_list_container_0);
-    lv_obj_set_style_pad_ver(hs_card_0, 5, 0);
-    hs_slider_create(hs_card_0, "Brightness", &sb_screen_brightness);
+    hs_slider_create(hs_card_0, "Brightness", "brightness", &sb_screen_brightness);
     
     hs_line_create(hs_card_0);
     
-    hs_dropdown_create(hs_card_0, "Timeout", &sb_screen_timeout, "5 seconds\n10 seconds\n20 seconds\n30 seconds\nAlways on");
+    hs_dropdown_create(hs_card_0, "Timeout", "timeout", &sb_screen_timeout, "timeout_5\ntimeout_10\ntimeout_20\ntimeout_30\nalways_on");
     
     lv_obj_t * hs_card_1 = hs_card_create(wd_list_container_0);
-    lv_obj_set_style_pad_top(hs_card_1, 5, 0);
-    hs_dropdown_create(hs_card_1, "Rotation", &sb_screen_rotation, "Default\n90\n180\n270");
+    lv_obj_t * hs_title_0 = hs_title_create(hs_card_1, "Select", "rotation", &sb_battery_percent);
+    lv_obj_t * wd_segment_0 = wd_segment_create(hs_title_0);
+    wd_segment_bind_value(wd_segment_0, &sb_screen_rotation);
+    hs_button_icon_create(wd_segment_0, icon_arrow_up, 0);
+    
+    hs_button_icon_create(wd_segment_0, icon_arrow_up, 900);
+    
+    hs_button_icon_create(wd_segment_0, icon_arrow_up, 1800);
+    
+    hs_button_icon_create(wd_segment_0, icon_arrow_up, 2700);
     
     hs_line_create(hs_card_1);
     
-    hs_switch_create(hs_card_1, "Raise to wake", &sb_list_circular_mode);
+    hs_switch_create(hs_card_1, "Circular Scroll", "raise_to_wake", &sb_list_circular_mode);
 
     LV_TRACE_OBJ_CREATE("finished");
 

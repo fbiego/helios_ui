@@ -10,9 +10,12 @@ list(
   ${CMAKE_CURRENT_LIST_DIR}/components/control/control_slider/control_slider_gen.c
   ${CMAKE_CURRENT_LIST_DIR}/components/control/control_switch/control_switch_gen.c
   ${CMAKE_CURRENT_LIST_DIR}/components/generic/hs_bar/hs_bar_gen.c
+  ${CMAKE_CURRENT_LIST_DIR}/components/generic/hs_button_icon/hs_button_icon_gen.c
+  ${CMAKE_CURRENT_LIST_DIR}/components/generic/hs_button_text/hs_button_text_gen.c
   ${CMAKE_CURRENT_LIST_DIR}/components/generic/hs_button/hs_button_gen.c
   ${CMAKE_CURRENT_LIST_DIR}/components/generic/hs_card/hs_card_gen.c
   ${CMAKE_CURRENT_LIST_DIR}/components/generic/hs_column/hs_column_gen.c
+  ${CMAKE_CURRENT_LIST_DIR}/components/generic/hs_dropdown_item/hs_dropdown_item_gen.c
   ${CMAKE_CURRENT_LIST_DIR}/components/generic/hs_dropdown/hs_dropdown_gen.c
   ${CMAKE_CURRENT_LIST_DIR}/components/generic/hs_info/hs_info_gen.c
   ${CMAKE_CURRENT_LIST_DIR}/components/generic/hs_line/hs_line_gen.c
@@ -20,16 +23,17 @@ list(
   ${CMAKE_CURRENT_LIST_DIR}/components/generic/hs_slider/hs_slider_gen.c
   ${CMAKE_CURRENT_LIST_DIR}/components/generic/hs_space/hs_space_gen.c
   ${CMAKE_CURRENT_LIST_DIR}/components/generic/hs_switch/hs_switch_gen.c
-  ${CMAKE_CURRENT_LIST_DIR}/components/generic/hs_text_large/hs_text_large_gen.c
-  ${CMAKE_CURRENT_LIST_DIR}/components/generic/hs_text_medium/hs_text_medium_gen.c
-  ${CMAKE_CURRENT_LIST_DIR}/components/generic/hs_text_normal/hs_text_normal_gen.c
-  ${CMAKE_CURRENT_LIST_DIR}/components/generic/hs_text_small/hs_text_small_gen.c
+  ${CMAKE_CURRENT_LIST_DIR}/components/generic/hs_text_icon/hs_text_icon_normal/hs_text_icon_normal_gen.c
+  ${CMAKE_CURRENT_LIST_DIR}/components/generic/hs_text/hs_text_large/hs_text_large_gen.c
+  ${CMAKE_CURRENT_LIST_DIR}/components/generic/hs_text/hs_text_medium/hs_text_medium_gen.c
+  ${CMAKE_CURRENT_LIST_DIR}/components/generic/hs_text/hs_text_normal/hs_text_normal_gen.c
+  ${CMAKE_CURRENT_LIST_DIR}/components/generic/hs_text/hs_text_small/hs_text_small_gen.c
+  ${CMAKE_CURRENT_LIST_DIR}/components/generic/hs_title/hs_title_gen.c
   ${CMAKE_CURRENT_LIST_DIR}/components/notifications/notification_item/notification_item_gen.c
   ${CMAKE_CURRENT_LIST_DIR}/components/settings/settings_about/settings_about_gen.c
   ${CMAKE_CURRENT_LIST_DIR}/components/settings/settings_alert/settings_alert_gen.c
   ${CMAKE_CURRENT_LIST_DIR}/components/settings/settings_battery/settings_battery_gen.c
   ${CMAKE_CURRENT_LIST_DIR}/components/settings/settings_display/settings_display_gen.c
-  ${CMAKE_CURRENT_LIST_DIR}/components/settings/settings_item/settings_item_gen.c
   ${CMAKE_CURRENT_LIST_DIR}/components/settings/settings_storage/settings_storage_gen.c
   ${CMAKE_CURRENT_LIST_DIR}/components/settings/settings_system/settings_system_gen.c
   ${CMAKE_CURRENT_LIST_DIR}/components/watchfaces/watchface_default/watchface_default_gen.c
@@ -45,9 +49,52 @@ list(
   ${CMAKE_CURRENT_LIST_DIR}/fonts/NS_Medium_70_data.c
   ${CMAKE_CURRENT_LIST_DIR}/fonts/NS_Medium_100_data.c
   ${CMAKE_CURRENT_LIST_DIR}/fonts/NS_Medium_140_data.c
+  ${CMAKE_CURRENT_LIST_DIR}/fonts/NS_Medium_el_14_data.c
+  ${CMAKE_CURRENT_LIST_DIR}/fonts/NS_Medium_el_16_data.c
+  ${CMAKE_CURRENT_LIST_DIR}/fonts/NS_Medium_el_18_data.c
+  ${CMAKE_CURRENT_LIST_DIR}/fonts/NS_Medium_el_20_data.c
+  ${CMAKE_CURRENT_LIST_DIR}/fonts/NS_Medium_el_30_data.c
+  ${CMAKE_CURRENT_LIST_DIR}/fonts/NS_Medium_el_40_data.c
+  ${CMAKE_CURRENT_LIST_DIR}/fonts/NS_Medium_hi_14_data.c
+  ${CMAKE_CURRENT_LIST_DIR}/fonts/NS_Medium_hi_16_data.c
+  ${CMAKE_CURRENT_LIST_DIR}/fonts/NS_Medium_hi_18_data.c
+  ${CMAKE_CURRENT_LIST_DIR}/fonts/NS_Medium_hi_20_data.c
+  ${CMAKE_CURRENT_LIST_DIR}/fonts/NS_Medium_hi_30_data.c
+  ${CMAKE_CURRENT_LIST_DIR}/fonts/NS_Medium_hi_40_data.c
+  ${CMAKE_CURRENT_LIST_DIR}/fonts/NS_Medium_jp_14_data.c
+  ${CMAKE_CURRENT_LIST_DIR}/fonts/NS_Medium_jp_16_data.c
+  ${CMAKE_CURRENT_LIST_DIR}/fonts/NS_Medium_jp_18_data.c
+  ${CMAKE_CURRENT_LIST_DIR}/fonts/NS_Medium_jp_20_data.c
+  ${CMAKE_CURRENT_LIST_DIR}/fonts/NS_Medium_jp_30_data.c
+  ${CMAKE_CURRENT_LIST_DIR}/fonts/NS_Medium_jp_40_data.c
+  ${CMAKE_CURRENT_LIST_DIR}/fonts/NS_Medium_latin_14_data.c
+  ${CMAKE_CURRENT_LIST_DIR}/fonts/NS_Medium_latin_16_data.c
+  ${CMAKE_CURRENT_LIST_DIR}/fonts/NS_Medium_latin_18_data.c
+  ${CMAKE_CURRENT_LIST_DIR}/fonts/NS_Medium_latin_20_data.c
+  ${CMAKE_CURRENT_LIST_DIR}/fonts/NS_Medium_latin_30_data.c
+  ${CMAKE_CURRENT_LIST_DIR}/fonts/NS_Medium_latin_40_data.c
+  ${CMAKE_CURRENT_LIST_DIR}/fonts/NS_Medium_ru_14_data.c
+  ${CMAKE_CURRENT_LIST_DIR}/fonts/NS_Medium_ru_16_data.c
+  ${CMAKE_CURRENT_LIST_DIR}/fonts/NS_Medium_ru_18_data.c
+  ${CMAKE_CURRENT_LIST_DIR}/fonts/NS_Medium_ru_20_data.c
+  ${CMAKE_CURRENT_LIST_DIR}/fonts/NS_Medium_ru_30_data.c
+  ${CMAKE_CURRENT_LIST_DIR}/fonts/NS_Medium_ru_40_data.c
+  ${CMAKE_CURRENT_LIST_DIR}/fonts/NS_Medium_th_14_data.c
+  ${CMAKE_CURRENT_LIST_DIR}/fonts/NS_Medium_th_16_data.c
+  ${CMAKE_CURRENT_LIST_DIR}/fonts/NS_Medium_th_18_data.c
+  ${CMAKE_CURRENT_LIST_DIR}/fonts/NS_Medium_th_20_data.c
+  ${CMAKE_CURRENT_LIST_DIR}/fonts/NS_Medium_th_30_data.c
+  ${CMAKE_CURRENT_LIST_DIR}/fonts/NS_Medium_th_40_data.c
+  ${CMAKE_CURRENT_LIST_DIR}/fonts/NS_Medium_zh_14_data.c
+  ${CMAKE_CURRENT_LIST_DIR}/fonts/NS_Medium_zh_16_data.c
+  ${CMAKE_CURRENT_LIST_DIR}/fonts/NS_Medium_zh_18_data.c
+  ${CMAKE_CURRENT_LIST_DIR}/fonts/NS_Medium_zh_20_data.c
+  ${CMAKE_CURRENT_LIST_DIR}/fonts/NS_Medium_zh_30_data.c
+  ${CMAKE_CURRENT_LIST_DIR}/fonts/NS_Medium_zh_40_data.c
   ${CMAKE_CURRENT_LIST_DIR}/helios_ui_gen.c
   ${CMAKE_CURRENT_LIST_DIR}/helios_ui.c
   ${CMAKE_CURRENT_LIST_DIR}/images/icon_application_data.c
+  ${CMAKE_CURRENT_LIST_DIR}/images/icon_arrow_up_data.c
   ${CMAKE_CURRENT_LIST_DIR}/images/icon_back_data.c
   ${CMAKE_CURRENT_LIST_DIR}/images/icon_brightness_empty_data.c
   ${CMAKE_CURRENT_LIST_DIR}/images/icon_brightness_full_data.c
@@ -82,6 +129,10 @@ list(
   ${CMAKE_CURRENT_LIST_DIR}/images/icon_volume_high_data.c
   ${CMAKE_CURRENT_LIST_DIR}/images/icon_volume_low_data.c
   ${CMAKE_CURRENT_LIST_DIR}/images/icon_weather_data.c
+  ${CMAKE_CURRENT_LIST_DIR}/images/icon_weather_humidity_icon_data.c
+  ${CMAKE_CURRENT_LIST_DIR}/images/icon_weather_temp_down_icon_data.c
+  ${CMAKE_CURRENT_LIST_DIR}/images/icon_weather_temp_up_icon_data.c
+  ${CMAKE_CURRENT_LIST_DIR}/images/icon_weather_uv_icon_data.c
   ${CMAKE_CURRENT_LIST_DIR}/images/icon_wifi_data.c
   ${CMAKE_CURRENT_LIST_DIR}/screens/core/applications/applications_gen.c
   ${CMAKE_CURRENT_LIST_DIR}/screens/core/boot/boot_gen.c
@@ -94,9 +145,15 @@ list(
   ${CMAKE_CURRENT_LIST_DIR}/widgets/wd_arcoiris/wd_arcoiris_gen.c
   ${CMAKE_CURRENT_LIST_DIR}/widgets/wd_arcoiris/wd_arcoiris_xml_parser.c
   ${CMAKE_CURRENT_LIST_DIR}/widgets/wd_arcoiris/wd_arcoiris.c
+  ${CMAKE_CURRENT_LIST_DIR}/widgets/wd_dropdown/wd_dropdown_gen.c
+  ${CMAKE_CURRENT_LIST_DIR}/widgets/wd_dropdown/wd_dropdown_xml_parser.c
+  ${CMAKE_CURRENT_LIST_DIR}/widgets/wd_dropdown/wd_dropdown.c
   ${CMAKE_CURRENT_LIST_DIR}/widgets/wd_image/wd_image_gen.c
   ${CMAKE_CURRENT_LIST_DIR}/widgets/wd_image/wd_image_xml_parser.c
   ${CMAKE_CURRENT_LIST_DIR}/widgets/wd_image/wd_image.c
   ${CMAKE_CURRENT_LIST_DIR}/widgets/wd_list/wd_list_gen.c
   ${CMAKE_CURRENT_LIST_DIR}/widgets/wd_list/wd_list_xml_parser.c
-  ${CMAKE_CURRENT_LIST_DIR}/widgets/wd_list/wd_list.c)
+  ${CMAKE_CURRENT_LIST_DIR}/widgets/wd_list/wd_list.c
+  ${CMAKE_CURRENT_LIST_DIR}/widgets/wd_segment/wd_segment_gen.c
+  ${CMAKE_CURRENT_LIST_DIR}/widgets/wd_segment/wd_segment_xml_parser.c
+  ${CMAKE_CURRENT_LIST_DIR}/widgets/wd_segment/wd_segment.c)

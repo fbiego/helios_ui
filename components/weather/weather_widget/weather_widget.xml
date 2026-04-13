@@ -21,6 +21,7 @@
 			text_color="0xfff"
 			layout="flex"
 			flex_flow="column"
+			flex_main_place="center"
 			flex_cross_place="center"
 			flex_track_place="center"
 		/>
@@ -53,21 +54,21 @@
 			<remove_style_all />
 			<style name="style_cont" />
 			<hs_text_large text="22" />
-			<hs_text_normal text="°C" style_text_align="center" />
+			<hs_text_normal text="°C" style_text_align="center" style_pad_top="15" />
 		</lv_obj>
 		<lv_obj>
 			<remove_style_all />
 			<style name="style_cont" />
 			<style name="style_pad_cont" />
-			<hs_text_normal text="H:28°" style_text_align="center" />
-			<hs_text_normal text="L:19°" style_text_align="center" />
+			<hs_text_icon_normal icon="icon_weather_temp_up_icon" text="28°" />
+			<hs_text_icon_normal icon="icon_weather_temp_down_icon" text="19°" />
 		</lv_obj>
 		<lv_obj>
 			<remove_style_all />
 			<style name="style_cont" />
 			<style name="style_pad_cont" />
-			<hs_text_normal text="1023kpa" style_text_align="center" />
-			<hs_text_normal text="UV:4" style_text_align="center" />
+			<hs_text_icon_normal icon="icon_weather_humidity_icon" text="55%" />
+			<hs_text_icon_normal icon="icon_weather_uv_icon" text="4" />
 		</lv_obj>
 	</view>
 </component>

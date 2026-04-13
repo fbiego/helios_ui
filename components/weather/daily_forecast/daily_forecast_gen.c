@@ -75,6 +75,7 @@ lv_obj_t * daily_forecast_create(lv_obj_t * parent)
     lv_obj_t * hs_text_normal_0 = hs_text_normal_create(lv_obj_0);
     lv_obj_set_flex_grow(hs_text_normal_0, 2);
     lv_label_set_text(hs_text_normal_0, "Sun");
+    lv_label_set_translation_tag(hs_text_normal_0, "sun");
     lv_obj_set_style_text_align(hs_text_normal_0, LV_TEXT_ALIGN_CENTER, 0);
     
     lv_obj_t * wd_image_0 = wd_image_create(lv_obj_0);

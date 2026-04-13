@@ -65,16 +65,15 @@ lv_obj_t * settings_battery_create(lv_obj_t * parent)
     lv_obj_bind_style(wd_list_container_0, &style_pad_360, 0, &sb_screen_size, 1);
     lv_obj_bind_style(wd_list_container_0, &style_pad_240, 0, &sb_screen_size, 2);
     lv_obj_t * hs_card_0 = hs_card_create(wd_list_container_0);
-    lv_obj_set_style_pad_top(hs_card_0, 5, 0);
-    hs_bar_create(hs_card_0, "Battery", &sb_battery_percent);
+    hs_bar_create(hs_card_0, "Brightness", "battery", &sb_battery_percent);
     
-    hs_info_create(hs_card_0, "Voltage", "3.89V");
+    hs_info_create(hs_card_0, "Label", "voltage", "3.89V");
     
-    hs_info_create(hs_card_0, "Temp", "33.5°");
+    hs_info_create(hs_card_0, "Label", "temperature", "33.5°");
     
     hs_line_create(hs_card_0);
     
-    hs_info_create(hs_card_0, "Usage", "1d 17h");
+    hs_info_create(hs_card_0, "Label", "usage", "1d 17h");
 
     LV_TRACE_OBJ_CREATE("finished");
 

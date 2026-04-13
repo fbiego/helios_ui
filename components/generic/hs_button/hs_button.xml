@@ -7,6 +7,7 @@
 
 	<api>
 		<prop name="label" type="string" default="Circular Scroll" />
+		<prop name="tag" type="string" default="" />
 		<prop name="text_color" type="color" default="#color_primary" />
 	</api>
 
@@ -20,6 +21,8 @@
 			pad_all="10"
 			bg_opa="255"
 		/>
+		<style name="style_base_360" pad_all="6" radius="8" />
+		<style name="style_base_240" pad_all="4" radius="6" />
 		<style name="style_switch" bg_color="0xffffff" width="96" height="46" text_color="0xfff" />
 		<style name="style_switch_360" width="72" height="36" />
 		<style name="style_switch_240" width="48" height="24" />
@@ -29,10 +32,13 @@
 	<view extends="lv_obj">
 		<remove_style_all />
 		<style name="style_base" />
+		<bind_style name="style_base_360" subject="sb_screen_size" ref_value="1" />
+		<bind_style name="style_base_240" subject="sb_screen_size" ref_value="2" />
 		<style name="style_pressed" selector="pressed" />
 
 		<hs_text_normal
 			text="$label"
+			translation_tag="$tag"
 			width="100%"
 			style_pad_top="5"
 			style_text_color="$text_color"

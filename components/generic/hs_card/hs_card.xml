@@ -10,20 +10,20 @@
 			name="style_base"
 			width="100%"
 			height="content"
-			radius="10"
-			pad_all="10"
-			bg_color="0x171717"
-			bg_opa="255"
 			layout="flex"
 			flex_flow="column"
+			radius="10"
+			pad_all="10"
 			pad_row="10"
+			bg_color="0x171717"
+			bg_opa="255"
 		/>
 
-		<style name="style_pad_360" pad_row="6" />
-		<style name="style_pad_240" pad_row="4" />
+		<style name="style_pad_360" pad_all="9" pad_row="8" radius="8" />
+		<style name="style_pad_240" pad_all="8" pad_row="6" radius="6" />
 	</styles>
 
-	<view extends="lv_obj" overflow_visible="true">
+	<view extends="lv_obj">
 		<remove_style_all />
 		<style name="style_base" />
 		<bind_style name="style_pad_360" subject="sb_screen_size" ref_value="1" />

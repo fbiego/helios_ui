@@ -65,23 +65,23 @@ lv_obj_t * settings_system_create(lv_obj_t * parent)
     lv_obj_bind_style(wd_list_container_0, &style_pad_360, 0, &sb_screen_size, 1);
     lv_obj_bind_style(wd_list_container_0, &style_pad_240, 0, &sb_screen_size, 2);
     lv_obj_t * hs_card_0 = hs_card_create(wd_list_container_0);
-    hs_switch_create(hs_card_0, "Circular scroll", &sb_list_circular_mode);
+    hs_switch_create(hs_card_0, "Circular Scroll", "circular_scroll", &sb_list_circular_mode);
     
     hs_line_create(hs_card_0);
     
-    hs_switch_create(hs_card_0, "Grid mode", &sb_app_list_mode);
+    hs_switch_create(hs_card_0, "Circular Scroll", "grid_mode", &sb_app_list_mode);
     
     hs_line_create(hs_card_0);
     
-    hs_dropdown_create(hs_card_0, "Language", &sb_screen_rotation, "English\nRussian\nFrench\nGerman");
+    hs_dropdown_create(hs_card_0, "Timeout", "language", &sb_language, "English\nRussian\nPortuguese\nGreek\nGerman\nSpanish\nFrench\nChinese\nHindi\nJapanese\nThai\nHungarian");
     
     lv_obj_t * hs_card_1 = hs_card_create(wd_list_container_0);
-    hs_button_create(hs_card_1, "Reboot", COLOR_PRIMARY);
+    hs_button_create(hs_card_1, "Circular Scroll", "reboot", COLOR_PRIMARY);
     
-    hs_button_create(hs_card_1, "Shutdown", COLOR_PRIMARY);
+    hs_button_create(hs_card_1, "Circular Scroll", "shutdown", COLOR_PRIMARY);
     
     lv_obj_t * hs_card_2 = hs_card_create(wd_list_container_0);
-    hs_button_create(hs_card_2, "Factory Reset", lv_color_hex(0xe51212));
+    hs_button_create(hs_card_2, "Circular Scroll", "factory_reset", lv_color_hex(0xe51212));
 
     LV_TRACE_OBJ_CREATE("finished");
 

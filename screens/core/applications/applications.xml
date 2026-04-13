@@ -34,22 +34,22 @@
 				<bind_style name="style_pad_grid_360" subject="sb_screen_size" ref_value="1" selector="user_1" />
 				<bind_style name="style_pad_grid_240" subject="sb_screen_size" ref_value="2" selector="user_1" />
 
-				<app_item icon="icon_contacts" app_name="Contacts" />
-				<app_item icon="icon_folder" app_name="Files" />
-				<app_item icon="icon_running" app_name="Fitness" />
-				<app_item icon="icon_measurement" app_name="Health" />
-				<app_item icon="icon_music" app_name="Music" />
-				<app_item icon="icon_navigation" app_name="Navigation" />
-				<app_item icon="icon_chat" app_name="Notifications">
+				<app_item icon="icon_contacts" app_name="Contacts" tag="contacts" />
+				<app_item icon="icon_folder" app_name="Files" tag="files" />
+				<app_item icon="icon_running" app_name="Fitness" tag="fitness" />
+				<app_item icon="icon_measurement" app_name="Health" tag="health" />
+				<app_item icon="icon_music" app_name="Music" tag="music" />
+				<app_item icon="icon_navigation" app_name="Navigation" tag="navigation" />
+				<app_item icon="icon_chat" app_name="Notifications" tag="notifications">
 					<event_cb callback="on_notifications_clicked_cb" trigger="clicked" />
 				</app_item>
-				<app_item icon="icon_gear" app_name="Settings">
+				<app_item icon="icon_gear" app_name="Settings" tag="settings">
 					<event_cb callback="on_settings_clicked_cb" trigger="clicked" />
 				</app_item>
-				<app_item icon="icon_sleep" app_name="Sleep" />
-				<app_item icon="icon_stopwatch" app_name="Stopwatch" />
-				<app_item icon="icon_timer" app_name="Timer" />
-				<app_item icon="icon_weather" app_name="Weather">
+				<app_item icon="icon_sleep" app_name="Sleep" tag="sleep" />
+				<app_item icon="icon_stopwatch" app_name="Stopwatch" tag="stopwatch" />
+				<app_item icon="icon_timer" app_name="Timer" tag="timer" />
+				<app_item icon="icon_weather" app_name="Weather" tag="weather">
 					<event_cb callback="on_weather_clicked_cb" trigger="clicked" />
 				</app_item>
 			</wd_list-container>

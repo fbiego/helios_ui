@@ -33,7 +33,7 @@ extern "C" {
  * GLOBAL PROTOTYPES
  **********************/
 
-lv_obj_t * hs_button_create(lv_obj_t * parent, const char * label, lv_color_t text_color);
+lv_obj_t * hs_button_create(lv_obj_t * parent, const char * label, const char * tag, lv_color_t text_color);
 
 /**********************
  *      MACROS

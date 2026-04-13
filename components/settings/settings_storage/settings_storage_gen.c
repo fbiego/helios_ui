@@ -65,31 +65,31 @@ lv_obj_t * settings_storage_create(lv_obj_t * parent)
     lv_obj_bind_style(wd_list_container_0, &style_pad_360, 0, &sb_screen_size, 1);
     lv_obj_bind_style(wd_list_container_0, &style_pad_240, 0, &sb_screen_size, 2);
     lv_obj_t * hs_card_0 = hs_card_create(wd_list_container_0);
-    hs_bar_create(hs_card_0, "System", &sb_battery_percent);
+    hs_bar_create(hs_card_0, "Brightness", "system", &sb_battery_percent);
     
     lv_obj_t * hs_card_1 = hs_card_create(wd_list_container_0);
-    hs_bar_create(hs_card_1, "LittleFS", &sb_battery_percent);
+    hs_bar_create(hs_card_1, "LittleFS", "", &sb_battery_percent);
     
     hs_line_create(hs_card_1);
     
     lv_obj_t * hs_column_0 = hs_column_create(hs_card_1);
     lv_obj_set_style_pad_all(hs_column_0, 0, 0);
-    hs_info_create(hs_column_0, "Faces", "5");
+    hs_info_create(hs_column_0, "Label", "Faces", "5");
     
-    hs_info_create(hs_column_0, "Steps", "34");
+    hs_info_create(hs_column_0, "Label", "Steps", "34");
     
-    hs_info_create(hs_column_0, "Battery", "56");
+    hs_info_create(hs_column_0, "Label", "Battery", "56");
     
     hs_line_create(hs_card_1);
     
-    hs_button_create(hs_card_1, "Format", lv_color_hex(0xe51212));
+    hs_button_create(hs_card_1, "Circular Scroll", "format", lv_color_hex(0xe51212));
     
     lv_obj_t * hs_card_2 = hs_card_create(wd_list_container_0);
-    hs_bar_create(hs_card_2, "SD Card", &sb_battery_percent);
+    hs_bar_create(hs_card_2, "Brightness", "SD Card", &sb_battery_percent);
     
     hs_line_create(hs_card_2);
     
-    hs_button_create(hs_card_2, "Format", lv_color_hex(0xe51212));
+    hs_button_create(hs_card_2, "Circular Scroll", "format", lv_color_hex(0xe51212));
 
     LV_TRACE_OBJ_CREATE("finished");
 

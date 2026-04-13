@@ -69,15 +69,21 @@ lv_obj_t * watchface_default_create(lv_obj_t * parent)
     lv_obj_remove_style_all(lv_obj_1);
     lv_obj_add_style(lv_obj_1, &style_column, 0);
     lv_obj_t * hs_text_large_0 = hs_text_large_create(lv_obj_1);
-    lv_label_set_text(hs_text_large_0, "12:45");
+    lv_label_set_text(hs_text_large_0, "12:05");
     lv_obj_set_y(hs_text_large_0, -50);
     lv_obj_set_align(hs_text_large_0, LV_ALIGN_CENTER);
     
     lv_obj_t * hs_text_normal_0 = hs_text_normal_create(lv_obj_1);
-    lv_label_set_text(hs_text_normal_0, "Mon\n02 Feb");
-    lv_obj_set_align(hs_text_normal_0, LV_ALIGN_CENTER);
-    lv_obj_set_y(hs_text_normal_0, 70);
-    lv_obj_set_style_text_align(hs_text_normal_0, LV_TEXT_ALIGN_CENTER, 0);
+    lv_label_set_translation_tag(hs_text_normal_0, "mon");
+    
+    lv_obj_t * hs_row_0 = hs_row_create(lv_obj_1);
+    lv_obj_set_width(hs_row_0, LV_SIZE_CONTENT);
+    lv_obj_set_style_pad_column(hs_row_0, 10, 0);
+    lv_obj_t * hs_text_normal_1 = hs_text_normal_create(hs_row_0);
+    lv_label_set_text(hs_text_normal_1, "13");
+    
+    lv_obj_t * hs_text_normal_2 = hs_text_normal_create(hs_row_0);
+    lv_label_set_translation_tag(hs_text_normal_2, "apr");
 
     LV_TRACE_OBJ_CREATE("finished");
 

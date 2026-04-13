@@ -89,6 +89,8 @@ lv_obj_t * control_slider_create(lv_obj_t * parent, const void * icon_left, cons
     wd_image_set_x_2(wd_image_0, 8);
     wd_image_bind_scale(wd_image_0, &sb_screen_size);
     lv_obj_set_style_blend_mode(wd_image_0, LV_BLEND_MODE_DIFFERENCE, 0);
+    lv_obj_set_style_image_recolor(wd_image_0, lv_color_hex(0xffffff), 0);
+    lv_obj_set_style_image_recolor_opa(wd_image_0, 255, 0);
     
     lv_obj_t * wd_image_1 = wd_image_create(lv_slider_0);
     lv_obj_set_flag(wd_image_1, LV_OBJ_FLAG_CLICKABLE, false);
@@ -104,6 +106,8 @@ lv_obj_t * control_slider_create(lv_obj_t * parent, const void * icon_left, cons
     wd_image_set_x_2(wd_image_1, -8);
     wd_image_bind_scale(wd_image_1, &sb_screen_size);
     lv_obj_set_style_blend_mode(wd_image_1, LV_BLEND_MODE_DIFFERENCE, 0);
+    lv_obj_set_style_image_recolor(wd_image_1, lv_color_hex(0xffffff), 0);
+    lv_obj_set_style_image_recolor_opa(wd_image_1, 255, 0);
 
     LV_TRACE_OBJ_CREATE("finished");
 

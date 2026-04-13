@@ -88,6 +88,8 @@ lv_obj_t * control_switch_create(lv_obj_t * parent, const void * icon)
     wd_image_set_scale_1(wd_image_0, 190);
     wd_image_set_scale_2(wd_image_0, 130);
     wd_image_bind_scale(wd_image_0, &sb_screen_size);
+    lv_obj_set_style_image_recolor(wd_image_0, lv_color_hex(0xffffff), 0);
+    lv_obj_set_style_image_recolor_opa(wd_image_0, 255, 0);
 
     LV_TRACE_OBJ_CREATE("finished");
 

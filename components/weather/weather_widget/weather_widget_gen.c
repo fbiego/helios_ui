@@ -51,6 +51,7 @@ lv_obj_t * weather_widget_create(lv_obj_t * parent)
         lv_style_set_text_color(&style_base, lv_color_hex3(0xfff));
         lv_style_set_layout(&style_base, LV_LAYOUT_FLEX);
         lv_style_set_flex_flow(&style_base, LV_FLEX_FLOW_COLUMN);
+        lv_style_set_flex_main_place(&style_base, LV_FLEX_ALIGN_CENTER);
         lv_style_set_flex_cross_place(&style_base, LV_FLEX_ALIGN_CENTER);
         lv_style_set_flex_track_place(&style_base, LV_FLEX_ALIGN_CENTER);
 
@@ -110,30 +111,23 @@ lv_obj_t * weather_widget_create(lv_obj_t * parent)
     lv_obj_t * hs_text_normal_1 = hs_text_normal_create(lv_obj_1);
     lv_label_set_text(hs_text_normal_1, "°C");
     lv_obj_set_style_text_align(hs_text_normal_1, LV_TEXT_ALIGN_CENTER, 0);
+    lv_obj_set_style_pad_top(hs_text_normal_1, 15, 0);
     
     lv_obj_t * lv_obj_2 = lv_obj_create(lv_obj_0);
     lv_obj_remove_style_all(lv_obj_2);
     lv_obj_add_style(lv_obj_2, &style_cont, 0);
     lv_obj_add_style(lv_obj_2, &style_pad_cont, 0);
-    lv_obj_t * hs_text_normal_2 = hs_text_normal_create(lv_obj_2);
-    lv_label_set_text(hs_text_normal_2, "H:28°");
-    lv_obj_set_style_text_align(hs_text_normal_2, LV_TEXT_ALIGN_CENTER, 0);
+    hs_text_icon_normal_create(lv_obj_2, icon_weather_temp_up_icon, "28°", "");
     
-    lv_obj_t * hs_text_normal_3 = hs_text_normal_create(lv_obj_2);
-    lv_label_set_text(hs_text_normal_3, "L:19°");
-    lv_obj_set_style_text_align(hs_text_normal_3, LV_TEXT_ALIGN_CENTER, 0);
+    hs_text_icon_normal_create(lv_obj_2, icon_weather_temp_down_icon, "19°", "");
     
     lv_obj_t * lv_obj_3 = lv_obj_create(lv_obj_0);
     lv_obj_remove_style_all(lv_obj_3);
     lv_obj_add_style(lv_obj_3, &style_cont, 0);
     lv_obj_add_style(lv_obj_3, &style_pad_cont, 0);
-    lv_obj_t * hs_text_normal_4 = hs_text_normal_create(lv_obj_3);
-    lv_label_set_text(hs_text_normal_4, "1023kpa");
-    lv_obj_set_style_text_align(hs_text_normal_4, LV_TEXT_ALIGN_CENTER, 0);
+    hs_text_icon_normal_create(lv_obj_3, icon_weather_humidity_icon, "55%", "");
     
-    lv_obj_t * hs_text_normal_5 = hs_text_normal_create(lv_obj_3);
-    lv_label_set_text(hs_text_normal_5, "UV:4");
-    lv_obj_set_style_text_align(hs_text_normal_5, LV_TEXT_ALIGN_CENTER, 0);
+    hs_text_icon_normal_create(lv_obj_3, icon_weather_uv_icon, "4", "");
 
     LV_TRACE_OBJ_CREATE("finished");
 

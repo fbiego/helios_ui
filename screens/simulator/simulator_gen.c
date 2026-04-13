@@ -44,13 +44,11 @@ lv_obj_t * simulator_create(void)
 
     lv_obj_t * lv_obj_0 = lv_obj_create(NULL);
     lv_obj_set_name_static(lv_obj_0, "simulator_#");
+    lv_obj_set_style_bg_color(lv_obj_0, lv_color_hex(0x000000), 0);
 
-    lv_obj_t * lv_label_0 = lv_label_create(lv_obj_0);
-    lv_label_set_text(lv_label_0, "Simulator");
-    lv_obj_set_align(lv_label_0, LV_ALIGN_CENTER);
-    lv_obj_bind_style(lv_label_0, &style_text_normal_466, 0, &sb_screen_size, 0);
-    lv_obj_bind_style(lv_label_0, &style_text_normal_360, 0, &sb_screen_size, 1);
-    lv_obj_bind_style(lv_label_0, &style_text_normal_240, 0, &sb_screen_size, 2);
+    lv_obj_t * hs_text_normal_0 = hs_text_normal_create(lv_obj_0);
+    lv_label_set_text(hs_text_normal_0, "Simulator");
+    lv_obj_set_align(hs_text_normal_0, LV_ALIGN_CENTER);
     
     lv_obj_add_event_cb(lv_obj_0, on_simulator_event_cb, LV_EVENT_ALL, NULL);
 

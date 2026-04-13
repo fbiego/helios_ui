@@ -33,7 +33,7 @@ extern "C" {
  * GLOBAL PROTOTYPES
  **********************/
 
-lv_obj_t * hs_slider_create(lv_obj_t * parent, const char * label, lv_subject_t * bind_value);
+lv_obj_t * hs_slider_create(lv_obj_t * parent, const char * label, const char * tag, lv_subject_t * bind_value);
 
 /**********************
  *      MACROS

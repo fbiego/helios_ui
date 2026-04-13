@@ -35,8 +35,12 @@
 		<lv_obj clickable="false">
 			<remove_style_all />
 			<style name="style_column" />
-			<hs_text_large text="12:45" y="-50" align="center" />
-			<hs_text_normal text="Mon&#10;02 Feb" align="center" y="70" style_text_align="center" />
+			<hs_text_large text="12:05" y="-50" align="center" />
+			<hs_text_normal translation_tag="mon" />
+			<hs_row width="content" style_pad_column="10">
+				<hs_text_normal text="13" />
+				<hs_text_normal translation_tag="apr" />
+			</hs_row>
 		</lv_obj>
 
 		<!-- <wd_arcoiris clickable="false" thickness="15" style_bg_opa="0" style_opa="200">

@@ -66,19 +66,19 @@ lv_obj_t * settings_alert_create(lv_obj_t * parent)
     lv_obj_bind_style(wd_list_container_0, &style_pad_240, 0, &sb_screen_size, 2);
     lv_obj_t * hs_card_0 = hs_card_create(wd_list_container_0);
     lv_obj_set_style_pad_ver(hs_card_0, 5, 0);
-    hs_switch_create(hs_card_0, "Sound", &sb_list_circular_mode);
+    hs_switch_create(hs_card_0, "Circular Scroll", "sound", &sb_list_circular_mode);
     
     hs_line_create(hs_card_0);
     
-    hs_switch_create(hs_card_0, "Vibration", &sb_list_circular_mode);
+    hs_switch_create(hs_card_0, "Circular Scroll", "vibration", &sb_list_circular_mode);
     
     hs_line_create(hs_card_0);
     
-    hs_switch_create(hs_card_0, "Wake screen", &sb_list_circular_mode);
+    hs_switch_create(hs_card_0, "Circular Scroll", "wake_screen", &sb_list_circular_mode);
     
     lv_obj_t * hs_card_1 = hs_card_create(wd_list_container_0);
     lv_obj_set_style_pad_ver(hs_card_1, 5, 0);
-    hs_switch_create(hs_card_1, "DND", &sb_list_circular_mode);
+    hs_switch_create(hs_card_1, "Circular Scroll", "dnd", &sb_list_circular_mode);
 
     LV_TRACE_OBJ_CREATE("finished");
 

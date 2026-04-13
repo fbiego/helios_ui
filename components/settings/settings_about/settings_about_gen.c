@@ -65,36 +65,34 @@ lv_obj_t * settings_about_create(lv_obj_t * parent)
     lv_obj_bind_style(wd_list_container_0, &style_pad_360, 0, &sb_screen_size, 1);
     lv_obj_bind_style(wd_list_container_0, &style_pad_240, 0, &sb_screen_size, 2);
     lv_obj_t * hs_card_0 = hs_card_create(wd_list_container_0);
-    hs_info_create(hs_card_0, "Viewe Smart Ring", " ");
+    hs_info_create(hs_card_0, "Viewe Smart Ring", "", "");
     
     hs_line_create(hs_card_0);
     
-    hs_info_create(hs_card_0, "ESP32 S3", " ");
-    
-    hs_info_create(hs_card_0, " ", "34:54:56:23:43:32");
+    hs_info_create(hs_card_0, "ESP32 S3", "", "34:54:56:23:43:32");
     
     hs_line_create(hs_card_0);
     
-    hs_info_create(hs_card_0, "RAM", "384KB");
+    hs_info_create(hs_card_0, "RAM", "", "384KB");
     
-    hs_info_create(hs_card_0, "PSRAM", "8MB");
-    
-    hs_line_create(hs_card_0);
-    
-    hs_info_create(hs_card_0, "Flash", "16MB");
+    hs_info_create(hs_card_0, "PSRAM", "", "8MB");
     
     hs_line_create(hs_card_0);
     
-    hs_info_create(hs_card_0, "Display", "466x466");
+    hs_info_create(hs_card_0, "Flash", "", "16MB");
     
     hs_line_create(hs_card_0);
     
-    hs_info_create(hs_card_0, "Firmware", "v1.3");
+    hs_info_create(hs_card_0, "Label", "display", "466x466");
+    
+    hs_line_create(hs_card_0);
+    
+    hs_info_create(hs_card_0, "Label", "firmware", "v1.3");
     
     lv_obj_t * hs_card_1 = hs_card_create(wd_list_container_0);
-    hs_info_create(hs_card_1, "Helios UI", "v0.1");
+    hs_info_create(hs_card_1, "Helios UI", "", "v0.1");
     
-    hs_info_create(hs_card_1, "LVGL", "v9.4.0");
+    hs_info_create(hs_card_1, "LVGL", "", "v9.4.0");
 
     LV_TRACE_OBJ_CREATE("finished");
 

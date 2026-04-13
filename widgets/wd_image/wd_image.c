@@ -120,6 +120,13 @@ void wd_image_set_x_2(lv_obj_t * wd_image, int32_t x_2)
     widget->x_2 = x_2;
 }
 
+void wd_image_set_rotation(lv_obj_t * wd_image, int32_t rotation)
+{
+    wd_image_t * widget = (wd_image_t *)wd_image;
+    widget->rotation = rotation;
+    lv_image_set_rotation(wd_image, widget->rotation);
+}
+
 void wd_image_bind_scale(lv_obj_t * wd_image, lv_subject_t * bind_scale)
 {
     wd_image_t * widget = (wd_image_t *)wd_image;
@@ -163,5 +170,6 @@ static void scale_observer_cb(lv_observer_t * observer, lv_subject_t * subject)
             lv_obj_set_size(obj, LV_SIZE_CONTENT, LV_SIZE_CONTENT);
             lv_obj_set_x(obj, 0);
     }
+    lv_image_set_rotation(obj, widget->rotation);
 
 }

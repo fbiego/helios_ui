@@ -19,8 +19,7 @@
 			<hs_card>
 				<hs_info label="Viewe Smart Ring" info="" />
 				<hs_line />
-				<hs_info label="ESP32 S3" info="" />
-				<hs_info label="" info="34:54:56:23:43:32" />
+				<hs_info label="ESP32 S3" info="34:54:56:23:43:32" />
 				<hs_line />
 				<hs_info label="RAM" info="384KB" />
 				<hs_info label="PSRAM" info="8MB" />
@@ -29,10 +28,11 @@
 				<hs_info label="Flash" info="16MB" />
 
 				<hs_line />
-				<hs_info label="Display" info="466x466" />
+				<hs_info label_tag="display" info="466x466" />
+				<hs_info label_tag="Type" info="AMOLED" />
 
 				<hs_line />
-				<hs_info label="Firmware" info="v1.3" />
+				<hs_info label_tag="firmware" info="v1.3" />
 			</hs_card>
 			<hs_card>
 				<hs_info label="Helios UI" info="v0.1" />

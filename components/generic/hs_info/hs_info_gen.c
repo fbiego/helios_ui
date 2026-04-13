@@ -30,7 +30,7 @@
  *   GLOBAL FUNCTIONS
  **********************/
 
-lv_obj_t * hs_info_create(lv_obj_t * parent, const char * label, const char * info)
+lv_obj_t * hs_info_create(lv_obj_t * parent, const char * label, const char * label_tag, const char * info)
 {
     LV_TRACE_OBJ_CREATE("begin");
 
@@ -69,16 +69,19 @@ lv_obj_t * hs_info_create(lv_obj_t * parent, const char * label, const char * in
     lv_obj_bind_style(lv_obj_0, &style_pad_240, 0, &sb_screen_size, 2);
     lv_obj_t * hs_text_normal_0 = hs_text_normal_create(lv_obj_0);
     lv_label_set_text(hs_text_normal_0, label);
-    lv_obj_set_width(hs_text_normal_0, lv_pct(100));
-    lv_obj_set_style_pad_top(hs_text_normal_0, 5, 0);
+    lv_label_set_translation_tag(hs_text_normal_0, label_tag);
+    lv_obj_set_width(hs_text_normal_0, LV_SIZE_CONTENT);
+    lv_obj_set_style_pad_right(hs_text_normal_0, 5, 0);
     lv_obj_set_style_text_align(hs_text_normal_0, LV_TEXT_ALIGN_LEFT, 0);
     
     lv_obj_t * hs_text_normal_1 = hs_text_normal_create(lv_obj_0);
     lv_label_set_text(hs_text_normal_1, info);
-    lv_obj_set_width(hs_text_normal_1, lv_pct(100));
-    lv_obj_set_style_pad_top(hs_text_normal_1, 5, 0);
+    lv_obj_set_align(hs_text_normal_1, LV_ALIGN_TOP_RIGHT);
+    lv_obj_set_width(hs_text_normal_1, LV_SIZE_CONTENT);
     lv_obj_set_style_text_align(hs_text_normal_1, LV_TEXT_ALIGN_RIGHT, 0);
     lv_obj_set_style_text_color(hs_text_normal_1, lv_color_hex3(0xaaa), 0);
+    
+    lv_obj_add_event_cb(lv_obj_0, on_hs_info_cb, LV_EVENT_ALL, NULL);
 
     LV_TRACE_OBJ_CREATE("finished");
 

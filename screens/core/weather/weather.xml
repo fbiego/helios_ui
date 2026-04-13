@@ -18,7 +18,12 @@
 				<weather_widget height="content" />
 
 				<hs_card>
-					<hs_text_normal width="100%" text="Hourly Forecast" style_text_align="center" />
+					<hs_text_normal
+						width="100%"
+						text="Hourly Forecast"
+						translation_tag="hourly_forecast"
+						style_text_align="center"
+					/>
 					<hs_line />
 					<hs_row style_pad_column="10">
 						<hourly_forecast />
@@ -31,7 +36,12 @@
 					</hs_row>
 				</hs_card>
 				<hs_card>
-					<hs_text_normal width="100%" text="Daily Forecast" style_text_align="center" />
+					<hs_text_normal
+						width="100%"
+						text="Daily Forecast"
+						translation_tag="daily_forecast"
+						style_text_align="center"
+					/>
 					<hs_column style_pad_row="2">
 						<daily_forecast />
 						<daily_forecast />

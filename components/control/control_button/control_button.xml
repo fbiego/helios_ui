@@ -31,18 +31,8 @@
 			size_1="60"
 			size_2="40"
 			bind_scale="sb_screen_size"
+			style_image_recolor="0xffffff"
+			style_image_recolor_opa="255"
 		/>
-		<!-- <lv_image src="$icon">
-			<style name="style_icon" />
-			<bind_flag_if_not_eq subject="sb_screen_size" flag="hidden" ref_value="0" />
-		</lv_image>
-		<lv_image width="60" height="60" src="$icon" scale_x="190" scale_y="190">
-			<style name="style_icon" />
-			<bind_flag_if_not_eq subject="sb_screen_size" flag="hidden" ref_value="1" />
-		</lv_image>
-		<lv_image width="40" height="40" src="$icon" scale_x="130" scale_y="130">
-			<style name="style_icon" />
-			<bind_flag_if_not_eq subject="sb_screen_size" flag="hidden" ref_value="2" />
-		</lv_image> -->
 	</view>
 </component>

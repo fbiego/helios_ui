@@ -21,7 +21,6 @@ static const
 LV_ATTRIBUTE_MEM_ALIGN LV_ATTRIBUTE_LARGE_CONST LV_ATTRIBUTE_ICON_EMPTY_DATA
 uint8_t icon_empty_data_map[] = {
 
-    0x00,0x00,
     0x00,
 
 };
@@ -29,11 +28,11 @@ uint8_t icon_empty_data_map[] = {
 const lv_image_dsc_t icon_empty_data = {
   .header = {
     .magic = LV_IMAGE_HEADER_MAGIC,
-    .cf = LV_COLOR_FORMAT_RGB565A8,
+    .cf = LV_COLOR_FORMAT_A8,
     .flags = 0,
     .w = 1,
     .h = 1,
-    .stride = 2,
+    .stride = 1,
     .reserved_2 = 0,
   },
   .data_size = sizeof(icon_empty_data_map),

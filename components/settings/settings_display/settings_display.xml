@@ -23,20 +23,27 @@
 			<bind_style name="style_pad_360" subject="sb_screen_size" ref_value="1" />
 			<bind_style name="style_pad_240" subject="sb_screen_size" ref_value="2" />
 
-			<hs_card style_pad_ver="5">
-				<hs_slider bind_value="sb_screen_brightness" />
+			<hs_card>
+				<hs_slider tag="brightness" bind_value="sb_screen_brightness" />
 				<hs_line />
-				<hs_dropdown bind_value="sb_screen_timeout" />
+				<hs_dropdown
+					tag="timeout"
+					options="timeout_5&#10;timeout_10&#10;timeout_20&#10;timeout_30&#10;always_on"
+					bind_value="sb_screen_timeout"
+				/>
 			</hs_card>
 
-			<hs_card style_pad_top="5">
-				<hs_dropdown
-					label="Rotation"
-					options="Default&#10;90&#10;180&#10;270"
-					bind_value="sb_screen_rotation"
-				/>
+			<hs_card>
+				<hs_title tag="rotation">
+					<wd_segment bind_value="sb_screen_rotation">
+						<hs_button_icon />
+						<hs_button_icon rotation="900" />
+						<hs_button_icon rotation="1800" />
+						<hs_button_icon rotation="2700" />
+					</wd_segment>
+				</hs_title>
 				<hs_line />
-				<hs_switch label="Raise to wake" bind_value="sb_list_circular_mode" />
+				<hs_switch tag="raise_to_wake" bind_value="sb_list_circular_mode" />
 			</hs_card>
 		</wd_list-container>
 	</view>

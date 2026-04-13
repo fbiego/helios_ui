@@ -24,23 +24,23 @@
 			<bind_style name="style_pad_240" subject="sb_screen_size" ref_value="2" />
 
 			<hs_card>
-				<hs_bar label="System" />
+				<hs_bar tag="system" />
 			</hs_card>
 			<hs_card>
 				<hs_bar label="LittleFS" />
 				<hs_line />
 				<hs_column style_pad_all="0">
-					<hs_info label="Faces" info="5" />
-					<hs_info label="Steps" info="34" />
-					<hs_info label="Battery" info="56" />
+					<hs_info label_tag="Faces" info="5" />
+					<hs_info label_tag="Steps" info="34" />
+					<hs_info label_tag="Battery" info="56" />
 				</hs_column>
 				<hs_line />
-				<hs_button label="Format" text_color="0xe51212" />
+				<hs_button tag="format" text_color="0xe51212" />
 			</hs_card>
 			<hs_card>
-				<hs_bar label="SD Card" />
+				<hs_bar tag="SD Card" />
 				<hs_line />
-				<hs_button label="Format" text_color="0xe51212" />
+				<hs_button tag="format" text_color="0xe51212" />
 			</hs_card>
 		</wd_list-container>
 	</view>

@@ -24,23 +24,23 @@
 			<bind_style name="style_pad_240" subject="sb_screen_size" ref_value="2" />
 
 			<hs_card>
-				<hs_switch label="Circular scroll" bind_value="sb_list_circular_mode" />
+				<hs_switch tag="circular_scroll" bind_value="sb_list_circular_mode" />
 				<hs_line />
-				<hs_switch label="Grid mode" bind_value="sb_app_list_mode" />
+				<hs_switch tag="grid_mode" bind_value="sb_app_list_mode" />
 				<hs_line />
 				<hs_dropdown
-					label="Language"
-					options="English&#10;Russian&#10;French&#10;German"
-					bind_value="sb_screen_rotation"
+					tag="language"
+					options="English&#10;Russian&#10;Portuguese&#10;Greek&#10;German&#10;Spanish&#10;French&#10;Chinese&#10;Hindi&#10;Japanese&#10;Thai&#10;Hungarian"
+					bind_value="sb_language"
 				/>
 			</hs_card>
 
 			<hs_card>
-				<hs_button label="Reboot" />
-				<hs_button label="Shutdown" />
+				<hs_button tag="reboot" />
+				<hs_button tag="shutdown" />
 			</hs_card>
 			<hs_card>
-				<hs_button label="Factory Reset" text_color="0xe51212" />
+				<hs_button tag="factory_reset" text_color="0xe51212" />
 			</hs_card>
 		</wd_list-container>
 	</view>

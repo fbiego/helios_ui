@@ -88,6 +88,8 @@ lv_obj_t * control_bar_create(lv_obj_t * parent, lv_subject_t * bind_subject, co
     wd_image_set_scale_2(wd_image_0, 130);
     wd_image_bind_scale(wd_image_0, &sb_screen_size);
     lv_obj_set_style_blend_mode(wd_image_0, LV_BLEND_MODE_DIFFERENCE, 0);
+    lv_obj_set_style_image_recolor(wd_image_0, lv_color_hex(0xffffff), 0);
+    lv_obj_set_style_image_recolor_opa(wd_image_0, 255, 0);
     
     lv_obj_t * lv_label_0 = lv_label_create(lv_bar_0);
     lv_label_bind_text(lv_label_0, bind_subject, bind_fmt);

@@ -34,12 +34,12 @@
 				<bind_style name="style_pad_grid_360" subject="sb_screen_size" ref_value="1" selector="user_1" />
 				<bind_style name="style_pad_grid_240" subject="sb_screen_size" ref_value="2" selector="user_1" />
 
-				<app_item icon="icon_settings_monitor" app_name="Display" />
-				<app_item icon="icon_settings_smartwatch" app_name="System" />
-				<app_item icon="icon_settings_bell" app_name="Alerts" />
-				<app_item icon="icon_settings_power" app_name="Battery" />
-				<app_item icon="icon_settings_harddisk" app_name="Storage" />
-				<app_item icon="icon_settings_information" app_name="About" />
+				<app_item icon="icon_settings_monitor" app_name="Display" tag="display" />
+				<app_item icon="icon_settings_smartwatch" app_name="System" tag="system" />
+				<app_item icon="icon_settings_bell" app_name="Alerts" tag="alerts" />
+				<app_item icon="icon_settings_power" app_name="Battery" tag="battery" />
+				<app_item icon="icon_settings_harddisk" app_name="Storage" tag="storage" />
+				<app_item icon="icon_settings_information" app_name="About" tag="about" />
 			</wd_list-container>
 		</wd_list>
 	</view>

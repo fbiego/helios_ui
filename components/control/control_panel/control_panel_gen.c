@@ -106,7 +106,7 @@ lv_obj_t * control_panel_create(lv_obj_t * parent)
     wd_list_bind_screen(control_list, &sb_screen_size);
     lv_obj_add_style(control_list, &style_control, 0);
     lv_obj_t * wd_list_container_0 = wd_list_get_container(control_list);
-    lv_obj_set_flag(control_list, LV_OBJ_FLAG_GESTURE_BUBBLE, false);
+    lv_obj_set_flag(wd_list_container_0, LV_OBJ_FLAG_GESTURE_BUBBLE, false);
     lv_obj_add_style(wd_list_container_0, &style_grid, 0);
     lv_obj_bind_style(wd_list_container_0, &style_cont_360, 0, &sb_screen_size, 1);
     lv_obj_bind_style(wd_list_container_0, &style_cont_240, 0, &sb_screen_size, 2);

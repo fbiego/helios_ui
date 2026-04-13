@@ -91,6 +91,90 @@ extern lv_font_t * NS_Medium_100;
 
 extern lv_font_t * NS_Medium_140;
 
+extern lv_font_t * NS_Medium_latin_14;
+
+extern lv_font_t * NS_Medium_latin_16;
+
+extern lv_font_t * NS_Medium_latin_18;
+
+extern lv_font_t * NS_Medium_latin_20;
+
+extern lv_font_t * NS_Medium_latin_30;
+
+extern lv_font_t * NS_Medium_latin_40;
+
+extern lv_font_t * NS_Medium_ru_14;
+
+extern lv_font_t * NS_Medium_ru_16;
+
+extern lv_font_t * NS_Medium_ru_18;
+
+extern lv_font_t * NS_Medium_ru_20;
+
+extern lv_font_t * NS_Medium_ru_30;
+
+extern lv_font_t * NS_Medium_ru_40;
+
+extern lv_font_t * NS_Medium_el_14;
+
+extern lv_font_t * NS_Medium_el_16;
+
+extern lv_font_t * NS_Medium_el_18;
+
+extern lv_font_t * NS_Medium_el_20;
+
+extern lv_font_t * NS_Medium_el_30;
+
+extern lv_font_t * NS_Medium_el_40;
+
+extern lv_font_t * NS_Medium_hi_14;
+
+extern lv_font_t * NS_Medium_hi_16;
+
+extern lv_font_t * NS_Medium_hi_18;
+
+extern lv_font_t * NS_Medium_hi_20;
+
+extern lv_font_t * NS_Medium_hi_30;
+
+extern lv_font_t * NS_Medium_hi_40;
+
+extern lv_font_t * NS_Medium_th_14;
+
+extern lv_font_t * NS_Medium_th_16;
+
+extern lv_font_t * NS_Medium_th_18;
+
+extern lv_font_t * NS_Medium_th_20;
+
+extern lv_font_t * NS_Medium_th_30;
+
+extern lv_font_t * NS_Medium_th_40;
+
+extern lv_font_t * NS_Medium_zh_14;
+
+extern lv_font_t * NS_Medium_zh_16;
+
+extern lv_font_t * NS_Medium_zh_18;
+
+extern lv_font_t * NS_Medium_zh_20;
+
+extern lv_font_t * NS_Medium_zh_30;
+
+extern lv_font_t * NS_Medium_zh_40;
+
+extern lv_font_t * NS_Medium_jp_14;
+
+extern lv_font_t * NS_Medium_jp_16;
+
+extern lv_font_t * NS_Medium_jp_18;
+
+extern lv_font_t * NS_Medium_jp_20;
+
+extern lv_font_t * NS_Medium_jp_30;
+
+extern lv_font_t * NS_Medium_jp_40;
+
 /*----------------
  * Images
  *----------------*/
@@ -110,6 +194,7 @@ extern const void * icon_connect;
 extern const void * icon_vibration;
 extern const void * icon_dnd;
 extern const void * icon_qr;
+extern const void * icon_arrow_up;
 extern const void * icon_settings_harddisk;
 extern const void * icon_settings_brightness;
 extern const void * icon_settings_monitor;
@@ -131,6 +216,10 @@ extern const void * icon_music;
 extern const void * icon_folder;
 extern const void * icon_running;
 extern const void * icon_sleep;
+extern const void * icon_weather_humidity_icon;
+extern const void * icon_weather_temp_up_icon;
+extern const void * icon_weather_temp_down_icon;
+extern const void * icon_weather_uv_icon;
 
 /*----------------
  * Subjects
@@ -144,6 +233,7 @@ extern lv_subject_t sb_screen_brightness;
 extern lv_subject_t sb_screen_rotation;
 extern lv_subject_t sb_screen_timeout;
 extern lv_subject_t sb_screen_rtw;
+extern lv_subject_t sb_language;
 extern lv_subject_t sb_battery_percent;
 extern lv_subject_t sb_sound_volume;
 extern lv_subject_t sb_focusable;
@@ -156,6 +246,7 @@ extern lv_subject_t sb_focusable;
  * Event Callbacks
  *----------------*/
 
+void on_hs_info_cb(lv_event_t * e);
 void on_notifications_clicked_cb(lv_event_t * e);
 void on_settings_clicked_cb(lv_event_t * e);
 void on_weather_clicked_cb(lv_event_t * e);
@@ -185,9 +276,12 @@ void helios_ui_init_gen(const char * asset_path);
 #include "components/control/control_slider/control_slider_gen.h"
 #include "components/control/control_switch/control_switch_gen.h"
 #include "components/generic/hs_bar/hs_bar_gen.h"
+#include "components/generic/hs_button_icon/hs_button_icon_gen.h"
+#include "components/generic/hs_button_text/hs_button_text_gen.h"
 #include "components/generic/hs_button/hs_button_gen.h"
 #include "components/generic/hs_card/hs_card_gen.h"
 #include "components/generic/hs_column/hs_column_gen.h"
+#include "components/generic/hs_dropdown_item/hs_dropdown_item_gen.h"
 #include "components/generic/hs_dropdown/hs_dropdown_gen.h"
 #include "components/generic/hs_info/hs_info_gen.h"
 #include "components/generic/hs_line/hs_line_gen.h"
@@ -195,16 +289,17 @@ void helios_ui_init_gen(const char * asset_path);
 #include "components/generic/hs_slider/hs_slider_gen.h"
 #include "components/generic/hs_space/hs_space_gen.h"
 #include "components/generic/hs_switch/hs_switch_gen.h"
-#include "components/generic/hs_text_large/hs_text_large_gen.h"
-#include "components/generic/hs_text_medium/hs_text_medium_gen.h"
-#include "components/generic/hs_text_normal/hs_text_normal_gen.h"
-#include "components/generic/hs_text_small/hs_text_small_gen.h"
+#include "components/generic/hs_text_icon/hs_text_icon_normal/hs_text_icon_normal_gen.h"
+#include "components/generic/hs_text/hs_text_large/hs_text_large_gen.h"
+#include "components/generic/hs_text/hs_text_medium/hs_text_medium_gen.h"
+#include "components/generic/hs_text/hs_text_normal/hs_text_normal_gen.h"
+#include "components/generic/hs_text/hs_text_small/hs_text_small_gen.h"
+#include "components/generic/hs_title/hs_title_gen.h"
 #include "components/notifications/notification_item/notification_item_gen.h"
 #include "components/settings/settings_about/settings_about_gen.h"
 #include "components/settings/settings_alert/settings_alert_gen.h"
 #include "components/settings/settings_battery/settings_battery_gen.h"
 #include "components/settings/settings_display/settings_display_gen.h"
-#include "components/settings/settings_item/settings_item_gen.h"
 #include "components/settings/settings_storage/settings_storage_gen.h"
 #include "components/settings/settings_system/settings_system_gen.h"
 #include "components/watchfaces/watchface_default/watchface_default_gen.h"
@@ -220,8 +315,10 @@ void helios_ui_init_gen(const char * asset_path);
 #include "screens/core/widgets/widgets_gen.h"
 #include "screens/simulator/simulator_gen.h"
 #include "widgets/wd_arcoiris/wd_arcoiris_gen.h"
+#include "widgets/wd_dropdown/wd_dropdown_gen.h"
 #include "widgets/wd_image/wd_image_gen.h"
 #include "widgets/wd_list/wd_list_gen.h"
+#include "widgets/wd_segment/wd_segment_gen.h"
 
 #ifdef __cplusplus
 } /*extern "C"*/

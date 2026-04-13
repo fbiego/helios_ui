@@ -104,31 +104,31 @@ lv_obj_t * applications_create(void)
     lv_obj_bind_style(wd_list_container_0, &style_pad_grid, LV_STATE_USER_1, &sb_screen_size, 0);
     lv_obj_bind_style(wd_list_container_0, &style_pad_grid_360, LV_STATE_USER_1, &sb_screen_size, 1);
     lv_obj_bind_style(wd_list_container_0, &style_pad_grid_240, LV_STATE_USER_1, &sb_screen_size, 2);
-    app_item_create(wd_list_container_0, icon_contacts, "Contacts");
+    app_item_create(wd_list_container_0, icon_contacts, "Contacts", "contacts");
     
-    app_item_create(wd_list_container_0, icon_folder, "Files");
+    app_item_create(wd_list_container_0, icon_folder, "Files", "files");
     
-    app_item_create(wd_list_container_0, icon_running, "Fitness");
+    app_item_create(wd_list_container_0, icon_running, "Fitness", "fitness");
     
-    app_item_create(wd_list_container_0, icon_measurement, "Health");
+    app_item_create(wd_list_container_0, icon_measurement, "Health", "health");
     
-    app_item_create(wd_list_container_0, icon_music, "Music");
+    app_item_create(wd_list_container_0, icon_music, "Music", "music");
     
-    app_item_create(wd_list_container_0, icon_navigation, "Navigation");
+    app_item_create(wd_list_container_0, icon_navigation, "Navigation", "navigation");
     
-    lv_obj_t * app_item_6 = app_item_create(wd_list_container_0, icon_chat, "Notifications");
+    lv_obj_t * app_item_6 = app_item_create(wd_list_container_0, icon_chat, "Notifications", "notifications");
     lv_obj_add_event_cb(app_item_6, on_notifications_clicked_cb, LV_EVENT_CLICKED, NULL);
     
-    lv_obj_t * app_item_7 = app_item_create(wd_list_container_0, icon_gear, "Settings");
+    lv_obj_t * app_item_7 = app_item_create(wd_list_container_0, icon_gear, "Settings", "settings");
     lv_obj_add_event_cb(app_item_7, on_settings_clicked_cb, LV_EVENT_CLICKED, NULL);
     
-    app_item_create(wd_list_container_0, icon_sleep, "Sleep");
+    app_item_create(wd_list_container_0, icon_sleep, "Sleep", "sleep");
     
-    app_item_create(wd_list_container_0, icon_stopwatch, "Stopwatch");
+    app_item_create(wd_list_container_0, icon_stopwatch, "Stopwatch", "stopwatch");
     
-    app_item_create(wd_list_container_0, icon_timer, "Timer");
+    app_item_create(wd_list_container_0, icon_timer, "Timer", "timer");
     
-    lv_obj_t * app_item_11 = app_item_create(wd_list_container_0, icon_weather, "Weather");
+    lv_obj_t * app_item_11 = app_item_create(wd_list_container_0, icon_weather, "Weather", "weather");
     lv_obj_add_event_cb(app_item_11, on_weather_clicked_cb, LV_EVENT_CLICKED, NULL);
 
     LV_TRACE_OBJ_CREATE("finished");

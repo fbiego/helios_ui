@@ -24,11 +24,5 @@
 		<target name="target_410">
 			<display width="410" height="502" radius="100" />
 		</target>
-		<target name="target_399R">
-			<display width="399" height="399" radius="200" />
-		</target>
-		<target name="target_399R">
-			<display width="400" height="399" radius="20" />
-		</target>
 	</targets>
 </project>

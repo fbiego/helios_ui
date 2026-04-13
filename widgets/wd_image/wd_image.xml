@@ -14,6 +14,7 @@
 		<prop name="x_0" type="int" />
 		<prop name="x_1" type="int" />
 		<prop name="x_2" type="int" />
+		<prop name="rotation" type="int" />
 		<prop name="bind_scale" type="subject" />
 	</api>
 

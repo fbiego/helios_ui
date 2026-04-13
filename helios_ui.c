@@ -37,11 +37,21 @@ typedef struct {
     bool open;
 } control_panel_t;
 
+typedef struct {
+    int32_t parent_width;
+    int32_t child1_width;
+    int32_t child1_height;
+    int32_t child2_width;
+    bool overflow;
+} hs_info_layout_state_t;
+
 typedef lv_obj_t * (*settings_item_create_cb_t)(lv_obj_t * parent);
 
 /**********************
  *  STATIC PROTOTYPES
  **********************/
+static void on_language_change(lv_event_t * e);
+static void language_observer_cb(lv_observer_t *observer, lv_subject_t *subject);
 
 static void screen_res_cb(lv_event_t *e);
 static void screen_gesture_event_cb(lv_event_t * e);
@@ -60,12 +70,38 @@ static lv_obj_t * get_list_from_wd(lv_obj_t * parent, const char * name);
 
 static void settings_item_helper(lv_obj_t * parent, const void * icon,  const char * name, settings_item_create_cb_t function);
 
+// void set_emoji_fallback(lv_font_t * font);
+
 /**********************
  *  STATIC VARIABLES
  **********************/
 static control_panel_t control_widget_home;
 
 static bool notifications_to_apps = false;
+
+static lv_font_t NS_Medium_14_rt;
+static lv_font_t NS_Medium_16_rt;
+static lv_font_t NS_Medium_18_rt;
+static lv_font_t NS_Medium_20_rt;
+static lv_font_t NS_Medium_30_rt;
+static lv_font_t NS_Medium_40_rt;
+
+extern lv_font_t NS_Medium_14_data;
+extern lv_font_t NS_Medium_16_data;
+extern lv_font_t NS_Medium_18_data;
+extern lv_font_t NS_Medium_20_data;
+extern lv_font_t NS_Medium_30_data;
+extern lv_font_t NS_Medium_40_data;
+
+extern lv_style_t style_text_small_466;
+extern lv_style_t style_text_small_360;
+extern lv_style_t style_text_small_240;
+extern lv_style_t style_text_normal_466;
+extern lv_style_t style_text_normal_360;
+extern lv_style_t style_text_normal_240;
+extern lv_style_t style_text_large_466;
+extern lv_style_t style_text_large_360;
+extern lv_style_t style_text_large_240;
 
 /**********************
  *      MACROS
@@ -79,7 +115,35 @@ void helios_ui_init(const char * asset_path)
 {
     helios_ui_init_gen(asset_path);
 
+    NS_Medium_14_rt = NS_Medium_14_data;
+    NS_Medium_16_rt = NS_Medium_16_data;
+    NS_Medium_18_rt = NS_Medium_18_data;
+    NS_Medium_20_rt = NS_Medium_20_data;
+    NS_Medium_30_rt = NS_Medium_30_data;
+    NS_Medium_40_rt = NS_Medium_40_data;
+
+    NS_Medium_14 = &NS_Medium_14_rt;
+    NS_Medium_16 = &NS_Medium_16_rt;
+    NS_Medium_18 = &NS_Medium_18_rt;
+    NS_Medium_20 = &NS_Medium_20_rt;
+    NS_Medium_30 = &NS_Medium_30_rt;
+    NS_Medium_40 = &NS_Medium_40_rt;
+
+    lv_style_set_text_font(&style_text_small_466, NS_Medium_20);
+    lv_style_set_text_font(&style_text_small_360, NS_Medium_18);
+    lv_style_set_text_font(&style_text_small_240, NS_Medium_14);
+    lv_style_set_text_font(&style_text_normal_466, NS_Medium_40);
+    lv_style_set_text_font(&style_text_normal_360, NS_Medium_30);
+    lv_style_set_text_font(&style_text_normal_240, NS_Medium_20);
+
+    // font_fallback_init();
+
     /* Add your own custom code here if needed */
+
+    lv_obj_add_event_cb(lv_screen_active(), on_language_change, LV_EVENT_TRANSLATION_LANGUAGE_CHANGED, NULL);
+
+    lv_subject_add_observer(&sb_language, language_observer_cb, NULL);
+    
 #if defined(LV_EDITOR_PREVIEW)
     lv_display_t *disp = lv_display_get_default();
     if (disp) {
@@ -89,6 +153,96 @@ void helios_ui_init(const char * asset_path)
 #endif
 
 }
+
+void font_fallback_update(void)
+{
+
+    const char * lan =  lv_translation_get_language();
+    
+    if(lv_streq("de", lan) || lv_streq("fr", lan) || lv_streq("es", lan) || 
+        lv_streq("pt", lan) || lv_streq("hu", lan)) {
+        NS_Medium_14->fallback = NS_Medium_latin_14;
+        NS_Medium_16->fallback = NS_Medium_latin_16;
+        NS_Medium_18->fallback = NS_Medium_latin_18;
+        NS_Medium_20->fallback = NS_Medium_latin_20;
+        NS_Medium_30->fallback = NS_Medium_latin_30;
+        NS_Medium_40->fallback = NS_Medium_latin_40;
+    }
+    else if(lv_streq("ru", lan)) {
+        NS_Medium_14->fallback = NS_Medium_ru_14;
+        NS_Medium_16->fallback = NS_Medium_ru_16;
+        NS_Medium_18->fallback = NS_Medium_ru_18;
+        NS_Medium_20->fallback = NS_Medium_ru_20;
+        NS_Medium_30->fallback = NS_Medium_ru_30;
+        NS_Medium_40->fallback = NS_Medium_ru_40;
+    }
+    else if(lv_streq("ja", lan)) {
+        NS_Medium_14->fallback = NS_Medium_jp_14;
+        NS_Medium_16->fallback = NS_Medium_jp_16;
+        NS_Medium_18->fallback = NS_Medium_jp_18;
+        NS_Medium_20->fallback = NS_Medium_jp_20;
+        NS_Medium_30->fallback = NS_Medium_jp_30;
+        NS_Medium_40->fallback = NS_Medium_jp_40;
+    }
+    else if(lv_streq("zh", lan)) {
+        NS_Medium_14->fallback = NS_Medium_zh_14;
+        NS_Medium_16->fallback = NS_Medium_zh_16;
+        NS_Medium_18->fallback = NS_Medium_zh_18;
+        NS_Medium_20->fallback = NS_Medium_zh_20;
+        NS_Medium_30->fallback = NS_Medium_zh_30;
+        NS_Medium_40->fallback = NS_Medium_zh_40;
+    }
+    else if(lv_streq("th", lan)) {
+        NS_Medium_14->fallback = NS_Medium_th_14;
+        NS_Medium_16->fallback = NS_Medium_th_16;
+        NS_Medium_18->fallback = NS_Medium_th_18;
+        NS_Medium_20->fallback = NS_Medium_th_20;
+        NS_Medium_30->fallback = NS_Medium_th_30;
+        NS_Medium_40->fallback = NS_Medium_th_40;
+    } 
+    else if(lv_streq("el", lan)) {
+        NS_Medium_14->fallback = NS_Medium_el_14;
+        NS_Medium_16->fallback = NS_Medium_el_16;
+        NS_Medium_18->fallback = NS_Medium_el_18;
+        NS_Medium_20->fallback = NS_Medium_el_20;
+        NS_Medium_30->fallback = NS_Medium_el_30;
+        NS_Medium_40->fallback = NS_Medium_el_40;
+    } else if(lv_streq("hi", lan)) {
+        NS_Medium_14->fallback = NS_Medium_hi_14;
+        NS_Medium_16->fallback = NS_Medium_hi_16;
+        NS_Medium_18->fallback = NS_Medium_hi_18;
+        NS_Medium_20->fallback = NS_Medium_hi_20;
+        NS_Medium_30->fallback = NS_Medium_hi_30;
+        NS_Medium_40->fallback = NS_Medium_hi_40;
+    } else {
+        NS_Medium_14->fallback = NULL;
+        NS_Medium_16->fallback = NULL;
+        NS_Medium_18->fallback = NULL;
+        NS_Medium_20->fallback = NULL;
+        NS_Medium_30->fallback = NULL;
+        NS_Medium_40->fallback = NULL;
+    }
+
+    // set_emoji_fallback(NS_Medium_14);
+    // set_emoji_fallback(NS_Medium_16);
+    // set_emoji_fallback(NS_Medium_18);
+    // set_emoji_fallback(NS_Medium_20);
+    // set_emoji_fallback(NS_Medium_30);
+    // set_emoji_fallback(NS_Medium_40);
+
+
+}
+
+// void set_emoji_fallback(lv_font_t * font) 
+// {
+
+//     if (font->fallback == NULL) {
+//         font->fallback = NS_Medium_emoji_16;
+//     } else {
+//         NS_Medium_emoji_16->fallback = font->fallback;
+//         font->fallback = NS_Medium_emoji_16;
+//     }
+// }
 
 lv_obj_t * screen_home(void)
 {
@@ -248,12 +402,12 @@ lv_obj_t * screen_settings(void)
 
         lv_obj_clean(list);
 
-        settings_item_helper(list, icon_settings_monitor, "Display", settings_display_create);
-        settings_item_helper(list, icon_settings_smartwatch, "System", settings_system_create);
-        settings_item_helper(list, icon_settings_bell, "Alerts", settings_alert_create);
-        settings_item_helper(list, icon_settings_power, "Battery", settings_battery_create);
-        settings_item_helper(list, icon_settings_harddisk, "Storage", settings_storage_create);
-        settings_item_helper(list, icon_settings_information, "About", settings_about_create);
+        settings_item_helper(list, icon_settings_monitor, "display", settings_display_create);
+        settings_item_helper(list, icon_settings_smartwatch, "system", settings_system_create);
+        settings_item_helper(list, icon_settings_bell, "alerts", settings_alert_create);
+        settings_item_helper(list, icon_settings_power, "battery", settings_battery_create);
+        settings_item_helper(list, icon_settings_harddisk, "storage", settings_storage_create);
+        settings_item_helper(list, icon_settings_information, "about", settings_about_create);
 
         lv_obj_scroll_to_y(list, 1, LV_ANIM_OFF); /* Circular scroll trigger fix */
         lv_obj_scroll_to_y(list, scroll_pos, LV_ANIM_OFF);
@@ -345,6 +499,34 @@ void set_screen(int32_t w, int32_t h)
 /**********************
  *   STATIC FUNCTIONS
  **********************/
+
+static void on_language_change(lv_event_t * e)
+{
+    const char * language = lv_event_get_param(e);
+    LV_LOG_USER("Language changed to %s", language);
+}
+
+static void language_observer_cb(lv_observer_t *observer, lv_subject_t *subject)
+{
+    int32_t index = lv_subject_get_int(subject);
+    LV_LOG_USER("Language index %d", index);
+
+    switch(index) {
+        case 0: lv_translation_set_language("en"); break;
+        case 1: lv_translation_set_language("ru"); break;
+        case 2: lv_translation_set_language("pt"); break;
+        case 3: lv_translation_set_language("el"); break;
+        case 4: lv_translation_set_language("de"); break;
+        case 5: lv_translation_set_language("es"); break;
+        case 6: lv_translation_set_language("fr"); break;
+        case 7: lv_translation_set_language("zh"); break;
+        case 8: lv_translation_set_language("hi"); break;
+        case 9: lv_translation_set_language("ja"); break;
+        case 10: lv_translation_set_language("th"); break;
+        case 11: lv_translation_set_language("hu"); break;
+    }
+    font_fallback_update();
+}
 static void control_widget_cb(void * var, int32_t value)
 {
 
@@ -595,6 +777,87 @@ static void settings_item_clicked_cb(lv_event_t * e)
 
 static void settings_item_helper(lv_obj_t * parent, const void * icon,  const char * name, settings_item_create_cb_t function)
 {
-    lv_obj_t * item = app_item_create(parent, icon, name);
+    lv_obj_t * item = app_item_create(parent, icon, name, name);
     lv_obj_add_event_cb(item, settings_item_clicked_cb, LV_EVENT_CLICKED, function);
+}
+
+void on_hs_info_cb(lv_event_t * e)
+{
+    lv_event_code_t code = lv_event_get_code(e);
+    lv_obj_t * obj = lv_event_get_current_target(e);
+
+    if (code == LV_EVENT_DELETE) {
+        hs_info_layout_state_t * state = lv_obj_get_user_data(obj);
+        if (state) {
+            lv_free(state);
+            lv_obj_set_user_data(obj, NULL);
+        }
+        return;
+    }
+
+    if (code != LV_EVENT_GET_SELF_SIZE) return;
+
+    int32_t count = lv_obj_get_child_cnt(obj);
+    int32_t p_width = lv_obj_get_width(obj);
+    if (count != 2 || p_width == 0) return;
+
+    lv_obj_t * child1 = lv_obj_get_child(obj, 0);
+    lv_obj_t * child2 = lv_obj_get_child(obj, 1);
+
+    int32_t width1 = lv_obj_get_width(child1);
+    int32_t width2 = lv_obj_get_width(child2);
+
+    lv_area_t cont_a;
+    lv_obj_get_coords(child1, &cont_a);
+    int32_t cont_h = lv_area_get_height(&cont_a);
+    // LV_LOG_USER("Child1 height: %d", cont_h);
+
+    if (width1 == 0 || width2 == 0) return;
+
+    hs_info_layout_state_t * state = lv_obj_get_user_data(obj);
+    if (state == NULL) {
+        state = lv_malloc(sizeof(*state));
+        if (state == NULL) return;
+
+        state->parent_width = 0;
+        state->child1_width = 0;
+        state->child1_height = 0;
+        state->child2_width = 0;
+        state->overflow = false;
+        lv_obj_set_user_data(obj, state);
+    }
+
+    bool forced_overflow_widths = state->overflow && width1 == p_width && width2 == p_width;
+    if (forced_overflow_widths) {
+        width1 = state->child1_width;
+        width2 = state->child2_width;
+    }
+
+    bool changed = state->parent_width != p_width ||
+                   state->child1_width != width1 ||
+                   state->child2_width != width2 || state->child1_height != cont_h;
+    if (!changed) return;
+
+    bool overflow = width1 + width2 > p_width;
+
+    state->parent_width = p_width;
+    state->child1_width = width1;
+    state->child2_width = width2;
+    state->overflow = overflow;
+    state->child1_height = cont_h;
+
+    if (overflow) {
+        lv_obj_set_width(child1, lv_pct(100));
+        lv_obj_set_width(child2, lv_pct(100));
+        lv_obj_update_layout(child1);
+
+        lv_obj_set_y(child2, state->child1_height);
+
+        // LV_LOG_USER("Overflow detected: width1=%d, height1=%d, width2=%d, parent_width=%d", width1, state->child1_height, width2, p_width);
+    } else {
+        lv_obj_set_width(child1, LV_SIZE_CONTENT);
+        lv_obj_set_width(child2, LV_SIZE_CONTENT);
+        lv_obj_set_align(child2, LV_ALIGN_TOP_RIGHT);
+        lv_obj_set_y(child2, 0);
+    }
 }

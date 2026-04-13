@@ -83,6 +83,7 @@ lv_obj_t * weather_create(void)
     lv_obj_t * hs_text_normal_0 = hs_text_normal_create(hs_card_0);
     lv_obj_set_width(hs_text_normal_0, lv_pct(100));
     lv_label_set_text(hs_text_normal_0, "Hourly Forecast");
+    lv_label_set_translation_tag(hs_text_normal_0, "hourly_forecast");
     lv_obj_set_style_text_align(hs_text_normal_0, LV_TEXT_ALIGN_CENTER, 0);
     
     hs_line_create(hs_card_0);
@@ -107,6 +108,7 @@ lv_obj_t * weather_create(void)
     lv_obj_t * hs_text_normal_1 = hs_text_normal_create(hs_card_1);
     lv_obj_set_width(hs_text_normal_1, lv_pct(100));
     lv_label_set_text(hs_text_normal_1, "Daily Forecast");
+    lv_label_set_translation_tag(hs_text_normal_1, "daily_forecast");
     lv_obj_set_style_text_align(hs_text_normal_1, LV_TEXT_ALIGN_CENTER, 0);
     
     lv_obj_t * hs_column_0 = hs_column_create(hs_card_1);

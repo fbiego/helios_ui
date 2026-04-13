@@ -104,17 +104,17 @@ lv_obj_t * settings_create(void)
     lv_obj_bind_style(wd_list_container_0, &style_pad_grid, LV_STATE_USER_1, &sb_screen_size, 0);
     lv_obj_bind_style(wd_list_container_0, &style_pad_grid_360, LV_STATE_USER_1, &sb_screen_size, 1);
     lv_obj_bind_style(wd_list_container_0, &style_pad_grid_240, LV_STATE_USER_1, &sb_screen_size, 2);
-    app_item_create(wd_list_container_0, icon_settings_monitor, "Display");
+    app_item_create(wd_list_container_0, icon_settings_monitor, "Display", "display");
     
-    app_item_create(wd_list_container_0, icon_settings_smartwatch, "System");
+    app_item_create(wd_list_container_0, icon_settings_smartwatch, "System", "system");
     
-    app_item_create(wd_list_container_0, icon_settings_bell, "Alerts");
+    app_item_create(wd_list_container_0, icon_settings_bell, "Alerts", "alerts");
     
-    app_item_create(wd_list_container_0, icon_settings_power, "Battery");
+    app_item_create(wd_list_container_0, icon_settings_power, "Battery", "battery");
     
-    app_item_create(wd_list_container_0, icon_settings_harddisk, "Storage");
+    app_item_create(wd_list_container_0, icon_settings_harddisk, "Storage", "storage");
     
-    app_item_create(wd_list_container_0, icon_settings_information, "About");
+    app_item_create(wd_list_container_0, icon_settings_information, "About", "about");
 
     LV_TRACE_OBJ_CREATE("finished");
 

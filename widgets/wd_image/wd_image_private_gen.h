@@ -44,6 +44,7 @@ typedef struct {
     int32_t x_0;
     int32_t x_1;
     int32_t x_2;
+    int32_t rotation;
     lv_subject_t * bind_scale;
     WD_IMAGE_USER_DATA
 } wd_image_t;

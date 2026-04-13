@@ -40,7 +40,7 @@
 		<bind_style name="style_text_normal_360" subject="sb_screen_size" ref_value="1" />
 		<bind_style name="style_text_normal_240" subject="sb_screen_size" ref_value="2" />
 
-		<hs_text_normal flex_grow="2" text="Sun" style_text_align="center" />
+		<hs_text_normal flex_grow="2" text="Sun" translation_tag="sun" style_text_align="center" />
 		<wd_image
 			src="icon_weather"
 			scale_0="120"

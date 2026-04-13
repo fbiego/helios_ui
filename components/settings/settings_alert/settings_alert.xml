@@ -23,15 +23,15 @@
 			<bind_style name="style_pad_360" subject="sb_screen_size" ref_value="1" />
 			<bind_style name="style_pad_240" subject="sb_screen_size" ref_value="2" />
 			<hs_card style_pad_ver="5">
-				<hs_switch label="Sound" />
+				<hs_switch tag="sound" />
 				<hs_line />
-				<hs_switch label="Vibration" />
+				<hs_switch tag="vibration" />
 				<hs_line />
-				<hs_switch label="Wake screen" />
+				<hs_switch tag="wake_screen" />
 			</hs_card>
 
 			<hs_card style_pad_ver="5">
-				<hs_switch label="DND" />
+				<hs_switch tag="dnd" />
 			</hs_card>
 		</wd_list-container>
 	</view>

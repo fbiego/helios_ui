@@ -35,19 +35,9 @@
 			x_2="8"
 			bind_scale="sb_screen_size"
 			style_blend_mode="difference"
+			style_image_recolor="0xffffff"
+			style_image_recolor_opa="255"
 		/>
-		<!-- <lv_image src="$icon_left" align="left_mid" x="24" style_blend_mode="difference">
-			<bind_flag_if_not_eq subject="sb_screen_size" flag="hidden" ref_value="0" />
-			<style name="style_icon_recolor" />
-		</lv_image>
-		<lv_image src="$icon_left" align="left_mid" x="14" style_blend_mode="difference" scale_x="190" scale_y="190">
-			<bind_flag_if_not_eq subject="sb_screen_size" flag="hidden" ref_value="1" />
-			<style name="style_icon_recolor" />
-		</lv_image>
-		<lv_image src="$icon_left" align="left_mid" x="0" style_blend_mode="difference" scale_x="130" scale_y="130">
-			<bind_flag_if_not_eq subject="sb_screen_size" flag="hidden" ref_value="2" />
-			<style name="style_icon_recolor" />
-		</lv_image> -->
 
 		<wd_image
 			clickable="false"
@@ -63,18 +53,8 @@
 			x_2="-8"
 			bind_scale="sb_screen_size"
 			style_blend_mode="difference"
+			style_image_recolor="0xffffff"
+			style_image_recolor_opa="255"
 		/>
-		<!-- <lv_image src="$icon_right" align="right_mid" x="-24" style_blend_mode="difference">
-			<bind_flag_if_not_eq subject="sb_screen_size" flag="hidden" ref_value="0" />
-			<style name="style_icon_recolor" />
-		</lv_image>
-		<lv_image src="$icon_right" align="right_mid" x="-14" style_blend_mode="difference" scale_x="190" scale_y="190">
-			<bind_flag_if_not_eq subject="sb_screen_size" flag="hidden" ref_value="1" />
-			<style name="style_icon_recolor" />
-		</lv_image>
-		<lv_image src="$icon_right" align="right_mid" x="0" style_blend_mode="difference" scale_x="130" scale_y="130">
-			<bind_flag_if_not_eq subject="sb_screen_size" flag="hidden" ref_value="2" />
-			<style name="style_icon_recolor" />
-		</lv_image> -->
 	</view>
 </component>

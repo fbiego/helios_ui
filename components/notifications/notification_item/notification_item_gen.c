@@ -77,6 +77,7 @@ lv_obj_t * notification_item_create(lv_obj_t * parent, const void * icon, const 
         lv_style_set_layout(&style_title_cont, LV_LAYOUT_FLEX);
         lv_style_set_pad_column(&style_title_cont, 10);
         lv_style_set_pad_hor(&style_title_cont, 5);
+        lv_style_set_pad_top(&style_title_cont, 7);
 
         lv_style_init(&style_text_cont);
         lv_style_set_flex_grow(&style_text_cont, 1);
@@ -128,26 +129,17 @@ lv_obj_t * notification_item_create(lv_obj_t * parent, const void * icon, const 
     lv_obj_set_flag(lv_obj_2, LV_OBJ_FLAG_CLICKABLE, false);
     lv_obj_remove_style_all(lv_obj_2);
     lv_obj_add_style(lv_obj_2, &style_text_cont, 0);
-    lv_obj_t * lv_label_0 = lv_label_create(lv_obj_2);
-    lv_label_set_text(lv_label_0, title);
-    lv_obj_set_width(lv_label_0, lv_pct(100));
-    lv_obj_bind_style(lv_label_0, &style_text_normal_466, 0, &sb_screen_size, 0);
-    lv_obj_bind_style(lv_label_0, &style_text_normal_360, 0, &sb_screen_size, 1);
-    lv_obj_bind_style(lv_label_0, &style_text_normal_240, 0, &sb_screen_size, 2);
+    lv_obj_t * hs_text_normal_0 = hs_text_normal_create(lv_obj_2);
+    lv_label_set_text(hs_text_normal_0, title);
+    lv_obj_set_width(hs_text_normal_0, lv_pct(100));
     
-    lv_obj_t * lv_label_1 = lv_label_create(lv_obj_2);
-    lv_label_set_text(lv_label_1, time);
-    lv_obj_set_width(lv_label_1, lv_pct(100));
-    lv_obj_bind_style(lv_label_1, &style_text_small_466, 0, &sb_screen_size, 0);
-    lv_obj_bind_style(lv_label_1, &style_text_small_360, 0, &sb_screen_size, 1);
-    lv_obj_bind_style(lv_label_1, &style_text_small_240, 0, &sb_screen_size, 2);
+    lv_obj_t * hs_text_small_0 = hs_text_small_create(lv_obj_2);
+    lv_label_set_text(hs_text_small_0, time);
+    lv_obj_set_width(hs_text_small_0, lv_pct(100));
     
-    lv_obj_t * lv_label_2 = lv_label_create(lv_obj_0);
-    lv_label_set_text(lv_label_2, message);
-    lv_obj_add_style(lv_label_2, &style_text, 0);
-    lv_obj_bind_style(lv_label_2, &style_text_small_466, 0, &sb_screen_size, 0);
-    lv_obj_bind_style(lv_label_2, &style_text_small_360, 0, &sb_screen_size, 1);
-    lv_obj_bind_style(lv_label_2, &style_text_small_240, 0, &sb_screen_size, 2);
+    lv_obj_t * hs_text_small_1 = hs_text_small_create(lv_obj_0);
+    lv_label_set_text(hs_text_small_1, message);
+    lv_obj_add_style(hs_text_small_1, &style_text, 0);
 
     LV_TRACE_OBJ_CREATE("finished");
 

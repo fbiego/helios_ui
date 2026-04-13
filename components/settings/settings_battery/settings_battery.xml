@@ -23,12 +23,12 @@
 			<bind_style name="style_pad_360" subject="sb_screen_size" ref_value="1" />
 			<bind_style name="style_pad_240" subject="sb_screen_size" ref_value="2" />
 
-			<hs_card style_pad_top="5">
-				<hs_bar label="Battery" bind_value="sb_battery_percent" />
-				<hs_info label="Voltage" info="3.89V" />
-				<hs_info label="Temp" info="33.5°" />
+			<hs_card>
+				<hs_bar tag="battery" bind_value="sb_battery_percent" />
+				<hs_info label_tag="voltage" info="3.89V" />
+				<hs_info label_tag="temperature" info="33.5°" />
 				<hs_line />
-				<hs_info label="Usage" info="1d 17h" />
+				<hs_info label_tag="usage" info="1d 17h" />
 			</hs_card>
 		</wd_list-container>
 	</view>

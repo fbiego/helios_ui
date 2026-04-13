@@ -1,10 +1,6 @@
 <screen>
-	<view>
-		<lv_label text="Simulator" align="center">
-			<bind_style name="style_text_normal_466" subject="sb_screen_size" ref_value="0" />
-			<bind_style name="style_text_normal_360" subject="sb_screen_size" ref_value="1" />
-			<bind_style name="style_text_normal_240" subject="sb_screen_size" ref_value="2" />
-		</lv_label>
+	<view style_bg_color="0x000000">
+		<hs_text_normal text="Simulator" align="center" />
 
 		<event_cb callback="on_simulator_event_cb" trigger="all" />
 	</view>
