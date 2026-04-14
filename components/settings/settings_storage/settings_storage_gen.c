@@ -74,18 +74,18 @@ lv_obj_t * settings_storage_create(lv_obj_t * parent)
     
     lv_obj_t * hs_column_0 = hs_column_create(hs_card_1);
     lv_obj_set_style_pad_all(hs_column_0, 0, 0);
-    hs_info_create(hs_column_0, "Label", "Faces", "5");
+    hs_info_create(hs_column_0, "Label", "watchfaces", "5");
     
-    hs_info_create(hs_column_0, "Label", "Steps", "34");
+    hs_info_create(hs_column_0, "Label", "steps", "34");
     
-    hs_info_create(hs_column_0, "Label", "Battery", "56");
+    hs_info_create(hs_column_0, "Label", "battery", "56");
     
     hs_line_create(hs_card_1);
     
     hs_button_create(hs_card_1, "Circular Scroll", "format", lv_color_hex(0xe51212));
     
     lv_obj_t * hs_card_2 = hs_card_create(wd_list_container_0);
-    hs_bar_create(hs_card_2, "Brightness", "SD Card", &sb_battery_percent);
+    hs_bar_create(hs_card_2, "Brightness", "sd_card", &sb_battery_percent);
     
     hs_line_create(hs_card_2);
     

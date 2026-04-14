@@ -14,7 +14,7 @@
 	<translation tag="apr" char_count="8" en="Apr" pt="abril" de="April" es="Abr" fr="Avr" hu="Április" ru="Апр" el="Απρ" th="เมษายน" zh="四月" ja="4月" hi="अप्रैल"  />
 	<translation tag="jun" char_count="8" en="Jun" pt="junho" de="Juni" es="Jun" fr="Juin" hu="Június" ru="Джун" el="Ιούνιος" th="จุน" zh="俊" ja="ジュン" hi="जून"  />
 	<translation tag="jul" char_count="8" en="Jul" pt="julho" de="Jul" es="Jul" fr="Juillet" hu="Július" ru="июль" el="Ιούλ" th="กรกฎาคม" zh="七月" ja="7月" hi="जुलाई"  />
-	<translation tag="aug" char_count="10" en="Aug" pt="agosto" de="August" es="Ago" fr="Août" hu="Augusztus" ru="Август" el="Αυγ" th="ส.ค." zh="八月" ja="8月" hi="अगस्त"  />
+	<translation tag="aug" char_count="10" en="Aug" pt="agosto" de="August" es="Ago" fr="août" hu="Augusztus" ru="Август" el="Αυγ" th="ส.ค." zh="八月" ja="8月" hi="अगस्त"  />
 	<translation tag="sept" char_count="10" en="Sep" pt="Setembro" de="September" es="Sep" fr="Sep" hu="Szept." ru="Сентябрь" el="Σεπ" th="กันยายน" zh="九月" ja="9月" hi="सितम्बर"  />
 	<translation tag="oct" char_count="8" en="Oct" pt="Outubro" de="Oktober" es="Oct" fr="Octobre" hu="Október" ru="Октябрь" el="Οκτ" th="ตุลาคม" zh="十月" ja="10月" hi="अक्टूबर"  />
 	<translation tag="nov" char_count="10" en="Nov" pt="novembro" de="November" es="Nov" fr="Nov" hu="November" ru="Ноябрь" el="Νοέμβριος" th="พฤศจิกายน" zh="十一月" ja="11月" hi="नवंबर"  />
@@ -58,7 +58,7 @@
 	<translation tag="storage" char_count="15" en="Storage" pt="Armazenar" de="Lagerung" es="Almacenamiento" fr="Stockage" hu="Tárolás" ru="Хранилище" el="Αποθήκευση" th="พื้นที่จัดเก็บ" zh="贮存" ja="ストレージ" hi="भंडारण"  />
 	<translation tag="brightness" char_count="11" en="Brightness" pt="Brilho" de="Helligkeit" es="Brillo" fr="Luminosité" hu="Fényesség" ru="Яркость" el="Λάμψη" th="ความสว่าง" zh="亮度" ja="輝度" hi="चमक"  />
 	<translation tag="timeout" char_count="19" en="Timeout" pt="Tempo esgotado" de="Time-out" es="Se acabó el tiempo" fr="Temps mort" hu="Időtúllépés" ru="Тайм-аут" el="Χρονικό όριο" th="หมดเวลา" zh="暂停" ja="タイムアウト" hi="समय समाप्त"  />
-	<translation tag="rotation" char_count="11" en="Rotation" pt="Rotação" de="Drehung" es="Rotación" fr="Rotation" hu="Forgás" ru="Вращение" el="Περιστροφή" th="การหมุน" zh="旋转" ja="回転" hi="ROTATION"  />
+	<translation tag="rotation" char_count="11" en="Rotation" pt="Rotação" de="Drehung" es="Rotación" fr="Rotation" hu="Forgás" ru="Вращение" el="Περιστροφή" th="การหมุน" zh="旋转" ja="回転" hi="घुमाएँ"  />
 	<translation tag="raise_to_wake" char_count="30" en="Raise to wake" pt="Levante para acordar" de="Zum Aufwecken hochziehen" es="Levantarse para despertar" fr="Lever pour réveiller" hu="Ébredés" ru="Поднимитесь, чтобы проснуться" el="Σήκωσε για να ξυπνήσεις" th="ยกขึ้นเพื่อปลุก" zh="起身唤醒" ja="起こすために持ち上げる" hi="जगाने के लिए उठाएँ"  />
 	<translation tag="circular_scroll" char_count="26" en="Circular scroll" pt="Pergaminho circular" de="Kreisförmige Schriftrolle" es="Pergamino circular" fr="rouleau circulaire" hu="Kör alakú görgetés" ru="Круглый свиток" el="Κυκλική κύλιση" th="ม้วนกลม" zh="圆形卷轴" ja="円形スクロール" hi="वृत्ताकार स्क्रॉल"  />
 	<translation tag="grid_mode" char_count="21" en="Grid mode" pt="Modo de grade" de="Rastermodus" es="Modo cuadrícula" fr="Mode grille" hu="Rács mód" ru="Режим сетки" el="Λειτουργία πλέγματος" th="โหมดตาราง" zh="网格模式" ja="グリッドモード" hi="ग्रिड मोड"  />
@@ -69,7 +69,7 @@
 	<translation tag="sound" char_count="7" en="Sound" pt="Som" de="Klang" es="Sonido" fr="Son" hu="Hang" ru="Звук" el="Ήχος" th="เสียง" zh="声音" ja="音" hi="आवाज़"  />
 	<translation tag="vibration" char_count="15" en="Vibration" pt="Vibração" de="Vibration" es="Vibración" fr="Vibration" hu="Rezgés" ru="Вибрация" el="Δόνηση" th="การสั่นสะเทือน" zh="振动" ja="振動" hi="कंपन"  />
 	<translation tag="wake_screen" char_count="23" en="Wake screen" pt="Tela de ativação" de="Bildschirm aufwecken" es="Pantalla de activación" fr="Écran de réveil" hu="Képernyő felébresztése" ru="Экран пробуждения" el="Οθόνη αφύπνισης" th="หน้าจอปลุก" zh="唤醒屏幕" ja="起動画面" hi="जाग्रत स्क्रीन"  />
-	<translation tag="dnd" char_count="31" en="DND" pt="Não perturbe" de="DND" es="Ministerio de Defensa Nacional" fr="DND" hu="Ne zavarj" ru="ДНД" el="Μην ανησυχείτε" th="ห้ามรบกวน" zh="DND" ja="D&amp;D" hi="डीएनडी"  />
+	<translation tag="dnd" char_count="22" en="DND Mode" pt="Modo Não Perturbe" de="Nicht stören-Modus" es="Modo No Molestar" fr="Mode Ne pas déranger" hu="DND mód" ru="Режим «Не беспокоить»" el="Λειτουργία DND" th="โหมดห้ามรบกวน" zh="勿扰模式" ja="おやすみモード" hi="डीएनडी मोड"  />
 	<translation tag="voltage" char_count="14" en="Voltage" pt="Tensão" de="Stromspannung" es="Voltaje" fr="Tension" hu="Feszültség" ru="Напряжение" el="Δυναμικό" th="แรงดันไฟฟ้า" zh="电压" ja="電圧" hi="वोल्टेज"  />
 	<translation tag="temperature" char_count="12" en="Temperatue" pt="Temperatura" de="Temperatur" es="Temperatura" fr="Température" hu="Hőmérséklet" ru="Температура" el="Θερμοκρασία" th="อุณหภูมิ" zh="温度" ja="温度" hi="तापमान"  />
 	<translation tag="usage" char_count="14" en="Usage" pt="Uso" de="Verwendung" es="Uso" fr="Usage" hu="Használat" ru="Использование" el="Χρήση" th="การใช้งาน" zh="用法" ja="使用法" hi="प्रयोग"  />
@@ -82,4 +82,13 @@
 	<translation tag="timeout_20" char_count="16" en="20 seconds" pt="20 segundos" de="20 Sekunden" es="20 segundos" fr="20 secondes" hu="20 másodperc" ru="20 секунд" el="20 δευτερόλεπτα" th="20 วินาที" zh="20秒" ja="20秒" hi="20 सेकंड"  />
 	<translation tag="timeout_30" char_count="16" en="30 seconds" pt="30 segundos" de="30 Sekunden" es="30 segundos" fr="30 secondes" hu="30 másodperc" ru="30 секунд" el="30 δευτερόλεπτα" th="30 วินาที" zh="30秒" ja="30秒" hi="30 सेकंड"  />
 	<translation tag="always_on" char_count="21" en="Always On" pt="Sempre ligado" de="Immer eingeschaltet" es="Siempre encendido" fr="Toujours allumé" hu="Mindig bekapcsolva" ru="Всегда включено" el="Πάντα ενεργοποιημένο" th="เปิดใช้งานตลอดเวลา" zh="始终开启" ja="常時接続" hi="हमेशा बने रहें"  />
+	<translation tag="updated_at" char_count="17" en="Updated at" pt="Atualizado em" de="Aktualisiert am" es="Actualizado en" fr="Mise à jour le" hu="Frissítve:" ru="Обновлено в" el="Ενημερώθηκε στις" th="อัปเดตเมื่อ" zh="更新于" ja="更新日時" hi="अपडेट किया गया"  />
+	<translation tag="cloudy" char_count="15" en="Cloudy" pt="Nublado" de="Wolkig" es="Nublado" fr="Nuageux" hu="Felhős" ru="Облачно" el="Νεφελώδης" th="เมฆมาก" zh="多云" ja="曇り" hi="बादलों से घिरा"  />
+	<translation tag="ram" char_count="12" en="RAM" pt="BATER" de="RAM" es="RAM" fr="BÉLIER" hu="RAM" ru="БАРАН" el="ΕΜΒΟΛΟ" th="แรม" zh="内存" ja="ラム" hi="टक्कर मारना"  />
+	<translation tag="psram" char_count="10" en="PSRAM" pt="PSRAM" de="PSRAM" es="PSRAM" fr="PSRAM" hu="PSRAM" ru="ПСРАМ" el="PSRAM" th="พีเอสแรม" zh="PSRAM" ja="PSRAM" hi="पीएसआरएएम"  />
+	<translation tag="flash" char_count="9" en="Flash" pt="Clarão" de="Blitz" es="Destello" fr="Éclair" hu="Vaku" ru="Вспышка" el="Λάμψη" th="แฟลช" zh="闪光" ja="フラッシュ" hi="चमक"  />
+	<translation tag="type" char_count="7" en="Type" pt="Tipo" de="Typ" es="Tipo" fr="Taper" hu="Típus" ru="Тип" el="Τύπος" th="พิมพ์" zh="类型" ja="タイプ" hi="प्रकार"  />
+	<translation tag="steps" char_count="9" en="Steps" pt="Passos" de="Schritte" es="Pasos" fr="Mesures" hu="Lépések" ru="Шаги" el="Βήματα" th="ขั้นตอน" zh="步骤" ja="手順" hi="चरण"  />
+	<translation tag="watchfaces" char_count="23" en="Watchfaces" pt="Mostradores de relógio" de="Zifferblätter" es="Esferas de reloj" fr="Cadrans de montre" hu="Óraszámlapok" ru="Циферблаты" el="Προσόψεις ρολογιού" th="หน้าปัดนาฬิกา" zh="表盘" ja="ウォッチフェイス" hi="वॉचफेस"  />
+	<translation tag="sd_card" char_count="11" en="SD Card" pt="Cartão SD" de="SD-Karte" es="Tarjeta SD" fr="Carte SD" hu="SD-kártya" ru="SD-карта" el="Κάρτα SD" th="การ์ด SD" zh="SD卡" ja="SDカード" hi="एसडी कार्ड"  />
 </translations>

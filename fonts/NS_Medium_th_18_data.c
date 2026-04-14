@@ -1,7 +1,7 @@
 /*******************************************************************************
  * Size: 18 px
  * Bpp: 4
- * Opts: --font /fonts/raw/languages/NotoSansThaiLooped-Medium.ttf -o /fonts/NS_Medium_th_18_data.c --size 18 --bpp 4 --format lvgl --no-compress --symbols กขคงจชซฎณดตถทธนบปพฟภมยรฤลวศษสหฬอะัาำิีึืุูเแโใไ็่้์
+ * Opts: --font /fonts/raw/languages/NotoSansThaiLooped-Medium.ttf -o /fonts/NS_Medium_th_18_data.c --size 18 --bpp 4 --format lvgl --no-compress --symbols กกักี่กุก็ขขั้ขึ้คค่ฆงจจัจำจิจุจ้ชชั่ช้ซ็ฎณณ์ดดัดีตตัตั้ติตืตุต่ถุททิทีที่ทืธธัธ์นนั่นำน้บบูปปัปิป็พพัพิพีพื่พื้พุพ์ฟฟิฟ้ภภูมมิมีมื่มุม้ยย์รรีรี่รูร์ฤลลุล์ววัวิว่ศศุษสสั่สิสีสุหหัห้ฬิออัอุะาเแโใไ
  ******************************************************************************/
 
 #ifdef __has_include
@@ -57,6 +57,15 @@ static LV_ATTRIBUTE_LARGE_CONST const uint8_t glyph_bitmap[] = {
     0xed, 0x3c, 0xf1, 0x7f, 0xc0, 0x00, 0x0c, 0xf1,
     0x5f, 0x80, 0x00, 0x0c, 0xf1, 0x5f, 0x70, 0x00,
     0x0c, 0xf1,
+
+    /* U+0E06 "ฆ" */
+    0x2d, 0xfa, 0x7a, 0x00, 0xfe, 0x7a, 0x0f, 0xea,
+    0x00, 0xfe, 0x1c, 0xe9, 0xe9, 0x00, 0xfe, 0x00,
+    0x09, 0xf5, 0x00, 0xfe, 0x00, 0x3f, 0xd0, 0x00,
+    0xfe, 0x00, 0x7f, 0x80, 0x00, 0xfe, 0x00, 0x6f,
+    0x70, 0x00, 0xfe, 0x0b, 0xef, 0xc6, 0x10, 0xfe,
+    0x5d, 0x2c, 0x95, 0xd9, 0xfe, 0x1c, 0xed, 0x30,
+    0x09, 0xfe,
 
     /* U+0E07 "ง" */
     0x00, 0x00, 0x4e, 0xf7, 0x00, 0x00, 0x0c, 0x75,
@@ -456,54 +465,55 @@ static const lv_font_fmt_txt_glyph_dsc_t glyph_dsc[] = {
     {.bitmap_index = 0, .adv_w = 180, .box_w = 10, .box_h = 10, .ofs_x = 0, .ofs_y = 0},
     {.bitmap_index = 50, .adv_w = 163, .box_w = 9, .box_h = 10, .ofs_x = 0, .ofs_y = 0},
     {.bitmap_index = 95, .adv_w = 186, .box_w = 10, .box_h = 10, .ofs_x = 1, .ofs_y = 0},
-    {.bitmap_index = 145, .adv_w = 152, .box_w = 9, .box_h = 10, .ofs_x = 0, .ofs_y = 0},
-    {.bitmap_index = 190, .adv_w = 158, .box_w = 9, .box_h = 10, .ofs_x = 0, .ofs_y = 0},
-    {.bitmap_index = 235, .adv_w = 163, .box_w = 10, .box_h = 10, .ofs_x = 0, .ofs_y = 0},
-    {.bitmap_index = 285, .adv_w = 168, .box_w = 10, .box_h = 10, .ofs_x = 0, .ofs_y = 0},
-    {.bitmap_index = 335, .adv_w = 184, .box_w = 10, .box_h = 14, .ofs_x = 0, .ofs_y = -4},
-    {.bitmap_index = 405, .adv_w = 257, .box_w = 16, .box_h = 10, .ofs_x = 0, .ofs_y = 0},
-    {.bitmap_index = 485, .adv_w = 187, .box_w = 11, .box_h = 10, .ofs_x = 0, .ofs_y = 0},
-    {.bitmap_index = 540, .adv_w = 187, .box_w = 11, .box_h = 11, .ofs_x = 0, .ofs_y = 0},
-    {.bitmap_index = 601, .adv_w = 177, .box_w = 10, .box_h = 10, .ofs_x = 0, .ofs_y = 0},
-    {.bitmap_index = 651, .adv_w = 191, .box_w = 11, .box_h = 10, .ofs_x = 0, .ofs_y = 0},
-    {.bitmap_index = 706, .adv_w = 164, .box_w = 10, .box_h = 10, .ofs_x = 0, .ofs_y = 0},
-    {.bitmap_index = 756, .adv_w = 182, .box_w = 11, .box_h = 10, .ofs_x = 0, .ofs_y = 0},
-    {.bitmap_index = 811, .adv_w = 188, .box_w = 11, .box_h = 10, .ofs_x = 0, .ofs_y = 0},
-    {.bitmap_index = 866, .adv_w = 188, .box_w = 11, .box_h = 13, .ofs_x = 0, .ofs_y = 0},
-    {.bitmap_index = 938, .adv_w = 206, .box_w = 12, .box_h = 10, .ofs_x = 0, .ofs_y = 0},
-    {.bitmap_index = 998, .adv_w = 206, .box_w = 12, .box_h = 13, .ofs_x = 0, .ofs_y = 0},
-    {.bitmap_index = 1076, .adv_w = 183, .box_w = 10, .box_h = 10, .ofs_x = 0, .ofs_y = 0},
-    {.bitmap_index = 1126, .adv_w = 185, .box_w = 10, .box_h = 10, .ofs_x = 0, .ofs_y = 0},
-    {.bitmap_index = 1176, .adv_w = 180, .box_w = 9, .box_h = 10, .ofs_x = 1, .ofs_y = 0},
-    {.bitmap_index = 1221, .adv_w = 138, .box_w = 8, .box_h = 10, .ofs_x = 0, .ofs_y = 0},
-    {.bitmap_index = 1261, .adv_w = 177, .box_w = 10, .box_h = 14, .ofs_x = 0, .ofs_y = -4},
-    {.bitmap_index = 1331, .adv_w = 168, .box_w = 8, .box_h = 10, .ofs_x = 1, .ofs_y = 0},
-    {.bitmap_index = 1371, .adv_w = 140, .box_w = 8, .box_h = 10, .ofs_x = 0, .ofs_y = 0},
-    {.bitmap_index = 1411, .adv_w = 186, .box_w = 11, .box_h = 11, .ofs_x = 1, .ofs_y = 0},
-    {.bitmap_index = 1472, .adv_w = 197, .box_w = 12, .box_h = 10, .ofs_x = 0, .ofs_y = 0},
-    {.bitmap_index = 1532, .adv_w = 168, .box_w = 10, .box_h = 11, .ofs_x = 1, .ofs_y = 0},
-    {.bitmap_index = 1587, .adv_w = 192, .box_w = 11, .box_h = 10, .ofs_x = 0, .ofs_y = 0},
-    {.bitmap_index = 1642, .adv_w = 206, .box_w = 13, .box_h = 13, .ofs_x = 0, .ofs_y = 0},
-    {.bitmap_index = 1727, .adv_w = 171, .box_w = 9, .box_h = 10, .ofs_x = 1, .ofs_y = 0},
-    {.bitmap_index = 1772, .adv_w = 118, .box_w = 7, .box_h = 10, .ofs_x = 0, .ofs_y = 0},
-    {.bitmap_index = 1807, .adv_w = 0, .box_w = 8, .box_h = 4, .ofs_x = -8, .ofs_y = 10},
-    {.bitmap_index = 1823, .adv_w = 123, .box_w = 7, .box_h = 10, .ofs_x = 0, .ofs_y = 0},
-    {.bitmap_index = 1858, .adv_w = 123, .box_w = 12, .box_h = 15, .ofs_x = -5, .ofs_y = 0},
-    {.bitmap_index = 1948, .adv_w = 0, .box_w = 9, .box_h = 3, .ofs_x = -10, .ofs_y = 11},
-    {.bitmap_index = 1962, .adv_w = 0, .box_w = 9, .box_h = 3, .ofs_x = -10, .ofs_y = 11},
-    {.bitmap_index = 1976, .adv_w = 0, .box_w = 10, .box_h = 3, .ofs_x = -10, .ofs_y = 11},
-    {.bitmap_index = 1991, .adv_w = 0, .box_w = 9, .box_h = 3, .ofs_x = -10, .ofs_y = 11},
-    {.bitmap_index = 2005, .adv_w = 0, .box_w = 5, .box_h = 5, .ofs_x = -6, .ofs_y = -6},
-    {.bitmap_index = 2018, .adv_w = 0, .box_w = 7, .box_h = 5, .ofs_x = -8, .ofs_y = -6},
-    {.bitmap_index = 2036, .adv_w = 99, .box_w = 5, .box_h = 10, .ofs_x = 1, .ofs_y = 0},
-    {.bitmap_index = 2061, .adv_w = 183, .box_w = 10, .box_h = 10, .ofs_x = 1, .ofs_y = 0},
-    {.bitmap_index = 2111, .adv_w = 108, .box_w = 7, .box_h = 16, .ofs_x = 0, .ofs_y = 0},
-    {.bitmap_index = 2167, .adv_w = 108, .box_w = 7, .box_h = 16, .ofs_x = 0, .ofs_y = 0},
-    {.bitmap_index = 2223, .adv_w = 103, .box_w = 8, .box_h = 16, .ofs_x = -1, .ofs_y = 0},
-    {.bitmap_index = 2287, .adv_w = 0, .box_w = 8, .box_h = 6, .ofs_x = -9, .ofs_y = 11},
-    {.bitmap_index = 2311, .adv_w = 0, .box_w = 3, .box_h = 4, .ofs_x = -4, .ofs_y = 11},
-    {.bitmap_index = 2317, .adv_w = 0, .box_w = 8, .box_h = 5, .ofs_x = -8, .ofs_y = 11},
-    {.bitmap_index = 2337, .adv_w = 0, .box_w = 6, .box_h = 5, .ofs_x = -6, .ofs_y = 11}
+    {.bitmap_index = 145, .adv_w = 184, .box_w = 10, .box_h = 10, .ofs_x = 0, .ofs_y = 0},
+    {.bitmap_index = 195, .adv_w = 152, .box_w = 9, .box_h = 10, .ofs_x = 0, .ofs_y = 0},
+    {.bitmap_index = 240, .adv_w = 158, .box_w = 9, .box_h = 10, .ofs_x = 0, .ofs_y = 0},
+    {.bitmap_index = 285, .adv_w = 163, .box_w = 10, .box_h = 10, .ofs_x = 0, .ofs_y = 0},
+    {.bitmap_index = 335, .adv_w = 168, .box_w = 10, .box_h = 10, .ofs_x = 0, .ofs_y = 0},
+    {.bitmap_index = 385, .adv_w = 184, .box_w = 10, .box_h = 14, .ofs_x = 0, .ofs_y = -4},
+    {.bitmap_index = 455, .adv_w = 257, .box_w = 16, .box_h = 10, .ofs_x = 0, .ofs_y = 0},
+    {.bitmap_index = 535, .adv_w = 187, .box_w = 11, .box_h = 10, .ofs_x = 0, .ofs_y = 0},
+    {.bitmap_index = 590, .adv_w = 187, .box_w = 11, .box_h = 11, .ofs_x = 0, .ofs_y = 0},
+    {.bitmap_index = 651, .adv_w = 177, .box_w = 10, .box_h = 10, .ofs_x = 0, .ofs_y = 0},
+    {.bitmap_index = 701, .adv_w = 191, .box_w = 11, .box_h = 10, .ofs_x = 0, .ofs_y = 0},
+    {.bitmap_index = 756, .adv_w = 164, .box_w = 10, .box_h = 10, .ofs_x = 0, .ofs_y = 0},
+    {.bitmap_index = 806, .adv_w = 182, .box_w = 11, .box_h = 10, .ofs_x = 0, .ofs_y = 0},
+    {.bitmap_index = 861, .adv_w = 188, .box_w = 11, .box_h = 10, .ofs_x = 0, .ofs_y = 0},
+    {.bitmap_index = 916, .adv_w = 188, .box_w = 11, .box_h = 13, .ofs_x = 0, .ofs_y = 0},
+    {.bitmap_index = 988, .adv_w = 206, .box_w = 12, .box_h = 10, .ofs_x = 0, .ofs_y = 0},
+    {.bitmap_index = 1048, .adv_w = 206, .box_w = 12, .box_h = 13, .ofs_x = 0, .ofs_y = 0},
+    {.bitmap_index = 1126, .adv_w = 183, .box_w = 10, .box_h = 10, .ofs_x = 0, .ofs_y = 0},
+    {.bitmap_index = 1176, .adv_w = 185, .box_w = 10, .box_h = 10, .ofs_x = 0, .ofs_y = 0},
+    {.bitmap_index = 1226, .adv_w = 180, .box_w = 9, .box_h = 10, .ofs_x = 1, .ofs_y = 0},
+    {.bitmap_index = 1271, .adv_w = 138, .box_w = 8, .box_h = 10, .ofs_x = 0, .ofs_y = 0},
+    {.bitmap_index = 1311, .adv_w = 177, .box_w = 10, .box_h = 14, .ofs_x = 0, .ofs_y = -4},
+    {.bitmap_index = 1381, .adv_w = 168, .box_w = 8, .box_h = 10, .ofs_x = 1, .ofs_y = 0},
+    {.bitmap_index = 1421, .adv_w = 140, .box_w = 8, .box_h = 10, .ofs_x = 0, .ofs_y = 0},
+    {.bitmap_index = 1461, .adv_w = 186, .box_w = 11, .box_h = 11, .ofs_x = 1, .ofs_y = 0},
+    {.bitmap_index = 1522, .adv_w = 197, .box_w = 12, .box_h = 10, .ofs_x = 0, .ofs_y = 0},
+    {.bitmap_index = 1582, .adv_w = 168, .box_w = 10, .box_h = 11, .ofs_x = 1, .ofs_y = 0},
+    {.bitmap_index = 1637, .adv_w = 192, .box_w = 11, .box_h = 10, .ofs_x = 0, .ofs_y = 0},
+    {.bitmap_index = 1692, .adv_w = 206, .box_w = 13, .box_h = 13, .ofs_x = 0, .ofs_y = 0},
+    {.bitmap_index = 1777, .adv_w = 171, .box_w = 9, .box_h = 10, .ofs_x = 1, .ofs_y = 0},
+    {.bitmap_index = 1822, .adv_w = 118, .box_w = 7, .box_h = 10, .ofs_x = 0, .ofs_y = 0},
+    {.bitmap_index = 1857, .adv_w = 0, .box_w = 8, .box_h = 4, .ofs_x = -8, .ofs_y = 10},
+    {.bitmap_index = 1873, .adv_w = 123, .box_w = 7, .box_h = 10, .ofs_x = 0, .ofs_y = 0},
+    {.bitmap_index = 1908, .adv_w = 123, .box_w = 12, .box_h = 15, .ofs_x = -5, .ofs_y = 0},
+    {.bitmap_index = 1998, .adv_w = 0, .box_w = 9, .box_h = 3, .ofs_x = -10, .ofs_y = 11},
+    {.bitmap_index = 2012, .adv_w = 0, .box_w = 9, .box_h = 3, .ofs_x = -10, .ofs_y = 11},
+    {.bitmap_index = 2026, .adv_w = 0, .box_w = 10, .box_h = 3, .ofs_x = -10, .ofs_y = 11},
+    {.bitmap_index = 2041, .adv_w = 0, .box_w = 9, .box_h = 3, .ofs_x = -10, .ofs_y = 11},
+    {.bitmap_index = 2055, .adv_w = 0, .box_w = 5, .box_h = 5, .ofs_x = -6, .ofs_y = -6},
+    {.bitmap_index = 2068, .adv_w = 0, .box_w = 7, .box_h = 5, .ofs_x = -8, .ofs_y = -6},
+    {.bitmap_index = 2086, .adv_w = 99, .box_w = 5, .box_h = 10, .ofs_x = 1, .ofs_y = 0},
+    {.bitmap_index = 2111, .adv_w = 183, .box_w = 10, .box_h = 10, .ofs_x = 1, .ofs_y = 0},
+    {.bitmap_index = 2161, .adv_w = 108, .box_w = 7, .box_h = 16, .ofs_x = 0, .ofs_y = 0},
+    {.bitmap_index = 2217, .adv_w = 108, .box_w = 7, .box_h = 16, .ofs_x = 0, .ofs_y = 0},
+    {.bitmap_index = 2273, .adv_w = 103, .box_w = 8, .box_h = 16, .ofs_x = -1, .ofs_y = 0},
+    {.bitmap_index = 2337, .adv_w = 0, .box_w = 8, .box_h = 6, .ofs_x = -9, .ofs_y = 11},
+    {.bitmap_index = 2361, .adv_w = 0, .box_w = 3, .box_h = 4, .ofs_x = -4, .ofs_y = 11},
+    {.bitmap_index = 2367, .adv_w = 0, .box_w = 8, .box_h = 5, .ofs_x = -8, .ofs_y = 11},
+    {.bitmap_index = 2387, .adv_w = 0, .box_w = 6, .box_h = 5, .ofs_x = -6, .ofs_y = 11}
 };
 
 /*---------------------
@@ -511,16 +521,16 @@ static const lv_font_fmt_txt_glyph_dsc_t glyph_dsc[] = {
  *--------------------*/
 
 static const uint8_t glyph_id_ofs_list_0[] = {
-    0, 1, 0, 2, 0, 0, 3, 4,
-    0, 5, 6, 0, 0, 7, 0, 0,
-    0, 0, 8, 9, 10, 11, 12, 13,
-    14, 15, 16, 0, 0, 17, 18, 19,
-    20, 21, 22, 23, 24, 0, 25, 26,
-    27, 28, 29, 30, 31, 0, 0, 32,
-    33, 34, 35, 36, 37, 38, 39, 40,
-    41, 0, 0, 0, 0, 0, 0, 42,
-    43, 44, 45, 46, 0, 0, 47, 48,
-    49, 0, 0, 50
+    0, 1, 0, 2, 0, 3, 4, 5,
+    0, 6, 7, 0, 0, 8, 0, 0,
+    0, 0, 9, 10, 11, 12, 13, 14,
+    15, 16, 17, 0, 0, 18, 19, 20,
+    21, 22, 23, 24, 25, 0, 26, 27,
+    28, 29, 30, 31, 32, 0, 0, 33,
+    34, 35, 36, 37, 38, 39, 40, 41,
+    42, 0, 0, 0, 0, 0, 0, 43,
+    44, 45, 46, 47, 0, 0, 48, 49,
+    50, 0, 0, 51
 };
 
 /*Collect the unicode lists and glyph_id offsets*/
@@ -539,25 +549,25 @@ static const lv_font_fmt_txt_cmap_t cmaps[] =
 /*Map glyph_ids to kern left classes*/
 static const uint8_t kern_left_class_mapping[] =
 {
-    0, 1, 0, 2, 0, 3, 0, 0,
-    1, 0, 4, 4, 1, 2, 0, 0,
-    0, 0, 0, 0, 1, 0, 0, 0,
-    1, 1, 2, 0, 3, 0, 0, 0,
-    2, 5, 0, 1, 1, 0, 0, 0,
-    0, 0, 0, 6, 6, 6, 6, 6,
-    0, 0, 0, 0
+    0, 1, 0, 2, 0, 0, 3, 0,
+    0, 1, 0, 4, 4, 1, 2, 0,
+    0, 0, 0, 0, 0, 1, 0, 0,
+    0, 1, 1, 2, 0, 3, 0, 0,
+    0, 2, 5, 0, 1, 1, 0, 0,
+    0, 0, 0, 0, 6, 6, 6, 6,
+    6, 0, 0, 0, 0
 };
 
 /*Map glyph_ids to kern right classes*/
 static const uint8_t kern_right_class_mapping[] =
 {
-    0, 0, 0, 0, 1, 2, 0, 0,
-    0, 0, 0, 0, 0, 3, 0, 3,
-    3, 3, 3, 3, 0, 0, 0, 4,
-    0, 0, 5, 0, 3, 0, 3, 3,
-    0, 0, 0, 5, 5, 0, 0, 0,
-    0, 0, 0, 6, 6, 6, 6, 6,
-    0, 0, 0, 0
+    0, 0, 0, 0, 0, 1, 2, 0,
+    0, 0, 0, 0, 0, 0, 3, 0,
+    3, 3, 3, 3, 3, 0, 0, 0,
+    4, 0, 0, 5, 0, 3, 0, 3,
+    3, 0, 0, 0, 5, 5, 0, 0,
+    0, 0, 0, 0, 6, 6, 6, 6,
+    6, 0, 0, 0, 0
 };
 
 /*Kern values between classes*/

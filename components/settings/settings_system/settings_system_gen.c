@@ -73,7 +73,7 @@ lv_obj_t * settings_system_create(lv_obj_t * parent)
     
     hs_line_create(hs_card_0);
     
-    hs_dropdown_create(hs_card_0, "Timeout", "language", &sb_language, "English\nRussian\nPortuguese\nGreek\nGerman\nSpanish\nFrench\nChinese\nHindi\nJapanese\nThai\nHungarian");
+    hs_dropdown_create(hs_card_0, "Timeout", "language", &sb_language, "English\nPortuguese\nGerman\nSpanish\nFrench\nHungarian\nRussian\nGreek\nThai\nChinese\nJapanese\nHindi");
     
     lv_obj_t * hs_card_1 = hs_card_create(wd_list_container_0);
     hs_button_create(hs_card_1, "Circular Scroll", "reboot", COLOR_PRIMARY);

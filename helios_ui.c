@@ -513,17 +513,17 @@ static void language_observer_cb(lv_observer_t *observer, lv_subject_t *subject)
 
     switch(index) {
         case 0: lv_translation_set_language("en"); break;
-        case 1: lv_translation_set_language("ru"); break;
-        case 2: lv_translation_set_language("pt"); break;
-        case 3: lv_translation_set_language("el"); break;
-        case 4: lv_translation_set_language("de"); break;
-        case 5: lv_translation_set_language("es"); break;
-        case 6: lv_translation_set_language("fr"); break;
-        case 7: lv_translation_set_language("zh"); break;
-        case 8: lv_translation_set_language("hi"); break;
-        case 9: lv_translation_set_language("ja"); break;
-        case 10: lv_translation_set_language("th"); break;
-        case 11: lv_translation_set_language("hu"); break;
+        case 1: lv_translation_set_language("pt"); break;
+        case 2: lv_translation_set_language("de"); break;
+        case 3: lv_translation_set_language("es"); break;
+        case 4: lv_translation_set_language("fr"); break;
+        case 5: lv_translation_set_language("hu"); break;
+        case 6: lv_translation_set_language("ru"); break;
+        case 7: lv_translation_set_language("el"); break;
+        case 8: lv_translation_set_language("th"); break;
+        case 9: lv_translation_set_language("zh"); break;
+        case 10: lv_translation_set_language("ja"); break;
+        case 11: lv_translation_set_language("hi"); break;
     }
     font_fallback_update();
 }

@@ -53,7 +53,10 @@
 					</hs_column>
 				</hs_card>
 
-				<hs_text_small width="100%" text="Updated at 12:15" style_text_align="center" />
+				<hs_column>
+					<hs_text_small width="100%" translation_tag="updated_at" style_text_align="center" />
+					<hs_text_small width="100%" text="12:15" style_text_align="center" />
+				</hs_column>
 			</wd_list-container>
 		</wd_list>
 	</view>

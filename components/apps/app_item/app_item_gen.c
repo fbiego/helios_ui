@@ -78,11 +78,13 @@ lv_obj_t * app_item_create(lv_obj_t * parent, const void * icon, const char * ap
         lv_style_set_height(&style_app_360, 60);
         lv_style_set_text_font(&style_app_360, NS_Medium_30);
         lv_style_set_pad_column(&style_app_360, 10);
+        lv_style_set_pad_hor(&style_app_360, 15);
 
         lv_style_init(&style_app_240);
         lv_style_set_height(&style_app_240, 40);
         lv_style_set_text_font(&style_app_240, NS_Medium_20);
         lv_style_set_pad_column(&style_app_240, 10);
+        lv_style_set_pad_hor(&style_app_240, 12);
 
         lv_style_init(&style_grid_mode);
         lv_style_set_width(&style_grid_mode, 110);

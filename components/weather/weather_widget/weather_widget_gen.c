@@ -99,7 +99,7 @@ lv_obj_t * weather_widget_create(lv_obj_t * parent)
     wd_image_bind_scale(wd_image_0, &sb_screen_size);
     
     lv_obj_t * hs_text_small_0 = hs_text_small_create(lv_obj_0);
-    lv_label_set_text(hs_text_small_0, "Cloudy");
+    lv_label_set_translation_tag(hs_text_small_0, "cloudy");
     lv_obj_set_style_text_align(hs_text_small_0, LV_TEXT_ALIGN_CENTER, 0);
     
     lv_obj_t * lv_obj_1 = lv_obj_create(lv_obj_0);

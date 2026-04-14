@@ -45,16 +45,16 @@ lv_obj_t * hs_info_create(lv_obj_t * parent, const char * label, const char * la
         lv_style_set_width(&style_base, lv_pct(100));
         lv_style_set_height(&style_base, LV_SIZE_CONTENT);
         lv_style_set_radius(&style_base, 10);
-        lv_style_set_pad_ver(&style_base, 10);
+        lv_style_set_pad_ver(&style_base, 4);
         lv_style_set_bg_color(&style_base, lv_color_hex(0x171717));
         lv_style_set_bg_opa(&style_base, 255);
 
         lv_style_init(&style_pad_360);
-        lv_style_set_pad_ver(&style_pad_360, 6);
+        lv_style_set_pad_ver(&style_pad_360, 3);
         lv_style_set_radius(&style_pad_360, 6);
 
         lv_style_init(&style_pad_240);
-        lv_style_set_pad_ver(&style_pad_240, 3);
+        lv_style_set_pad_ver(&style_pad_240, 2);
         lv_style_set_radius(&style_pad_240, 3);
 
         style_inited = true;

@@ -127,10 +127,16 @@ lv_obj_t * weather_create(void)
     
     daily_forecast_create(hs_column_0);
     
-    lv_obj_t * hs_text_small_0 = hs_text_small_create(wd_list_container_0);
+    lv_obj_t * hs_column_1 = hs_column_create(wd_list_container_0);
+    lv_obj_t * hs_text_small_0 = hs_text_small_create(hs_column_1);
     lv_obj_set_width(hs_text_small_0, lv_pct(100));
-    lv_label_set_text(hs_text_small_0, "Updated at 12:15");
+    lv_label_set_translation_tag(hs_text_small_0, "updated_at");
     lv_obj_set_style_text_align(hs_text_small_0, LV_TEXT_ALIGN_CENTER, 0);
+    
+    lv_obj_t * hs_text_small_1 = hs_text_small_create(hs_column_1);
+    lv_obj_set_width(hs_text_small_1, lv_pct(100));
+    lv_label_set_text(hs_text_small_1, "12:15");
+    lv_obj_set_style_text_align(hs_text_small_1, LV_TEXT_ALIGN_CENTER, 0);
 
     LV_TRACE_OBJ_CREATE("finished");
 

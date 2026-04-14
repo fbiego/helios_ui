@@ -30,7 +30,7 @@
 				<hs_line />
 				<hs_dropdown
 					tag="language"
-					options="English&#10;Russian&#10;Portuguese&#10;Greek&#10;German&#10;Spanish&#10;French&#10;Chinese&#10;Hindi&#10;Japanese&#10;Thai&#10;Hungarian"
+					options="English&#10;Portuguese&#10;German&#10;Spanish&#10;French&#10;Hungarian&#10;Russian&#10;Greek&#10;Thai&#10;Chinese&#10;Japanese&#10;Hindi"
 					bind_value="sb_language"
 				/>
 			</hs_card>

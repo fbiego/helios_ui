@@ -49,7 +49,7 @@
 			bind_scale="sb_screen_size"
 		/>
 
-		<hs_text_small text="Cloudy" style_text_align="center" />
+		<hs_text_small translation_tag="cloudy" style_text_align="center" />
 		<lv_obj>
 			<remove_style_all />
 			<style name="style_cont" />

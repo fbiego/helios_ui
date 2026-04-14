@@ -21,15 +21,15 @@
 				<hs_line />
 				<hs_info label="ESP32 S3" info="34:54:56:23:43:32" />
 				<hs_line />
-				<hs_info label="RAM" info="384KB" />
-				<hs_info label="PSRAM" info="8MB" />
+				<hs_info label_tag="ram" info="384KB" />
+				<hs_info label_tag="psram" info="8MB" />
 
 				<hs_line />
-				<hs_info label="Flash" info="16MB" />
+				<hs_info label_tag="flash" info="16MB" />
 
 				<hs_line />
 				<hs_info label_tag="display" info="466x466" />
-				<hs_info label_tag="Type" info="AMOLED" />
+				<hs_info label_tag="type" info="AMOLED" />
 
 				<hs_line />
 				<hs_info label_tag="firmware" info="v1.3" />

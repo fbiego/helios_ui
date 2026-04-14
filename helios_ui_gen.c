@@ -38,7 +38,7 @@
 
 #ifndef LV_EDITOR_PREVIEW
     static const char * translation_languages[] = {"en", "pt", "de", "es", "fr", "hu", "ru", "el", "th", "zh", "ja", "hi", NULL};
-    static const char * translation_tags[] = {"id", "locale", "sun", "mon", "tue", "wed", "thur", "fri", "sat", "jan", "feb", "mar", "apr", "jun", "jul", "aug", "sept", "oct", "nov", "dec", "sunday", "monday", "tuesday", "wednesday", "thursday", "friday", "saturday", "january", "february", "march", "april", "may", "june", "july", "august", "september", "october", "november", "december", "contacts", "files", "fitness", "health", "music", "navigation", "notifications", "settings", "sleep", "stopwatch", "timer", "weather", "display", "system", "alerts", "battery", "about", "storage", "brightness", "timeout", "rotation", "raise_to_wake", "circular_scroll", "grid_mode", "language", "reboot", "shutdown", "factory_reset", "sound", "vibration", "wake_screen", "dnd", "voltage", "temperature", "usage", "format", "firmware", "hourly_forecast", "daily_forecast", "timeout_5", "timeout_10", "timeout_20", "timeout_30", "always_on", NULL};
+    static const char * translation_tags[] = {"id", "locale", "sun", "mon", "tue", "wed", "thur", "fri", "sat", "jan", "feb", "mar", "apr", "jun", "jul", "aug", "sept", "oct", "nov", "dec", "sunday", "monday", "tuesday", "wednesday", "thursday", "friday", "saturday", "january", "february", "march", "april", "may", "june", "july", "august", "september", "october", "november", "december", "contacts", "files", "fitness", "health", "music", "navigation", "notifications", "settings", "sleep", "stopwatch", "timer", "weather", "display", "system", "alerts", "battery", "about", "storage", "brightness", "timeout", "rotation", "raise_to_wake", "circular_scroll", "grid_mode", "language", "reboot", "shutdown", "factory_reset", "sound", "vibration", "wake_screen", "dnd", "voltage", "temperature", "usage", "format", "firmware", "hourly_forecast", "daily_forecast", "timeout_5", "timeout_10", "timeout_20", "timeout_30", "always_on", "updated_at", "cloudy", "ram", "psram", "flash", "type", "steps", "watchfaces", "sd_card", NULL};
     static const char * translation_texts[] = {
         "en", "pt", "de", "es", "fr", "hu", "ru", "el", "th", "zh", "ja", "hi", /* id */
         "English", "Portuguese", "German", "Spanish", "French", "Hungarian", "Russian", "Greek", "Thai", "Chinese", "Japanese", "Hindi", /* locale */
@@ -55,7 +55,7 @@
         "Apr", "abril", "April", "Abr", "Avr", "Április", "Апр", "Απρ", "เมษายน", "四月", "4月", "अप्रैल", /* apr */
         "Jun", "junho", "Juni", "Jun", "Juin", "Június", "Джун", "Ιούνιος", "จุน", "俊", "ジュン", "जून", /* jun */
         "Jul", "julho", "Jul", "Jul", "Juillet", "Július", "июль", "Ιούλ", "กรกฎาคม", "七月", "7月", "जुलाई", /* jul */
-        "Aug", "agosto", "August", "Ago", "Août", "Augusztus", "Август", "Αυγ", "ส.ค.", "八月", "8月", "अगस्त", /* aug */
+        "Aug", "agosto", "August", "Ago", "août", "Augusztus", "Август", "Αυγ", "ส.ค.", "八月", "8月", "अगस्त", /* aug */
         "Sep", "Setembro", "September", "Sep", "Sep", "Szept.", "Сентябрь", "Σεπ", "กันยายน", "九月", "9月", "सितम्बर", /* sept */
         "Oct", "Outubro", "Oktober", "Oct", "Octobre", "Október", "Октябрь", "Οκτ", "ตุลาคม", "十月", "10月", "अक्टूबर", /* oct */
         "Nov", "novembro", "November", "Nov", "Nov", "November", "Ноябрь", "Νοέμβριος", "พฤศจิกายน", "十一月", "11月", "नवंबर", /* nov */
@@ -99,7 +99,7 @@
         "Storage", "Armazenar", "Lagerung", "Almacenamiento", "Stockage", "Tárolás", "Хранилище", "Αποθήκευση", "พื้นที่จัดเก็บ", "贮存", "ストレージ", "भंडारण", /* storage */
         "Brightness", "Brilho", "Helligkeit", "Brillo", "Luminosité", "Fényesség", "Яркость", "Λάμψη", "ความสว่าง", "亮度", "輝度", "चमक", /* brightness */
         "Timeout", "Tempo esgotado", "Time-out", "Se acabó el tiempo", "Temps mort", "Időtúllépés", "Тайм-аут", "Χρονικό όριο", "หมดเวลา", "暂停", "タイムアウト", "समय समाप्त", /* timeout */
-        "Rotation", "Rotação", "Drehung", "Rotación", "Rotation", "Forgás", "Вращение", "Περιστροφή", "การหมุน", "旋转", "回転", "ROTATION", /* rotation */
+        "Rotation", "Rotação", "Drehung", "Rotación", "Rotation", "Forgás", "Вращение", "Περιστροφή", "การหมุน", "旋转", "回転", "घुमाएँ", /* rotation */
         "Raise to wake", "Levante para acordar", "Zum Aufwecken hochziehen", "Levantarse para despertar", "Lever pour réveiller", "Ébredés", "Поднимитесь, чтобы проснуться", "Σήκωσε για να ξυπνήσεις", "ยกขึ้นเพื่อปลุก", "起身唤醒", "起こすために持ち上げる", "जगाने के लिए उठाएँ", /* raise_to_wake */
         "Circular scroll", "Pergaminho circular", "Kreisförmige Schriftrolle", "Pergamino circular", "rouleau circulaire", "Kör alakú görgetés", "Круглый свиток", "Κυκλική κύλιση", "ม้วนกลม", "圆形卷轴", "円形スクロール", "वृत्ताकार स्क्रॉल", /* circular_scroll */
         "Grid mode", "Modo de grade", "Rastermodus", "Modo cuadrícula", "Mode grille", "Rács mód", "Режим сетки", "Λειτουργία πλέγματος", "โหมดตาราง", "网格模式", "グリッドモード", "ग्रिड मोड", /* grid_mode */
@@ -110,7 +110,7 @@
         "Sound", "Som", "Klang", "Sonido", "Son", "Hang", "Звук", "Ήχος", "เสียง", "声音", "音", "आवाज़", /* sound */
         "Vibration", "Vibração", "Vibration", "Vibración", "Vibration", "Rezgés", "Вибрация", "Δόνηση", "การสั่นสะเทือน", "振动", "振動", "कंपन", /* vibration */
         "Wake screen", "Tela de ativação", "Bildschirm aufwecken", "Pantalla de activación", "Écran de réveil", "Képernyő felébresztése", "Экран пробуждения", "Οθόνη αφύπνισης", "หน้าจอปลุก", "唤醒屏幕", "起動画面", "जाग्रत स्क्रीन", /* wake_screen */
-        "DND", "Não perturbe", "DND", "Ministerio de Defensa Nacional", "DND", "Ne zavarj", "ДНД", "Μην ανησυχείτε", "ห้ามรบกวน", "DND", "D&D", "डीएनडी", /* dnd */
+        "DND Mode", "Modo Não Perturbe", "Nicht stören-Modus", "Modo No Molestar", "Mode Ne pas déranger", "DND mód", "Режим «Не беспокоить»", "Λειτουργία DND", "โหมดห้ามรบกวน", "勿扰模式", "おやすみモード", "डीएनडी मोड", /* dnd */
         "Voltage", "Tensão", "Stromspannung", "Voltaje", "Tension", "Feszültség", "Напряжение", "Δυναμικό", "แรงดันไฟฟ้า", "电压", "電圧", "वोल्टेज", /* voltage */
         "Temperatue", "Temperatura", "Temperatur", "Temperatura", "Température", "Hőmérséklet", "Температура", "Θερμοκρασία", "อุณหภูมิ", "温度", "温度", "तापमान", /* temperature */
         "Usage", "Uso", "Verwendung", "Uso", "Usage", "Használat", "Использование", "Χρήση", "การใช้งาน", "用法", "使用法", "प्रयोग", /* usage */
@@ -123,6 +123,15 @@
         "20 seconds", "20 segundos", "20 Sekunden", "20 segundos", "20 secondes", "20 másodperc", "20 секунд", "20 δευτερόλεπτα", "20 วินาที", "20秒", "20秒", "20 सेकंड", /* timeout_20 */
         "30 seconds", "30 segundos", "30 Sekunden", "30 segundos", "30 secondes", "30 másodperc", "30 секунд", "30 δευτερόλεπτα", "30 วินาที", "30秒", "30秒", "30 सेकंड", /* timeout_30 */
         "Always On", "Sempre ligado", "Immer eingeschaltet", "Siempre encendido", "Toujours allumé", "Mindig bekapcsolva", "Всегда включено", "Πάντα ενεργοποιημένο", "เปิดใช้งานตลอดเวลา", "始终开启", "常時接続", "हमेशा बने रहें", /* always_on */
+        "Updated at", "Atualizado em", "Aktualisiert am", "Actualizado en", "Mise à jour le", "Frissítve:", "Обновлено в", "Ενημερώθηκε στις", "อัปเดตเมื่อ", "更新于", "更新日時", "अपडेट किया गया", /* updated_at */
+        "Cloudy", "Nublado", "Wolkig", "Nublado", "Nuageux", "Felhős", "Облачно", "Νεφελώδης", "เมฆมาก", "多云", "曇り", "बादलों से घिरा", /* cloudy */
+        "RAM", "BATER", "RAM", "RAM", "BÉLIER", "RAM", "БАРАН", "ΕΜΒΟΛΟ", "แรม", "内存", "ラム", "टक्कर मारना", /* ram */
+        "PSRAM", "PSRAM", "PSRAM", "PSRAM", "PSRAM", "PSRAM", "ПСРАМ", "PSRAM", "พีเอสแรม", "PSRAM", "PSRAM", "पीएसआरएएम", /* psram */
+        "Flash", "Clarão", "Blitz", "Destello", "Éclair", "Vaku", "Вспышка", "Λάμψη", "แฟลช", "闪光", "フラッシュ", "चमक", /* flash */
+        "Type", "Tipo", "Typ", "Tipo", "Taper", "Típus", "Тип", "Τύπος", "พิมพ์", "类型", "タイプ", "प्रकार", /* type */
+        "Steps", "Passos", "Schritte", "Pasos", "Mesures", "Lépések", "Шаги", "Βήματα", "ขั้นตอน", "步骤", "手順", "चरण", /* steps */
+        "Watchfaces", "Mostradores de relógio", "Zifferblätter", "Esferas de reloj", "Cadrans de montre", "Óraszámlapok", "Циферблаты", "Προσόψεις ρολογιού", "หน้าปัดนาฬิกา", "表盘", "ウォッチフェイス", "वॉचफेस", /* watchfaces */
+        "SD Card", "Cartão SD", "SD-Karte", "Tarjeta SD", "Carte SD", "SD-kártya", "SD-карта", "Κάρτα SD", "การ์ด SD", "SD卡", "SDカード", "एसडी कार्ड", /* sd_card */
     };
 #endif
 

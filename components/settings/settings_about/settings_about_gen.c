@@ -73,17 +73,19 @@ lv_obj_t * settings_about_create(lv_obj_t * parent)
     
     hs_line_create(hs_card_0);
     
-    hs_info_create(hs_card_0, "RAM", "", "384KB");
+    hs_info_create(hs_card_0, "Label", "ram", "384KB");
     
-    hs_info_create(hs_card_0, "PSRAM", "", "8MB");
+    hs_info_create(hs_card_0, "Label", "psram", "8MB");
     
     hs_line_create(hs_card_0);
     
-    hs_info_create(hs_card_0, "Flash", "", "16MB");
+    hs_info_create(hs_card_0, "Label", "flash", "16MB");
     
     hs_line_create(hs_card_0);
     
     hs_info_create(hs_card_0, "Label", "display", "466x466");
+    
+    hs_info_create(hs_card_0, "Label", "type", "AMOLED");
     
     hs_line_create(hs_card_0);
     
