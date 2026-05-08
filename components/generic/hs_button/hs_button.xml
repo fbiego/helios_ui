@@ -23,9 +23,6 @@
 		/>
 		<style name="style_base_360" pad_all="6" radius="8" />
 		<style name="style_base_240" pad_all="4" radius="6" />
-		<style name="style_switch" bg_color="0xffffff" width="96" height="46" text_color="0xfff" />
-		<style name="style_switch_360" width="72" height="36" />
-		<style name="style_switch_240" width="48" height="24" />
 		<style name="style_pressed" bg_color="0xbcbcbc" bg_opa="155" />
 	</styles>
 

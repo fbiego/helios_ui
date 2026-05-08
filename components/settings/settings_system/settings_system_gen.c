@@ -76,12 +76,15 @@ lv_obj_t * settings_system_create(lv_obj_t * parent)
     hs_dropdown_create(hs_card_0, "Timeout", "language", &sb_language, "English\nPortuguese\nGerman\nSpanish\nFrench\nHungarian\nRussian\nGreek\nThai\nChinese\nJapanese\nHindi");
     
     lv_obj_t * hs_card_1 = hs_card_create(wd_list_container_0);
-    hs_button_create(hs_card_1, "Circular Scroll", "reboot", COLOR_PRIMARY);
+    lv_obj_t * hs_button_0 = hs_button_create(hs_card_1, "Circular Scroll", "reboot", COLOR_PRIMARY);
+    lv_obj_set_style_bg_color(hs_button_0, COLOR_BUTTON_PRIMARY, 0);
     
-    hs_button_create(hs_card_1, "Circular Scroll", "shutdown", COLOR_PRIMARY);
+    lv_obj_t * hs_button_1 = hs_button_create(hs_card_1, "Circular Scroll", "shutdown", COLOR_PRIMARY);
+    lv_obj_set_style_bg_color(hs_button_1, COLOR_BUTTON_PRIMARY, 0);
     
     lv_obj_t * hs_card_2 = hs_card_create(wd_list_container_0);
-    hs_button_create(hs_card_2, "Circular Scroll", "factory_reset", lv_color_hex(0xe51212));
+    lv_obj_t * hs_button_2 = hs_button_create(hs_card_2, "Circular Scroll", "factory_reset", COLOR_DANGER);
+    lv_obj_set_style_bg_color(hs_button_2, COLOR_BUTTON_DANGER, 0);
 
     LV_TRACE_OBJ_CREATE("finished");
 

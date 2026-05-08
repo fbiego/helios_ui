@@ -50,6 +50,7 @@ lv_obj_t * notifications_create(void)
         lv_style_set_pad_top(&style_cont, 120);
         lv_style_set_pad_bottom(&style_cont, 150);
         lv_style_set_pad_hor(&style_cont, 33);
+        lv_style_set_flex_flow(&style_cont, LV_FLEX_FLOW_COLUMN_REVERSE);
 
         lv_style_init(&style_cont_360);
         lv_style_set_pad_hor(&style_cont_360, 30);
@@ -69,23 +70,25 @@ lv_obj_t * notifications_create(void)
     lv_obj_set_name_static(lv_obj_0, "notifications_#");
 
     lv_obj_add_style(lv_obj_0, &style_dark, 0);
-    lv_obj_t * lv_label_0 = lv_label_create(lv_obj_0);
-    lv_label_set_text(lv_label_0, "No notifications avaialble, check back later");
-    lv_obj_set_width(lv_label_0, lv_pct(60));
-    lv_obj_set_style_text_align(lv_label_0, LV_TEXT_ALIGN_CENTER, 0);
-    lv_obj_set_align(lv_label_0, LV_ALIGN_CENTER);
-    lv_obj_bind_style(lv_label_0, &style_text_small_466, 0, &sb_screen_size, 0);
-    lv_obj_bind_style(lv_label_0, &style_text_small_360, 0, &sb_screen_size, 1);
-    lv_obj_bind_style(lv_label_0, &style_text_small_240, 0, &sb_screen_size, 2);
+    lv_obj_t * hs_text_small_0 = hs_text_small_create(lv_obj_0);
+    lv_obj_set_width(hs_text_small_0, lv_pct(60));
+    lv_label_set_text(hs_text_small_0, "No notifications avaialble, check back later");
+    lv_label_set_translation_tag(hs_text_small_0, "no_notifications");
+    lv_obj_set_style_text_align(hs_text_small_0, LV_TEXT_ALIGN_CENTER, 0);
+    lv_obj_set_align(hs_text_small_0, LV_ALIGN_CENTER);
     
     lv_obj_t * notifications_list = wd_list_create(lv_obj_0);
     lv_obj_set_name(notifications_list, "notifications_list");
     wd_list_bind_screen(notifications_list, &sb_screen_size);
     lv_obj_add_style(notifications_list, &style_list, 0);
     lv_obj_t * wd_list_container_0 = wd_list_get_container(notifications_list);
-    lv_obj_bind_style(wd_list_container_0, &style_cont, 0, &sb_screen_size, 0);
+    lv_obj_add_style(wd_list_container_0, &style_cont, 0);
     lv_obj_bind_style(wd_list_container_0, &style_cont_360, 0, &sb_screen_size, 1);
     lv_obj_bind_style(wd_list_container_0, &style_cont_240, 0, &sb_screen_size, 2);
+    lv_obj_t * hs_button_0 = hs_button_create(wd_list_container_0, "Clear All", "clear_all", COLOR_DANGER);
+    lv_obj_set_style_bg_color(hs_button_0, COLOR_BUTTON_DANGER, 0);
+    lv_obj_set_style_radius(hs_button_0, 40, 0);
+    
     notification_item_create(wd_list_container_0, icon_chat, "Alex", "14:02", "Hey Felix, just confirming if we’re still meeting at 4 PM at the usual spot. Let me know if there are any changes so I can plan accordingly.");
     
     notification_item_create(wd_list_container_0, icon_chat, "Gmail", "14:18", "Your verification code is 482913. This code will expire in 10 minutes. If you did not request this code, please secure your account immediately.");

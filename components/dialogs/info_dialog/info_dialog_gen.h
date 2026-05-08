@@ -1,9 +1,9 @@
 /**
- * @file notification_item_gen.h
+ * @file info_dialog_gen.h
  */
 
-#ifndef NOTIFICATION_ITEM_H
-#define NOTIFICATION_ITEM_H
+#ifndef INFO_DIALOG_H
+#define INFO_DIALOG_H
 
 #ifdef __cplusplus
 extern "C" {
@@ -15,10 +15,10 @@ extern "C" {
 
 #ifdef LV_LVGL_H_INCLUDE_SIMPLE
     #include "lvgl.h"
-    #include "src/core/lv_obj_class_private.h"
+    #include "lvgl_private.h"
 #else
     #include "lvgl/lvgl.h"
-    #include "lvgl/src/core/lv_obj_class_private.h"
+    #include "lvgl/lvgl_private.h"
 #endif
 
 /*********************
@@ -33,7 +33,7 @@ extern "C" {
  * GLOBAL PROTOTYPES
  **********************/
 
-lv_obj_t * notification_item_create(lv_obj_t * parent, const void * icon, const char * title, const char * time, const char * message);
+lv_obj_t * info_dialog_create(lv_obj_t * parent, const char * title, const char * info);
 
 /**********************
  *      MACROS
@@ -43,4 +43,4 @@ lv_obj_t * notification_item_create(lv_obj_t * parent, const void * icon, const 
 } /*extern "C"*/
 #endif
 
-#endif /*NOTIFICATION_ITEM_H*/
+#endif /*INFO_DIALOG_H*/

@@ -1,7 +1,7 @@
 /*******************************************************************************
  * Size: 20 px
  * Bpp: 4
- * Opts: --font /fonts/raw/NotoSans-Medium.ttf -o /fonts/NS_Medium_el_20_data.c --size 20 --bpp 4 --format lvgl --no-compress --symbols ΉΑΒΓΔΕΗΘΙΚΛΜΝΟΠΡΣΤΥΦΧΩάέήίαβγδεζηθικλμνξοπρςστυφχψωόύώ
+ * Opts: --font /fonts/raw/NotoSans-Medium.ttf -o /fonts/NS_Medium_el_20_data.c --size 20 --bpp 4 --format lvgl --no-compress --symbols ΉΑΒΓΔΕΗΘΙΚΛΜΝΟΠΡΣΤΥΦΧΩάέήίαβγδεζηθικλμνξοπρςστυφχψωόύώ --lv-fallback NS_Medium_hi_20_data
  ******************************************************************************/
 
 #ifdef __has_include
@@ -845,6 +845,7 @@ static lv_font_fmt_txt_dsc_t font_dsc = {
 
 };
 
+extern const lv_font_t NS_Medium_hi_20_data;
 
 
 /*-----------------
@@ -875,7 +876,7 @@ lv_font_t NS_Medium_el_20_data = {
 
     .dsc = &font_dsc,          /*The custom font data. Will be accessed by `get_glyph_bitmap/dsc` */
 #if LV_VERSION_CHECK(8, 2, 0) || LVGL_VERSION_MAJOR >= 9
-    .fallback = NULL,
+    .fallback = &NS_Medium_hi_20_data,
 #endif
     .user_data = NULL,
 };

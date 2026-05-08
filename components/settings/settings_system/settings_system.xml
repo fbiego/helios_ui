@@ -36,11 +36,11 @@
 			</hs_card>
 
 			<hs_card>
-				<hs_button tag="reboot" />
-				<hs_button tag="shutdown" />
+				<hs_button tag="reboot" style_bg_color="#color_button_primary" />
+				<hs_button tag="shutdown" style_bg_color="#color_button_primary" />
 			</hs_card>
 			<hs_card>
-				<hs_button tag="factory_reset" text_color="0xe51212" />
+				<hs_button tag="factory_reset" text_color="#color_danger" style_bg_color="#color_button_danger" />
 			</hs_card>
 		</wd_list-container>
 	</view>

@@ -132,7 +132,7 @@ def generate(strings):
         output += (f'\t<translation tag="{word[0]}" char_count="{max_length}" {trans} />\n')
 
 
-    output = output.replace("&", "&amp;").replace("'", "\\'")
+    output = output.replace("&", "&amp;") #.replace("'", "\\'")
     # add = add.replace("&", "&amp;").replace("'", "\\'")
 
     output += "</translations>"

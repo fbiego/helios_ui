@@ -19,8 +19,8 @@
 			bg_opa="255"
 		/>
 
-		<style name="style_pad_360" pad_all="9" pad_row="8" radius="8" />
-		<style name="style_pad_240" pad_all="8" pad_row="6" radius="6" />
+		<style name="style_pad_360" pad_all="8" pad_row="8" radius="8" />
+		<style name="style_pad_240" pad_all="6" pad_row="6" radius="6" />
 	</styles>
 
 	<view extends="lv_obj">

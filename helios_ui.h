@@ -14,6 +14,7 @@ extern "C" {
  *********************/
 
 #include "helios_ui_gen.h"
+#include "custom/screens.h"
 
 /*********************
  *      DEFINES
@@ -26,7 +27,7 @@ extern "C" {
 /**********************
  * GLOBAL VARIABLES
  **********************/
-
+extern bool notifications_to_apps;
 /**********************
  * GLOBAL PROTOTYPES
  **********************/
@@ -38,17 +39,10 @@ void helios_ui_init(const char * asset_path);
 
 void uart_log(const char *format, ...);
 
-lv_obj_t * screen_home(void);
-
-lv_obj_t * screen_applications(void);
-
-lv_obj_t * screen_notifications(void);
-
-lv_obj_t * screen_widgets(void);
-
 int32_t get_screen_width(int32_t index);
 
 void set_screen(int32_t w, int32_t h);
+
 
 /**********************
  *      MACROS

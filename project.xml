@@ -1,4 +1,4 @@
-<project>
+<project lvgl_version="9.4.0">
 	<targets>
 		<target name="target_466R">
 			<display width="466" height="466" radius="233" />

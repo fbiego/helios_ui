@@ -1,30 +1,36 @@
 <screen>
 	<styles>
 		<style name="style_list" bg_color="0x000000" bg_opa="255" />
-		<style name="style_cont" pad_top="120" pad_bottom="150" pad_hor="33" />
+		<style name="style_cont" pad_top="120" pad_bottom="150" pad_hor="33" flex_flow="column_reverse" />
 		<style name="style_cont_360" pad_hor="30" pad_top="80" pad_bottom="100" />
 		<style name="style_cont_240" pad_hor="20" pad_row="5" pad_top="60" pad_bottom="80" />
 	</styles>
 	<view>
 		<style name="style_dark" />
 
-		<lv_label
-			text="No notifications avaialble, check back later"
+		<hs_text_small
 			width="60%"
+			text="No notifications avaialble, check back later"
+			translation_tag="no_notifications"
 			style_text_align="center"
 			align="center"
-		>
-			<bind_style name="style_text_small_466" subject="sb_screen_size" ref_value="0" />
-			<bind_style name="style_text_small_360" subject="sb_screen_size" ref_value="1" />
-			<bind_style name="style_text_small_240" subject="sb_screen_size" ref_value="2" />
-		</lv_label>
+		/>
 
 		<wd_list name="notifications_list" bind_screen="sb_screen_size">
 			<style name="style_list" />
 			<wd_list-container>
-				<bind_style name="style_cont" subject="sb_screen_size" ref_value="0" />
+				<style name="style_cont" />
 				<bind_style name="style_cont_360" subject="sb_screen_size" ref_value="1" />
 				<bind_style name="style_cont_240" subject="sb_screen_size" ref_value="2" />
+
+				<hs_button
+					label="Clear All"
+					tag="clear_all"
+					text_color="#color_danger"
+					style_bg_color="#color_button_danger"
+					style_radius="40"
+				/>
+				<!-- <hs_space /> -->
 
 				<notification_item
 					title="Alex"

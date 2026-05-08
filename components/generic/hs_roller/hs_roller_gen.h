@@ -1,9 +1,9 @@
 /**
- * @file hs_text_medium_gen.h
+ * @file hs_roller_gen.h
  */
 
-#ifndef HS_TEXT_MEDIUM_H
-#define HS_TEXT_MEDIUM_H
+#ifndef HS_ROLLER_H
+#define HS_ROLLER_H
 
 #ifdef __cplusplus
 extern "C" {
@@ -15,10 +15,10 @@ extern "C" {
 
 #ifdef LV_LVGL_H_INCLUDE_SIMPLE
     #include "lvgl.h"
-    #include "src/core/lv_obj_class_private.h"
+    #include "lvgl_private.h"
 #else
     #include "lvgl/lvgl.h"
-    #include "lvgl/src/core/lv_obj_class_private.h"
+    #include "lvgl/lvgl_private.h"
 #endif
 
 /*********************
@@ -33,7 +33,7 @@ extern "C" {
  * GLOBAL PROTOTYPES
  **********************/
 
-lv_obj_t * hs_text_medium_create(lv_obj_t * parent);
+lv_obj_t * hs_roller_create(lv_obj_t * parent, const char * options);
 
 /**********************
  *      MACROS
@@ -43,4 +43,4 @@ lv_obj_t * hs_text_medium_create(lv_obj_t * parent);
 } /*extern "C"*/
 #endif
 
-#endif /*HS_TEXT_MEDIUM_H*/
+#endif /*HS_ROLLER_H*/

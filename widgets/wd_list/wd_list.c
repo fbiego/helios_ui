@@ -384,35 +384,104 @@ static void draw_circular_scrollbar_event(lv_event_t * e)
     int32_t ind_start = normalize_angle(center - half);
     int32_t ind_end   = normalize_angle(center + half);
 
-    /* Draw background arc */
-    lv_draw_arc_dsc_t arc_bg;
-    lv_draw_arc_dsc_init(&arc_bg);
 
-    arc_bg.rounded = true;
-    arc_bg.center = ctr;
-    arc_bg.radius = radius;
-    arc_bg.start_angle = normalize_angle(ARC_BG_START);
-    arc_bg.end_angle   = normalize_angle(ARC_BG_END);
-    arc_bg.width = arc_width;
-    arc_bg.color = lv_color_hex(0x444444);
-    arc_bg.opa = LV_OPA_40;
+    int32_t type = lv_subject_get_int(&sb_screen_type);
 
-    lv_draw_arc(layer, &arc_bg);
+    if (type == 0) {
+        /* Draw background arc */
+        lv_draw_arc_dsc_t arc_bg;
+        lv_draw_arc_dsc_init(&arc_bg);
 
-    /* Draw indicator arc */
-    lv_draw_arc_dsc_t arc_ind;
-    lv_draw_arc_dsc_init(&arc_ind);
+        arc_bg.rounded = true;
+        arc_bg.center = ctr;
+        arc_bg.radius = radius;
+        arc_bg.start_angle = normalize_angle(ARC_BG_START);
+        arc_bg.end_angle   = normalize_angle(ARC_BG_END);
+        arc_bg.width = arc_width;
+        arc_bg.color = lv_color_hex(0x444444);
+        arc_bg.opa = LV_OPA_40;
 
-    arc_ind.rounded = true;
-    arc_ind.center = ctr;
-    arc_ind.radius = radius;
-    arc_ind.start_angle = ind_start;
-    arc_ind.end_angle   = ind_end;
-    arc_ind.width = arc_width;
-    arc_ind.color = lv_color_white();
-    arc_ind.opa = LV_OPA_60;
+        lv_draw_arc(layer, &arc_bg);
 
-    lv_draw_arc(layer, &arc_ind);
+        /* Draw indicator arc */
+        lv_draw_arc_dsc_t arc_ind;
+        lv_draw_arc_dsc_init(&arc_ind);
+
+        arc_ind.rounded = true;
+        arc_ind.center = ctr;
+        arc_ind.radius = radius;
+        arc_ind.start_angle = ind_start;
+        arc_ind.end_angle   = ind_end;
+        arc_ind.width = arc_width;
+        arc_ind.color = lv_color_white();
+        arc_ind.opa = LV_OPA_60;
+
+        lv_draw_arc(layer, &arc_ind);
+    } else if (type == 1) {
+        /* Background line */
+        lv_draw_line_dsc_t bg_dsc;
+        lv_draw_line_dsc_init(&bg_dsc);
+        bg_dsc.color = lv_color_hex(0x444444);
+        bg_dsc.width = arc_width;
+        bg_dsc.opa   = LV_OPA_40;
+        bg_dsc.round_start = 1;
+        bg_dsc.round_end   = 1;
+
+        bg_dsc.p1.x = coords.x2 - arc_width;
+        bg_dsc.p2.x = coords.x2 - arc_width;
+        bg_dsc.p1.y = coords.y1 +  (h * 0.3);
+        bg_dsc.p2.y = coords.y1 +  (h * 0.7);
+
+        lv_draw_line(layer, &bg_dsc);
+
+        /* Map arc space → line space */
+        int32_t y_start = coords.y1 + (h * 0.3);
+        int32_t y_end   = coords.y1 + (h * 0.7);
+        int32_t track_len = y_end - y_start;
+
+        /* Convert center from angle → position */
+        int32_t center_y =
+            y_start +
+            ((center - bg_start) * track_len) / bg_range;
+
+        /* Convert size */
+        int32_t ind_len = (indicator_size * track_len) / bg_range;
+        int32_t half_len = ind_len / 2;
+
+        /* Compute endpoints */
+        int32_t ind_y1 = center_y - half_len;
+        int32_t ind_y2 = center_y + half_len;
+
+        /* Clamp (same idea as arc) */
+        if(ind_y1 < y_start) {
+            ind_y1 = y_start;
+            ind_y2 = y_start + ind_len;
+        }
+        if(ind_y2 > y_end) {
+            ind_y2 = y_end;
+            ind_y1 = y_end - ind_len;
+        }
+
+        /* Draw Line indicator */
+        lv_draw_line_dsc_t ind_dsc;
+        lv_draw_line_dsc_init(&ind_dsc);
+
+        ind_dsc.color = lv_color_white();
+        ind_dsc.width = arc_width;
+        ind_dsc.opa   = LV_OPA_60;
+        ind_dsc.round_start = 1;
+        ind_dsc.round_end   = 1;
+
+        int32_t x = coords.x2 - arc_width;
+
+        ind_dsc.p1.x = x;
+        ind_dsc.p2.x = x;
+        ind_dsc.p1.y = ind_y1;
+        ind_dsc.p2.y = ind_y2;
+
+        lv_draw_line(layer, &ind_dsc);
+       
+    }
 
 }
 

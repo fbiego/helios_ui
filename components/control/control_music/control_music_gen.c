@@ -91,13 +91,13 @@ lv_obj_t * control_music_create(lv_obj_t * parent)
     lv_obj_bind_style(lv_obj_1, &style_cont_360, 0, &sb_screen_size, 1);
     lv_obj_bind_style(lv_obj_1, &style_cont_240, 0, &sb_screen_size, 2);
     
-    lv_obj_t * control_button_0 = control_button_create(lv_obj_0, icon_back);
+    lv_obj_t * control_button_0 = control_button_create(lv_obj_0, icon_wifi);
     lv_obj_set_align(control_button_0, LV_ALIGN_LEFT_MID);
     
     lv_obj_t * control_button_1 = control_button_create(lv_obj_0, icon_play);
     lv_obj_set_align(control_button_1, LV_ALIGN_CENTER);
     
-    lv_obj_t * control_button_2 = control_button_create(lv_obj_0, icon_next);
+    lv_obj_t * control_button_2 = control_button_create(lv_obj_0, icon_wifi);
     lv_obj_set_align(control_button_2, LV_ALIGN_RIGHT_MID);
 
     LV_TRACE_OBJ_CREATE("finished");

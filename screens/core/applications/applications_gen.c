@@ -41,6 +41,7 @@ lv_obj_t * applications_create(void)
     static lv_style_t style_pad_grid;
     static lv_style_t style_pad_grid_360;
     static lv_style_t style_pad_grid_240;
+    static lv_style_t style_pad_grid_410;
 
     static bool style_inited = false;
 
@@ -72,8 +73,9 @@ lv_obj_t * applications_create(void)
         lv_style_set_pad_row(&style_flex, 10);
 
         lv_style_init(&style_pad_grid);
-        lv_style_set_pad_hor(&style_pad_grid, 53);
+        lv_style_set_pad_hor(&style_pad_grid, 54);
         lv_style_set_pad_row(&style_pad_grid, 15);
+        lv_style_set_pad_column(&style_pad_grid, 12);
 
         lv_style_init(&style_pad_grid_360);
         lv_style_set_pad_hor(&style_pad_grid_360, 33);
@@ -84,6 +86,9 @@ lv_obj_t * applications_create(void)
         lv_style_set_pad_hor(&style_pad_grid_240, 20);
         lv_style_set_pad_row(&style_pad_grid_240, 10);
         lv_style_set_pad_column(&style_pad_grid_240, 10);
+
+        lv_style_init(&style_pad_grid_410);
+        lv_style_set_pad_hor(&style_pad_grid_410, 28);
 
         style_inited = true;
     }
@@ -104,7 +109,9 @@ lv_obj_t * applications_create(void)
     lv_obj_bind_style(wd_list_container_0, &style_pad_grid, LV_STATE_USER_1, &sb_screen_size, 0);
     lv_obj_bind_style(wd_list_container_0, &style_pad_grid_360, LV_STATE_USER_1, &sb_screen_size, 1);
     lv_obj_bind_style(wd_list_container_0, &style_pad_grid_240, LV_STATE_USER_1, &sb_screen_size, 2);
-    app_item_create(wd_list_container_0, icon_contacts, "Contacts", "contacts");
+    lv_obj_bind_style(wd_list_container_0, &style_pad_grid_410, LV_STATE_USER_1, &sb_screen_width, 410);
+    lv_obj_t * app_item_0 = app_item_create(wd_list_container_0, icon_contacts, "Contacts", "contacts");
+    lv_obj_add_event_cb(app_item_0, on_contacts_clicked_cb, LV_EVENT_CLICKED, NULL);
     
     app_item_create(wd_list_container_0, icon_folder, "Files", "files");
     
@@ -114,7 +121,8 @@ lv_obj_t * applications_create(void)
     
     app_item_create(wd_list_container_0, icon_music, "Music", "music");
     
-    app_item_create(wd_list_container_0, icon_navigation, "Navigation", "navigation");
+    lv_obj_t * app_item_5 = app_item_create(wd_list_container_0, icon_navigation, "Navigation", "navigation");
+    lv_obj_add_event_cb(app_item_5, on_navigation_clicked_cb, LV_EVENT_CLICKED, NULL);
     
     lv_obj_t * app_item_6 = app_item_create(wd_list_container_0, icon_chat, "Notifications", "notifications");
     lv_obj_add_event_cb(app_item_6, on_notifications_clicked_cb, LV_EVENT_CLICKED, NULL);

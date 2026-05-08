@@ -1,7 +1,7 @@
+set(LV_EDITOR_PROJECT_SOURCES)
 list(
   APPEND
   LV_EDITOR_PROJECT_SOURCES
-  ${CMAKE_CURRENT_LIST_DIR}/components/apps/app_item/app_item_gen.c
   ${CMAKE_CURRENT_LIST_DIR}/components/control/control_bar/control_bar_gen.c
   ${CMAKE_CURRENT_LIST_DIR}/components/control/control_button/control_button_gen.c
   ${CMAKE_CURRENT_LIST_DIR}/components/control/control_group/control_group_gen.c
@@ -9,6 +9,7 @@ list(
   ${CMAKE_CURRENT_LIST_DIR}/components/control/control_panel/control_panel_gen.c
   ${CMAKE_CURRENT_LIST_DIR}/components/control/control_slider/control_slider_gen.c
   ${CMAKE_CURRENT_LIST_DIR}/components/control/control_switch/control_switch_gen.c
+  ${CMAKE_CURRENT_LIST_DIR}/components/dialogs/info_dialog/info_dialog_gen.c
   ${CMAKE_CURRENT_LIST_DIR}/components/generic/hs_bar/hs_bar_gen.c
   ${CMAKE_CURRENT_LIST_DIR}/components/generic/hs_button_icon/hs_button_icon_gen.c
   ${CMAKE_CURRENT_LIST_DIR}/components/generic/hs_button_text/hs_button_text_gen.c
@@ -17,8 +18,10 @@ list(
   ${CMAKE_CURRENT_LIST_DIR}/components/generic/hs_column/hs_column_gen.c
   ${CMAKE_CURRENT_LIST_DIR}/components/generic/hs_dropdown_item/hs_dropdown_item_gen.c
   ${CMAKE_CURRENT_LIST_DIR}/components/generic/hs_dropdown/hs_dropdown_gen.c
+  ${CMAKE_CURRENT_LIST_DIR}/components/generic/hs_info_sb/hs_info_sb_gen.c
   ${CMAKE_CURRENT_LIST_DIR}/components/generic/hs_info/hs_info_gen.c
   ${CMAKE_CURRENT_LIST_DIR}/components/generic/hs_line/hs_line_gen.c
+  ${CMAKE_CURRENT_LIST_DIR}/components/generic/hs_roller/hs_roller_gen.c
   ${CMAKE_CURRENT_LIST_DIR}/components/generic/hs_row/hs_row_gen.c
   ${CMAKE_CURRENT_LIST_DIR}/components/generic/hs_slider/hs_slider_gen.c
   ${CMAKE_CURRENT_LIST_DIR}/components/generic/hs_space/hs_space_gen.c
@@ -29,7 +32,9 @@ list(
   ${CMAKE_CURRENT_LIST_DIR}/components/generic/hs_text/hs_text_normal/hs_text_normal_gen.c
   ${CMAKE_CURRENT_LIST_DIR}/components/generic/hs_text/hs_text_small/hs_text_small_gen.c
   ${CMAKE_CURRENT_LIST_DIR}/components/generic/hs_title/hs_title_gen.c
-  ${CMAKE_CURRENT_LIST_DIR}/components/notifications/notification_item/notification_item_gen.c
+  ${CMAKE_CURRENT_LIST_DIR}/components/items/app_item/app_item_gen.c
+  ${CMAKE_CURRENT_LIST_DIR}/components/items/contact_item/contact_item_gen.c
+  ${CMAKE_CURRENT_LIST_DIR}/components/items/notification_item/notification_item_gen.c
   ${CMAKE_CURRENT_LIST_DIR}/components/settings/settings_about/settings_about_gen.c
   ${CMAKE_CURRENT_LIST_DIR}/components/settings/settings_alert/settings_alert_gen.c
   ${CMAKE_CURRENT_LIST_DIR}/components/settings/settings_battery/settings_battery_gen.c
@@ -125,6 +130,8 @@ list(
   ${CMAKE_CURRENT_LIST_DIR}/images/icon_sleep_data.c
   ${CMAKE_CURRENT_LIST_DIR}/images/icon_stopwatch_data.c
   ${CMAKE_CURRENT_LIST_DIR}/images/icon_timer_data.c
+  ${CMAKE_CURRENT_LIST_DIR}/images/icon_turn_left_data.c
+  ${CMAKE_CURRENT_LIST_DIR}/images/icon_user_data.c
   ${CMAKE_CURRENT_LIST_DIR}/images/icon_vibration_data.c
   ${CMAKE_CURRENT_LIST_DIR}/images/icon_volume_high_data.c
   ${CMAKE_CURRENT_LIST_DIR}/images/icon_volume_low_data.c
@@ -136,7 +143,9 @@ list(
   ${CMAKE_CURRENT_LIST_DIR}/images/icon_wifi_data.c
   ${CMAKE_CURRENT_LIST_DIR}/screens/core/applications/applications_gen.c
   ${CMAKE_CURRENT_LIST_DIR}/screens/core/boot/boot_gen.c
+  ${CMAKE_CURRENT_LIST_DIR}/screens/core/contacts/contacts_gen.c
   ${CMAKE_CURRENT_LIST_DIR}/screens/core/home/home_gen.c
+  ${CMAKE_CURRENT_LIST_DIR}/screens/core/navigation/navigation_gen.c
   ${CMAKE_CURRENT_LIST_DIR}/screens/core/notifications/notifications_gen.c
   ${CMAKE_CURRENT_LIST_DIR}/screens/core/settings/settings_gen.c
   ${CMAKE_CURRENT_LIST_DIR}/screens/core/weather/weather_gen.c

@@ -19,10 +19,10 @@ extern "C" {
 
 #ifdef LV_LVGL_H_INCLUDE_SIMPLE
     #include "lvgl.h"
-    #include "src/core/lv_obj_class_private.h"
+    #include "lvgl_private.h"
 #else
     #include "lvgl/lvgl.h"
-    #include "lvgl/src/core/lv_obj_class_private.h"
+    #include "lvgl/lvgl_private.h"
 #endif
 
 
@@ -32,6 +32,14 @@ extern "C" {
  *********************/
 
 #define COLOR_PRIMARY lv_color_hex(0x0534ff)
+
+#define COLOR_DANGER lv_color_hex(0xf62525)
+
+#define COLOR_BUTTON_PRIMARY lv_color_hex(0x181146)
+
+#define COLOR_BUTTON_DANGER lv_color_hex(0x2c0d0b)
+
+#define UI_VERSION "v0.0.1"
 
 /**********************
  *      TYPEDEFS
@@ -73,6 +81,12 @@ extern lv_style_t style_text_large_240;
  * Fonts
  *----------------*/
 
+extern lv_font_t * NS_Medium_70;
+
+extern lv_font_t * NS_Medium_100;
+
+extern lv_font_t * NS_Medium_140;
+
 extern lv_font_t * NS_Medium_14;
 
 extern lv_font_t * NS_Medium_16;
@@ -84,12 +98,6 @@ extern lv_font_t * NS_Medium_20;
 extern lv_font_t * NS_Medium_30;
 
 extern lv_font_t * NS_Medium_40;
-
-extern lv_font_t * NS_Medium_70;
-
-extern lv_font_t * NS_Medium_100;
-
-extern lv_font_t * NS_Medium_140;
 
 extern lv_font_t * NS_Medium_latin_14;
 
@@ -195,6 +203,7 @@ extern const void * icon_vibration;
 extern const void * icon_dnd;
 extern const void * icon_qr;
 extern const void * icon_arrow_up;
+extern const void * icon_turn_left;
 extern const void * icon_settings_harddisk;
 extern const void * icon_settings_brightness;
 extern const void * icon_settings_monitor;
@@ -216,6 +225,7 @@ extern const void * icon_music;
 extern const void * icon_folder;
 extern const void * icon_running;
 extern const void * icon_sleep;
+extern const void * icon_user;
 extern const void * icon_weather_humidity_icon;
 extern const void * icon_weather_temp_up_icon;
 extern const void * icon_weather_temp_down_icon;
@@ -227,6 +237,11 @@ extern const void * icon_weather_uv_icon;
 
 extern lv_subject_t sb_screen_size;
 extern lv_subject_t sb_screen_type;
+extern lv_subject_t sb_screen_width;
+extern lv_subject_t sb_screen_height;
+extern lv_subject_t sb_screen_res;
+extern lv_subject_t sb_placeholder;
+extern lv_subject_t sb_lvgl_version;
 extern lv_subject_t sb_app_list_mode;
 extern lv_subject_t sb_list_circular_mode;
 extern lv_subject_t sb_screen_brightness;
@@ -247,6 +262,8 @@ extern lv_subject_t sb_focusable;
  *----------------*/
 
 void on_hs_info_cb(lv_event_t * e);
+void on_contacts_clicked_cb(lv_event_t * e);
+void on_navigation_clicked_cb(lv_event_t * e);
 void on_notifications_clicked_cb(lv_event_t * e);
 void on_settings_clicked_cb(lv_event_t * e);
 void on_weather_clicked_cb(lv_event_t * e);
@@ -267,7 +284,6 @@ void helios_ui_init_gen(const char * asset_path);
  **********************/
 
 /*Include all the widgets, components and screens of this library*/
-#include "components/apps/app_item/app_item_gen.h"
 #include "components/control/control_bar/control_bar_gen.h"
 #include "components/control/control_button/control_button_gen.h"
 #include "components/control/control_group/control_group_gen.h"
@@ -275,6 +291,7 @@ void helios_ui_init_gen(const char * asset_path);
 #include "components/control/control_panel/control_panel_gen.h"
 #include "components/control/control_slider/control_slider_gen.h"
 #include "components/control/control_switch/control_switch_gen.h"
+#include "components/dialogs/info_dialog/info_dialog_gen.h"
 #include "components/generic/hs_bar/hs_bar_gen.h"
 #include "components/generic/hs_button_icon/hs_button_icon_gen.h"
 #include "components/generic/hs_button_text/hs_button_text_gen.h"
@@ -283,8 +300,10 @@ void helios_ui_init_gen(const char * asset_path);
 #include "components/generic/hs_column/hs_column_gen.h"
 #include "components/generic/hs_dropdown_item/hs_dropdown_item_gen.h"
 #include "components/generic/hs_dropdown/hs_dropdown_gen.h"
+#include "components/generic/hs_info_sb/hs_info_sb_gen.h"
 #include "components/generic/hs_info/hs_info_gen.h"
 #include "components/generic/hs_line/hs_line_gen.h"
+#include "components/generic/hs_roller/hs_roller_gen.h"
 #include "components/generic/hs_row/hs_row_gen.h"
 #include "components/generic/hs_slider/hs_slider_gen.h"
 #include "components/generic/hs_space/hs_space_gen.h"
@@ -295,7 +314,9 @@ void helios_ui_init_gen(const char * asset_path);
 #include "components/generic/hs_text/hs_text_normal/hs_text_normal_gen.h"
 #include "components/generic/hs_text/hs_text_small/hs_text_small_gen.h"
 #include "components/generic/hs_title/hs_title_gen.h"
-#include "components/notifications/notification_item/notification_item_gen.h"
+#include "components/items/app_item/app_item_gen.h"
+#include "components/items/contact_item/contact_item_gen.h"
+#include "components/items/notification_item/notification_item_gen.h"
 #include "components/settings/settings_about/settings_about_gen.h"
 #include "components/settings/settings_alert/settings_alert_gen.h"
 #include "components/settings/settings_battery/settings_battery_gen.h"
@@ -308,7 +329,9 @@ void helios_ui_init_gen(const char * asset_path);
 #include "components/weather/weather_widget/weather_widget_gen.h"
 #include "screens/core/applications/applications_gen.h"
 #include "screens/core/boot/boot_gen.h"
+#include "screens/core/contacts/contacts_gen.h"
 #include "screens/core/home/home_gen.h"
+#include "screens/core/navigation/navigation_gen.h"
 #include "screens/core/notifications/notifications_gen.h"
 #include "screens/core/settings/settings_gen.h"
 #include "screens/core/weather/weather_gen.h"

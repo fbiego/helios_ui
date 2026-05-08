@@ -16,6 +16,7 @@
 		<style name="style_pad_grid" pad_hor="53" pad_row="15" />
 		<style name="style_pad_grid_360" pad_hor="33" pad_row="10" pad_column="12" />
 		<style name="style_pad_grid_240" pad_hor="20" pad_row="10" pad_column="10" />
+		<style name="style_pad_grid_410" pad_hor="25" />
 	</styles>
 	<view>
 		<style name="style_dark" />
@@ -33,6 +34,7 @@
 				<bind_style name="style_pad_grid" subject="sb_screen_size" ref_value="0" selector="user_1" />
 				<bind_style name="style_pad_grid_360" subject="sb_screen_size" ref_value="1" selector="user_1" />
 				<bind_style name="style_pad_grid_240" subject="sb_screen_size" ref_value="2" selector="user_1" />
+				<bind_style name="style_pad_grid_410" subject="sb_screen_width" ref_value="410" selector="user_1" />
 
 				<app_item icon="icon_settings_monitor" app_name="Display" tag="display" />
 				<app_item icon="icon_settings_smartwatch" app_name="System" tag="system" />

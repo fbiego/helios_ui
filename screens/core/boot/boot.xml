@@ -1,10 +1,7 @@
 <screen>
 	<view>
 		<style name="style_dark" />
-		<lv_label text="HELIOS" align="center">
-			<bind_style name="style_text_normal_466" subject="sb_screen_size" ref_value="0" />
-			<bind_style name="style_text_normal_360" subject="sb_screen_size" ref_value="1" />
-			<bind_style name="style_text_normal_240" subject="sb_screen_size" ref_value="2" />
-		</lv_label>
+
+		<hs_text_normal text="HELIOS" align="center" />
 	</view>
 </screen>

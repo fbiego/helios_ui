@@ -1,9 +1,9 @@
 /**
- * @file app_item_gen.h
+ * @file hs_info_sb_gen.h
  */
 
-#ifndef APP_ITEM_H
-#define APP_ITEM_H
+#ifndef HS_INFO_SB_H
+#define HS_INFO_SB_H
 
 #ifdef __cplusplus
 extern "C" {
@@ -15,10 +15,10 @@ extern "C" {
 
 #ifdef LV_LVGL_H_INCLUDE_SIMPLE
     #include "lvgl.h"
-    #include "src/core/lv_obj_class_private.h"
+    #include "lvgl_private.h"
 #else
     #include "lvgl/lvgl.h"
-    #include "lvgl/src/core/lv_obj_class_private.h"
+    #include "lvgl/lvgl_private.h"
 #endif
 
 /*********************
@@ -33,7 +33,7 @@ extern "C" {
  * GLOBAL PROTOTYPES
  **********************/
 
-lv_obj_t * app_item_create(lv_obj_t * parent, const void * icon, const char * app_name, const char * tag);
+lv_obj_t * hs_info_sb_create(lv_obj_t * parent, const char * label, const char * label_tag, lv_subject_t * info);
 
 /**********************
  *      MACROS
@@ -43,4 +43,4 @@ lv_obj_t * app_item_create(lv_obj_t * parent, const void * icon, const char * ap
 } /*extern "C"*/
 #endif
 
-#endif /*APP_ITEM_H*/
+#endif /*HS_INFO_SB_H*/

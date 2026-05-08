@@ -35,12 +35,12 @@
 					<hs_info label_tag="battery" info="56" />
 				</hs_column>
 				<hs_line />
-				<hs_button tag="format" text_color="0xe51212" />
+				<hs_button tag="format" text_color="#color_danger" style_bg_color="#color_button_danger" />
 			</hs_card>
 			<hs_card>
 				<hs_bar tag="sd_card" />
 				<hs_line />
-				<hs_button tag="format" text_color="0xe51212" />
+				<hs_button tag="format" text_color="#color_danger" style_bg_color="#color_button_danger" />
 			</hs_card>
 		</wd_list-container>
 	</view>

@@ -3,6 +3,7 @@
 		<preview width="466" height="466" style_radius="233" style_bg_color="0x000" />
 		<preview width="360" height="360" style_radius="180" style_bg_color="0x000" />
 		<preview width="240" height="240" style_radius="120" style_bg_color="0x000" />
+		<preview width="410" height="502" style_radius="100" style_bg_color="0x000" />
 	</previews>
 
 	<styles>
@@ -28,15 +29,15 @@
 				<hs_info label_tag="flash" info="16MB" />
 
 				<hs_line />
-				<hs_info label_tag="display" info="466x466" />
+				<hs_info_sb label_tag="display" info="sb_screen_res" />
 				<hs_info label_tag="type" info="AMOLED" />
 
 				<hs_line />
 				<hs_info label_tag="firmware" info="v1.3" />
 			</hs_card>
 			<hs_card>
-				<hs_info label="Helios UI" info="v0.1" />
-				<hs_info label="LVGL" info="v9.4.0" />
+				<hs_info label="Helios UI" info="#ui_version" />
+				<hs_info_sb label="LVGL" info="sb_lvgl_version" />
 			</hs_card>
 		</wd_list-container>
 	</view>

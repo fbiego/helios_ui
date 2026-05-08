@@ -16,10 +16,10 @@ extern "C" {
 
 #ifdef LV_LVGL_H_INCLUDE_SIMPLE
     #include "lvgl.h"
-    #include "src/core/lv_obj_class_private.h"
+    #include "lvgl_private.h"
 #else
     #include "lvgl/lvgl.h"
-    #include "lvgl/src/core/lv_obj_class_private.h"
+    #include "lvgl/lvgl_private.h"
 #endif
 
 #include "../../helios_ui_gen.h"

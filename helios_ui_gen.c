@@ -38,7 +38,7 @@
 
 #ifndef LV_EDITOR_PREVIEW
     static const char * translation_languages[] = {"en", "pt", "de", "es", "fr", "hu", "ru", "el", "th", "zh", "ja", "hi", NULL};
-    static const char * translation_tags[] = {"id", "locale", "sun", "mon", "tue", "wed", "thur", "fri", "sat", "jan", "feb", "mar", "apr", "jun", "jul", "aug", "sept", "oct", "nov", "dec", "sunday", "monday", "tuesday", "wednesday", "thursday", "friday", "saturday", "january", "february", "march", "april", "may", "june", "july", "august", "september", "october", "november", "december", "contacts", "files", "fitness", "health", "music", "navigation", "notifications", "settings", "sleep", "stopwatch", "timer", "weather", "display", "system", "alerts", "battery", "about", "storage", "brightness", "timeout", "rotation", "raise_to_wake", "circular_scroll", "grid_mode", "language", "reboot", "shutdown", "factory_reset", "sound", "vibration", "wake_screen", "dnd", "voltage", "temperature", "usage", "format", "firmware", "hourly_forecast", "daily_forecast", "timeout_5", "timeout_10", "timeout_20", "timeout_30", "always_on", "updated_at", "cloudy", "ram", "psram", "flash", "type", "steps", "watchfaces", "sd_card", NULL};
+    static const char * translation_tags[] = {"id", "locale", "sun", "mon", "tue", "wed", "thur", "fri", "sat", "jan", "feb", "mar", "apr", "jun", "jul", "aug", "sept", "oct", "nov", "dec", "sunday", "monday", "tuesday", "wednesday", "thursday", "friday", "saturday", "january", "february", "march", "april", "may", "june", "july", "august", "september", "october", "november", "december", "contacts", "files", "fitness", "health", "music", "navigation", "notifications", "settings", "sleep", "stopwatch", "timer", "weather", "display", "system", "alerts", "battery", "about", "storage", "brightness", "timeout", "rotation", "raise_to_wake", "circular_scroll", "grid_mode", "language", "reboot", "shutdown", "factory_reset", "sound", "vibration", "wake_screen", "dnd", "voltage", "temperature", "usage", "format", "firmware", "hourly_forecast", "daily_forecast", "timeout_5", "timeout_10", "timeout_20", "timeout_30", "always_on", "updated_at", "cloudy", "ram", "psram", "flash", "type", "steps", "watchfaces", "sd_card", "clear_all", "no_notifications", "camera", "music_control", NULL};
     static const char * translation_texts[] = {
         "en", "pt", "de", "es", "fr", "hu", "ru", "el", "th", "zh", "ja", "hi", /* id */
         "English", "Portuguese", "German", "Spanish", "French", "Hungarian", "Russian", "Greek", "Thai", "Chinese", "Japanese", "Hindi", /* locale */
@@ -106,7 +106,7 @@
         "Language", "Linguagem", "Sprache", "Idioma", "Langue", "Nyelv", "Язык", "Γλώσσα", "ภาษา", "语言", "言語", "भाषा", /* language */
         "Reboot", "Reinício", "Neustart", "Reiniciar", "Redémarrage", "Újraindítás", "Перезагрузить", "Επανεκκίνηση", "รีบูต", "重启", "リブート", "रीबूट", /* reboot */
         "Shutdown", "Desligar", "Abschalten", "Cerrar", "Fermer", "Leállítás", "Неисправность", "Κλείσιμο", "ปิดระบบ", "关闭", "シャットダウン", "शट डाउन", /* shutdown */
-        "Factory Reset", "Restauração de fábrica", "Werksreset", "Restablecimiento de fábrica", "Réinitialisation d\'usine", "Gyári visszaállítás", "Сброс к заводским настройкам", "Επαναφορά εργοστασιακών ρυθμίσεων", "รีเซ็ตเป็นค่าจากโรงงาน", "恢复出厂设置", "工場出荷時設定にリセット", "नए यंत्र जैसी सेटिंग", /* factory_reset */
+        "Factory Reset", "Restauração de fábrica", "Werksreset", "Restablecimiento de fábrica", "Réinitialisation d'usine", "Gyári visszaállítás", "Сброс к заводским настройкам", "Επαναφορά εργοστασιακών ρυθμίσεων", "รีเซ็ตเป็นค่าจากโรงงาน", "恢复出厂设置", "工場出荷時設定にリセット", "नए यंत्र जैसी सेटिंग", /* factory_reset */
         "Sound", "Som", "Klang", "Sonido", "Son", "Hang", "Звук", "Ήχος", "เสียง", "声音", "音", "आवाज़", /* sound */
         "Vibration", "Vibração", "Vibration", "Vibración", "Vibration", "Rezgés", "Вибрация", "Δόνηση", "การสั่นสะเทือน", "振动", "振動", "कंपन", /* vibration */
         "Wake screen", "Tela de ativação", "Bildschirm aufwecken", "Pantalla de activación", "Écran de réveil", "Képernyő felébresztése", "Экран пробуждения", "Οθόνη αφύπνισης", "หน้าจอปลุก", "唤醒屏幕", "起動画面", "जाग्रत स्क्रीन", /* wake_screen */
@@ -132,6 +132,10 @@
         "Steps", "Passos", "Schritte", "Pasos", "Mesures", "Lépések", "Шаги", "Βήματα", "ขั้นตอน", "步骤", "手順", "चरण", /* steps */
         "Watchfaces", "Mostradores de relógio", "Zifferblätter", "Esferas de reloj", "Cadrans de montre", "Óraszámlapok", "Циферблаты", "Προσόψεις ρολογιού", "หน้าปัดนาฬิกา", "表盘", "ウォッチフェイス", "वॉचफेस", /* watchfaces */
         "SD Card", "Cartão SD", "SD-Karte", "Tarjeta SD", "Carte SD", "SD-kártya", "SD-карта", "Κάρτα SD", "การ์ด SD", "SD卡", "SDカード", "एसडी कार्ड", /* sd_card */
+        "Clear All", "Limpar tudo", "Alles löschen", "Borrar todo", "Effacer tout", "Összes törlése", "Очистить все", "Εκκαθάριση όλων", "ล้างทั้งหมด", "全部清除", "すべてクリア", "सभी साफ करें", /* clear_all */
+        "No notifications avaialble, check back later", "Nenhuma notificação disponível. Volte mais tarde.", "Es sind keine Benachrichtigungen verfügbar. Bitte versuchen Sie es später erneut.", "No hay notificaciones disponibles, vuelva a intentarlo más tarde.", "Aucune notification disponible, veuillez réessayer plus tard.", "Nincsenek elérhető értesítések, nézz vissza később", "Уведомления недоступны, зайдите позже.", "Δεν υπάρχουν διαθέσιμες ειδοποιήσεις, ελέγξτε ξανά αργότερα", "ไม่มีการแจ้งเตือนใดๆ โปรดตรวจสอบอีกครั้งในภายหลัง", "暂无通知，请稍后查看。", "通知はありません。後ほどご確認ください。", "कोई सूचना उपलब्ध नहीं है, कृपया बाद में दोबारा देखें।", /* no_notifications */
+        "Camera", "Câmera", "Kamera", "Cámara", "Caméra", "Kamera", "Камера", "Κάμερα", "กล้อง", "相机", "カメラ", "कैमरा", /* camera */
+        "Music Control", "Controle de música", "Musiksteuerung", "Control de música", "Contrôle de la musique", "Zenevezérlés", "Управление музыкой", "Έλεγχος μουσικής", "การควบคุมดนตรี", "音乐控制", "音楽コントロール", "संगीत नियंत्रण", /* music_control */
     };
 #endif
 
@@ -147,6 +151,12 @@
  * Fonts
  *----------------*/
 
+lv_font_t * NS_Medium_70;
+extern lv_font_t NS_Medium_70_data;
+lv_font_t * NS_Medium_100;
+extern lv_font_t NS_Medium_100_data;
+lv_font_t * NS_Medium_140;
+extern lv_font_t NS_Medium_140_data;
 lv_font_t * NS_Medium_14;
 extern lv_font_t NS_Medium_14_data;
 lv_font_t * NS_Medium_16;
@@ -159,12 +169,6 @@ lv_font_t * NS_Medium_30;
 extern lv_font_t NS_Medium_30_data;
 lv_font_t * NS_Medium_40;
 extern lv_font_t NS_Medium_40_data;
-lv_font_t * NS_Medium_70;
-extern lv_font_t NS_Medium_70_data;
-lv_font_t * NS_Medium_100;
-extern lv_font_t NS_Medium_100_data;
-lv_font_t * NS_Medium_140;
-extern lv_font_t NS_Medium_140_data;
 lv_font_t * NS_Medium_latin_14;
 extern lv_font_t NS_Medium_latin_14_data;
 lv_font_t * NS_Medium_latin_16;
@@ -286,6 +290,8 @@ const void * icon_qr;
 extern const void * icon_qr_data;
 const void * icon_arrow_up;
 extern const void * icon_arrow_up_data;
+const void * icon_turn_left;
+extern const void * icon_turn_left_data;
 const void * icon_settings_harddisk;
 extern const void * icon_settings_harddisk_data;
 const void * icon_settings_brightness;
@@ -328,6 +334,8 @@ const void * icon_running;
 extern const void * icon_running_data;
 const void * icon_sleep;
 extern const void * icon_sleep_data;
+const void * icon_user;
+extern const void * icon_user_data;
 const void * icon_weather_humidity_icon;
 extern const void * icon_weather_humidity_icon_data;
 const void * icon_weather_temp_up_icon;
@@ -361,6 +369,11 @@ lv_style_t style_text_large_240;
 
 lv_subject_t sb_screen_size;
 lv_subject_t sb_screen_type;
+lv_subject_t sb_screen_width;
+lv_subject_t sb_screen_height;
+lv_subject_t sb_screen_res;
+lv_subject_t sb_placeholder;
+lv_subject_t sb_lvgl_version;
 lv_subject_t sb_app_list_mode;
 lv_subject_t sb_list_circular_mode;
 lv_subject_t sb_screen_brightness;
@@ -389,6 +402,12 @@ void helios_ui_init_gen(const char * asset_path)
      * Fonts
      *----------------*/
 
+    /* get font 'NS_Medium_70' from a C array */
+    NS_Medium_70 = &NS_Medium_70_data;
+    /* get font 'NS_Medium_100' from a C array */
+    NS_Medium_100 = &NS_Medium_100_data;
+    /* get font 'NS_Medium_140' from a C array */
+    NS_Medium_140 = &NS_Medium_140_data;
     /* get font 'NS_Medium_14' from a C array */
     NS_Medium_14 = &NS_Medium_14_data;
     /* get font 'NS_Medium_16' from a C array */
@@ -401,12 +420,6 @@ void helios_ui_init_gen(const char * asset_path)
     NS_Medium_30 = &NS_Medium_30_data;
     /* get font 'NS_Medium_40' from a C array */
     NS_Medium_40 = &NS_Medium_40_data;
-    /* get font 'NS_Medium_70' from a C array */
-    NS_Medium_70 = &NS_Medium_70_data;
-    /* get font 'NS_Medium_100' from a C array */
-    NS_Medium_100 = &NS_Medium_100_data;
-    /* get font 'NS_Medium_140' from a C array */
-    NS_Medium_140 = &NS_Medium_140_data;
     /* get font 'NS_Medium_latin_14' from a C array */
     NS_Medium_latin_14 = &NS_Medium_latin_14_data;
     /* get font 'NS_Medium_latin_16' from a C array */
@@ -512,6 +525,7 @@ void helios_ui_init_gen(const char * asset_path)
     icon_dnd = &icon_dnd_data;
     icon_qr = &icon_qr_data;
     icon_arrow_up = &icon_arrow_up_data;
+    icon_turn_left = &icon_turn_left_data;
     icon_settings_harddisk = &icon_settings_harddisk_data;
     icon_settings_brightness = &icon_settings_brightness_data;
     icon_settings_monitor = &icon_settings_monitor_data;
@@ -533,6 +547,7 @@ void helios_ui_init_gen(const char * asset_path)
     icon_folder = &icon_folder_data;
     icon_running = &icon_running_data;
     icon_sleep = &icon_sleep_data;
+    icon_user = &icon_user_data;
     icon_weather_humidity_icon = &icon_weather_humidity_icon_data;
     icon_weather_temp_up_icon = &icon_weather_temp_up_icon_data;
     icon_weather_temp_down_icon = &icon_weather_temp_down_icon_data;
@@ -592,6 +607,32 @@ void helios_ui_init_gen(const char * asset_path)
      *----------------*/
     lv_subject_init_int(&sb_screen_size, 0);
     lv_subject_init_int(&sb_screen_type, 0);
+    lv_subject_init_int(&sb_screen_width, 466);
+    lv_subject_init_int(&sb_screen_height, 466);
+    static char sb_screen_res_buf[UI_SUBJECT_STRING_LENGTH];
+    static char sb_screen_res_prev_buf[UI_SUBJECT_STRING_LENGTH];
+    lv_subject_init_string(&sb_screen_res,
+                           sb_screen_res_buf,
+                           sb_screen_res_prev_buf,
+                           UI_SUBJECT_STRING_LENGTH,
+                           "466x466"
+                          );
+    static char sb_placeholder_buf[UI_SUBJECT_STRING_LENGTH];
+    static char sb_placeholder_prev_buf[UI_SUBJECT_STRING_LENGTH];
+    lv_subject_init_string(&sb_placeholder,
+                           sb_placeholder_buf,
+                           sb_placeholder_prev_buf,
+                           UI_SUBJECT_STRING_LENGTH,
+                           ""
+                          );
+    static char sb_lvgl_version_buf[UI_SUBJECT_STRING_LENGTH];
+    static char sb_lvgl_version_prev_buf[UI_SUBJECT_STRING_LENGTH];
+    lv_subject_init_string(&sb_lvgl_version,
+                           sb_lvgl_version_buf,
+                           sb_lvgl_version_prev_buf,
+                           UI_SUBJECT_STRING_LENGTH,
+                           "v9.0.0"
+                          );
     lv_subject_init_int(&sb_app_list_mode, 0);
     lv_subject_set_min_value_int(&sb_app_list_mode, 0);
     lv_subject_set_max_value_int(&sb_app_list_mode, 1);
@@ -638,15 +679,15 @@ void helios_ui_init_gen(const char * asset_path)
     wd_segment_register();
 
     /* Register fonts */
+    lv_xml_register_font(NULL, "NS_Medium_70", NS_Medium_70);
+    lv_xml_register_font(NULL, "NS_Medium_100", NS_Medium_100);
+    lv_xml_register_font(NULL, "NS_Medium_140", NS_Medium_140);
     lv_xml_register_font(NULL, "NS_Medium_14", NS_Medium_14);
     lv_xml_register_font(NULL, "NS_Medium_16", NS_Medium_16);
     lv_xml_register_font(NULL, "NS_Medium_18", NS_Medium_18);
     lv_xml_register_font(NULL, "NS_Medium_20", NS_Medium_20);
     lv_xml_register_font(NULL, "NS_Medium_30", NS_Medium_30);
     lv_xml_register_font(NULL, "NS_Medium_40", NS_Medium_40);
-    lv_xml_register_font(NULL, "NS_Medium_70", NS_Medium_70);
-    lv_xml_register_font(NULL, "NS_Medium_100", NS_Medium_100);
-    lv_xml_register_font(NULL, "NS_Medium_140", NS_Medium_140);
     lv_xml_register_font(NULL, "NS_Medium_latin_14", NS_Medium_latin_14);
     lv_xml_register_font(NULL, "NS_Medium_latin_16", NS_Medium_latin_16);
     lv_xml_register_font(NULL, "NS_Medium_latin_18", NS_Medium_latin_18);
@@ -693,6 +734,11 @@ void helios_ui_init_gen(const char * asset_path)
     /* Register subjects */
     lv_xml_register_subject(NULL, "sb_screen_size", &sb_screen_size);
     lv_xml_register_subject(NULL, "sb_screen_type", &sb_screen_type);
+    lv_xml_register_subject(NULL, "sb_screen_width", &sb_screen_width);
+    lv_xml_register_subject(NULL, "sb_screen_height", &sb_screen_height);
+    lv_xml_register_subject(NULL, "sb_screen_res", &sb_screen_res);
+    lv_xml_register_subject(NULL, "sb_placeholder", &sb_placeholder);
+    lv_xml_register_subject(NULL, "sb_lvgl_version", &sb_lvgl_version);
     lv_xml_register_subject(NULL, "sb_app_list_mode", &sb_app_list_mode);
     lv_xml_register_subject(NULL, "sb_list_circular_mode", &sb_list_circular_mode);
     lv_xml_register_subject(NULL, "sb_screen_brightness", &sb_screen_brightness);
@@ -706,6 +752,8 @@ void helios_ui_init_gen(const char * asset_path)
 
     /* Register callbacks */
     lv_xml_register_event_cb(NULL, "on_hs_info_cb", on_hs_info_cb);
+    lv_xml_register_event_cb(NULL, "on_contacts_clicked_cb", on_contacts_clicked_cb);
+    lv_xml_register_event_cb(NULL, "on_navigation_clicked_cb", on_navigation_clicked_cb);
     lv_xml_register_event_cb(NULL, "on_notifications_clicked_cb", on_notifications_clicked_cb);
     lv_xml_register_event_cb(NULL, "on_settings_clicked_cb", on_settings_clicked_cb);
     lv_xml_register_event_cb(NULL, "on_weather_clicked_cb", on_weather_clicked_cb);
@@ -732,6 +780,7 @@ void helios_ui_init_gen(const char * asset_path)
     lv_xml_register_image(NULL, "icon_dnd", icon_dnd);
     lv_xml_register_image(NULL, "icon_qr", icon_qr);
     lv_xml_register_image(NULL, "icon_arrow_up", icon_arrow_up);
+    lv_xml_register_image(NULL, "icon_turn_left", icon_turn_left);
     lv_xml_register_image(NULL, "icon_settings_harddisk", icon_settings_harddisk);
     lv_xml_register_image(NULL, "icon_settings_brightness", icon_settings_brightness);
     lv_xml_register_image(NULL, "icon_settings_monitor", icon_settings_monitor);
@@ -753,6 +802,7 @@ void helios_ui_init_gen(const char * asset_path)
     lv_xml_register_image(NULL, "icon_folder", icon_folder);
     lv_xml_register_image(NULL, "icon_running", icon_running);
     lv_xml_register_image(NULL, "icon_sleep", icon_sleep);
+    lv_xml_register_image(NULL, "icon_user", icon_user);
     lv_xml_register_image(NULL, "icon_weather_humidity_icon", icon_weather_humidity_icon);
     lv_xml_register_image(NULL, "icon_weather_temp_up_icon", icon_weather_temp_up_icon);
     lv_xml_register_image(NULL, "icon_weather_temp_down_icon", icon_weather_temp_down_icon);
@@ -774,6 +824,16 @@ void __attribute__((weak)) on_hs_info_cb(lv_event_t * e)
 {
     LV_UNUSED(e);
     LV_LOG("on_hs_info_cb was called\n");
+}
+void __attribute__((weak)) on_contacts_clicked_cb(lv_event_t * e)
+{
+    LV_UNUSED(e);
+    LV_LOG("on_contacts_clicked_cb was called\n");
+}
+void __attribute__((weak)) on_navigation_clicked_cb(lv_event_t * e)
+{
+    LV_UNUSED(e);
+    LV_LOG("on_navigation_clicked_cb was called\n");
 }
 void __attribute__((weak)) on_notifications_clicked_cb(lv_event_t * e)
 {

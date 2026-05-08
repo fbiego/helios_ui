@@ -53,12 +53,12 @@ lv_obj_t * hs_card_create(lv_obj_t * parent)
         lv_style_set_bg_opa(&style_base, 255);
 
         lv_style_init(&style_pad_360);
-        lv_style_set_pad_all(&style_pad_360, 9);
+        lv_style_set_pad_all(&style_pad_360, 8);
         lv_style_set_pad_row(&style_pad_360, 8);
         lv_style_set_radius(&style_pad_360, 8);
 
         lv_style_init(&style_pad_240);
-        lv_style_set_pad_all(&style_pad_240, 8);
+        lv_style_set_pad_all(&style_pad_240, 6);
         lv_style_set_pad_row(&style_pad_240, 6);
         lv_style_set_radius(&style_pad_240, 6);
 

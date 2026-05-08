@@ -13,9 +13,10 @@
 		<style name="style_cont_360" pad_hor="30" pad_top="80" pad_bottom="100" />
 		<style name="style_cont_240" pad_hor="20" pad_row="5" pad_top="60" pad_bottom="80" />
 		<style name="style_flex" layout="flex" flex_flow="row_wrap" pad_column="15" pad_row="10" />
-		<style name="style_pad_grid" pad_hor="53" pad_row="15" />
+		<style name="style_pad_grid" pad_hor="54" pad_row="15" pad_column="12" />
 		<style name="style_pad_grid_360" pad_hor="33" pad_row="10" pad_column="12" />
 		<style name="style_pad_grid_240" pad_hor="20" pad_row="10" pad_column="10" />
+		<style name="style_pad_grid_410" pad_hor="28" />
 	</styles>
 	<view>
 		<style name="style_dark" />
@@ -33,13 +34,18 @@
 				<bind_style name="style_pad_grid" subject="sb_screen_size" ref_value="0" selector="user_1" />
 				<bind_style name="style_pad_grid_360" subject="sb_screen_size" ref_value="1" selector="user_1" />
 				<bind_style name="style_pad_grid_240" subject="sb_screen_size" ref_value="2" selector="user_1" />
+				<bind_style name="style_pad_grid_410" subject="sb_screen_width" ref_value="410" selector="user_1" />
 
-				<app_item icon="icon_contacts" app_name="Contacts" tag="contacts" />
+				<app_item icon="icon_contacts" app_name="Contacts" tag="contacts">
+					<event_cb callback="on_contacts_clicked_cb" trigger="clicked" />
+				</app_item>
 				<app_item icon="icon_folder" app_name="Files" tag="files" />
 				<app_item icon="icon_running" app_name="Fitness" tag="fitness" />
 				<app_item icon="icon_measurement" app_name="Health" tag="health" />
 				<app_item icon="icon_music" app_name="Music" tag="music" />
-				<app_item icon="icon_navigation" app_name="Navigation" tag="navigation" />
+				<app_item icon="icon_navigation" app_name="Navigation" tag="navigation">
+					<event_cb callback="on_navigation_clicked_cb" trigger="clicked" />
+				</app_item>
 				<app_item icon="icon_chat" app_name="Notifications" tag="notifications">
 					<event_cb callback="on_notifications_clicked_cb" trigger="clicked" />
 				</app_item>

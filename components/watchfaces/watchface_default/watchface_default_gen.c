@@ -80,7 +80,7 @@ lv_obj_t * watchface_default_create(lv_obj_t * parent)
     lv_obj_set_width(hs_row_0, LV_SIZE_CONTENT);
     lv_obj_set_style_pad_column(hs_row_0, 10, 0);
     lv_obj_t * hs_text_normal_1 = hs_text_normal_create(hs_row_0);
-    lv_label_set_text(hs_text_normal_1, "13");
+    lv_label_set_text(hs_text_normal_1, "20");
     
     lv_obj_t * hs_text_normal_2 = hs_text_normal_create(hs_row_0);
     lv_label_set_translation_tag(hs_text_normal_2, "apr");

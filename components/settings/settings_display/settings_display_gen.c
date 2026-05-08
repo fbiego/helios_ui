@@ -77,11 +77,13 @@ lv_obj_t * settings_display_create(lv_obj_t * parent)
     wd_segment_bind_value(wd_segment_0, &sb_screen_rotation);
     hs_button_icon_create(wd_segment_0, icon_arrow_up, 0);
     
-    hs_button_icon_create(wd_segment_0, icon_arrow_up, 900);
+    lv_obj_t * hs_button_icon_1 = hs_button_icon_create(wd_segment_0, icon_arrow_up, 900);
+    lv_obj_bind_state_if_eq(hs_button_icon_1, &sb_screen_type, LV_STATE_DISABLED, 1);
     
     hs_button_icon_create(wd_segment_0, icon_arrow_up, 1800);
     
-    hs_button_icon_create(wd_segment_0, icon_arrow_up, 2700);
+    lv_obj_t * hs_button_icon_3 = hs_button_icon_create(wd_segment_0, icon_arrow_up, 2700);
+    lv_obj_bind_state_if_eq(hs_button_icon_3, &sb_screen_type, LV_STATE_DISABLED, 1);
     
     hs_line_create(hs_card_1);
     

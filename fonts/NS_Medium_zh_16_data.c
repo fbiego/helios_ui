@@ -1,7 +1,7 @@
 /*******************************************************************************
  * Size: 16 px
  * Bpp: 4
- * Opts: --font /fonts/raw/languages/NotoSansSC-Medium.ttf -o /fonts/NS_Medium_zh_16_data.c --size 16 --bpp 4 --format lvgl --no-compress --symbols 一七三乐九二于云五亮件俊停健光八六关内出动勿十卡卷厂压可启周唤器四固圆型声复多天太始存定导小屏展幕度康开式形恢扰报振文新方旋日时星暂更月期格模步每气池法温用电盘睡知示秒类系终统网置联能航行表觉言警设语贮起跑身转轴进逐通醒重闪闭阳音预骤
+ * Opts: --font /fonts/raw/languages/NotoSansSC-Medium.ttf -o /fonts/NS_Medium_zh_16_data.c --size 16 --bpp 4 --format lvgl --no-compress --symbols 一七三乐九二于云五亮件俊停健光八六关内出动勿十卡卷厂压可启周唤器四固圆型声复多天太始存定导小屏展幕度康开式形恢扰报振文新方旋日时星暂更月期格模步每气池法温用电盘睡知示秒类系终统网置联能航行表觉言警设语贮起跑身转轴进逐通醒重闪闭阳音预骤 --lv-fallback NS_Medium_jp_16_data
  ******************************************************************************/
 
 #ifdef __has_include
@@ -2228,6 +2228,7 @@ static lv_font_fmt_txt_dsc_t font_dsc = {
 
 };
 
+extern const lv_font_t NS_Medium_jp_16_data;
 
 
 /*-----------------
@@ -2258,7 +2259,7 @@ lv_font_t NS_Medium_zh_16_data = {
 
     .dsc = &font_dsc,          /*The custom font data. Will be accessed by `get_glyph_bitmap/dsc` */
 #if LV_VERSION_CHECK(8, 2, 0) || LVGL_VERSION_MAJOR >= 9
-    .fallback = NULL,
+    .fallback = &NS_Medium_jp_16_data,
 #endif
     .user_data = NULL,
 };

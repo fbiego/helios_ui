@@ -90,8 +90,9 @@ type	Type	Tipo	Typ	Tipo	Taper	Típus	Тип	Τύπος	พิมพ์	类型	�
 steps	Steps	Passos	Schritte	Pasos	Mesures	Lépések	Шаги	Βήματα	ขั้นตอน	步骤	手順	चरण
 watchfaces	Watchfaces	Mostradores de relógio	Zifferblätter	Esferas de reloj	Cadrans de montre	Óraszámlapok	Циферблаты	Προσόψεις ρολογιού	หน้าปัดนาฬิกา	表盘	ウォッチフェイス	वॉचफेस
 sd_card	SD Card	Cartão SD	SD-Karte	Tarjeta SD	Carte SD	SD-kártya	SD-карта	Κάρτα SD	การ์ด SD	SD卡	SDカード	एसडी कार्ड
-		#VALUE!	#VALUE!	#VALUE!	#VALUE!	#VALUE!	#VALUE!	#VALUE!	#VALUE!	#VALUE!	#VALUE!	#VALUE!
-		#VALUE!	#VALUE!	#VALUE!	#VALUE!	#VALUE!	#VALUE!	#VALUE!	#VALUE!	#VALUE!	#VALUE!	#VALUE!
-		#VALUE!	#VALUE!	#VALUE!	#VALUE!	#VALUE!	#VALUE!	#VALUE!	#VALUE!	#VALUE!	#VALUE!	#VALUE!
-		#VALUE!	#VALUE!	#VALUE!	#VALUE!	#VALUE!	#VALUE!	#VALUE!	#VALUE!	#VALUE!	#VALUE!	#VALUE!
+clear_all	Clear All	Limpar tudo	Alles löschen	Borrar todo	Effacer tout	Összes törlése	Очистить все	Εκκαθάριση όλων	ล้างทั้งหมด	全部清除	すべてクリア	सभी साफ करें
+no_notifications	No notifications avaialble, check back later	Nenhuma notificação disponível. Volte mais tarde.	Es sind keine Benachrichtigungen verfügbar. Bitte versuchen Sie es später erneut.	No hay notificaciones disponibles, vuelva a intentarlo más tarde.	Aucune notification disponible, veuillez réessayer plus tard.	Nincsenek elérhető értesítések, nézz vissza később	Уведомления недоступны, зайдите позже.	Δεν υπάρχουν διαθέσιμες ειδοποιήσεις, ελέγξτε ξανά αργότερα	ไม่มีการแจ้งเตือนใดๆ โปรดตรวจสอบอีกครั้งในภายหลัง	暂无通知，请稍后查看。	通知はありません。後ほどご確認ください。	कोई सूचना उपलब्ध नहीं है, कृपया बाद में दोबारा देखें।
+camera	Camera	Câmera	Kamera	Cámara	Caméra	Kamera	Камера	Κάμερα	กล้อง	相机	カメラ	कैमरा
+music_control	Music Control	Controle de música	Musiksteuerung	Control de música	Contrôle de la musique	Zenevezérlés	Управление музыкой	Έλεγχος μουσικής	การควบคุมดนตรี	音乐控制	音楽コントロール	संगीत नियंत्रण
+												
 formula	Formula	Fórmula	Formel	Fórmula	Formule	Képlet	Формула	Τύπος	สูตร	公式	式	FORMULA

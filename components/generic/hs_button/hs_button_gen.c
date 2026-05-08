@@ -37,9 +37,6 @@ lv_obj_t * hs_button_create(lv_obj_t * parent, const char * label, const char * 
     static lv_style_t style_base;
     static lv_style_t style_base_360;
     static lv_style_t style_base_240;
-    static lv_style_t style_switch;
-    static lv_style_t style_switch_360;
-    static lv_style_t style_switch_240;
     static lv_style_t style_pressed;
 
     static bool style_inited = false;
@@ -60,20 +57,6 @@ lv_obj_t * hs_button_create(lv_obj_t * parent, const char * label, const char * 
         lv_style_init(&style_base_240);
         lv_style_set_pad_all(&style_base_240, 4);
         lv_style_set_radius(&style_base_240, 6);
-
-        lv_style_init(&style_switch);
-        lv_style_set_bg_color(&style_switch, lv_color_hex(0xffffff));
-        lv_style_set_width(&style_switch, 96);
-        lv_style_set_height(&style_switch, 46);
-        lv_style_set_text_color(&style_switch, lv_color_hex3(0xfff));
-
-        lv_style_init(&style_switch_360);
-        lv_style_set_width(&style_switch_360, 72);
-        lv_style_set_height(&style_switch_360, 36);
-
-        lv_style_init(&style_switch_240);
-        lv_style_set_width(&style_switch_240, 48);
-        lv_style_set_height(&style_switch_240, 24);
 
         lv_style_init(&style_pressed);
         lv_style_set_bg_color(&style_pressed, lv_color_hex(0xbcbcbc));

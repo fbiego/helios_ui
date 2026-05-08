@@ -23,7 +23,7 @@
 			pad_ver="0"
 			pad_row="10"
 			bg_color="0x171717"
-			bg_opa="255"
+			bg_opa="25"
 		/>
 		<style name="style_base_360" pad_row="6" />
 		<style name="style_base_240" pad_row="4" />

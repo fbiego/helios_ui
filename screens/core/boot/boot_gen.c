@@ -46,12 +46,9 @@ lv_obj_t * boot_create(void)
     lv_obj_set_name_static(lv_obj_0, "boot_#");
 
     lv_obj_add_style(lv_obj_0, &style_dark, 0);
-    lv_obj_t * lv_label_0 = lv_label_create(lv_obj_0);
-    lv_label_set_text(lv_label_0, "HELIOS");
-    lv_obj_set_align(lv_label_0, LV_ALIGN_CENTER);
-    lv_obj_bind_style(lv_label_0, &style_text_normal_466, 0, &sb_screen_size, 0);
-    lv_obj_bind_style(lv_label_0, &style_text_normal_360, 0, &sb_screen_size, 1);
-    lv_obj_bind_style(lv_label_0, &style_text_normal_240, 0, &sb_screen_size, 2);
+    lv_obj_t * hs_text_normal_0 = hs_text_normal_create(lv_obj_0);
+    lv_label_set_text(hs_text_normal_0, "HELIOS");
+    lv_obj_set_align(hs_text_normal_0, LV_ALIGN_CENTER);
 
     LV_TRACE_OBJ_CREATE("finished");
 

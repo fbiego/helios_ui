@@ -41,6 +41,7 @@ lv_obj_t * settings_create(void)
     static lv_style_t style_pad_grid;
     static lv_style_t style_pad_grid_360;
     static lv_style_t style_pad_grid_240;
+    static lv_style_t style_pad_grid_410;
 
     static bool style_inited = false;
 
@@ -85,6 +86,9 @@ lv_obj_t * settings_create(void)
         lv_style_set_pad_row(&style_pad_grid_240, 10);
         lv_style_set_pad_column(&style_pad_grid_240, 10);
 
+        lv_style_init(&style_pad_grid_410);
+        lv_style_set_pad_hor(&style_pad_grid_410, 25);
+
         style_inited = true;
     }
 
@@ -104,6 +108,7 @@ lv_obj_t * settings_create(void)
     lv_obj_bind_style(wd_list_container_0, &style_pad_grid, LV_STATE_USER_1, &sb_screen_size, 0);
     lv_obj_bind_style(wd_list_container_0, &style_pad_grid_360, LV_STATE_USER_1, &sb_screen_size, 1);
     lv_obj_bind_style(wd_list_container_0, &style_pad_grid_240, LV_STATE_USER_1, &sb_screen_size, 2);
+    lv_obj_bind_style(wd_list_container_0, &style_pad_grid_410, LV_STATE_USER_1, &sb_screen_width, 410);
     app_item_create(wd_list_container_0, icon_settings_monitor, "Display", "display");
     
     app_item_create(wd_list_container_0, icon_settings_smartwatch, "System", "system");

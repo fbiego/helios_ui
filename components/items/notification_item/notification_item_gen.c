@@ -49,7 +49,6 @@ lv_obj_t * notification_item_create(lv_obj_t * parent, const void * icon, const 
         lv_style_init(&style_base);
         lv_style_set_width(&style_base, lv_pct(100));
         lv_style_set_height(&style_base, 104);
-        lv_style_set_text_font(&style_base, NS_Medium_30);
         lv_style_set_text_color(&style_base, lv_color_hex3(0xfff));
         lv_style_set_radius(&style_base, 30);
         lv_style_set_bg_color(&style_base, lv_color_hex(0xb7b7b7));

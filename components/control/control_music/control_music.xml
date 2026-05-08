@@ -23,8 +23,8 @@
 			<bind_style name="style_cont_360" subject="sb_screen_size" ref_value="1" />
 			<bind_style name="style_cont_240" subject="sb_screen_size" ref_value="2" />
 		</lv_obj>
-		<control_button icon="icon_back" align="left_mid" />
+		<control_button align="left_mid" />
 		<control_button icon="icon_play" align="center" />
-		<control_button icon="icon_next" align="right_mid" />
+		<control_button align="right_mid" />
 	</view>
 </component>

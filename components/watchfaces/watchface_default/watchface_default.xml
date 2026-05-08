@@ -38,7 +38,7 @@
 			<hs_text_large text="12:05" y="-50" align="center" />
 			<hs_text_normal translation_tag="mon" />
 			<hs_row width="content" style_pad_column="10">
-				<hs_text_normal text="13" />
+				<hs_text_normal text="20" />
 				<hs_text_normal translation_tag="apr" />
 			</hs_row>
 		</lv_obj>
