@@ -16,6 +16,8 @@
 		<prop name="x_2" type="int" />
 		<prop name="rotation" type="int" />
 		<prop name="bind_scale" type="subject" />
+		<prop name="bind_src" type="subject" />
+		<prop name="bind_color" type="subject" />
 	</api>
 
 	<view extends="lv_image" />

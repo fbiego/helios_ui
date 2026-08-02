@@ -5,8 +5,8 @@
 		<preview width="200" style_bg_color="0x000" />
 	</previews>
 	<styles>
-		<style name="style_button" width="50" height="50" radius="55" bg_color="0x282828" bg_opa="255" />
-		<style name="style_button_360" width="40" height="40" />
+		<style name="style_button" width="60" height="60" radius="55" bg_color="0x282828" bg_opa="255" />
+		<style name="style_button_360" width="50" height="50" />
 		<style name="style_button_240" width="30" height="30" />
 		<style name="style_pressed" bg_color="0xbebebe" />
 		<style name="style_icon" align="center" image_recolor="0xffffff" image_recolor_opa="255" />
@@ -19,6 +19,7 @@
 	<api>
 		<prop name="icon" type="image" default="icon_arrow_up" />
 		<prop name="rotation" type="int" default="0" />
+		<prop name="bind_icon" type="subject" default="sb_placeholder" />
 	</api>
 	<view scrollable="false" state_trickle="true">
 		<remove_style_all />
@@ -40,6 +41,7 @@
 			size_2="40"
 			rotation="$rotation"
 			bind_scale="sb_screen_size"
+			bind_src="$bind_icon"
 		>
 			<style name="style_image" />
 			<style name="style_image_disabled" selector="disabled" />

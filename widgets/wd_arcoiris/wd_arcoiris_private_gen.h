@@ -44,7 +44,7 @@ extern const lv_obj_class_t wd_arcoiris_class;
  * GLOBAL PROTOTYPES
  **********************/
 
-#if LV_USE_XML
+#if defined(LV_USE_XML) && LV_USE_XML
     void wd_arcoiris_register(void);
 #endif
 

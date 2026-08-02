@@ -83,26 +83,32 @@ static void wd_segment_constructor(const lv_obj_class_t * class_p, lv_obj_t * ob
     static bool style_inited = false;
 
     if (!style_inited) {
+        /*Init all styles*/
         lv_style_init(&style_base);
+        lv_style_init(&style_base_360);
+        lv_style_init(&style_base_240);
+
         lv_style_set_width(&style_base, lv_pct(100));
         lv_style_set_height(&style_base, LV_SIZE_CONTENT);
         lv_style_set_layout(&style_base, LV_LAYOUT_FLEX);
         lv_style_set_flex_flow(&style_base, LV_FLEX_FLOW_ROW);
         lv_style_set_pad_column(&style_base, 10);
-
-        lv_style_init(&style_base_360);
         lv_style_set_pad_column(&style_base_360, 6);
-
-        lv_style_init(&style_base_240);
         lv_style_set_pad_column(&style_base_240, 4);
 
         style_inited = true;
     }
-    lv_obj_add_style(obj, &style_base, 0);
-    lv_obj_bind_style(obj, &style_base_360, 0, &sb_screen_size, 1);
-    lv_obj_bind_style(obj, &style_base_240, 0, &sb_screen_size, 2);
 
+    lv_obj_t * the_root = NULL;
+    #if HELIOS_UI_CHECK_COMPILE_TARGET(HELIOS_UI_TARGET_ALL)
+    if (helios_ui_check_target(HELIOS_UI_TARGET_ALL)) {
+        lv_obj_add_style(obj, &style_base, 0);
+        lv_obj_bind_style(obj, &style_base_360, 0, &sb_screen_size, 1);
+        lv_obj_bind_style(obj, &style_base_240, 0, &sb_screen_size, 2);
 
+        the_root = obj;
+    }
+    #endif
     wd_segment_constructor_hook(obj);
 
     LV_TRACE_OBJ_CREATE("finished");

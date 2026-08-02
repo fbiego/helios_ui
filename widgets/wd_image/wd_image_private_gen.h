@@ -46,6 +46,8 @@ typedef struct {
     int32_t x_2;
     int32_t rotation;
     lv_subject_t * bind_scale;
+    lv_subject_t * bind_src;
+    lv_subject_t * bind_color;
     WD_IMAGE_USER_DATA
 } wd_image_t;
 
@@ -55,7 +57,7 @@ extern const lv_obj_class_t wd_image_class;
  * GLOBAL PROTOTYPES
  **********************/
 
-#if LV_USE_XML
+#if defined(LV_USE_XML) && LV_USE_XML
     void wd_image_register(void);
 #endif
 

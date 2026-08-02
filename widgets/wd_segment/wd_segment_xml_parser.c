@@ -17,7 +17,7 @@
     #include "lvgl/src/core/lv_obj_class_private.h"
 #endif
 
-#if LV_USE_XML
+#if defined(LV_USE_XML) && LV_USE_XML
 
 /*********************
  *      DEFINES

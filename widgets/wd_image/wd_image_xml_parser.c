@@ -17,7 +17,7 @@
     #include "lvgl/src/core/lv_obj_class_private.h"
 #endif
 
-#if LV_USE_XML
+#if defined(LV_USE_XML) && LV_USE_XML
 
 /*********************
  *      DEFINES
@@ -106,6 +106,22 @@ void wd_image_xml_apply(lv_xml_parser_state_t * state, const char ** attrs)
             }
             else {
                 LV_LOG_WARN("Subject \"%s\" doesn't exist in wd_image bind_scale", value);
+            }
+        } else if(lv_streq("bind_src", name)) {
+            lv_subject_t * subject = lv_xml_get_subject(&state->scope, value);
+            if(subject) {
+                wd_image_bind_src(item, subject);
+            }
+            else {
+                LV_LOG_WARN("Subject \"%s\" doesn't exist in wd_image bind_src", value);
+            }
+        } else if(lv_streq("bind_color", name)) {
+            lv_subject_t * subject = lv_xml_get_subject(&state->scope, value);
+            if(subject) {
+                wd_image_bind_color(item, subject);
+            }
+            else {
+                LV_LOG_WARN("Subject \"%s\" doesn't exist in wd_image bind_color", value);
             }
         }
     }

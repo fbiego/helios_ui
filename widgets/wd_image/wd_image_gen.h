@@ -126,6 +126,20 @@ void wd_image_set_rotation(lv_obj_t * wd_image, int32_t rotation);
  */
 void wd_image_bind_scale(lv_obj_t * wd_image, lv_subject_t * bind_scale);
 
+/**
+ * wd_image bind_src
+ * @param obj   pointer to a wd_image
+ * @param bind_src  bind_src
+ */
+void wd_image_bind_src(lv_obj_t * wd_image, lv_subject_t * bind_src);
+
+/**
+ * wd_image bind_color
+ * @param obj   pointer to a wd_image
+ * @param bind_color  bind_color
+ */
+void wd_image_bind_color(lv_obj_t * wd_image, lv_subject_t * bind_color);
+
 /**********************
  *      MACROS
  **********************/

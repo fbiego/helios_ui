@@ -33,7 +33,7 @@ extern "C" {
  * GLOBAL PROTOTYPES
  **********************/
 
-lv_obj_t * info_dialog_create(lv_obj_t * parent, const char * title, const char * info);
+lv_obj_t * info_dialog_create(lv_obj_t * parent, const char * title, const char * info, const char * positive_btn, const char * negative_btn);
 
 /**********************
  *      MACROS

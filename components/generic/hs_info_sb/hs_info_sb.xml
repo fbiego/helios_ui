@@ -9,6 +9,7 @@
 		<prop name="label" type="string" default="Label" />
 		<prop name="label_tag" type="string" default="" />
 		<prop name="info" type="subject" default="sb_placeholder" />
+		<prop name="fmt" type="string" default="%s" />
 	</api>
 
 	<styles>
@@ -41,6 +42,7 @@
 		/>
 		<hs_text_normal
 			bind_text="$info"
+			bind_text-fmt="$fmt"
 			align="top_right"
 			width="content"
 			style_text_align="right"

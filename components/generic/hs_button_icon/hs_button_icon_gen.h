@@ -33,7 +33,7 @@ extern "C" {
  * GLOBAL PROTOTYPES
  **********************/
 
-lv_obj_t * hs_button_icon_create(lv_obj_t * parent, const void * icon, int32_t rotation);
+lv_obj_t * hs_button_icon_create(lv_obj_t * parent, const void * icon, int32_t rotation, lv_subject_t * bind_icon);
 
 /**********************
  *      MACROS

@@ -77,6 +77,13 @@ void wd_list_set_center_lock(lv_obj_t * wd_list, bool center_lock);
  */
 lv_obj_t * wd_list_get_container(lv_obj_t * wd_list);
 
+/**
+ * wd_list title
+ * @param obj   pointer to a wd_list
+
+ */
+lv_obj_t * wd_list_get_title(lv_obj_t * wd_list);
+
 /**********************
  *      MACROS
  **********************/

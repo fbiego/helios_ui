@@ -39,6 +39,7 @@ typedef struct {
     lv_subject_t * bind_screen;
     bool center_lock;
     lv_obj_t * list;
+    lv_obj_t * title;
     WD_LIST_USER_DATA
 } wd_list_t;
 
@@ -48,7 +49,7 @@ extern const lv_obj_class_t wd_list_class;
  * GLOBAL PROTOTYPES
  **********************/
 
-#if LV_USE_XML
+#if defined(LV_USE_XML) && LV_USE_XML
     void wd_list_register(void);
 #endif
 

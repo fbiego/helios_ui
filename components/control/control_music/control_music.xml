@@ -23,8 +23,14 @@
 			<bind_style name="style_cont_360" subject="sb_screen_size" ref_value="1" />
 			<bind_style name="style_cont_240" subject="sb_screen_size" ref_value="2" />
 		</lv_obj>
-		<control_button align="left_mid" />
-		<control_button icon="icon_play" align="center" />
-		<control_button align="right_mid" />
+		<control_button icon="icon_back" align="left_mid">
+			<event_cb callback="on_music_control_cb" trigger="clicked" user_data="previous" />
+		</control_button>
+		<control_button icon="icon_play" align="center">
+			<event_cb callback="on_music_control_cb" trigger="clicked" user_data="toggle" />
+		</control_button>
+		<control_button icon="icon_next" align="right_mid">
+			<event_cb callback="on_music_control_cb" trigger="clicked" user_data="next" />
+		</control_button>
 	</view>
 </component>

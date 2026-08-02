@@ -11,6 +11,7 @@
 		<prop name="bind_screen" type="subject" help="Subject that enables circular scroll in list mode" />
 		<prop name="center_lock" type="bool" help="Center prevents scrolling in order to detect gesture" />
 		<element name="container" access="get" type="lv_obj" />
+		<element name="title" access="get" type="lv_obj" />
 	</api>
 
 	<styles>
@@ -24,6 +25,7 @@
 			pad_bottom="150"
 			pad_hor="33"
 		/>
+		<style name="style_title" width="100%" height="content" />
 		<style name="style_flex" layout="flex" flex_flow="row_wrap" pad_column="15" pad_row="10" />
 		<style name="style_pad_grid" pad_hor="53" pad_row="15" />
 	</styles>
@@ -33,6 +35,10 @@
 			<remove_style_all />
 			<style name="style_cont" />
 			<style name="style_flex" />
+		</lv_obj>
+		<lv_obj name="title" clickable="false">
+			<remove_style_all />
+			<style name="style_title" />
 		</lv_obj>
 	</view>
 </widget>

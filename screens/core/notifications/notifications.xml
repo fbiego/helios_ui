@@ -4,6 +4,10 @@
 		<style name="style_cont" pad_top="120" pad_bottom="150" pad_hor="33" flex_flow="column_reverse" />
 		<style name="style_cont_360" pad_hor="30" pad_top="80" pad_bottom="100" />
 		<style name="style_cont_240" pad_hor="20" pad_row="5" pad_top="60" pad_bottom="80" />
+
+		<style name="style_pad_rect" pad_hor="15" />
+		<style name="style_pad_rect_360" pad_hor="13" />
+		<style name="style_pad_rect_240" pad_hor="9" />
 	</styles>
 	<view>
 		<style name="style_dark" />
@@ -17,11 +21,20 @@
 		/>
 
 		<wd_list name="notifications_list" bind_screen="sb_screen_size">
-			<style name="style_list" />
+			<!-- <style name="style_list" /> -->
+			<wd_list-title height="content">
+				<hs_title_pill width="content" align="center" tag="notifications" style_max_width="100%" />
+			</wd_list-title>
 			<wd_list-container>
 				<style name="style_cont" />
+				<style name="style_list" />
 				<bind_style name="style_cont_360" subject="sb_screen_size" ref_value="1" />
 				<bind_style name="style_cont_240" subject="sb_screen_size" ref_value="2" />
+
+				<bind_state_if_eq subject="sb_screen_type" ref_value="1" state="user_2" />
+				<bind_style name="style_pad_rect" subject="sb_screen_size" ref_value="0" selector="user_2" />
+				<bind_style name="style_pad_rect_360" subject="sb_screen_size" ref_value="1" selector="user_2" />
+				<bind_style name="style_pad_rect_240" subject="sb_screen_size" ref_value="2" selector="user_2" />
 
 				<hs_button
 					label="Clear All"

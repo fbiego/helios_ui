@@ -26,8 +26,6 @@
 		<style name="style_primary_bg" bg_color="#color_primary" />
 		<style name="style_white_bg" bg_color="0xffffff" />
 
-		<style name="style_icon_recolor" />
-
 		<style name="style_text_small_466" text_font="NS_Medium_20" />
 		<style name="style_text_small_360" text_font="NS_Medium_18" />
 		<style name="style_text_small_240" text_font="NS_Medium_14" />
@@ -44,28 +42,125 @@
 	<subjects>
 		<!-- Add <int>, <string>, or <float> subjects here -->
 
+		<!-- Handled internally-->
 		<int name="sb_screen_size" value="0" />
 		<int name="sb_screen_type" value="0" />
-
 		<int name="sb_screen_width" value="466" />
 		<int name="sb_screen_height" value="466" />
-
 		<string name="sb_screen_res" value="466x466" />
 		<string name="sb_placeholder" value="" />
 		<string name="sb_lvgl_version" value="v9.0.0" />
 
-		<int name="sb_app_list_mode" value="0" min_value="0" max_value="1" />
-		<int name="sb_list_circular_mode" value="1" min_value="0" max_value="1" />
-		<int name="sb_screen_brightness" value="80" min_value="1" max_value="100" />
-		<int name="sb_screen_rotation" value="0" min_value="0" max_value="3" />
-		<int name="sb_screen_timeout" value="0" min_value="0" max_value="4" />
-		<int name="sb_screen_rtw" value="1" min_value="0" max_value="1" />
+		<!-- System settings -->
+		<int name="sb_app_list_mode" value="0" min_value="0" max_value="1" help="[set|change] Grid mode" />
+		<int name="sb_list_circular_mode" value="1" min_value="0" max_value="1" help="[set|change] Circular mode" />
+		<int
+			name="sb_screen_brightness"
+			value="100"
+			min_value="1"
+			max_value="100"
+			help="[set|change] Screen brightness"
+		/>
+		<int name="sb_screen_rotation" value="0" min_value="0" max_value="3" help="[set|change] Screen rotation" />
+		<int name="sb_screen_timeout" value="0" min_value="0" max_value="4" help="[set|change] Screen timeout" />
+		<int name="sb_screen_rtw" value="1" min_value="0" max_value="1" help="[set|change] Raise to wake" />
+		<int name="sb_language" value="0" help="[set|change] System Language" />
 
-		<int name="sb_language" value="0" />
+		<int name="sb_sound_volume" value="40" min_value="0" max_value="100" help="[set|change] Music volume" />
+		<int name="sb_focusable" value="1" min_value="0" max_value="1" help="[set|change] Collapsed notifications" />
 
-		<int name="sb_battery_percent" value="70" min_value="0" max_value="100" />
-		<int name="sb_sound_volume" value="40" min_value="0" max_value="100" />
-		<int name="sb_focusable" value="1" min_value="0" max_value="1" />
+		<!-- Clock -->
+		<string name="sb_time_string" value="12:45" help="[set] Time string" />
+		<string name="sb_date_string" value="Sun 5 Oct" help="[set] Date string" />
+		<int name="sb_time_hour" value="12" help="[set] Hour" />
+		<int name="sb_time_minute" value="45" help="[set] Minute" />
+		<int name="sb_time_seconds" value="23" help="[set] Seconds" />
+		<int name="sb_time_hour_analog" value="3150" help="[set] Hour rotation" />
+		<int name="sb_time_minute_analog" value="450" help="[set] Minute rotation" />
+		<int name="sb_time_seconds_analog" value="1800" help="[set] Seconds rotation" />
+		<string name="sb_time_am_pm" value="am" help="[set] am/pm" />
+		<int name="sb_time_day" value="5" help="[set] Day" />
+		<int name="sb_time_month" value="10" help="[set] Month" />
+		<int name="sb_time_year" value="2025" help="[set] Year" />
+		<string name="sb_time_month_short" value="oct" help="[set] Month short" />
+		<string name="sb_time_month_long" value="october" help="[set] Month long" />
+		<int name="sb_time_weekday" value="0" help="[set] Weekday index" />
+		<string name="sb_time_weekday_short" value="sun" help="[set] Weekday short" />
+		<string name="sb_time_weekday_long" value="sunday" help="[set] Weekday long" />
+
+		<!-- System Information -->
+		<int name="sb_system_connection" value="0" help="[set] System ble connection" />
+		<string name="sb_chronos_esp_version" value="v1.9.0" help="Chronos library version [set]" />
+		<string name="sb_chronos_app_version" value="v3.8.5" help="Navio Chronos app version [set]" />
+		<string name="sb_firmware_version" value="v1.0.0" help="Navio Firmware version [set]" />
+		<string name="sb_board_oem" value="LVGL" help="Navio board OEM [set]" />
+		<string name="sb_board_name" value="Editor" help="Navio board name [set]" />
+		<string name="sb_board_type" value="ESP32-S3" help="Navio board type [set]" />
+		<string name="sb_board_mac" value="34:54:56:23:43:32" help="Navio board MAC address [set]" />
+		<string name="sb_board_ram" value="384KB" help="Navio board RAM [set]" />
+		<string name="sb_board_psram" value="16MB" help="Navio board PSRAM [set]" />
+		<string name="sb_board_flash" value="16MB" help="Navio board Flash [set]" />
+		<string name="sb_display_type" value="AMOLED" help="Navio display type [set]" />
+
+		<int name="sb_battery_percent" value="70" min_value="0" max_value="100" help="[set] Battery percentage" />
+		<int name="sb_battery_charging" value="0" min_value="0" max_value="1" help="[set] Battery Charging" />
+		<float name="sb_battery_voltage" value="3.92" help="[set] Battery Voltage" />
+		<float name="sb_battery_temp" value="32.6" help="[set] Battery Temperature" />
+		<string name="sb_battery_usage" value="2d 14h" help="[set] Battery Usage" />
+
+		<!-- Navigation data -->
+		<int name="sb_nav_icon" value="0" help="Current navigation icon [set]{pointer}(icon_turn_left)" />
+		<string
+			name="sb_nav_text"
+			value="10:20 ETA&#10;5 mins | 1.6km"
+			help="Navigation text (eta\nduration distance) [set]"
+		/>
+		<string name="sb_nav_title" value="100m" help="Navigation title [set]" />
+		<string
+			name="sb_nav_directions"
+			value="Turn left towards Kenyatta avenue at the round about"
+			help="Navigation directions [set]"
+		/>
+
+		<!-- Music app data -->
+		<string name="sb_music_app" value="Music" help="[set] Music app" />
+		<string name="sb_music_track" value="Track" help="[set] Music track" />
+		<string name="sb_music_artist" value="Artist" help="[set] Music artist" />
+		<int name="sb_music_state" value="0" help="[set|change] Music state" />
+		<int name="sb_music_state_icon" value="0" help="[set]{pointer}(icon_music_play_32) Music play/pause ison" />
+		<int name="sb_music_icon" value="0" help="[set]{pointer}(icon_music) Music icon" />
+		<string name="sb_music_package" value="music" help="[set|change] Music app package" />
+		<int name="sb_music_album_color" value="0" help="[set]{color} Music album color" />
+
+		<!-- Weather app data -->
+		<int name="sb_weather_icon" value="0" help="[set]{pointer}(icon_weather) Weather icon" />
+		<int name="sb_weather_temp" value="23" help="[set] Weather temperature" />
+		<string name="sb_weather_location" value="Nairobi" help="[set] Weather location" />
+		<string name="sb_weather_condition" value="cloudy" help="[set] Weather condition" />
+		<string name="sb_weather_update_time" value="10:20" help="[set] Weather update time" />
+		<string name="sb_weather_temp_unit" value="C" help="[set] Weather update date" />
+		<int name="sb_weather_humidity" value="45" help="[set] Weather humidity" />
+		<int name="sb_weather_uv" value="3" help="[set] Weather UV index" />
+		<int name="sb_weather_temp_high" value="30" help="[set] Weather high temperature" />
+		<int name="sb_weather_temp_low" value="20" help="[set] Weather low temperature" />
+
+		<!-- Stopwatch app data -->
+		<int name="sb_stopwatch_state" value="0" help="[set|change] Stopwatch state" />
+		<string name="sb_stopwatch_time" value="00:00:00" help="[set] Stopwatch time" />
+
+		<int name="sb_stopwatch_button_start_state" value="0" help="[set|change] Stopwatch pause button state" />
+		<int name="sb_stopwatch_button_reset_state" value="0" help="[set|change] Stopwatch reset button state" />
+
+		<int
+			name="sb_stopwatch_button_start_icon"
+			value="0"
+			help="[set]{pointer}(icon_timer_start) Stopwatch start button icon"
+		/>
+		<int
+			name="sb_stopwatch_button_reset_icon"
+			value="0"
+			help="[set]{pointer}(icon_lap_time) Stopwatch reset button icon"
+		/>
 	</subjects>
 
 	<images>
@@ -88,7 +183,7 @@
 		<data name="icon_dnd" src_path="images/actions/dnd.png" color_format="a8" />
 		<data name="icon_qr" src_path="images/actions/qr_icon.png" color_format="a8" />
 		<data name="icon_arrow_up" src_path="images/actions/up-arrow.png" color_format="a8" />
-		<data name="icon_turn_left" src_path="images/actions/turn_left.png" color_format="i1" />
+		<data name="icon_turn_left" src_path="images/actions/turn_left.png" color_format="a1" />
 
 		<data name="icon_settings_harddisk" src_path="images/settings/005-harddisk.png" color_format="rgb565a8" />
 		<data name="icon_settings_brightness" src_path="images/settings/007-brightness.png" color_format="rgb565a8" />
@@ -113,11 +208,27 @@
 		<data name="icon_running" src_path="images/apps/running.png" color_format="rgb565a8" />
 		<data name="icon_sleep" src_path="images/apps/sleep.png" color_format="rgb565a8" />
 		<data name="icon_user" src_path="images/apps/user.png" color_format="rgb565a8" />
+		<data name="icon_spotify" src_path="images/apps/icon_spotify.png" color_format="rgb565a8" />
+		<data name="icon_phone_link" src_path="images/apps/icon_phone_link.png" color_format="rgb565a8" />
 
 		<data name="icon_weather_humidity_icon" src_path="images/weather/humidity_icon.png" color_format="rgb565a8" />
 		<data name="icon_weather_temp_up_icon" src_path="images/weather/temp_up_icon.png" color_format="rgb565a8" />
 		<data name="icon_weather_temp_down_icon" src_path="images/weather/temp_down_icon.png" color_format="rgb565a8" />
 		<data name="icon_weather_uv_icon" src_path="images/weather/uv_icon.png" color_format="rgb565a8" />
+
+		<data name="img_music_album" src_path="images/generic/img_music_album.png" color_format="a8" />
+		<data name="icon_vol_down_32" src_path="images/music/icon_vol_down_32.png" color_format="a8" />
+		<data name="icon_vol_up_32" src_path="images/music/icon_vol_up_32.png" color_format="a8" />
+		<data name="icon_music_play_32" src_path="images/music/icon_music_play_32.png" color_format="a8" />
+		<data name="icon_music_pause_32" src_path="images/music/icon_music_pause_32.png" color_format="a8" />
+		<data name="icon_music_next_32" src_path="images/music/icon_music_next_32.png" color_format="a8" />
+		<data name="icon_music_previous_32" src_path="images/music/icon_music_previous_32.png" color_format="a8" />
+		<data name="icon_stop" src_path="images/actions/icon_music_stop.png" color_format="a8" />
+		<data name="icon_timer_cancel" src_path="images/actions/icon_timer_cancel.png" color_format="a8" />
+		<data name="icon_timer_start" src_path="images/actions/icon_timer_start.png" color_format="a8" />
+		<data name="icon_timer_pause" src_path="images/actions/icon_timer_pause.png" color_format="a8" />
+		<data name="icon_lap_time" src_path="images/actions/icon_lap_time.png" color_format="a8" />
+		<data name="icon_restart" src_path="images/actions/icon_restart.png" color_format="a8" />
 	</images>
 
 	<fonts>

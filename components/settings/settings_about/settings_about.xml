@@ -10,35 +10,66 @@
 		<style name="style_base" pad_row="10" pad_ver="150" />
 		<style name="style_pad_360" pad_ver="90" pad_hor="30" />
 		<style name="style_pad_240" pad_ver="60" pad_hor="20" />
+		<style name="style_pad_rect" pad_hor="18" />
+		<style name="style_pad_rect_360" pad_hor="14" />
+		<style name="style_pad_rect_240" pad_hor="10" />
 	</styles>
 
 	<view extends="wd_list" bind_screen="sb_screen_size">
+		<wd_list-title height="content">
+			<hs_card width="content" align="center" clickable="false" style_max_width="100%">
+				<hs_text_normal translation_tag="about" />
+			</hs_card>
+		</wd_list-title>
 		<wd_list-container>
 			<style name="style_base" />
 			<bind_style name="style_pad_360" subject="sb_screen_size" ref_value="1" />
 			<bind_style name="style_pad_240" subject="sb_screen_size" ref_value="2" />
+			<bind_state_if_eq subject="sb_screen_type" ref_value="1" state="user_1" />
+			<bind_style name="style_pad_rect" subject="sb_screen_size" ref_value="0" selector="user_1" />
+			<bind_style name="style_pad_rect_360" subject="sb_screen_size" ref_value="1" selector="user_1" />
+			<bind_style name="style_pad_rect_240" subject="sb_screen_size" ref_value="2" selector="user_1" />
+
 			<hs_card>
-				<hs_info label="Viewe Smart Ring" info="" />
+				<hs_row style_pad_column="10">
+					<!-- <wd_image
+						src="img_helios_bg"
+						scale_1="190"
+						scale_2="120"
+						size_1="95"
+						size_2="60"
+						bind_scale="sb_screen_size"
+					/> -->
+					<hs_text_normal text="Chronos&#10;Helios" />
+				</hs_row>
+				<hs_text_small width="100%" translation_tag="helios_info" />
 				<hs_line />
-				<hs_info label="ESP32 S3" info="34:54:56:23:43:32" />
+				<hs_info label="" info="chronos.ke/helios" />
+			</hs_card>
+			<hs_card>
+				<hs_info_sb_sb label="sb_board_oem" info="sb_board_name" />
 				<hs_line />
-				<hs_info label_tag="ram" info="384KB" />
-				<hs_info label_tag="psram" info="8MB" />
+				<hs_info_sb_sb label="sb_board_type" info="sb_board_mac" />
+				<hs_line />
+				<hs_info_sb label_tag="ram" info="sb_board_ram" />
+				<hs_info_sb label_tag="psram" info="sb_board_psram" />
 
 				<hs_line />
-				<hs_info label_tag="flash" info="16MB" />
+				<hs_info_sb label_tag="flash" info="sb_board_flash" />
 
 				<hs_line />
 				<hs_info_sb label_tag="display" info="sb_screen_res" />
-				<hs_info label_tag="type" info="AMOLED" />
-
-				<hs_line />
-				<hs_info label_tag="firmware" info="v1.3" />
+				<hs_info_sb label_tag="type" info="sb_display_type" />
 			</hs_card>
 			<hs_card>
+				<hs_info_sb label_tag="firmware" info="sb_firmware_version" />
 				<hs_info label="Helios UI" info="#ui_version" />
 				<hs_info_sb label="LVGL" info="sb_lvgl_version" />
+				<hs_line />
+				<hs_info_sb label="ChronosApp" info="sb_chronos_app_version" />
+				<hs_info_sb label="ChronosESP" info="sb_chronos_esp_version" />
 			</hs_card>
+			<hs_space />
 		</wd_list-container>
 	</view>
 </component>

@@ -1,4 +1,3 @@
-set(LV_EDITOR_PROJECT_SOURCES)
 list(
   APPEND
   LV_EDITOR_PROJECT_SOURCES
@@ -16,10 +15,13 @@ list(
   ${CMAKE_CURRENT_LIST_DIR}/components/generic/hs_button/hs_button_gen.c
   ${CMAKE_CURRENT_LIST_DIR}/components/generic/hs_card/hs_card_gen.c
   ${CMAKE_CURRENT_LIST_DIR}/components/generic/hs_column/hs_column_gen.c
+  ${CMAKE_CURRENT_LIST_DIR}/components/generic/hs_container/hs_container_gen.c
   ${CMAKE_CURRENT_LIST_DIR}/components/generic/hs_dropdown_item/hs_dropdown_item_gen.c
   ${CMAKE_CURRENT_LIST_DIR}/components/generic/hs_dropdown/hs_dropdown_gen.c
+  ${CMAKE_CURRENT_LIST_DIR}/components/generic/hs_info_sb_sb/hs_info_sb_sb_gen.c
   ${CMAKE_CURRENT_LIST_DIR}/components/generic/hs_info_sb/hs_info_sb_gen.c
   ${CMAKE_CURRENT_LIST_DIR}/components/generic/hs_info/hs_info_gen.c
+  ${CMAKE_CURRENT_LIST_DIR}/components/generic/hs_lap_item/hs_lap_item_gen.c
   ${CMAKE_CURRENT_LIST_DIR}/components/generic/hs_line/hs_line_gen.c
   ${CMAKE_CURRENT_LIST_DIR}/components/generic/hs_roller/hs_roller_gen.c
   ${CMAKE_CURRENT_LIST_DIR}/components/generic/hs_row/hs_row_gen.c
@@ -27,20 +29,26 @@ list(
   ${CMAKE_CURRENT_LIST_DIR}/components/generic/hs_space/hs_space_gen.c
   ${CMAKE_CURRENT_LIST_DIR}/components/generic/hs_switch/hs_switch_gen.c
   ${CMAKE_CURRENT_LIST_DIR}/components/generic/hs_text_icon/hs_text_icon_normal/hs_text_icon_normal_gen.c
+  ${CMAKE_CURRENT_LIST_DIR}/components/generic/hs_text/hs_tag_normal/hs_tag_normal_gen.c
+  ${CMAKE_CURRENT_LIST_DIR}/components/generic/hs_text/hs_tag_small/hs_tag_small_gen.c
   ${CMAKE_CURRENT_LIST_DIR}/components/generic/hs_text/hs_text_large/hs_text_large_gen.c
-  ${CMAKE_CURRENT_LIST_DIR}/components/generic/hs_text/hs_text_medium/hs_text_medium_gen.c
   ${CMAKE_CURRENT_LIST_DIR}/components/generic/hs_text/hs_text_normal/hs_text_normal_gen.c
   ${CMAKE_CURRENT_LIST_DIR}/components/generic/hs_text/hs_text_small/hs_text_small_gen.c
+  ${CMAKE_CURRENT_LIST_DIR}/components/generic/hs_title_pill/hs_title_pill_gen.c
   ${CMAKE_CURRENT_LIST_DIR}/components/generic/hs_title/hs_title_gen.c
   ${CMAKE_CURRENT_LIST_DIR}/components/items/app_item/app_item_gen.c
   ${CMAKE_CURRENT_LIST_DIR}/components/items/contact_item/contact_item_gen.c
   ${CMAKE_CURRENT_LIST_DIR}/components/items/notification_item/notification_item_gen.c
+  ${CMAKE_CURRENT_LIST_DIR}/components/music/music_info/music_info_gen.c
+  ${CMAKE_CURRENT_LIST_DIR}/components/music/music_widget/music_widget_gen.c
   ${CMAKE_CURRENT_LIST_DIR}/components/settings/settings_about/settings_about_gen.c
   ${CMAKE_CURRENT_LIST_DIR}/components/settings/settings_alert/settings_alert_gen.c
   ${CMAKE_CURRENT_LIST_DIR}/components/settings/settings_battery/settings_battery_gen.c
   ${CMAKE_CURRENT_LIST_DIR}/components/settings/settings_display/settings_display_gen.c
   ${CMAKE_CURRENT_LIST_DIR}/components/settings/settings_storage/settings_storage_gen.c
   ${CMAKE_CURRENT_LIST_DIR}/components/settings/settings_system/settings_system_gen.c
+  ${CMAKE_CURRENT_LIST_DIR}/components/timers/timer_countdown/timer_countdown_gen.c
+  ${CMAKE_CURRENT_LIST_DIR}/components/timers/timer_list/timer_list_gen.c
   ${CMAKE_CURRENT_LIST_DIR}/components/watchfaces/watchface_default/watchface_default_gen.c
   ${CMAKE_CURRENT_LIST_DIR}/components/weather/daily_forecast/daily_forecast_gen.c
   ${CMAKE_CURRENT_LIST_DIR}/components/weather/hourly_forecast/hourly_forecast_gen.c
@@ -110,14 +118,21 @@ list(
   ${CMAKE_CURRENT_LIST_DIR}/images/icon_empty_data.c
   ${CMAKE_CURRENT_LIST_DIR}/images/icon_folder_data.c
   ${CMAKE_CURRENT_LIST_DIR}/images/icon_gear_data.c
+  ${CMAKE_CURRENT_LIST_DIR}/images/icon_lap_time_data.c
   ${CMAKE_CURRENT_LIST_DIR}/images/icon_list_data.c
   ${CMAKE_CURRENT_LIST_DIR}/images/icon_measurement_data.c
   ${CMAKE_CURRENT_LIST_DIR}/images/icon_music_data.c
+  ${CMAKE_CURRENT_LIST_DIR}/images/icon_music_next_32_data.c
+  ${CMAKE_CURRENT_LIST_DIR}/images/icon_music_pause_32_data.c
+  ${CMAKE_CURRENT_LIST_DIR}/images/icon_music_play_32_data.c
+  ${CMAKE_CURRENT_LIST_DIR}/images/icon_music_previous_32_data.c
   ${CMAKE_CURRENT_LIST_DIR}/images/icon_mute_data.c
   ${CMAKE_CURRENT_LIST_DIR}/images/icon_navigation_data.c
   ${CMAKE_CURRENT_LIST_DIR}/images/icon_next_data.c
+  ${CMAKE_CURRENT_LIST_DIR}/images/icon_phone_link_data.c
   ${CMAKE_CURRENT_LIST_DIR}/images/icon_play_data.c
   ${CMAKE_CURRENT_LIST_DIR}/images/icon_qr_data.c
+  ${CMAKE_CURRENT_LIST_DIR}/images/icon_restart_data.c
   ${CMAKE_CURRENT_LIST_DIR}/images/icon_running_data.c
   ${CMAKE_CURRENT_LIST_DIR}/images/icon_settings_bell_data.c
   ${CMAKE_CURRENT_LIST_DIR}/images/icon_settings_brightness_data.c
@@ -128,11 +143,18 @@ list(
   ${CMAKE_CURRENT_LIST_DIR}/images/icon_settings_rotate_data.c
   ${CMAKE_CURRENT_LIST_DIR}/images/icon_settings_smartwatch_data.c
   ${CMAKE_CURRENT_LIST_DIR}/images/icon_sleep_data.c
+  ${CMAKE_CURRENT_LIST_DIR}/images/icon_spotify_data.c
+  ${CMAKE_CURRENT_LIST_DIR}/images/icon_stop_data.c
   ${CMAKE_CURRENT_LIST_DIR}/images/icon_stopwatch_data.c
+  ${CMAKE_CURRENT_LIST_DIR}/images/icon_timer_cancel_data.c
   ${CMAKE_CURRENT_LIST_DIR}/images/icon_timer_data.c
+  ${CMAKE_CURRENT_LIST_DIR}/images/icon_timer_pause_data.c
+  ${CMAKE_CURRENT_LIST_DIR}/images/icon_timer_start_data.c
   ${CMAKE_CURRENT_LIST_DIR}/images/icon_turn_left_data.c
   ${CMAKE_CURRENT_LIST_DIR}/images/icon_user_data.c
   ${CMAKE_CURRENT_LIST_DIR}/images/icon_vibration_data.c
+  ${CMAKE_CURRENT_LIST_DIR}/images/icon_vol_down_32_data.c
+  ${CMAKE_CURRENT_LIST_DIR}/images/icon_vol_up_32_data.c
   ${CMAKE_CURRENT_LIST_DIR}/images/icon_volume_high_data.c
   ${CMAKE_CURRENT_LIST_DIR}/images/icon_volume_low_data.c
   ${CMAKE_CURRENT_LIST_DIR}/images/icon_weather_data.c
@@ -141,13 +163,18 @@ list(
   ${CMAKE_CURRENT_LIST_DIR}/images/icon_weather_temp_up_icon_data.c
   ${CMAKE_CURRENT_LIST_DIR}/images/icon_weather_uv_icon_data.c
   ${CMAKE_CURRENT_LIST_DIR}/images/icon_wifi_data.c
+  ${CMAKE_CURRENT_LIST_DIR}/images/img_music_album_data.c
   ${CMAKE_CURRENT_LIST_DIR}/screens/core/applications/applications_gen.c
   ${CMAKE_CURRENT_LIST_DIR}/screens/core/boot/boot_gen.c
   ${CMAKE_CURRENT_LIST_DIR}/screens/core/contacts/contacts_gen.c
   ${CMAKE_CURRENT_LIST_DIR}/screens/core/home/home_gen.c
+  ${CMAKE_CURRENT_LIST_DIR}/screens/core/music/music_gen.c
   ${CMAKE_CURRENT_LIST_DIR}/screens/core/navigation/navigation_gen.c
   ${CMAKE_CURRENT_LIST_DIR}/screens/core/notifications/notifications_gen.c
+  ${CMAKE_CURRENT_LIST_DIR}/screens/core/phone/phone_gen.c
   ${CMAKE_CURRENT_LIST_DIR}/screens/core/settings/settings_gen.c
+  ${CMAKE_CURRENT_LIST_DIR}/screens/core/stopwatch/stopwatch_gen.c
+  ${CMAKE_CURRENT_LIST_DIR}/screens/core/timer/timer_gen.c
   ${CMAKE_CURRENT_LIST_DIR}/screens/core/weather/weather_gen.c
   ${CMAKE_CURRENT_LIST_DIR}/screens/core/widgets/widgets_gen.c
   ${CMAKE_CURRENT_LIST_DIR}/screens/simulator/simulator_gen.c
@@ -160,9 +187,15 @@ list(
   ${CMAKE_CURRENT_LIST_DIR}/widgets/wd_image/wd_image_gen.c
   ${CMAKE_CURRENT_LIST_DIR}/widgets/wd_image/wd_image_xml_parser.c
   ${CMAKE_CURRENT_LIST_DIR}/widgets/wd_image/wd_image.c
+  ${CMAKE_CURRENT_LIST_DIR}/widgets/wd_label/wd_label_gen.c
+  ${CMAKE_CURRENT_LIST_DIR}/widgets/wd_label/wd_label_xml_parser.c
+  ${CMAKE_CURRENT_LIST_DIR}/widgets/wd_label/wd_label.c
   ${CMAKE_CURRENT_LIST_DIR}/widgets/wd_list/wd_list_gen.c
   ${CMAKE_CURRENT_LIST_DIR}/widgets/wd_list/wd_list_xml_parser.c
   ${CMAKE_CURRENT_LIST_DIR}/widgets/wd_list/wd_list.c
+  ${CMAKE_CURRENT_LIST_DIR}/widgets/wd_obj/wd_obj_gen.c
+  ${CMAKE_CURRENT_LIST_DIR}/widgets/wd_obj/wd_obj_xml_parser.c
+  ${CMAKE_CURRENT_LIST_DIR}/widgets/wd_obj/wd_obj.c
   ${CMAKE_CURRENT_LIST_DIR}/widgets/wd_segment/wd_segment_gen.c
   ${CMAKE_CURRENT_LIST_DIR}/widgets/wd_segment/wd_segment_xml_parser.c
   ${CMAKE_CURRENT_LIST_DIR}/widgets/wd_segment/wd_segment.c)

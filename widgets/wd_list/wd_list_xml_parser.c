@@ -15,7 +15,7 @@
     #include "lvgl/src/lvgl_private.h"
 #endif
 
-#if LV_USE_XML
+#if defined(LV_USE_XML) && LV_USE_XML
 
 /*********************
  *      DEFINES
@@ -125,10 +125,37 @@ void wd_list_container_xml_apply(lv_xml_parser_state_t * state, const char ** at
     }
 }
 
+void * wd_list_title_xml_create(lv_xml_parser_state_t * state, const char ** attrs)
+{
+    LV_UNUSED(attrs);
+    void * item = lv_xml_state_get_parent(state);
+
+    if(item == NULL) {
+        LV_LOG_ERROR("Failed to create wd_list-title");
+        return NULL;
+    }
+
+    return wd_list_get_title(item);
+}
+
+void wd_list_title_xml_apply(lv_xml_parser_state_t * state, const char ** attrs)
+{
+    void * parent_item = lv_xml_state_get_parent(state);
+    void * item = lv_xml_state_get_item(state);
+
+    lv_xml_obj_apply(state, attrs);
+
+    for(int i = 0; attrs[i]; i += 2) {
+        const char * name = attrs[i];
+        const char * value = attrs[i + 1];
+    }
+}
+
 void wd_list_register(void)
 {
     lv_xml_register_widget("wd_list", wd_list_xml_create, wd_list_xml_apply);
     lv_xml_register_widget("wd_list-container", wd_list_container_xml_create, wd_list_container_xml_apply);
+    lv_xml_register_widget("wd_list-title", wd_list_title_xml_create, wd_list_title_xml_apply);
 }
 
 /**********************

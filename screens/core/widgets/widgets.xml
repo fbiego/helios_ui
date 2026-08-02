@@ -12,6 +12,6 @@
 		<bind_style name="style_cont_240" subject="sb_screen_size" ref_value="2" /> -->
 
 		<weather_widget />
-		<weather_widget />
+		<music_widget />
 	</view>
 </screen>

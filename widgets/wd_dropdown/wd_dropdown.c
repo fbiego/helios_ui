@@ -23,6 +23,7 @@
  **********************/
 static void value_observer_cb(lv_observer_t * observer, lv_subject_t * subject);
 static void set_selected_item(wd_dropdown_t * widget, int32_t index);
+static void on_item_deleted_cb(lv_event_t *e);
 static void on_item_clicked_cb(lv_event_t *e);
 
 static void on_main_clicked_cb(lv_event_t *e);
@@ -73,6 +74,9 @@ void wd_dropdown_set_options(lv_obj_t * wd_dropdown, const char * options)
     while(value) {
         lv_obj_t * item = hs_dropdown_item_create(widget->dropdown_list, value, value);
         lv_obj_add_event_cb(item, on_item_clicked_cb, LV_EVENT_CLICKED, widget);
+        char * tag = lv_strdup(value);
+        lv_obj_set_user_data(item, tag);
+        lv_obj_add_event_cb(item, on_item_deleted_cb, LV_EVENT_DELETE, tag);
 
         value = wd_split_str(&tmp, '\n');
     }
@@ -128,9 +132,23 @@ static void set_selected_item(wd_dropdown_t * widget, int32_t index)
             lv_obj_t * label = lv_obj_get_child(child, 0);
             if (label) {
                 lv_label_set_text(widget->main_label, lv_label_get_text(label));
+                char * tag = lv_obj_get_user_data(child);
+                if (tag) {
+                    lv_label_set_translation_tag(widget->main_label, tag);
+                }
             }
         }
     }
+}
+
+static void on_item_deleted_cb(lv_event_t *e)
+{
+    char *tag = lv_event_get_user_data(e);
+    if (tag) {
+        lv_free(tag);
+        tag = NULL;
+    }
+
 }
 
 static void on_item_clicked_cb(lv_event_t *e)

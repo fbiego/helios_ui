@@ -33,7 +33,7 @@ extern "C" {
  * GLOBAL PROTOTYPES
  **********************/
 
-lv_obj_t * hs_info_sb_create(lv_obj_t * parent, const char * label, const char * label_tag, lv_subject_t * info);
+lv_obj_t * hs_info_sb_create(lv_obj_t * parent, const char * label, const char * label_tag, lv_subject_t * info, const char * fmt);
 
 /**********************
  *      MACROS

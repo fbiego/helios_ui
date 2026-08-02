@@ -49,7 +49,7 @@ extern const lv_obj_class_t wd_dropdown_class;
  * GLOBAL PROTOTYPES
  **********************/
 
-#if LV_USE_XML
+#if defined(LV_USE_XML) && LV_USE_XML
     void wd_dropdown_register(void);
 #endif
 

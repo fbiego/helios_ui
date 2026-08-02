@@ -1,0 +1,23 @@
+{
+  "version": "0.2.0",
+  "configurations": [
+    {
+      "type": "lldb",
+      "request": "launch",
+      "name": "Debug LVGL Simulator",
+      "program": "${workspaceFolder}/build/bin/lvgl_simulator",
+      "args": [],
+      "cwd": "${workspaceFolder}",
+      "preLaunchTask": "CMake build"
+    },
+    {
+      "type": "lldb",
+      "request": "launch",
+      "name": "Run LVGL Web",
+      "program": "${workspaceFolder}/build-web/bin/web_build_done",
+      "args": [],
+      "cwd": "${workspaceFolder}",
+      "preLaunchTask": "Web: Run"
+    }
+  ]
+}

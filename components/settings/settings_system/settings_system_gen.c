@@ -37,58 +37,90 @@ lv_obj_t * settings_system_create(lv_obj_t * parent)
     static lv_style_t style_base;
     static lv_style_t style_pad_360;
     static lv_style_t style_pad_240;
+    static lv_style_t style_pad_rect;
+    static lv_style_t style_pad_rect_360;
+    static lv_style_t style_pad_rect_240;
 
     static bool style_inited = false;
 
     if (!style_inited) {
+        /*Init all styles*/
         lv_style_init(&style_base);
+        lv_style_init(&style_pad_360);
+        lv_style_init(&style_pad_240);
+        lv_style_init(&style_pad_rect);
+        lv_style_init(&style_pad_rect_360);
+        lv_style_init(&style_pad_rect_240);
+
         lv_style_set_pad_row(&style_base, 10);
         lv_style_set_pad_ver(&style_base, 120);
-
-        lv_style_init(&style_pad_360);
         lv_style_set_pad_ver(&style_pad_360, 90);
         lv_style_set_pad_hor(&style_pad_360, 25);
-
-        lv_style_init(&style_pad_240);
         lv_style_set_pad_ver(&style_pad_240, 60);
         lv_style_set_pad_hor(&style_pad_240, 20);
+        lv_style_set_pad_hor(&style_pad_rect, 18);
+        lv_style_set_pad_hor(&style_pad_rect_360, 14);
+        lv_style_set_pad_hor(&style_pad_rect_240, 10);
 
         style_inited = true;
     }
 
-    lv_obj_t * wd_list_0 = wd_list_create(parent);
-    lv_obj_set_name_static(wd_list_0, "settings_system_#");
-    wd_list_bind_screen(wd_list_0, &sb_screen_size);
 
-    lv_obj_t * wd_list_container_0 = wd_list_get_container(wd_list_0);
-    lv_obj_add_style(wd_list_container_0, &style_base, 0);
-    lv_obj_bind_style(wd_list_container_0, &style_pad_360, 0, &sb_screen_size, 1);
-    lv_obj_bind_style(wd_list_container_0, &style_pad_240, 0, &sb_screen_size, 2);
-    lv_obj_t * hs_card_0 = hs_card_create(wd_list_container_0);
-    hs_switch_create(hs_card_0, "Circular Scroll", "circular_scroll", &sb_list_circular_mode);
-    
-    hs_line_create(hs_card_0);
-    
-    hs_switch_create(hs_card_0, "Circular Scroll", "grid_mode", &sb_app_list_mode);
-    
-    hs_line_create(hs_card_0);
-    
-    hs_dropdown_create(hs_card_0, "Timeout", "language", &sb_language, "English\nPortuguese\nGerman\nSpanish\nFrench\nHungarian\nRussian\nGreek\nThai\nChinese\nJapanese\nHindi");
-    
-    lv_obj_t * hs_card_1 = hs_card_create(wd_list_container_0);
-    lv_obj_t * hs_button_0 = hs_button_create(hs_card_1, "Circular Scroll", "reboot", COLOR_PRIMARY);
-    lv_obj_set_style_bg_color(hs_button_0, COLOR_BUTTON_PRIMARY, 0);
-    
-    lv_obj_t * hs_button_1 = hs_button_create(hs_card_1, "Circular Scroll", "shutdown", COLOR_PRIMARY);
-    lv_obj_set_style_bg_color(hs_button_1, COLOR_BUTTON_PRIMARY, 0);
-    
-    lv_obj_t * hs_card_2 = hs_card_create(wd_list_container_0);
-    lv_obj_t * hs_button_2 = hs_button_create(hs_card_2, "Circular Scroll", "factory_reset", COLOR_DANGER);
-    lv_obj_set_style_bg_color(hs_button_2, COLOR_BUTTON_DANGER, 0);
+    lv_obj_t * the_root = NULL;
+
+    #if HELIOS_UI_CHECK_COMPILE_TARGET(HELIOS_UI_TARGET_ALL)
+    if (helios_ui_check_target(HELIOS_UI_TARGET_ALL)) {
+        lv_obj_t * wd_list_0 = wd_list_create(parent);
+        lv_obj_set_name_static(wd_list_0, "settings_system_#");
+        wd_list_bind_screen(wd_list_0, &sb_screen_size);
+
+        lv_obj_t * wd_list_title_0 = wd_list_get_title(wd_list_0);
+        lv_obj_set_height(wd_list_title_0, LV_SIZE_CONTENT);
+        lv_obj_t * hs_card_0 = hs_card_create(wd_list_title_0);
+        lv_obj_set_width(hs_card_0, LV_SIZE_CONTENT);
+        lv_obj_set_align(hs_card_0, LV_ALIGN_CENTER);
+        lv_obj_set_flag(hs_card_0, LV_OBJ_FLAG_CLICKABLE, false);
+        lv_obj_set_style_max_width(hs_card_0, lv_pct(100), 0);
+        lv_obj_t * hs_text_normal_0 = hs_text_normal_create(hs_card_0);
+        lv_label_set_translation_tag(hs_text_normal_0, "system");
+
+        lv_obj_t * wd_list_container_0 = wd_list_get_container(wd_list_0);
+        lv_obj_add_style(wd_list_container_0, &style_base, 0);
+        lv_obj_bind_style(wd_list_container_0, &style_pad_360, 0, &sb_screen_size, 1);
+        lv_obj_bind_style(wd_list_container_0, &style_pad_240, 0, &sb_screen_size, 2);
+        lv_obj_bind_state_if_eq(wd_list_container_0, &sb_screen_type, LV_STATE_USER_1, 1);
+        lv_obj_bind_style(wd_list_container_0, &style_pad_rect, LV_STATE_USER_1, &sb_screen_size, 0);
+        lv_obj_bind_style(wd_list_container_0, &style_pad_rect_360, LV_STATE_USER_1, &sb_screen_size, 1);
+        lv_obj_bind_style(wd_list_container_0, &style_pad_rect_240, LV_STATE_USER_1, &sb_screen_size, 2);
+        lv_obj_t * hs_card_1 = hs_card_create(wd_list_container_0);
+        hs_switch_create(hs_card_1, "Circular Scroll", "circular_scroll", &sb_list_circular_mode);
+
+        hs_line_create(hs_card_1);
+
+        hs_switch_create(hs_card_1, "Circular Scroll", "grid_mode", &sb_app_list_mode);
+
+        hs_line_create(hs_card_1);
+
+        hs_dropdown_create(hs_card_1, "Timeout", "language", &sb_language, "English\nPortuguese\nGerman\nSpanish\nFrench\nHungarian\nRussian\nGreek\nThai\nChinese\nJapanese\nHindi");
+
+        lv_obj_t * hs_card_2 = hs_card_create(wd_list_container_0);
+        lv_obj_t * hs_button_0 = hs_button_create(hs_card_2, "Circular Scroll", "reboot", COLOR_PRIMARY);
+        lv_obj_set_style_bg_color(hs_button_0, COLOR_BUTTON_PRIMARY, 0);
+
+        lv_obj_t * hs_button_1 = hs_button_create(hs_card_2, "Circular Scroll", "shutdown", COLOR_PRIMARY);
+        lv_obj_set_style_bg_color(hs_button_1, COLOR_BUTTON_PRIMARY, 0);
+
+        lv_obj_t * hs_card_3 = hs_card_create(wd_list_container_0);
+        lv_obj_t * hs_button_2 = hs_button_create(hs_card_3, "Circular Scroll", "factory_reset", COLOR_DANGER);
+        lv_obj_set_style_bg_color(hs_button_2, COLOR_BUTTON_DANGER, 0);
+
+        the_root = wd_list_0;
+    }
+    #endif
 
     LV_TRACE_OBJ_CREATE("finished");
 
-    return wd_list_0;
+    return the_root;
 }
 
 /**********************

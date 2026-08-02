@@ -111,6 +111,12 @@ lv_obj_t * wd_list_get_container(lv_obj_t * wd_list)
     return widget->list;
 }
 
+lv_obj_t * wd_list_get_title(lv_obj_t * wd_list)
+{
+    wd_list_t * widget = (wd_list_t *)wd_list;
+    return widget->title;
+}
+
 
 /**********************
  *   STATIC FUNCTIONS
@@ -218,6 +224,33 @@ static void on_scroll_cb(lv_event_t *e)
 
     // LV_LOG_USER("WD List %p Circular %d", widget, circular);
 
+    /* START Title reposition section */
+
+    int32_t pad_top = lv_obj_get_style_pad_top(widget->list, LV_PART_MAIN);
+    int32_t pad_left = lv_obj_get_style_pad_left(widget->list, LV_PART_MAIN);
+    int32_t pad_right = lv_obj_get_style_pad_right(widget->list, LV_PART_MAIN);
+    int32_t pad_row= lv_obj_get_style_pad_row(widget->list, LV_PART_MAIN);
+
+    int32_t scroll_top = lv_obj_get_scroll_top(widget->list);
+
+    lv_area_t cont_tl;
+    lv_obj_get_coords(widget->title, &cont_tl);
+
+    int32_t title_h = lv_area_get_height(&cont_tl) - lv_obj_get_style_pad_top(widget->title, LV_PART_MAIN);
+    int32_t opa_map = lv_map(scroll_top, 0, pad_top - pad_row, 255, 0);
+    int32_t new_pad = pad_top - (title_h + pad_row) - scroll_top;
+
+    // LV_LOG_USER("Pad top: %d, title_h %d, scroll_top %d, new_pad %d, opa_map %d", pad_top, title_h, scroll_top, pad_top - (title_h + pad_row) - scroll_top, opa_map);
+
+    if (new_pad < pad_row) new_pad = pad_row;
+
+    lv_obj_set_style_pad_left(widget->title, pad_left, 0);
+    lv_obj_set_style_pad_right(widget->title, pad_right, 0);
+    // lv_obj_set_style_pad_top(widget->title, pad_top - (title_h + pad_row), 0);
+    lv_obj_set_y(widget->title, new_pad);
+    lv_obj_set_style_opa(widget->title, opa_map, 0);
+    /* END Title reposition section */
+
 
     lv_area_t cont_a;
     lv_obj_get_coords(cont, &cont_a);
@@ -309,8 +342,7 @@ static void draw_circular_scrollbar_event(lv_event_t * e)
     int32_t scroll_top = lv_obj_get_scroll_top(obj);
     int32_t scroll_bottom = lv_obj_get_scroll_bottom(obj);
     int32_t scroll_range = scroll_top + scroll_bottom;
-
-    
+   
 
     if(scroll_range <= 0) return;
 

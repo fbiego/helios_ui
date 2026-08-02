@@ -22,6 +22,8 @@
  *  STATIC PROTOTYPES
  **********************/
 static void scale_observer_cb(lv_observer_t * observer, lv_subject_t * subject);
+static void src_observer_cb(lv_observer_t * observer, lv_subject_t * subject);
+static void color_observer_cb(lv_observer_t * observer, lv_subject_t * subject);
 
 /**********************
  *  STATIC VARIABLES
@@ -135,6 +137,20 @@ void wd_image_bind_scale(lv_obj_t * wd_image, lv_subject_t * bind_scale)
 
 }
 
+void wd_image_bind_src(lv_obj_t * wd_image, lv_subject_t * bind_src)
+{
+    wd_image_t * widget = (wd_image_t *)wd_image;
+    widget->bind_src = bind_src;
+    lv_subject_add_observer_obj(widget->bind_src, src_observer_cb, wd_image, widget);
+}
+
+void wd_image_bind_color(lv_obj_t * wd_image, lv_subject_t * bind_color)
+{
+    wd_image_t * widget = (wd_image_t *)wd_image;
+    widget->bind_color = bind_color;
+    lv_subject_add_observer_obj(widget->bind_color, color_observer_cb, wd_image, widget);
+}
+
 /**********************
  *   STATIC FUNCTIONS
  **********************/
@@ -172,4 +188,29 @@ static void scale_observer_cb(lv_observer_t * observer, lv_subject_t * subject)
     }
     lv_image_set_rotation(obj, widget->rotation);
 
+}
+
+static void src_observer_cb(lv_observer_t * observer, lv_subject_t * subject)
+{
+
+    if(subject->type != LV_SUBJECT_TYPE_POINTER) {
+        return;
+    }
+    wd_image_t * widget = lv_observer_get_user_data(observer);
+    lv_obj_t * obj = (lv_obj_t *)widget;
+    const void *src = lv_subject_get_pointer(subject);
+
+    lv_image_set_src(obj, src);
+}
+
+static void color_observer_cb(lv_observer_t * observer, lv_subject_t * subject)
+{
+    if(subject->type != LV_SUBJECT_TYPE_COLOR) {
+        return;
+    }
+    wd_image_t * widget = lv_observer_get_user_data(observer);
+    lv_obj_t * obj = (lv_obj_t *)widget;
+    lv_color_t color = lv_subject_get_color(subject);
+    
+    lv_obj_set_style_image_recolor(obj, color, 0);
 }

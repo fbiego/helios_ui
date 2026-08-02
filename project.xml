@@ -1,4 +1,4 @@
-<project lvgl_version="9.4.0">
+<project name="helios_ui" lvgl_version="9.4.0">
 	<targets>
 		<target name="target_466R">
 			<display width="466" height="466" radius="233" />
@@ -20,6 +20,9 @@
 		</target> -->
 		<target name="target_240">
 			<display width="240" height="280" radius="50" />
+		</target>
+		<target name="target_390">
+			<display width="390" height="450" radius="80" />
 		</target>
 		<target name="target_410">
 			<display width="410" height="502" radius="100" />

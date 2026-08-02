@@ -81,7 +81,9 @@ static void wd_arcoiris_constructor(const lv_obj_class_t * class_p, lv_obj_t * o
     static bool style_inited = false;
 
     if (!style_inited) {
+        /*Init all styles*/
         lv_style_init(&style_main);
+
         lv_style_set_width(&style_main, lv_pct(100));
         lv_style_set_height(&style_main, lv_pct(100));
         lv_style_set_bg_color(&style_main, lv_color_hex(0x000000));
@@ -89,9 +91,15 @@ static void wd_arcoiris_constructor(const lv_obj_class_t * class_p, lv_obj_t * o
 
         style_inited = true;
     }
-    lv_obj_add_style(obj, &style_main, 0);
 
+    lv_obj_t * the_root = NULL;
+    #if HELIOS_UI_CHECK_COMPILE_TARGET(HELIOS_UI_TARGET_ALL)
+    if (helios_ui_check_target(HELIOS_UI_TARGET_ALL)) {
+        lv_obj_add_style(obj, &style_main, 0);
 
+        the_root = obj;
+    }
+    #endif
     wd_arcoiris_constructor_hook(obj);
 
     LV_TRACE_OBJ_CREATE("finished");

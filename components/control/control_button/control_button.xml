@@ -10,6 +10,7 @@
 		<style name="style_button_240" width="60" height="60" />
 		<style name="style_pressed" bg_color="0x0534ff" />
 		<style name="style_icon" align="center" image_recolor="0xffffff" image_recolor_opa="255" />
+		<style name="style_disabled" bg_color="0x3d3c38" />
 	</styles>
 	<api>
 		<prop name="icon" type="image" default="icon_wifi" />
@@ -18,6 +19,7 @@
 		<remove_style_all />
 		<style name="style_button" />
 		<style name="style_pressed" selector="pressed" />
+		<style name="style_disabled" selector="disabled" />
 
 		<bind_style name="style_button_360" subject="sb_screen_size" ref_value="1" />
 		<bind_style name="style_button_240" subject="sb_screen_size" ref_value="2" />

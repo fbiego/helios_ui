@@ -1,0 +1,56 @@
+{
+  "version": "2.0.0",
+  "tasks": [
+    {
+      "label": "Configure",
+      "type": "shell",
+      "command": "cmake",
+      "args": ["-S", "sim", "-B", "build", "-DCMAKE_BUILD_TYPE=Debug"],
+      "options": { "cwd": "${workspaceFolder}" },
+      "problemMatcher": []
+    },
+    {
+      "label": "CMake build",
+      "type": "shell",
+      "command": "cmake",
+      "args": ["--build", "build", "-j"],
+      "options": { "cwd": "${workspaceFolder}" },
+      "dependsOn": "Configure",
+      "group": { "kind": "build", "isDefault": true },
+      "problemMatcher": []
+    },
+    {
+      "label": "Web: Configure",
+      "type": "shell",
+      "command": "emcmake",
+      "args": ["cmake", "-S", "web", "-B", "build-web", "-DCMAKE_BUILD_TYPE=Release"],
+      "options": {
+        "cwd": "${workspaceFolder}"
+      },
+      "problemMatcher": []
+    },
+    {
+      "label": "Web: Build",
+      "type": "shell",
+      "command": "emmake",
+      "args": ["cmake", "--build", "build-web", "-j"],
+      "options": {
+        "cwd": "${workspaceFolder}"
+      },
+      "dependsOn": "Web: Configure",
+      "group": "build",
+      "problemMatcher": []
+    },
+    {
+      "label": "Web: Run",
+      "type": "shell",
+      "command": "python3",
+      "args": ["-m", "webbrowser", "file://${workspaceFolder}/preview-bin/web/index.html"],
+      "options": {
+        "cwd": "${workspaceFolder}"
+      },
+      "dependsOn": "Web: Build",
+      "problemMatcher": []
+    }
+  ]
+}

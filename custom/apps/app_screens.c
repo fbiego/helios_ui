@@ -1,5 +1,5 @@
 /**
- * @file screens.c
+ * @file app_screens.c
  *
  */
 
@@ -7,7 +7,9 @@
  *      INCLUDES
  *********************/
 
-#include "screens.h"
+#include "app_screens.h"
+
+#include "../events/events.h"
 
 /*********************
  *      DEFINES
@@ -131,6 +133,7 @@ lv_obj_t * screen_applications(void)
     };
 
     lv_obj_add_event_cb(apps, screen_gesture_event_cb, LV_EVENT_GESTURE, &gestures);
+    lv_obj_add_event_cb(apps, screen_applications_events_cb, LV_EVENT_ALL, NULL);
 
     static int scroll_pos = 0;
     lv_obj_t * app_list = get_list_from_wd(apps, "app_list");
@@ -158,7 +161,8 @@ lv_obj_t * screen_notifications(void)
     if (notifications_to_apps) {
         gesture_action_t apps = {
             .screen_fn = screen_applications, 
-            .anim = LV_SCR_LOAD_ANIM_OUT_RIGHT
+            .anim = LV_SCR_LOAD_ANIM_OUT_RIGHT,
+            .transition = HELIOS_SCREEN_TRANSITION_APP_CLOSE_RIGHT
         };
         gestures.left.screen_fn = NULL;
         gestures.right = apps;
@@ -173,6 +177,8 @@ lv_obj_t * screen_notifications(void)
     }
 
     lv_obj_add_event_cb(notifications, screen_gesture_event_cb, LV_EVENT_GESTURE, &gestures);
+
+    lv_obj_add_event_cb(notifications, screen_notifications_events_cb, LV_EVENT_ALL, NULL);
 
     static int scroll_pos = 0;
     lv_obj_t * list = get_list_from_wd(notifications, "notifications_list");
@@ -212,7 +218,7 @@ lv_obj_t * screen_settings(void)
 
     static gesture_map_t gestures = {
         .left  = { NULL, 0 },
-        .right = { screen_applications, LV_SCR_LOAD_ANIM_OUT_RIGHT },
+        .right = { screen_applications, LV_SCR_LOAD_ANIM_OUT_RIGHT, HELIOS_SCREEN_TRANSITION_APP_CLOSE_RIGHT },
         .up    = { NULL, 0 },
         .down  = { NULL, 0 },
     };
@@ -247,12 +253,13 @@ lv_obj_t * screen_weather(void)
 
     static gesture_map_t gestures = {
         .left  = { NULL, 0 },
-        .right = { screen_applications, LV_SCR_LOAD_ANIM_OUT_RIGHT },
+        .right = { screen_applications, LV_SCR_LOAD_ANIM_OUT_RIGHT, HELIOS_SCREEN_TRANSITION_APP_CLOSE_RIGHT },
         .up    = { NULL, 0 },
         .down  = { NULL, 0 },
     };
 
     lv_obj_add_event_cb(weather, screen_gesture_event_cb, LV_EVENT_GESTURE, &gestures);
+    lv_obj_add_event_cb(weather, screen_weather_events_cb, LV_EVENT_ALL, NULL);
 
     static int scroll_pos = 0;
     lv_obj_t * list = get_list_from_wd(weather, "weather_list");
@@ -271,12 +278,13 @@ lv_obj_t * screen_contacts(void)
 
     static gesture_map_t gestures = {
         .left  = { NULL, 0 },
-        .right = { screen_applications, LV_SCR_LOAD_ANIM_OUT_RIGHT },
+        .right = { screen_applications, LV_SCR_LOAD_ANIM_OUT_RIGHT, HELIOS_SCREEN_TRANSITION_APP_CLOSE_RIGHT },
         .up    = { NULL, 0 },
         .down  = { NULL, 0 },
     };
 
     lv_obj_add_event_cb(contacts, screen_gesture_event_cb, LV_EVENT_GESTURE, &gestures);
+    lv_obj_add_event_cb(contacts, screen_contacts_events_cb, LV_EVENT_ALL, NULL);
 
     static int scroll_pos = 0;
     lv_obj_t * list = get_list_from_wd(contacts, "contacts_list");
@@ -289,22 +297,6 @@ lv_obj_t * screen_contacts(void)
     return contacts;
 }
 
-lv_obj_t * screen_navigation(void)
-{
-    lv_obj_t *navigation = navigation_create();
-
-    static gesture_map_t gestures = {
-        .left  = { NULL, 0 },
-        .right = { screen_applications, LV_SCR_LOAD_ANIM_OUT_RIGHT },
-        .up    = { NULL, 0 },
-        .down  = { NULL, 0 },
-    };
-
-    lv_obj_add_event_cb(navigation, screen_gesture_event_cb, LV_EVENT_GESTURE, &gestures);
-
-    return navigation;
-}
-
 lv_obj_t * get_list_from_wd(lv_obj_t * parent, const char * name)
 {
     lv_obj_t * list = NULL;
@@ -313,6 +305,44 @@ lv_obj_t * get_list_from_wd(lv_obj_t * parent, const char * name)
         list = wd_list_get_container(wd_list);
     }
     return list;
+}
+
+lv_obj_t * simple_app_screen_create(screen_create_cb_t create_cb)
+{
+    return simple_app_screen_create_transition(create_cb, HELIOS_SCREEN_TRANSITION_DEFAULT);
+}
+
+lv_obj_t * simple_app_screen_create_transition(screen_create_cb_t create_cb,
+                                               helios_screen_transition_t close_transition)
+{
+    if (!create_cb) return NULL;
+
+    lv_obj_t * screen = create_cb();
+
+    static gesture_map_t gestures = {
+        .left  = { NULL, 0 },
+        .right = { screen_applications, LV_SCR_LOAD_ANIM_OUT_RIGHT, HELIOS_SCREEN_TRANSITION_DEFAULT },
+        .up    = { NULL, 0 },
+        .down  = { NULL, 0 },
+    };
+
+    gestures.right.transition = close_transition;
+
+    lv_obj_add_event_cb(screen, screen_gesture_event_cb, LV_EVENT_GESTURE, &gestures);
+
+    return screen;
+}
+
+void helios_screen_load_transition(lv_obj_t * screen,
+                                   lv_scr_load_anim_t fallback_anim,
+                                   uint32_t duration,
+                                   bool auto_del,
+                                   helios_screen_transition_t transition)
+{
+    if (!screen) return;
+
+    LV_UNUSED(transition);
+    lv_screen_load_anim(screen, fallback_anim, duration, 0, auto_del);
 }
 
 /**********************
@@ -457,12 +487,12 @@ static void screen_gesture_event_cb(lv_event_t * e)
     if (!action->screen_fn) return;
 
     if (action->screen_fn) {
-        lv_screen_load_anim(
+        helios_screen_load_transition(
             action->screen_fn(),
             action->anim,
             500,
-            0,
-            true
+            true,
+            action->transition
         );
     }
 }
@@ -493,14 +523,18 @@ static void settings_item_clicked_cb(lv_event_t * e)
 
     static gesture_map_t gestures = {
         .left  = { NULL, 0 },
-        .right = { screen_settings, LV_SCR_LOAD_ANIM_OUT_RIGHT },
+        .right = { screen_settings, LV_SCR_LOAD_ANIM_OUT_RIGHT, HELIOS_SCREEN_TRANSITION_APP_CLOSE_RIGHT },
         .up    = { NULL, 0 },
         .down  = { NULL, 0 },
     };
 
     lv_obj_add_event_cb(screen, screen_gesture_event_cb, LV_EVENT_GESTURE, &gestures);
 
-    lv_screen_load_anim(screen, LV_SCR_LOAD_ANIM_OVER_LEFT, 500, 0, true);
+    helios_screen_load_transition(screen,
+                                  LV_SCR_LOAD_ANIM_OVER_LEFT,
+                                  500,
+                                  true,
+                                  HELIOS_SCREEN_TRANSITION_APP_OPEN_LEFT);
     
 }
 

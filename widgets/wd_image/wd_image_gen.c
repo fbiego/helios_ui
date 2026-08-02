@@ -84,9 +84,15 @@ static void wd_image_constructor(const lv_obj_class_t * class_p, lv_obj_t * obj)
 
         style_inited = true;
     }
-    
+
+    lv_obj_t * the_root = NULL;
+    #if HELIOS_UI_CHECK_COMPILE_TARGET(HELIOS_UI_TARGET_ALL)
+    if (helios_ui_check_target(HELIOS_UI_TARGET_ALL)) {
 
 
+        the_root = obj;
+    }
+    #endif
     wd_image_constructor_hook(obj);
 
     LV_TRACE_OBJ_CREATE("finished");

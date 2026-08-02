@@ -1,2 +1,5 @@
 preview-build
 preview-bin
+build
+build-web
+/.cache
