@@ -1,0 +1,48 @@
+{
+  "enabled": false,
+  "title": "Controls",
+  "columns": 3,
+  "maxScale": 1,
+  "memory": {
+    "limitKiB": 150,
+    "openByDefault": true
+  },
+  "buttonRadius": 4,
+  "hardwareFrame": {
+    "enabled": false,
+    "image": "hardware_frame.png",
+    "ui": {
+      "x": 198,
+      "y": 138
+    }
+  },
+  "controlsOverlay": [
+    ["btn_top_left", "btn_top_mid"]
+  ],
+  "buttons": [
+    {
+      "id": "btn_top_left",
+      "label": "TOP LEFT",
+      "key": "q",
+      "x": 193,
+      "y": 76,
+      "width": 100,
+      "height": 37,
+      "radius": 8,
+      "overlayColor": "#48DEFF",
+      "overlayOpacity": 75
+    },
+    {
+      "id": "btn_top_mid",
+      "label": "TOP MID",
+      "key": "w",
+      "x": 308,
+      "y": 76,
+      "width": 100,
+      "height": 37,
+      "radius": 8,
+      "overlayColor": "#48DEFF",
+      "overlayOpacity": 75
+    }
+  ]
+}

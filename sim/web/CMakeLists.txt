@@ -188,6 +188,7 @@ function(configure_web_target target_name output_name shell_file)
   target_link_options(${target_name} PRIVATE
     "-sUSE_SDL=2"
     "-sSINGLE_FILE=1"
+    "-sSINGLE_FILE_BINARY_ENCODE=0"
     "-sALLOW_MEMORY_GROWTH=1"
     "-sINITIAL_MEMORY=67108864"
     "--shell-file" "${shell_file}")
@@ -244,6 +245,7 @@ else()
   target_link_options(index PRIVATE
     "-sUSE_SDL=2"
     "-sSINGLE_FILE=1"
+    "-sSINGLE_FILE_BINARY_ENCODE=0"
     "-sALLOW_MEMORY_GROWTH=1"
     "-sINITIAL_MEMORY=67108864")
 endif()
@@ -254,7 +256,11 @@ if(WEB_SINGLE_HTML)
             "${EXECUTABLE_OUTPUT_PATH}/index.js"
             "${EXECUTABLE_OUTPUT_PATH}/key_overlay.json"
             "${EXECUTABLE_OUTPUT_PATH}/hardware_frame.png"
-            "${EXECUTABLE_OUTPUT_PATH}/fbd_hardware_frame.png")
+            "${EXECUTABLE_OUTPUT_PATH}/fbd_hardware_frame.png"
+    COMMAND ${CMAKE_COMMAND} -E make_directory "${WEB_PREVIEW_OUTPUT_PATH}"
+    COMMAND ${CMAKE_COMMAND} -E copy_if_different
+            "$<TARGET_FILE:index>"
+            "${WEB_PREVIEW_OUTPUT_PATH}/index.html")
 elseif(EXISTS "${WEB_ASSETS_DIR}")
   add_custom_command(TARGET index POST_BUILD
     COMMAND ${CMAKE_COMMAND} -E copy_directory
@@ -262,12 +268,29 @@ elseif(EXISTS "${WEB_ASSETS_DIR}")
             "${EXECUTABLE_OUTPUT_PATH}"
     COMMAND ${CMAKE_COMMAND} -E copy_if_different
             "${CMAKE_BINARY_DIR}/index.html"
-            "${EXECUTABLE_OUTPUT_PATH}/index.html")
+            "${EXECUTABLE_OUTPUT_PATH}/index.html"
+    COMMAND ${CMAKE_COMMAND} -E make_directory "${WEB_PREVIEW_OUTPUT_PATH}"
+    COMMAND ${CMAKE_COMMAND} -E copy_directory
+            "${WEB_ASSETS_DIR}"
+            "${WEB_PREVIEW_OUTPUT_PATH}"
+    COMMAND ${CMAKE_COMMAND} -E copy_if_different
+            "${EXECUTABLE_OUTPUT_PATH}/index.html"
+            "${WEB_PREVIEW_OUTPUT_PATH}/index.html"
+    COMMAND ${CMAKE_COMMAND} -E copy_if_different
+            "$<TARGET_FILE:index>"
+            "${WEB_PREVIEW_OUTPUT_PATH}/index.js")
 else()
   add_custom_command(TARGET index POST_BUILD
     COMMAND ${CMAKE_COMMAND} -E copy_if_different
             "${CMAKE_BINARY_DIR}/index.html"
-            "${EXECUTABLE_OUTPUT_PATH}/index.html")
+            "${EXECUTABLE_OUTPUT_PATH}/index.html"
+    COMMAND ${CMAKE_COMMAND} -E make_directory "${WEB_PREVIEW_OUTPUT_PATH}"
+    COMMAND ${CMAKE_COMMAND} -E copy_if_different
+            "${EXECUTABLE_OUTPUT_PATH}/index.html"
+            "${WEB_PREVIEW_OUTPUT_PATH}/index.html"
+    COMMAND ${CMAKE_COMMAND} -E copy_if_different
+            "$<TARGET_FILE:index>"
+            "${WEB_PREVIEW_OUTPUT_PATH}/index.js")
 endif()
 
 if(WEB_STANDALONE_HTML AND NOT WEB_SINGLE_HTML)
@@ -280,7 +303,15 @@ if(WEB_STANDALONE_HTML AND NOT WEB_SINGLE_HTML)
     COMMAND ${CMAKE_COMMAND} -E make_directory "${WEB_PREVIEW_OUTPUT_PATH}"
     COMMAND ${CMAKE_COMMAND} -E copy_if_different
             "$<TARGET_FILE:${WEB_STANDALONE_TARGET}>"
+            "${CMAKE_BINARY_DIR}/${UI_NAME}.html"
+    COMMAND ${CMAKE_COMMAND} -E copy_if_different
+            "$<TARGET_FILE:${WEB_STANDALONE_TARGET}>"
             "${WEB_PREVIEW_OUTPUT_PATH}/${UI_NAME}.html")
+  add_custom_target(web_preview ALL
+    DEPENDS index ${WEB_STANDALONE_TARGET})
+else()
+  add_custom_target(web_preview ALL
+    DEPENDS index)
 endif()
 
 find_program(HOST_CC NAMES cc clang gcc PATHS /usr/bin /bin /usr/local/bin NO_DEFAULT_PATH)

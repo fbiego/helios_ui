@@ -2,49 +2,1489 @@
 <html lang="en">
   <head>
     <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>LVGL Web Simulator</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+    <title>helios_ui - LVGL Web Simulator</title>
     <style>
+      :root {
+        color-scheme: dark;
+        --console-panel-height: 194px;
+      }
+
       html,
       body {
-        margin: 0;
         width: 100%;
         height: 100%;
+        margin: 0;
         background: #111;
+        color: #d6d6d6;
+        font-family: Arial, sans-serif;
       }
 
       body {
         display: grid;
-        place-items: center;
+        grid-template-rows: minmax(0, 1fr) auto;
+        overflow: hidden;
       }
 
-      canvas {
+      .stage {
+        position: relative;
+        display: grid;
+        place-items: center;
+        min-height: 0;
+        overflow: hidden;
+        background: #111;
+      }
+
+      #simulatorShell {
+        position: relative;
+        min-width: 0;
+        min-height: 0;
+      }
+
+      #simulatorFrame {
+        position: relative;
+        transform-origin: top left;
+      }
+
+      #hardwareFrame {
+        position: absolute;
+        inset: 0;
+        z-index: 1;
         display: block;
-        max-width: 100vw;
-        max-height: 100vh;
+        width: 100%;
+        height: 100%;
+        pointer-events: none;
+        -webkit-user-drag: none;
+        user-select: none;
+      }
+
+      #displayStage {
+        position: absolute;
+        z-index: 2;
+        display: grid;
+        place-items: center;
+        overflow: hidden;
+        border-radius: 50%;
+        background: transparent;
+      }
+
+      #canvas {
+        display: block;
+        border: 0;
+        border-radius: 50%;
+        outline: none;
+        background: #000;
         image-rendering: auto;
+        touch-action: none;
+      }
+
+      #keyOverlay {
+        position: fixed;
+        top: max(10px, env(safe-area-inset-top));
+        right: max(10px, env(safe-area-inset-right));
+        z-index: 20;
+        display: none;
+        width: max-content;
+        max-width: calc(100vw - 20px);
+        gap: 8px;
+        padding: 8px;
+        border: 1px solid rgba(255, 255, 255, 0.14);
+        border-radius: 6px;
+        background: rgba(0, 0, 0, 0.58);
+        overflow-x: auto;
+        -webkit-user-select: none;
+        user-select: none;
+        touch-action: none;
+      }
+
+      #keyOverlay.isEnabled {
+        display: grid;
+      }
+
+      .keyOverlayTitle {
+        min-width: 0;
+        color: rgba(255, 255, 255, 0.82);
+        font: 700 11px/1.2 Arial, sans-serif;
+        letter-spacing: 0;
+        text-transform: uppercase;
+      }
+
+      .keyOverlayButtons {
+        display: grid;
+        grid-template-columns: repeat(var(--key-overlay-columns, 3), max-content);
+        gap: 6px;
+      }
+
+      .keyButton {
+        width: auto;
+        height: 36px;
+        min-width: 48px;
+        padding: 0 10px;
+        border: 1px solid rgba(255, 255, 255, 0.22);
+        border-radius: 4px;
+        background: rgba(255, 255, 255, 0.1);
+        color: #f1f1f1;
+        font: 700 11px/1 Arial, sans-serif;
+        letter-spacing: 0;
+        text-align: center;
+        white-space: nowrap;
+        cursor: pointer;
+        -webkit-tap-highlight-color: transparent;
+      }
+
+      .keyButton:active,
+      .keyButton.isPressed {
+        background: rgba(255, 255, 255, 0.28);
+        transform: translateY(1px);
+      }
+
+      #cameraButtonLayer {
+        position: absolute;
+        inset: 0;
+        z-index: 3;
+        pointer-events: none;
+      }
+
+      .cameraButtonRegion {
+        position: absolute;
+        display: block;
+        padding: 0;
+        border: 0;
+        border-radius: 4px;
+        background: transparent;
+        cursor: pointer;
+        pointer-events: auto;
+        -webkit-tap-highlight-color: transparent;
+      }
+
+      .cameraButtonRegion:active,
+      .cameraButtonRegion.isPressed {
+        background: var(--button-overlay-color, rgba(255, 255, 255, 0.18));
+      }
+
+      #simulatorFrame.isOverlayPulse .cameraButtonRegion {
+        animation: cameraButtonPulse 800ms ease-out;
+      }
+
+      @keyframes cameraButtonPulse {
+        0%,
+        100% {
+          outline: 0 solid rgba(255, 255, 255, 0);
+          background: transparent;
+        }
+
+        32% {
+          outline: 2px solid rgba(255, 255, 255, 0.32);
+          background: var(--button-overlay-color, rgba(255, 255, 255, 0.42));
+        }
+
+        62% {
+          outline: 1px solid rgba(255, 255, 255, 0.2);
+          background: var(--button-overlay-color, rgba(255, 255, 255, 0.42));
+        }
+      }
+
+      #status {
+        position: fixed;
+        top: 10px;
+        left: 10px;
+        z-index: 10;
+        padding: 6px 10px;
+        border-radius: 4px;
+        background: rgba(0, 0, 0, 0.65);
+        color: #d6d6d6;
+        font-size: 12px;
+        pointer-events: none;
+      }
+
+      #progress {
+        position: fixed;
+        top: 38px;
+        left: 10px;
+        z-index: 10;
+        width: 240px;
+      }
+
+      #memoryToggle {
+        position: fixed;
+        bottom: calc(var(--console-panel-height) + 10px);
+        right: 10px;
+        z-index: 25;
+        min-width: 82px;
+        height: 32px;
+        padding: 0 10px;
+        border: 1px solid rgba(255, 255, 255, 0.22);
+        border-radius: 4px;
+        background: rgba(0, 0, 0, 0.68);
+        color: #ededed;
+        font: 700 11px/1 Arial, sans-serif;
+        letter-spacing: 0;
+        text-transform: uppercase;
+        cursor: pointer;
+      }
+
+      #memoryToggle:hover,
+      #memoryToggle.isOpen {
+        background: rgba(255, 255, 255, 0.14);
+      }
+
+      #memoryPanel {
+        position: fixed;
+        right: 10px;
+        bottom: calc(var(--console-panel-height) + 50px);
+        z-index: 26;
+        box-sizing: border-box;
+        display: none;
+        width: min(360px, calc(100vw - 20px));
+        padding: 12px;
+        border: 1px solid rgba(255, 255, 255, 0.16);
+        border-radius: 6px;
+        background: rgba(10, 10, 10, 0.92);
+        box-shadow: 0 16px 34px rgba(0, 0, 0, 0.42);
+        color: #eeeeee;
+      }
+
+      #memoryPanel.isOpen {
+        display: block;
+      }
+
+      #memoryPanel.isDragging {
+        -webkit-user-select: none;
+        user-select: none;
+      }
+
+      #memoryPanel.isWarning {
+        border-color: rgba(255, 70, 70, 0.86);
+      }
+
+      .memoryPanelHeader {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        margin-bottom: 10px;
+        cursor: move;
+        touch-action: none;
+        -webkit-user-select: none;
+        user-select: none;
+      }
+
+      .memoryPanelTitle {
+        font: 700 12px/1.2 Arial, sans-serif;
+        letter-spacing: 0;
+        text-transform: uppercase;
+      }
+
+      #memoryClose {
+        margin-left: auto;
+        width: 28px;
+        height: 28px;
+        padding: 0;
+        border: 1px solid rgba(255, 255, 255, 0.18);
+        border-radius: 4px;
+        background: rgba(255, 255, 255, 0.08);
+        color: #ededed;
+        font: 700 16px/1 Arial, sans-serif;
+        cursor: pointer;
+      }
+
+      .memoryPanelRows {
+        display: grid;
+        grid-template-columns: 1fr auto;
+        gap: 6px 10px;
+        margin-bottom: 10px;
+        font: 12px/1.25 Arial, sans-serif;
+      }
+
+      .memoryPanelRows dt {
+        margin: 0;
+        color: rgba(255, 255, 255, 0.62);
+      }
+
+      .memoryPanelRows dd {
+        margin: 0;
+        color: #ffffff;
+        text-align: right;
+        font-variant-numeric: tabular-nums;
+      }
+
+      .memoryPanelRows dd.isOverLimit,
+      #memoryPanel.isWarning #memoryWarning {
+        color: #ff6464;
+      }
+
+      #memoryGraph {
+        display: block;
+        width: 100%;
+        height: 92px;
+        margin-bottom: 10px;
+        border: 1px solid rgba(255, 255, 255, 0.12);
+        border-radius: 4px;
+        background: #050505;
+      }
+
+      .memoryLimitRow {
+        display: grid;
+        grid-template-columns: auto minmax(0, 1fr) auto auto auto;
+        align-items: center;
+        gap: 8px;
+        font: 12px/1 Arial, sans-serif;
+      }
+
+      #memoryLimitInput {
+        width: 100%;
+        box-sizing: border-box;
+        height: 28px;
+        border: 1px solid rgba(255, 255, 255, 0.18);
+        border-radius: 4px;
+        background: rgba(255, 255, 255, 0.08);
+        color: #ffffff;
+        padding: 0 8px;
+        font: 12px/1 Arial, sans-serif;
+      }
+
+      .memoryLimitPreset {
+        height: 28px;
+        padding: 0 8px;
+        border: 1px solid rgba(255, 255, 255, 0.18);
+        border-radius: 4px;
+        background: rgba(255, 255, 255, 0.08);
+        color: #ededed;
+        font: 700 11px/1 Arial, sans-serif;
+        cursor: pointer;
+      }
+
+      .memoryLimitPreset:hover {
+        background: rgba(255, 255, 255, 0.16);
+      }
+
+      #memoryWarning {
+        min-height: 14px;
+        margin-top: 8px;
+        color: rgba(255, 255, 255, 0.58);
+        font: 11px/1.25 Arial, sans-serif;
+      }
+
+      .memoryBreachHeader {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        margin-top: 10px;
+        color: rgba(255, 255, 255, 0.66);
+        font: 700 11px/1.2 Arial, sans-serif;
+        letter-spacing: 0;
+        text-transform: uppercase;
+      }
+
+      #memoryBreachToggle {
+        display: inline-flex;
+        align-items: center;
+        gap: 5px;
+        padding: 2px 0;
+        border: 0;
+        background: transparent;
+        color: inherit;
+        font: inherit;
+        letter-spacing: inherit;
+        text-transform: inherit;
+        cursor: pointer;
+      }
+
+      #memoryBreachToggle::after {
+        content: "";
+        width: 0;
+        height: 0;
+        border-top: 4px solid transparent;
+        border-bottom: 4px solid transparent;
+        border-left: 5px solid currentColor;
+        opacity: 0.78;
+        transform-origin: 45% 50%;
+      }
+
+      #memoryBreachToggle[aria-expanded="true"]::after {
+        transform: rotate(90deg);
+      }
+
+      #memoryBreachToggle::before {
+        content: "Show ";
+      }
+
+      #memoryBreachToggle[aria-expanded="true"]::before {
+        content: "Hide ";
+      }
+
+      #memoryBreachCount {
+        min-width: 18px;
+        padding: 2px 6px;
+        border-radius: 999px;
+        background: rgba(255, 255, 255, 0.1);
+        color: #ffffff;
+        text-align: center;
+        font-variant-numeric: tabular-nums;
+      }
+
+      #memoryBreachClear {
+        margin-left: auto;
+        padding: 2px 8px;
+        border: 1px solid rgba(255, 255, 255, 0.18);
+        border-radius: 4px;
+        background: rgba(255, 255, 255, 0.08);
+        color: #ededed;
+        font: inherit;
+        cursor: pointer;
+      }
+
+      #memoryBreachClear:disabled {
+        opacity: 0.45;
+        cursor: default;
+      }
+
+      #memoryBreachList[hidden] {
+        display: none;
+      }
+
+      #memoryBreachList {
+        display: grid;
+        gap: 4px;
+        max-height: 96px;
+        margin: 8px 0 0;
+        padding: 0;
+        overflow-y: auto;
+        color: rgba(255, 255, 255, 0.78);
+        font: 11px/1.25 Arial, sans-serif;
+        list-style: none;
+      }
+
+      #memoryBreachList li {
+        display: grid;
+        grid-template-columns: minmax(0, 1fr) auto;
+        gap: 8px;
+        padding: 5px 0;
+        border-top: 1px solid rgba(255, 255, 255, 0.08);
+      }
+
+      .memoryBreachUsage {
+        color: #ff7474;
+        text-align: right;
+        font-variant-numeric: tabular-nums;
+      }
+
+      #console {
+        border-top: 1px solid #333;
+        background: #000;
+      }
+
+      #consoleBar {
+        display: flex;
+        align-items: center;
+        padding: 5px 10px;
+        color: rgba(255, 255, 255, 0.55);
+        font-size: 11px;
+        letter-spacing: 0;
+        text-transform: uppercase;
+      }
+
+      #consoleClear {
+        margin-left: auto;
+        padding: 2px 9px;
+        border: 1px solid rgba(255, 255, 255, 0.22);
+        border-radius: 4px;
+        background: rgba(255, 255, 255, 0.08);
+        color: #e8e8e8;
+        font: inherit;
+        cursor: pointer;
+      }
+
+      #consoleClear:hover {
+        background: rgba(255, 255, 255, 0.16);
+      }
+
+      #output {
+        box-sizing: border-box;
+        display: block;
+        width: 100%;
+        height: 160px;
+        margin: 0;
+        padding: 0 10px 10px;
+        border: 0;
+        outline: none;
+        resize: vertical;
+        background: #000;
+        color: #f0f0f0;
+        font: 12px/1.45 "Lucida Console", Monaco, monospace;
+      }
+
+      @media (prefers-reduced-motion: reduce) {
+        #simulatorFrame.isOverlayPulse .cameraButtonRegion {
+          animation-duration: 1ms;
+        }
+      }
+
+      @media (max-width: 720px) {
+        .keyOverlayButtons {
+          gap: 5px;
+        }
+
+        .keyButton {
+          min-width: 42px;
+          height: 34px;
+          font-size: 10px;
+        }
       }
     </style>
   </head>
   <body>
-    <canvas id="canvas" oncontextmenu="event.preventDefault()"></canvas>
+    <main class="stage">
+      <div id="simulatorShell">
+        <div id="simulatorFrame">
+          <img id="hardwareFrame" alt="" aria-hidden="true" hidden>
+          <div id="displayStage">
+            <canvas id="canvas" tabindex="-1" oncontextmenu="event.preventDefault()"></canvas>
+          </div>
+          <div id="cameraButtonLayer" aria-label="Hardware controls"></div>
+        </div>
+      </div>
+    </main>
+    <nav id="keyOverlay" aria-label="Simulator key controls"></nav>
+    <progress value="0" max="100" id="progress" hidden></progress>
+    <div id="status">Downloading...</div>
+    <button type="button" id="memoryToggle" aria-expanded="false" aria-controls="memoryPanel">Memory</button>
+    <section id="memoryPanel" role="dialog" aria-label="Memory diagnostics" aria-hidden="true">
+      <div class="memoryPanelHeader">
+        <div class="memoryPanelTitle">Memory</div>
+        <button type="button" id="memoryClose" aria-label="Close memory diagnostics">&times;</button>
+      </div>
+      <dl class="memoryPanelRows">
+        <dt>Used</dt>
+        <dd id="memoryUsed">Unavailable</dd>
+        <dt>Total</dt>
+        <dd id="memoryTotal">Unavailable</dd>
+        <dt>Peak</dt>
+        <dd id="memoryPeak">Unavailable</dd>
+        <dt>Fragmentation</dt>
+        <dd id="memoryFragmentation">Unavailable</dd>
+        <dt>Active screen</dt>
+        <dd id="memoryScreenName">Not set</dd>
+      </dl>
+      <canvas id="memoryGraph" width="672" height="184"></canvas>
+      <div class="memoryLimitRow">
+        <label for="memoryLimitInput">Limit</label>
+        <input type="number" id="memoryLimitInput" min="0" step="1" inputmode="numeric" placeholder="Disabled">
+        <span>KiB</span>
+        <button type="button" class="memoryLimitPreset" data-memory-limit="50">50</button>
+        <button type="button" class="memoryLimitPreset" data-memory-limit="100">100</button>
+      </div>
+      <div id="memoryWarning">LVGL heap stats require LV_STDLIB_BUILTIN.</div>
+      <div class="memoryBreachHeader">
+        <button type="button" id="memoryBreachToggle" aria-expanded="false" aria-controls="memoryBreachList">
+          Limit Log
+        </button>
+        <span id="memoryBreachCount">0</span>
+        <button type="button" id="memoryBreachClear" disabled>Clear</button>
+      </div>
+      <ol id="memoryBreachList" aria-label="Memory limit breaches" hidden></ol>
+    </section>
+    <section id="console">
+      <div id="consoleBar">
+        <span>Console</span>
+        <button type="button" id="consoleClear">Clear</button>
+      </div>
+      <textarea id="output" readonly spellcheck="false"></textarea>
+    </section>
+
     <script>
       const params = new URLSearchParams(window.location.search);
-      const width = params.get("w") || "466";
-      const height = params.get("h") || "466";
-      const canvas = document.getElementById("canvas");
+      const nativeWidth = Number("466");
+      const nativeHeight = Number("466");
+      const width = Number(params.get("w")) || nativeWidth;
+      const height = Number(params.get("h")) || nativeHeight;
+      const statusElement = document.getElementById("status");
+      const progressElement = document.getElementById("progress");
+      const simulatorShellElement = document.getElementById("simulatorShell");
+      const simulatorFrameElement = document.getElementById("simulatorFrame");
+      const displayStageElement = document.getElementById("displayStage");
+      const hardwareFrameElement = document.getElementById("hardwareFrame");
+      const cameraButtonLayerElement = document.getElementById("cameraButtonLayer");
+      const canvasElement = document.getElementById("canvas");
+      const keyOverlayElement = document.getElementById("keyOverlay");
+      const consoleElement = document.getElementById("console");
+      const outputElement = document.getElementById("output");
+      const memoryToggleElement = document.getElementById("memoryToggle");
+      const memoryPanelElement = document.getElementById("memoryPanel");
+      const memoryCloseElement = document.getElementById("memoryClose");
+      const memoryUsedElement = document.getElementById("memoryUsed");
+      const memoryTotalElement = document.getElementById("memoryTotal");
+      const memoryPeakElement = document.getElementById("memoryPeak");
+      const memoryFragmentationElement = document.getElementById("memoryFragmentation");
+      const memoryScreenNameElement = document.getElementById("memoryScreenName");
+      const memoryWarningElement = document.getElementById("memoryWarning");
+      const memoryLimitInputElement = document.getElementById("memoryLimitInput");
+      const memoryBreachToggleElement = document.getElementById("memoryBreachToggle");
+      const memoryBreachCountElement = document.getElementById("memoryBreachCount");
+      const memoryBreachClearElement = document.getElementById("memoryBreachClear");
+      const memoryBreachListElement = document.getElementById("memoryBreachList");
+      const memoryGraphElement = document.getElementById("memoryGraph");
+      const memoryGraphContext = memoryGraphElement.getContext("2d");
+      const WEB_SINGLE_HTML = false;
+      const EMBEDDED_HARDWARE_FRAME_IMAGE_SRC = "";
+      const FALLBACK_KEY_OVERLAY_CONFIG = {
+  "enabled": false,
+  "title": "Controls",
+  "columns": 3,
+  "maxScale": 1,
+  "memory": {
+    "limitKiB": 150,
+    "openByDefault": true
+  },
+  "buttonRadius": 4,
+  "hardwareFrame": {
+    "enabled": false,
+    "image": "hardware_frame.png",
+    "ui": {
+      "x": 198,
+      "y": 138
+    }
+  },
+  "controlsOverlay": [
+    ["btn_top_left", "btn_top_mid"]
+  ],
+  "buttons": [
+    {
+      "id": "btn_top_left",
+      "label": "TOP LEFT",
+      "key": "q",
+      "x": 193,
+      "y": 76,
+      "width": 100,
+      "height": 37,
+      "radius": 8,
+      "overlayColor": "#48DEFF",
+      "overlayOpacity": 75
+    },
+    {
+      "id": "btn_top_mid",
+      "label": "TOP MID",
+      "key": "w",
+      "x": 308,
+      "y": 76,
+      "width": 100,
+      "height": 37,
+      "radius": 8,
+      "overlayColor": "#48DEFF",
+      "overlayOpacity": 75
+    }
+  ]
+}
+;
+      let keyOverlayConfig = normalizeKeyOverlayConfig(FALLBACK_KEY_OVERLAY_CONFIG);
+      let hardwareFrameNaturalWidth = 0;
+      let hardwareFrameNaturalHeight = 0;
+      let hardwareFrameImageAvailable = false;
+      let hardwareFrameImageFailed = false;
+      const memorySamples = [];
+      const memoryBreaches = [];
+      const memorySampleLimit = 120;
+      const memoryBreachLimit = 30;
+      let lvglMemoryMonitorAvailable = false;
+      let latestMemoryStats = null;
+      let latestScreenName = "";
+      let memoryPanelDragState = null;
+      let memoryPanelHasCustomPosition = false;
 
-      canvas.width = Number(width);
-      canvas.height = Number(height);
+      canvasElement.width = width;
+      canvasElement.height = height;
 
-      var Module = {
-        canvas,
-        arguments: [String(width), String(height)],
-        print: text => console.log(text),
-        printErr: text => console.error(text)
+      function normalizeKeyOverlayConfig(config) {
+        return typeof config === "object" && config !== null ? config : { enabled: false };
+      }
+
+      async function loadKeyOverlayConfig() {
+        if (WEB_SINGLE_HTML) return keyOverlayConfig;
+
+        try {
+          const response = await fetch("key_overlay.json", { cache: "no-cache" });
+          if (!response.ok) return keyOverlayConfig;
+          keyOverlayConfig = normalizeKeyOverlayConfig(await response.json());
+        } catch (error) {
+          console.warn("Using embedded key overlay config fallback.", error);
+        }
+
+        return keyOverlayConfig;
+      }
+
+      function getHardwareFrameConfig() {
+        if (keyOverlayConfig.enabled !== true) return null;
+        const frame = keyOverlayConfig.hardwareFrame;
+        const sizeWasOverridden = width !== nativeWidth || height !== nativeHeight;
+        const imagePath = typeof frame === "object" && frame !== null
+          ? EMBEDDED_HARDWARE_FRAME_IMAGE_SRC || (frame.image ? String(frame.image) : "")
+          : "";
+        return !sizeWasOverridden
+          && !hardwareFrameImageFailed
+          && Boolean(imagePath)
+          && typeof frame === "object"
+          && frame !== null
+          && frame.enabled === true
+          ? frame
+          : null;
+      }
+
+      function getNumber(value, fallback) {
+        const number = Number(value);
+        return Number.isFinite(number) ? number : fallback;
+      }
+
+      function setHardwareFrameVisible(visible) {
+        hardwareFrameElement.hidden = !visible;
+        hardwareFrameElement.style.display = visible ? "block" : "none";
+      }
+
+      function configureHardwareFrameImage(frame) {
+        hardwareFrameImageAvailable = false;
+        hardwareFrameImageFailed = false;
+        hardwareFrameNaturalWidth = 0;
+        hardwareFrameNaturalHeight = 0;
+        setHardwareFrameVisible(false);
+        if (!frame) return;
+
+        const imagePath = EMBEDDED_HARDWARE_FRAME_IMAGE_SRC || (frame.image ? String(frame.image) : "");
+        if (!imagePath) return;
+        const candidates = [imagePath, imagePath.split("/").pop()].filter(Boolean);
+        let index = 0;
+
+        hardwareFrameElement.addEventListener("error", () => {
+          index += 1;
+          if (index < candidates.length) {
+            hardwareFrameElement.src = candidates[index];
+          } else {
+            hardwareFrameImageAvailable = false;
+            hardwareFrameImageFailed = true;
+            setHardwareFrameVisible(false);
+            hardwareFrameElement.removeAttribute("src");
+            fitCanvasToViewport();
+          }
+        });
+        hardwareFrameElement.addEventListener("load", () => {
+          hardwareFrameNaturalWidth = hardwareFrameElement.naturalWidth;
+          hardwareFrameNaturalHeight = hardwareFrameElement.naturalHeight;
+          hardwareFrameImageAvailable = hardwareFrameNaturalWidth > 0 && hardwareFrameNaturalHeight > 0;
+          setHardwareFrameVisible(hardwareFrameImageAvailable);
+          fitCanvasToViewport();
+        });
+
+        hardwareFrameElement.src = candidates[index];
+        if (hardwareFrameElement.complete && hardwareFrameElement.naturalWidth > 0) {
+          hardwareFrameNaturalWidth = hardwareFrameElement.naturalWidth;
+          hardwareFrameNaturalHeight = hardwareFrameElement.naturalHeight;
+          hardwareFrameImageAvailable = true;
+          setHardwareFrameVisible(true);
+          fitCanvasToViewport();
+        }
+      }
+
+      function fitCanvasToViewport() {
+        const frame = getHardwareFrameConfig();
+        const canvasWidth = canvasElement.width || Number(width);
+        const canvasHeight = canvasElement.height || Number(height);
+        const viewportWidth = Math.max(1, window.innerWidth);
+        const viewportHeight = Math.max(1, document.querySelector(".stage").clientHeight || window.innerHeight);
+        const uiConfig = frame && typeof frame.ui === "object" && frame.ui !== null ? frame.ui : {};
+        const displayX = frame ? getNumber(uiConfig.x ?? frame.uiX, 0) : 0;
+        const displayY = frame ? getNumber(uiConfig.y ?? frame.uiY, 0) : 0;
+        const displayWidth = frame ? getNumber(uiConfig.width, canvasWidth) : canvasWidth;
+        const displayHeight = frame ? getNumber(uiConfig.height, canvasHeight) : canvasHeight;
+        const frameWidth = frame
+          ? getNumber(hardwareFrameNaturalWidth || frame.width, displayX + displayWidth)
+          : canvasWidth;
+        const frameHeight = frame
+          ? getNumber(hardwareFrameNaturalHeight || frame.height, displayY + displayHeight)
+          : canvasHeight;
+        const configuredMaxScale = Number(keyOverlayConfig.maxScale);
+        const maxScale = Number.isFinite(configuredMaxScale) && configuredMaxScale > 0
+          ? configuredMaxScale
+          : Number.POSITIVE_INFINITY;
+        const scale = Math.min(maxScale, viewportWidth / frameWidth, viewportHeight / frameHeight);
+        const canvasScale = Math.min(displayWidth / canvasWidth, displayHeight / canvasHeight);
+
+        simulatorShellElement.style.width = Math.max(1, Math.floor(frameWidth * scale)) + "px";
+        simulatorShellElement.style.height = Math.max(1, Math.floor(frameHeight * scale)) + "px";
+        simulatorFrameElement.style.width = frameWidth + "px";
+        simulatorFrameElement.style.height = frameHeight + "px";
+        simulatorFrameElement.style.transform = "scale(" + scale + ")";
+
+        setHardwareFrameVisible(Boolean(frame && hardwareFrameImageAvailable));
+        cameraButtonLayerElement.hidden = !frame;
+        displayStageElement.style.left = displayX + "px";
+        displayStageElement.style.top = displayY + "px";
+        displayStageElement.style.width = displayWidth + "px";
+        displayStageElement.style.height = displayHeight + "px";
+
+        canvasElement.style.width = Math.max(1, Math.floor(canvasWidth * canvasScale)) + "px";
+        canvasElement.style.height = Math.max(1, Math.floor(canvasHeight * canvasScale)) + "px";
+      }
+
+      function keyCodeFromKey(key) {
+        const lookup = {
+          ArrowLeft: 37,
+          ArrowUp: 38,
+          ArrowRight: 39,
+          ArrowDown: 40,
+          Enter: 13,
+          Escape: 27,
+          Backspace: 8,
+          Tab: 9,
+          Space: 32,
+          " ": 32
+        };
+
+        if (Object.prototype.hasOwnProperty.call(lookup, key)) return lookup[key];
+        if (typeof key === "string" && key.length === 1) return key.toUpperCase().charCodeAt(0);
+        return 0;
+      }
+
+      function codeFromKey(key) {
+        if (typeof key !== "string") return "";
+        if (key.startsWith("Arrow")) return key;
+        if (/^[a-z]$/i.test(key)) return "Key" + key.toUpperCase();
+        if (/^[0-9]$/.test(key)) return "Digit" + key;
+        if (key === " " || key === "Space") return "Space";
+        if (key === ",") return "Comma";
+        if (key === ".") return "Period";
+        return key;
+      }
+
+      function normalizeRadius(value, fallback) {
+        if (value === undefined || value === null || value === "") return fallback;
+        if (typeof value === "number" && Number.isFinite(value)) return value + "px";
+        if (typeof value === "string") return value;
+        return fallback;
+      }
+
+      function getButtonDescriptor(entry, config) {
+        if (!entry || !entry.label || !entry.key) return null;
+
+        const id = entry.id ? String(entry.id) : "";
+        const key = String(entry.key);
+        const defaultRadius = normalizeRadius(config.buttonRadius, "4px");
+        return {
+          id,
+          label: String(entry.label),
+          ariaLabel: String(entry.ariaLabel || entry.label),
+          key,
+          code: String(entry.code || codeFromKey(key)),
+          keyCode: Number(entry.keyCode || keyCodeFromKey(key)),
+          area: entry.area ? String(entry.area) : id,
+          x: Number(entry.x),
+          y: Number(entry.y),
+          width: Number(entry.width),
+          height: Number(entry.height),
+          radius: normalizeRadius(entry.radius, defaultRadius),
+          overlayColor: entry.overlayColor ? String(entry.overlayColor) : "",
+          overlayOpacity: Number(entry.overlayOpacity),
+          description: entry.description ? String(entry.description) : key
+        };
+      }
+
+      function clampNumber(value, min, max) {
+        if (!Number.isFinite(value)) return min;
+        return Math.min(max, Math.max(min, value));
+      }
+
+      function overlayColorWithOpacity(color, opacityPercent) {
+        if (!color) return "";
+
+        const opacity = clampNumber(opacityPercent, 0, 100);
+        const alpha = opacity / 100;
+        const hex = color.trim().match(/^#([0-9a-f]{3}|[0-9a-f]{6})$/i);
+        if (hex) {
+          const value = hex[1];
+          const channels = value.length === 3
+            ? value.split("").map((channel) => parseInt(channel + channel, 16))
+            : [0, 2, 4].map((offset) => parseInt(value.slice(offset, offset + 2), 16));
+          return "rgba(" + channels[0] + ", " + channels[1] + ", " + channels[2] + ", " + alpha.toFixed(3) + ")";
+        }
+
+        return color;
+      }
+
+      function applyKeyDescriptor(element, descriptor) {
+        element.dataset.simulatorKey = "true";
+        element.dataset.key = descriptor.key;
+        element.dataset.code = descriptor.code;
+        element.dataset.keyCode = String(descriptor.keyCode);
+        element.setAttribute("aria-label", descriptor.ariaLabel);
+        element.title = descriptor.description;
+      }
+
+      function createSimulatorKeyEvent(type, target) {
+        const key = target.dataset.key;
+        const code = target.dataset.code;
+        const keyCode = Number(target.dataset.keyCode);
+        const event = new KeyboardEvent(type, {
+          key,
+          code,
+          keyCode,
+          charCode: type === "keypress" && key.length === 1 ? key.charCodeAt(0) : 0,
+          which: keyCode,
+          bubbles: true,
+          cancelable: true
+        });
+
+        Object.defineProperty(event, "keyCode", { get: () => keyCode });
+        Object.defineProperty(event, "which", { get: () => keyCode });
+        Object.defineProperty(event, "charCode", {
+          get: () => type === "keypress" && key.length === 1 ? key.charCodeAt(0) : 0
+        });
+
+        return event;
+      }
+
+      function dispatchSimulatorKey(type, target) {
+        canvasElement.focus({ preventScroll: true });
+        canvasElement.dispatchEvent(createSimulatorKeyEvent(type, target));
+      }
+
+      function releaseSimulatorKey(target) {
+        if (!target.classList.contains("isPressed")) return;
+        target.classList.remove("isPressed");
+        dispatchSimulatorKey("keyup", target);
+      }
+
+      function buildKeyControls(config) {
+        const normalizedConfig = normalizeKeyOverlayConfig(config);
+        keyOverlayElement.classList.remove("isEnabled");
+        keyOverlayElement.replaceChildren();
+        cameraButtonLayerElement.replaceChildren();
+        configureHardwareFrameImage(getHardwareFrameConfig());
+        if (normalizedConfig.enabled !== true) return;
+
+        const buttonDescriptors = (Array.isArray(normalizedConfig.buttons) ? normalizedConfig.buttons : [])
+          .map((entry) => getButtonDescriptor(entry, normalizedConfig))
+          .filter(Boolean);
+
+        buildKeyOverlay(normalizedConfig, buttonDescriptors);
+        buildCameraButtonRegions(buttonDescriptors);
+      }
+
+      function buildKeyOverlay(config, buttonDescriptors) {
+        if (buttonDescriptors.length === 0) return;
+
+        keyOverlayElement.classList.add("isEnabled");
+        keyOverlayElement.replaceChildren();
+
+        if (config.title) {
+          const title = document.createElement("div");
+          title.className = "keyOverlayTitle";
+          title.textContent = config.title;
+          keyOverlayElement.appendChild(title);
+        }
+
+        const buttonGrid = document.createElement("div");
+        buttonGrid.className = "keyOverlayButtons";
+        const columns = Number(config.columns || Math.min(buttonDescriptors.length, 3));
+        buttonGrid.style.setProperty("--key-overlay-columns", String(Math.max(1, Math.min(columns, 8))));
+
+        const controlsOverlay = Array.isArray(config.controlsOverlay) ? config.controlsOverlay : config.gridAreas;
+        if (Array.isArray(controlsOverlay) && controlsOverlay.length > 0) {
+          const gridTemplateAreas = controlsOverlay
+            .filter(Array.isArray)
+            .map((row) => row.map((area) => {
+              const normalizedArea = String(area || "").trim();
+              return normalizedArea ? normalizedArea : ".";
+            }).join(" "))
+            .map((row) => "\"" + row.replace(/"/g, "") + "\"")
+            .join(" ");
+
+          if (gridTemplateAreas) buttonGrid.style.gridTemplateAreas = gridTemplateAreas;
+        }
+
+        buttonDescriptors.forEach((descriptor) => {
+          const button = document.createElement("button");
+          button.className = "keyButton";
+          button.type = "button";
+          button.textContent = descriptor.label;
+          applyKeyDescriptor(button, descriptor);
+          if (descriptor.area) button.style.gridArea = descriptor.area;
+          buttonGrid.appendChild(button);
+        });
+
+        keyOverlayElement.appendChild(buttonGrid);
+      }
+
+      function buildCameraButtonRegions(buttonDescriptors) {
+        cameraButtonLayerElement.replaceChildren();
+
+        buttonDescriptors.forEach((descriptor) => {
+          const x = descriptor.x;
+          const y = descriptor.y;
+          const regionWidth = descriptor.width;
+          const regionHeight = descriptor.height;
+          if (![x, y, regionWidth, regionHeight].every(Number.isFinite)) return;
+
+          const button = document.createElement("button");
+          button.className = "cameraButtonRegion";
+          button.type = "button";
+          applyKeyDescriptor(button, descriptor);
+          button.style.left = x + "px";
+          button.style.top = y + "px";
+          button.style.width = regionWidth + "px";
+          button.style.height = regionHeight + "px";
+          button.style.borderRadius = descriptor.radius;
+          const overlayColor = overlayColorWithOpacity(descriptor.overlayColor, descriptor.overlayOpacity);
+          if (overlayColor) button.style.setProperty("--button-overlay-color", overlayColor);
+          cameraButtonLayerElement.appendChild(button);
+        });
+      }
+
+      function handleSimulatorKeyPointerDown(event) {
+        const target = event.target.closest("[data-simulator-key='true']");
+        if (!target) return;
+
+        event.preventDefault();
+        target.setPointerCapture?.(event.pointerId);
+        target.classList.add("isPressed");
+        dispatchSimulatorKey("keydown", target);
+        if (target.dataset.key.length === 1) dispatchSimulatorKey("keypress", target);
+      }
+
+      function handleSimulatorKeyPointerUp(event) {
+        const target = event.target.closest("[data-simulator-key='true']");
+        if (!target) return;
+
+        event.preventDefault();
+        releaseSimulatorKey(target);
+      }
+
+      function handleSimulatorKeyPointerCancel(event) {
+        const target = event.target.closest("[data-simulator-key='true']");
+        if (target) releaseSimulatorKey(target);
+      }
+
+      function bindSimulatorKeyPointerEvents(element) {
+        element.addEventListener("pointerdown", handleSimulatorKeyPointerDown);
+        element.addEventListener("pointerup", handleSimulatorKeyPointerUp);
+        element.addEventListener("pointercancel", handleSimulatorKeyPointerCancel);
+        element.addEventListener("pointerleave", handleSimulatorKeyPointerCancel);
+      }
+
+      function restartOverlayPulse(element) {
+        element.classList.remove("isOverlayPulse");
+        void element.offsetWidth;
+        element.classList.add("isOverlayPulse");
+      }
+
+      function handleFrameBackgroundPointerDown(event) {
+        if (event.target.closest("#displayStage, #keyOverlay, #console, .cameraButtonRegion")) return;
+        if (!getHardwareFrameConfig()) return;
+        restartOverlayPulse(simulatorFrameElement);
+      }
+
+      function appendOutput(text) {
+        outputElement.value += text + "\n";
+        outputElement.scrollTop = outputElement.scrollHeight;
+      }
+
+      function formatBytes(bytes) {
+        const value = Number(bytes);
+        if (!Number.isFinite(value) || value <= 0) return "0 KiB";
+        if (value >= 1024 * 1024) return (value / (1024 * 1024)).toFixed(1) + " MiB";
+        return Math.round(value / 1024) + " KiB";
+      }
+
+      function getMemoryLimitBytes() {
+        const limitKiB = Number(memoryLimitInputElement.value);
+        return Number.isFinite(limitKiB) && limitKiB > 0 ? limitKiB * 1024 : 0;
+      }
+
+      function getMemoryConfig(config) {
+        return config && typeof config.memory === "object" && config.memory !== null
+          ? config.memory
+          : {};
+      }
+
+      function getConfiguredMemoryLimitKiB(memoryConfig) {
+        const limitKiB = Number(memoryConfig.limitKiB ?? memoryConfig.limitKB);
+        if (Number.isFinite(limitKiB) && limitKiB > 0) return Math.round(limitKiB);
+
+        const limitBytes = Number(memoryConfig.limitBytes);
+        return Number.isFinite(limitBytes) && limitBytes > 0 ? Math.round(limitBytes / 1024) : 0;
+      }
+
+      function applyMemoryConfig(config) {
+        const memoryConfig = getMemoryConfig(config);
+        const limitKiB = getConfiguredMemoryLimitKiB(memoryConfig);
+        memoryLimitInputElement.value = limitKiB > 0 ? String(limitKiB) : "";
+        clearMemoryBreachList();
+        setMemoryPanelOpen(memoryConfig.openByDefault === true);
+        updateMemoryWarning(false);
+      }
+
+      function setMemoryPanelOpen(open) {
+        memoryPanelElement.classList.toggle("isOpen", open);
+        memoryToggleElement.classList.toggle("isOpen", open);
+        memoryPanelElement.setAttribute("aria-hidden", open ? "false" : "true");
+        memoryToggleElement.setAttribute("aria-expanded", open ? "true" : "false");
+        if (open) clampMemoryPanelToViewport();
+      }
+
+      function getMemoryPanelClampRect() {
+        const margin = 8;
+        const rect = memoryPanelElement.getBoundingClientRect();
+        return {
+          minLeft: margin,
+          minTop: margin,
+          maxLeft: Math.max(margin, window.innerWidth - rect.width - margin),
+          maxTop: Math.max(margin, window.innerHeight - rect.height - margin)
+        };
+      }
+
+      function setMemoryPanelPosition(left, top) {
+        const clamp = getMemoryPanelClampRect();
+        const clampedLeft = clampNumber(left, clamp.minLeft, clamp.maxLeft);
+        const clampedTop = clampNumber(top, clamp.minTop, clamp.maxTop);
+        memoryPanelElement.style.left = Math.round(clampedLeft) + "px";
+        memoryPanelElement.style.top = Math.round(clampedTop) + "px";
+        memoryPanelElement.style.right = "auto";
+        memoryPanelElement.style.bottom = "auto";
+        memoryPanelHasCustomPosition = true;
+      }
+
+      function clampMemoryPanelToViewport() {
+        if (!memoryPanelElement.classList.contains("isOpen") || !memoryPanelHasCustomPosition) return;
+
+        const rect = memoryPanelElement.getBoundingClientRect();
+        setMemoryPanelPosition(rect.left, rect.top);
+      }
+
+      function handleMemoryPanelPointerDown(event) {
+        if (event.button !== undefined && event.button !== 0) return;
+        if (event.target.closest("button, input, textarea, select, a")) return;
+
+        const rect = memoryPanelElement.getBoundingClientRect();
+        memoryPanelDragState = {
+          pointerId: event.pointerId,
+          offsetX: event.clientX - rect.left,
+          offsetY: event.clientY - rect.top
+        };
+        memoryPanelElement.classList.add("isDragging");
+        memoryPanelElement.setPointerCapture?.(event.pointerId);
+        event.preventDefault();
+      }
+
+      function handleMemoryPanelPointerMove(event) {
+        if (!memoryPanelDragState || event.pointerId !== memoryPanelDragState.pointerId) return;
+
+        setMemoryPanelPosition(
+          event.clientX - memoryPanelDragState.offsetX,
+          event.clientY - memoryPanelDragState.offsetY
+        );
+        event.preventDefault();
+      }
+
+      function endMemoryPanelDrag(event) {
+        if (!memoryPanelDragState) return;
+        if (event && event.pointerId !== memoryPanelDragState.pointerId) return;
+
+        if (memoryPanelElement.hasPointerCapture?.(memoryPanelDragState.pointerId)) {
+          memoryPanelElement.releasePointerCapture(memoryPanelDragState.pointerId);
+        }
+        memoryPanelElement.classList.remove("isDragging");
+        memoryPanelDragState = null;
+      }
+
+      function updateConsolePanelHeight() {
+        const height = consoleElement.getBoundingClientRect().height;
+        document.documentElement.style.setProperty(
+          "--console-panel-height",
+          Math.max(0, Math.ceil(height)) + "px"
+        );
+      }
+
+      function getDisplayScreenName() {
+        return latestScreenName || "Not set";
+      }
+
+      function renderMemoryBreachList() {
+        memoryBreachListElement.replaceChildren();
+        memoryBreachCountElement.textContent = String(memoryBreaches.length);
+        memoryBreachClearElement.disabled = memoryBreaches.length === 0;
+
+        memoryBreaches.forEach((entry) => {
+          const item = document.createElement("li");
+          const label = document.createElement("span");
+          const usage = document.createElement("span");
+          label.textContent = entry.screenName;
+          usage.className = "memoryBreachUsage";
+          usage.textContent = entry.usedText + " / " + entry.limitText;
+          item.append(label, usage);
+          memoryBreachListElement.appendChild(item);
+        });
+      }
+
+      function recordMemoryLimitBreach(usedSize, limitBytes) {
+        const screenName = getDisplayScreenName();
+        const existingIndex = memoryBreaches.findIndex((entry) => entry.screenName === screenName);
+        const entry = {
+          screenName,
+          usedText: formatBytes(usedSize),
+          limitText: formatBytes(limitBytes)
+        };
+
+        if (existingIndex >= 0) memoryBreaches.splice(existingIndex, 1);
+        memoryBreaches.unshift(entry);
+        while (memoryBreaches.length > memoryBreachLimit) memoryBreaches.pop();
+        renderMemoryBreachList();
+      }
+
+      function setMemoryBreachListOpen(open) {
+        memoryBreachListElement.hidden = !open;
+        memoryBreachToggleElement.setAttribute("aria-expanded", open ? "true" : "false");
+      }
+
+      function clearMemoryBreachList() {
+        memoryBreaches.length = 0;
+        renderMemoryBreachList();
+      }
+
+      function drawMemoryGraph() {
+        const widthPx = memoryGraphElement.width;
+        const heightPx = memoryGraphElement.height;
+        const limitBytes = getMemoryLimitBytes();
+        const maxSample = memorySamples.reduce((max, sample) => Math.max(max, sample.used), 0);
+        const maxBytes = Math.max(maxSample, limitBytes, 1);
+        const warning = latestMemoryStats && limitBytes > 0 && latestMemoryStats.usedSize >= limitBytes;
+
+        memoryGraphContext.clearRect(0, 0, widthPx, heightPx);
+        memoryGraphContext.fillStyle = "#050505";
+        memoryGraphContext.fillRect(0, 0, widthPx, heightPx);
+
+        memoryGraphContext.strokeStyle = "rgba(255, 255, 255, 0.08)";
+        memoryGraphContext.lineWidth = 1;
+        for (let i = 1; i < 4; i += 1) {
+          const y = Math.round((heightPx * i) / 4) + 0.5;
+          memoryGraphContext.beginPath();
+          memoryGraphContext.moveTo(0, y);
+          memoryGraphContext.lineTo(widthPx, y);
+          memoryGraphContext.stroke();
+        }
+
+        if (limitBytes > 0) {
+          const y = Math.max(0, Math.min(heightPx, heightPx - (limitBytes / maxBytes) * heightPx));
+          memoryGraphContext.strokeStyle = "rgba(255, 82, 82, 0.72)";
+          memoryGraphContext.setLineDash([6, 5]);
+          memoryGraphContext.beginPath();
+          memoryGraphContext.moveTo(0, y);
+          memoryGraphContext.lineTo(widthPx, y);
+          memoryGraphContext.stroke();
+          memoryGraphContext.setLineDash([]);
+        }
+
+        if (memorySamples.length < 2) return;
+
+        memoryGraphContext.strokeStyle = warning ? "#ff5252" : "#55d28c";
+        memoryGraphContext.lineWidth = 3;
+        memoryGraphContext.beginPath();
+        const sampleDenominator = Math.max(1, memorySamples.length - 1);
+        memorySamples.forEach((sample, index) => {
+          const x = (index / sampleDenominator) * widthPx;
+          const y = heightPx - (sample.used / maxBytes) * heightPx;
+          if (index === 0) memoryGraphContext.moveTo(x, y);
+          else memoryGraphContext.lineTo(x, y);
+        });
+        memoryGraphContext.stroke();
+      }
+
+      function updateMemoryWarning(recordBreach) {
+        if (!lvglMemoryMonitorAvailable) {
+          memoryWarningElement.textContent = "LVGL heap stats require LV_STDLIB_BUILTIN.";
+          memoryPanelElement.classList.remove("isWarning");
+          drawMemoryGraph();
+          return;
+        }
+
+        const limitBytes = getMemoryLimitBytes();
+        const usedSize = latestMemoryStats ? latestMemoryStats.usedSize : 0;
+        const peakSize = latestMemoryStats ? latestMemoryStats.maxUsed : 0;
+        const isUsedWarning = limitBytes > 0 && usedSize >= limitBytes;
+        const isPeakWarning = limitBytes > 0 && peakSize >= limitBytes;
+        const isWarning = isUsedWarning || isPeakWarning;
+        memoryPanelElement.classList.toggle("isWarning", isWarning);
+        memoryUsedElement.classList.toggle("isOverLimit", isUsedWarning);
+        memoryPeakElement.classList.toggle("isOverLimit", isPeakWarning);
+        if (isUsedWarning && isPeakWarning) {
+          memoryWarningElement.textContent = "LVGL heap used and peak are above the configured limit.";
+        } else if (isUsedWarning) {
+          memoryWarningElement.textContent = "LVGL heap used is above the configured limit.";
+        } else if (isPeakWarning) {
+          memoryWarningElement.textContent = "LVGL heap peak is above the configured limit.";
+        } else {
+          memoryWarningElement.textContent = "LVGL heap monitor active.";
+        }
+        if (recordBreach === true && isUsedWarning) recordMemoryLimitBreach(usedSize, limitBytes);
+        drawMemoryGraph();
+      }
+
+      window.setLvglMemoryMonitorAvailable = function setLvglMemoryMonitorAvailable(available) {
+        lvglMemoryMonitorAvailable = available === true;
+        updateMemoryWarning(false);
       };
 
-      window.addEventListener("click", () => window.focus());
+      window.onLvglScreenName = function onLvglScreenName(screenName) {
+        const normalizedName = typeof screenName === "string"
+          ? screenName.trim().replace(/_#$/, "")
+          : "";
+        latestScreenName = normalizedName;
+        memoryScreenNameElement.textContent = normalizedName || "Not set";
+        updateMemoryWarning(false);
+      };
+
+      window.onLvglMemoryStats = function onLvglMemoryStats(stats) {
+        if (!stats || typeof stats !== "object") return;
+
+        const totalSize = Number(stats.totalSize) || 0;
+        const freeSize = Number(stats.freeSize) || 0;
+        const usedSize = Math.max(0, totalSize - freeSize);
+        latestMemoryStats = {
+          totalSize,
+          freeSize,
+          usedSize,
+          maxUsed: Number(stats.maxUsed) || 0,
+          usedPct: Number(stats.usedPct) || 0,
+          fragPct: Number(stats.fragPct) || 0
+        };
+
+        memorySamples.push({ used: usedSize });
+        while (memorySamples.length > memorySampleLimit) memorySamples.shift();
+
+        memoryUsedElement.textContent = formatBytes(usedSize) + " (" + latestMemoryStats.usedPct + "%)";
+        memoryTotalElement.textContent = formatBytes(totalSize);
+        memoryPeakElement.textContent = formatBytes(latestMemoryStats.maxUsed);
+        memoryFragmentationElement.textContent = latestMemoryStats.fragPct + "%";
+        updateMemoryWarning(true);
+      };
+
+      canvasElement.addEventListener("webglcontextlost", (event) => {
+        event.preventDefault();
+        Module.setStatus("WebGL context lost. Reload the page to continue.");
+      }, false);
+
+      bindSimulatorKeyPointerEvents(keyOverlayElement);
+      bindSimulatorKeyPointerEvents(cameraButtonLayerElement);
+      simulatorFrameElement.addEventListener("pointerdown", handleFrameBackgroundPointerDown);
+      loadKeyOverlayConfig().then((config) => {
+        applyMemoryConfig(config);
+        buildKeyControls(config);
+        fitCanvasToViewport();
+      });
+
+      var Module = {
+        canvas: canvasElement,
+        arguments: [String(width), String(height)],
+        print(...args) {
+          const text = args.join(" ");
+          console.log(text);
+          appendOutput(text);
+        },
+        printErr(...args) {
+          const text = args.join(" ");
+          console.error(text);
+          appendOutput(text);
+        },
+        setStatus(text) {
+          Module.setStatus.last ??= { time: Date.now(), text: "" };
+          if (text === Module.setStatus.last.text) return;
+
+          const match = text.match(/([^(]+)\((\d+(\.\d+)?)\/(\d+)\)/);
+          const now = Date.now();
+          if (match && now - Module.setStatus.last.time < 30) return;
+
+          Module.setStatus.last.time = now;
+          Module.setStatus.last.text = text;
+
+          if (match) {
+            statusElement.textContent = match[1].trim();
+            statusElement.style.display = "block";
+            progressElement.value = parseInt(match[2], 10) * 100;
+            progressElement.max = parseInt(match[4], 10) * 100;
+            progressElement.hidden = false;
+          } else {
+            progressElement.hidden = true;
+            statusElement.textContent = text;
+            statusElement.style.display = text ? "block" : "none";
+          }
+        },
+        totalDependencies: 0,
+        monitorRunDependencies(left) {
+          this.totalDependencies = Math.max(this.totalDependencies, left);
+          Module.setStatus(left
+            ? "Preparing... (" + (this.totalDependencies - left) + "/" + this.totalDependencies + ")"
+            : "All downloads complete.");
+        }
+      };
+
+      Module.postRun = Module.postRun || [];
+      Module.postRun.push(() => {
+        Module.setStatus("");
+        fitCanvasToViewport();
+      });
+
+      const sizeObserver = new MutationObserver(fitCanvasToViewport);
+      sizeObserver.observe(canvasElement, { attributes: true, attributeFilter: ["width", "height"] });
+      const consoleSizeObserver = new ResizeObserver(updateConsolePanelHeight);
+      consoleSizeObserver.observe(consoleElement);
+      document.getElementById("consoleClear").addEventListener("click", () => {
+        outputElement.value = "";
+      });
+      memoryToggleElement.addEventListener("click", () => {
+        setMemoryPanelOpen(!memoryPanelElement.classList.contains("isOpen"));
+      });
+      memoryCloseElement.addEventListener("click", () => setMemoryPanelOpen(false));
+      memoryLimitInputElement.addEventListener("input", () => {
+        clearMemoryBreachList();
+        updateMemoryWarning(false);
+      });
+      memoryLimitInputElement.addEventListener("pointerdown", (event) => event.stopPropagation());
+      memoryLimitInputElement.addEventListener("click", (event) => event.stopPropagation());
+      memoryLimitInputElement.addEventListener("keydown", (event) => event.stopPropagation());
+      memoryLimitInputElement.addEventListener("keyup", (event) => event.stopPropagation());
+      memoryLimitInputElement.addEventListener("keypress", (event) => event.stopPropagation());
+      document.querySelectorAll("[data-memory-limit]").forEach((button) => {
+        button.addEventListener("click", (event) => {
+          event.stopPropagation();
+          memoryLimitInputElement.value = button.dataset.memoryLimit || "";
+          clearMemoryBreachList();
+          updateMemoryWarning(false);
+          memoryLimitInputElement.focus();
+        });
+      });
+      memoryBreachClearElement.addEventListener("click", () => {
+        clearMemoryBreachList();
+      });
+      memoryBreachToggleElement.addEventListener("click", () => {
+        setMemoryBreachListOpen(memoryBreachListElement.hidden);
+      });
+      memoryPanelElement.querySelector(".memoryPanelHeader").addEventListener("pointerdown", handleMemoryPanelPointerDown);
+      memoryPanelElement.addEventListener("pointermove", handleMemoryPanelPointerMove);
+      memoryPanelElement.addEventListener("pointerup", endMemoryPanelDrag);
+      memoryPanelElement.addEventListener("pointercancel", endMemoryPanelDrag);
+      memoryPanelElement.addEventListener("lostpointercapture", endMemoryPanelDrag);
+
+      window.addEventListener("resize", () => {
+        fitCanvasToViewport();
+        clampMemoryPanelToViewport();
+      });
+      window.addEventListener("click", (event) => {
+        if (event.target.closest("#memoryPanel")) return;
+        window.focus();
+      });
+      updateConsolePanelHeight();
+      renderMemoryBreachList();
+      drawMemoryGraph();
+      fitCanvasToViewport();
+
+      window.onerror = (event) => {
+        Module.setStatus("Error, check the console");
+        console.error(event);
+      };
     </script>
     <script src="index.js"></script>
   </body>
