@@ -2,8 +2,8 @@
  * @file notification_item_gen.h
  */
 
-#ifndef NOTIFICATION_ITEM_H
-#define NOTIFICATION_ITEM_H
+#ifndef LVGL_PRO_NOTIFICATION_ITEM_GEN_H
+#define LVGL_PRO_NOTIFICATION_ITEM_GEN_H
 
 #ifdef __cplusplus
 extern "C" {
@@ -43,4 +43,4 @@ lv_obj_t * notification_item_create(lv_obj_t * parent, const void * icon, const 
 } /*extern "C"*/
 #endif
 
-#endif /*NOTIFICATION_ITEM_H*/
+#endif /*LVGL_PRO_NOTIFICATION_ITEM_GEN_H*/

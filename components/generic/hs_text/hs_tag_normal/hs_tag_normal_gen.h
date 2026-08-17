@@ -2,8 +2,8 @@
  * @file hs_tag_normal_gen.h
  */
 
-#ifndef HS_TAG_NORMAL_H
-#define HS_TAG_NORMAL_H
+#ifndef LVGL_PRO_HS_TAG_NORMAL_GEN_H
+#define LVGL_PRO_HS_TAG_NORMAL_GEN_H
 
 #ifdef __cplusplus
 extern "C" {
@@ -43,4 +43,4 @@ lv_obj_t * hs_tag_normal_create(lv_obj_t * parent);
 } /*extern "C"*/
 #endif
 
-#endif /*HS_TAG_NORMAL_H*/
+#endif /*LVGL_PRO_HS_TAG_NORMAL_GEN_H*/

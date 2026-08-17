@@ -26,6 +26,7 @@
 #include "notifications/notifications.h"
 #include "stopwatch/stopwatch.h"
 #include "weather/weather.h"
+#include "../watchfaces/watchface_manager.h"
  
  /*********************
  *      DEFINES

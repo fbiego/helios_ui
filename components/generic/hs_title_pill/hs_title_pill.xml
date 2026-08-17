@@ -31,5 +31,7 @@
 		<bind_style name="style_pad_360" subject="sb_screen_size" ref_value="1" />
 		<bind_style name="style_pad_240" subject="sb_screen_size" ref_value="2" />
 		<hs_text_normal translation_tag="$tag" long_mode="scroll_circular" align="center" />
+
+		<event_cb callback="on_hs_title_pill_cb" trigger="all" />
 	</view>
 </component>

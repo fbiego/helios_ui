@@ -2,8 +2,8 @@
  * @file watchface_default_gen.h
  */
 
-#ifndef WATCHFACE_DEFAULT_H
-#define WATCHFACE_DEFAULT_H
+#ifndef LVGL_PRO_WATCHFACE_DEFAULT_GEN_H
+#define LVGL_PRO_WATCHFACE_DEFAULT_GEN_H
 
 #ifdef __cplusplus
 extern "C" {
@@ -43,4 +43,4 @@ lv_obj_t * watchface_default_create(lv_obj_t * parent);
 } /*extern "C"*/
 #endif
 
-#endif /*WATCHFACE_DEFAULT_H*/
+#endif /*LVGL_PRO_WATCHFACE_DEFAULT_GEN_H*/

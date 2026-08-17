@@ -2,8 +2,8 @@
  * @file settings_display_gen.h
  */
 
-#ifndef SETTINGS_DISPLAY_H
-#define SETTINGS_DISPLAY_H
+#ifndef LVGL_PRO_SETTINGS_DISPLAY_GEN_H
+#define LVGL_PRO_SETTINGS_DISPLAY_GEN_H
 
 #ifdef __cplusplus
 extern "C" {
@@ -43,4 +43,4 @@ lv_obj_t * settings_display_create(lv_obj_t * parent);
 } /*extern "C"*/
 #endif
 
-#endif /*SETTINGS_DISPLAY_H*/
+#endif /*LVGL_PRO_SETTINGS_DISPLAY_GEN_H*/

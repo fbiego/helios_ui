@@ -2,8 +2,8 @@
  * @file hs_info_sb_sb_gen.h
  */
 
-#ifndef HS_INFO_SB_SB_H
-#define HS_INFO_SB_SB_H
+#ifndef LVGL_PRO_HS_INFO_SB_SB_GEN_H
+#define LVGL_PRO_HS_INFO_SB_SB_GEN_H
 
 #ifdef __cplusplus
 extern "C" {
@@ -33,7 +33,7 @@ extern "C" {
  * GLOBAL PROTOTYPES
  **********************/
 
-lv_obj_t * hs_info_sb_sb_create(lv_obj_t * parent, lv_subject_t * label, lv_subject_t * info);
+lv_obj_t * hs_info_sb_sb_create(lv_obj_t * parent, lv_subject_t * label, lv_subject_t * info, int32_t info_space);
 
 /**********************
  *      MACROS
@@ -43,4 +43,4 @@ lv_obj_t * hs_info_sb_sb_create(lv_obj_t * parent, lv_subject_t * label, lv_subj
 } /*extern "C"*/
 #endif
 
-#endif /*HS_INFO_SB_SB_H*/
+#endif /*LVGL_PRO_HS_INFO_SB_SB_GEN_H*/

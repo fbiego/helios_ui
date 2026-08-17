@@ -2,8 +2,8 @@
  * @file settings_alert_gen.h
  */
 
-#ifndef SETTINGS_ALERT_H
-#define SETTINGS_ALERT_H
+#ifndef LVGL_PRO_SETTINGS_ALERT_GEN_H
+#define LVGL_PRO_SETTINGS_ALERT_GEN_H
 
 #ifdef __cplusplus
 extern "C" {
@@ -43,4 +43,4 @@ lv_obj_t * settings_alert_create(lv_obj_t * parent);
 } /*extern "C"*/
 #endif
 
-#endif /*SETTINGS_ALERT_H*/
+#endif /*LVGL_PRO_SETTINGS_ALERT_GEN_H*/

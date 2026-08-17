@@ -2,8 +2,8 @@
  * @file applications_gen.h
  */
 
-#ifndef APPLICATIONS_H
-#define APPLICATIONS_H
+#ifndef LVGL_PRO_APPLICATIONS_GEN_H
+#define LVGL_PRO_APPLICATIONS_GEN_H
 
 #ifdef __cplusplus
 extern "C" {
@@ -45,4 +45,4 @@ lv_obj_t * applications_create(void);
 } /*extern "C"*/
 #endif
 
-#endif /*APPLICATIONS_H*/
+#endif /*LVGL_PRO_APPLICATIONS_GEN_H*/

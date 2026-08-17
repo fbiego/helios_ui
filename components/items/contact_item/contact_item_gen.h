@@ -2,8 +2,8 @@
  * @file contact_item_gen.h
  */
 
-#ifndef CONTACT_ITEM_H
-#define CONTACT_ITEM_H
+#ifndef LVGL_PRO_CONTACT_ITEM_GEN_H
+#define LVGL_PRO_CONTACT_ITEM_GEN_H
 
 #ifdef __cplusplus
 extern "C" {
@@ -43,4 +43,4 @@ lv_obj_t * contact_item_create(lv_obj_t * parent, const char * name, const char 
 } /*extern "C"*/
 #endif
 
-#endif /*CONTACT_ITEM_H*/
+#endif /*LVGL_PRO_CONTACT_ITEM_GEN_H*/

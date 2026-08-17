@@ -10,8 +10,8 @@
 #  The real project (the parent folder) stays focused on the UI itself; nothing
 #  here is needed when the UI is built into a firmware/application.
 #
-#  Configure this folder (sim/) as the CMake source directory to build and
-#  debug the simulator.
+#  Configure this folder (sim/) as the CMake source directory and build into
+#  build/sim to compile and debug the simulator.
 # ===========================================================================
 
 cmake_minimum_required(VERSION 3.16)
@@ -25,7 +25,7 @@ if(NOT CMAKE_BUILD_TYPE AND NOT CMAKE_CONFIGURATION_TYPES)
 endif()
 
 # LVGL version to fetch (any git tag or branch from https://github.com/lvgl/lvgl)
-set(LVGL_VERSION "v9.5.0" CACHE STRING "LVGL version (git tag or branch)")
+set(LVGL_VERSION "v9.4.0" CACHE STRING "LVGL version (git tag or branch)")
 
 # Folder with the UI exported from LVGL Pro (the parent of this sim/ folder).
 set(UI_DIR "${CMAKE_CURRENT_SOURCE_DIR}/.." CACHE PATH "Folder with the exported UI")
@@ -38,22 +38,7 @@ set(EXECUTABLE_OUTPUT_PATH "${CMAKE_BINARY_DIR}/bin")
 # ---------------------------------------------------------------------------
 #  Fetch LVGL
 # ---------------------------------------------------------------------------
-include(FetchContent)
-# Silence the FetchContent_Populate deprecation warning (CMake >= 3.30).
-if(POLICY CMP0169)
-  cmake_policy(SET CMP0169 OLD)
-endif()
-FetchContent_Declare(
-  lvgl
-  GIT_REPOSITORY https://github.com/lvgl/lvgl.git
-  GIT_TAG ${LVGL_VERSION}
-  GIT_SHALLOW TRUE)
-
-FetchContent_GetProperties(lvgl)
-if(NOT lvgl_POPULATED)
-  message(STATUS "Fetching LVGL ${LVGL_VERSION}. It might take a few minutes ...")
-  FetchContent_Populate(lvgl)
-endif()
+include("${CMAKE_CURRENT_LIST_DIR}/shared_lvgl.cmake")
 
 # ---------------------------------------------------------------------------
 #  Generate lv_conf.h from the platform's lv_conf defaults
@@ -129,11 +114,12 @@ endif()
 #  The parent folder ships its own CMakeLists.txt that builds a `lib-ui`
 #  target. It is outside this source tree, so a binary dir must be given.
 # ---------------------------------------------------------------------------
+set(HELIOS_INCLUDE_WATCHFACE_PREVIEWS ON CACHE BOOL "Include watchface preview images")
 add_subdirectory(${UI_DIR} ${CMAKE_BINARY_DIR}/ui)
 
 # The generated UI C uses `#include "lvgl.h"` style includes when this is
 # defined, matching the fetched LVGL target's include directories.
-target_compile_definitions(lib-ui PUBLIC LV_LVGL_H_INCLUDE_SIMPLE)
+target_compile_definitions(lib-ui PUBLIC LV_LVGL_H_INCLUDE_SIMPLE LV_SIM_BUILD)
 
 # Derive the UI entry point and window size from the exported project.xml so the
 # simulator stays generic: the library header is "<name>.h" and its init

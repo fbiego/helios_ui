@@ -2,8 +2,8 @@
  * @file hs_column_gen.h
  */
 
-#ifndef HS_COLUMN_H
-#define HS_COLUMN_H
+#ifndef LVGL_PRO_HS_COLUMN_GEN_H
+#define LVGL_PRO_HS_COLUMN_GEN_H
 
 #ifdef __cplusplus
 extern "C" {
@@ -43,4 +43,4 @@ lv_obj_t * hs_column_create(lv_obj_t * parent);
 } /*extern "C"*/
 #endif
 
-#endif /*HS_COLUMN_H*/
+#endif /*LVGL_PRO_HS_COLUMN_GEN_H*/

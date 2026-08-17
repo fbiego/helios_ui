@@ -2,8 +2,8 @@
  * @file control_switch_gen.h
  */
 
-#ifndef CONTROL_SWITCH_H
-#define CONTROL_SWITCH_H
+#ifndef LVGL_PRO_CONTROL_SWITCH_GEN_H
+#define LVGL_PRO_CONTROL_SWITCH_GEN_H
 
 #ifdef __cplusplus
 extern "C" {
@@ -43,4 +43,4 @@ lv_obj_t * control_switch_create(lv_obj_t * parent, const void * icon);
 } /*extern "C"*/
 #endif
 
-#endif /*CONTROL_SWITCH_H*/
+#endif /*LVGL_PRO_CONTROL_SWITCH_GEN_H*/

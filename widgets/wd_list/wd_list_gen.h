@@ -3,8 +3,8 @@
  *
  */
 
-#ifndef WD_LIST_GEN_H
-#define WD_LIST_GEN_H
+#ifndef LVGL_PRO_WD_LIST_GEN_H
+#define LVGL_PRO_WD_LIST_GEN_H
 
 #ifdef __cplusplus
 extern "C" {
@@ -92,4 +92,4 @@ lv_obj_t * wd_list_get_title(lv_obj_t * wd_list);
 } /*extern "C"*/
 #endif
 
-#endif /*WD_LIST_GEN_H*/
+#endif /*LVGL_PRO_WD_LIST_GEN_H*/

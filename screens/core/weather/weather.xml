@@ -32,9 +32,10 @@
 						text="Hourly Forecast"
 						translation_tag="hourly_forecast"
 						style_text_align="center"
+						long_mode="scroll_circular"
 					/>
 					<hs_line />
-					<hs_row style_pad_column="10">
+					<hs_row name="hourly_cont" style_pad_column="10">
 						<hourly_forecast />
 						<hourly_forecast />
 						<hourly_forecast />
@@ -50,8 +51,9 @@
 						text="Daily Forecast"
 						translation_tag="daily_forecast"
 						style_text_align="center"
+						long_mode="scroll_circular"
 					/>
-					<hs_column style_pad_row="2">
+					<hs_column name="daily_cont" style_pad_row="2">
 						<daily_forecast />
 						<daily_forecast />
 						<daily_forecast />

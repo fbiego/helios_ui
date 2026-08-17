@@ -23,7 +23,7 @@
 		<wd_list name="notifications_list" bind_screen="sb_screen_size">
 			<!-- <style name="style_list" /> -->
 			<wd_list-title height="content">
-				<hs_title_pill width="content" align="center" tag="notifications" style_max_width="100%" />
+				<hs_title_pill width="content" align="center" style_max_width="100%" tag="notifications" />
 			</wd_list-title>
 			<wd_list-container>
 				<style name="style_cont" />

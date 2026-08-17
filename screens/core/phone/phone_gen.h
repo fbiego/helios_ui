@@ -2,8 +2,8 @@
  * @file phone_gen.h
  */
 
-#ifndef PHONE_H
-#define PHONE_H
+#ifndef LVGL_PRO_PHONE_GEN_H
+#define LVGL_PRO_PHONE_GEN_H
 
 #ifdef __cplusplus
 extern "C" {
@@ -45,4 +45,4 @@ lv_obj_t * phone_create(void);
 } /*extern "C"*/
 #endif
 
-#endif /*PHONE_H*/
+#endif /*LVGL_PRO_PHONE_GEN_H*/

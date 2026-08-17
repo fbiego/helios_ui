@@ -2,8 +2,8 @@
  * @file widgets_gen.h
  */
 
-#ifndef WIDGETS_H
-#define WIDGETS_H
+#ifndef LVGL_PRO_WIDGETS_GEN_H
+#define LVGL_PRO_WIDGETS_GEN_H
 
 #ifdef __cplusplus
 extern "C" {
@@ -45,4 +45,4 @@ lv_obj_t * widgets_create(void);
 } /*extern "C"*/
 #endif
 
-#endif /*WIDGETS_H*/
+#endif /*LVGL_PRO_WIDGETS_GEN_H*/

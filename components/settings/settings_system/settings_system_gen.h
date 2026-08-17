@@ -2,8 +2,8 @@
  * @file settings_system_gen.h
  */
 
-#ifndef SETTINGS_SYSTEM_H
-#define SETTINGS_SYSTEM_H
+#ifndef LVGL_PRO_SETTINGS_SYSTEM_GEN_H
+#define LVGL_PRO_SETTINGS_SYSTEM_GEN_H
 
 #ifdef __cplusplus
 extern "C" {
@@ -43,4 +43,4 @@ lv_obj_t * settings_system_create(lv_obj_t * parent);
 } /*extern "C"*/
 #endif
 
-#endif /*SETTINGS_SYSTEM_H*/
+#endif /*LVGL_PRO_SETTINGS_SYSTEM_GEN_H*/

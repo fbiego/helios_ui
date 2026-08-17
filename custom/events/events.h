@@ -38,6 +38,7 @@ void screen_contacts_events_cb(lv_event_t *e);
 void screen_notifications_events_cb(lv_event_t *e);
 void screen_stopwatch_events_cb(lv_event_t *e);
 void screen_weather_events_cb(lv_event_t *e);
+void on_hs_title_pill_cb(lv_event_t * e);
 
 /**********************
 *      MACROS

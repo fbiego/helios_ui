@@ -2,8 +2,8 @@
  * @file boot_gen.h
  */
 
-#ifndef BOOT_H
-#define BOOT_H
+#ifndef LVGL_PRO_BOOT_GEN_H
+#define LVGL_PRO_BOOT_GEN_H
 
 #ifdef __cplusplus
 extern "C" {
@@ -45,4 +45,4 @@ lv_obj_t * boot_create(void);
 } /*extern "C"*/
 #endif
 
-#endif /*BOOT_H*/
+#endif /*LVGL_PRO_BOOT_GEN_H*/

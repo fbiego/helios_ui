@@ -2,8 +2,8 @@
  * @file hs_bar_gen.h
  */
 
-#ifndef HS_BAR_H
-#define HS_BAR_H
+#ifndef LVGL_PRO_HS_BAR_GEN_H
+#define LVGL_PRO_HS_BAR_GEN_H
 
 #ifdef __cplusplus
 extern "C" {
@@ -43,4 +43,4 @@ lv_obj_t * hs_bar_create(lv_obj_t * parent, const char * label, const char * tag
 } /*extern "C"*/
 #endif
 
-#endif /*HS_BAR_H*/
+#endif /*LVGL_PRO_HS_BAR_GEN_H*/

@@ -10,6 +10,9 @@
 #include "app_screens.h"
 
 #include "../events/events.h"
+#include "../watchfaces/watchface_manager.h"
+
+#include <stdint.h>
 
 /*********************
  *      DEFINES
@@ -39,6 +42,7 @@ static void scroll_y_end_listener_cb(lv_event_t *e);
 static void scroll_x_end_listener_cb(lv_event_t *e);
 
 static void home_screen_event_cb(lv_event_t * e);
+static void selector_watchface_clicked_cb(lv_event_t * e);
 static void on_control_widget_cb(lv_event_t * e);
 static void control_widget_cb(void * var, int32_t value);
 static void on_control_drag_cb(lv_event_t * e);
@@ -65,6 +69,12 @@ lv_obj_t * screen_home(void)
 {
     lv_obj_t * home = home_create();
 
+    lv_obj_t * watchface_cont = lv_obj_find_by_name(home, "watchface_cont");
+    if (watchface_cont) {
+        lv_obj_clean(watchface_cont);
+        helios_watchface_create_active(watchface_cont);
+    }
+
     static gesture_map_t gestures = {
         .left  = { screen_applications, LV_SCR_LOAD_ANIM_OVER_LEFT },
         .right = { screen_notifications, LV_SCR_LOAD_ANIM_OVER_RIGHT },
@@ -81,11 +91,6 @@ lv_obj_t * screen_home(void)
         lv_obj_add_event_cb(control_widget_home.drag_obj, on_control_drag_cb, LV_EVENT_ALL, home);
     }
 
-    // lv_obj_t * list = get_list_from_wd(control_widget_home.obj, "control_list");
-    // if (list) {
-    //     lv_obj_set_flag(list, LV_OBJ_FLAG_EVENT_BUBBLE, false);
-    // }
-
     static int scroll_pos = 0;
     lv_obj_t * list = get_list_from_wd(control_widget_home.obj, "control_list");
     if (list) {
@@ -95,20 +100,6 @@ lv_obj_t * screen_home(void)
     }
 
     lv_obj_set_align(control_widget_home.obj, LV_ALIGN_TOP_MID);
-    // lv_obj_add_event_cb(control_widget_home.obj, on_control_widget_cb, LV_EVENT_ALL, NULL);
-
-    // lv_area_t cont_a;
-    // lv_obj_get_coords(control_widget_home.obj, &cont_a);
-    // control_widget_home.height = lv_area_get_height(&cont_a);
-
-    // int32_t sb_h = lv_subject_get_int(&sb_screen_height);
-    // int32_t obj_h = lv_obj_get_height(home);
-
-    // LV_LOG_USER("Heights: Subject %d, Object %d", sb_h, obj_h);
-
-    // if (sb_h != obj_h) {
-    //     obj_h = sb_h;
-    // }
 
     control_widget_home.height = lv_obj_get_height(home);
     lv_obj_set_y(control_widget_home.obj, -control_widget_home.height);
@@ -117,6 +108,57 @@ lv_obj_t * screen_home(void)
 
     return home;
 
+}
+
+lv_obj_t * screen_selector(void)
+{
+    lv_obj_t * selector = selector_create();
+
+    static gesture_map_t gestures = {
+        .left  = { NULL, 0 },
+        .right = { screen_home, LV_SCR_LOAD_ANIM_OUT_RIGHT },
+        .up    = { NULL, 0 },
+        .down  = { NULL, 0 },
+    };
+
+    lv_obj_add_event_cb(selector, screen_gesture_event_cb, LV_EVENT_GESTURE, &gestures);
+
+    lv_obj_t * selector_panel = lv_obj_find_by_name(selector, "selector_cont");
+    lv_obj_t * selector_cont = selector_panel ? wd_panel_get_container(selector_panel) : NULL;
+    lv_obj_t * active_item = NULL;
+
+    if (selector_cont) {
+        lv_obj_clean(selector_cont);
+
+        uint32_t count = helios_watchfaces_count();
+        uint32_t active = helios_watchfaces_active_index();
+
+        for (uint32_t i = 0; i < count; i++) {
+            const helios_watchface_t * watchface = helios_watchfaces_get(i);
+            if (!watchface) continue;
+
+            lv_obj_t * item = face_preview_create(selector_cont,
+                                                  helios_watchface_get_preview(watchface),
+                                                  watchface->name);
+            lv_obj_add_flag(item, LV_OBJ_FLAG_CLICKABLE);
+            lv_obj_add_event_cb(item,
+                                selector_watchface_clicked_cb,
+                                LV_EVENT_CLICKED,
+                                (void *)(uintptr_t)i);
+
+            if (i == active) {
+                lv_obj_add_state(item, LV_STATE_CHECKED);
+                active_item = item;
+            }
+        }
+
+        if (active_item) {
+            lv_obj_update_layout(selector_cont);
+            lv_obj_scroll_to_view(active_item, LV_ANIM_OFF);
+        }
+    }
+
+    return selector;
 }
 
 
@@ -138,7 +180,6 @@ lv_obj_t * screen_applications(void)
     static int scroll_pos = 0;
     lv_obj_t * app_list = get_list_from_wd(apps, "app_list");
     if (app_list) {
-        lv_obj_scroll_to_y(app_list, 1, LV_ANIM_OFF); /* Circular scroll trigger fix */
         lv_obj_scroll_to_y(app_list, scroll_pos, LV_ANIM_OFF);
         lv_obj_add_event_cb(app_list, scroll_y_end_listener_cb, LV_EVENT_SCROLL_END, &scroll_pos);
     }
@@ -205,8 +246,13 @@ lv_obj_t * screen_widgets(void)
     lv_obj_add_event_cb(widgets, screen_gesture_event_cb, LV_EVENT_GESTURE, &gestures);
 
     static int scroll_pos = 0;
-    lv_obj_scroll_to_x(widgets, scroll_pos, LV_ANIM_OFF);
-    lv_obj_add_event_cb(widgets, scroll_x_end_listener_cb, LV_EVENT_SCROLL_END, &scroll_pos);
+    lv_obj_t * panel = lv_obj_get_child(widgets, 0);
+    lv_obj_t * panel_container = panel ? wd_panel_get_container(panel) : NULL;
+    if (panel_container) {
+        lv_obj_update_layout(panel_container);
+        lv_obj_scroll_to_x(panel_container, scroll_pos, LV_ANIM_OFF);
+        lv_obj_add_event_cb(panel_container, scroll_x_end_listener_cb, LV_EVENT_SCROLL_END, &scroll_pos);
+    }
 
     return widgets;
 }
@@ -430,6 +476,15 @@ static void on_control_drag_cb(lv_event_t * e)
 static void home_screen_event_cb(lv_event_t * e)
 {
     lv_event_code_t code = lv_event_get_code(e);
+
+    if (code == LV_EVENT_LONG_PRESSED) {
+        helios_screen_load_transition(screen_selector(),
+                                      LV_SCR_LOAD_ANIM_FADE_ON,
+                                      HELIOS_SCREEN_TRANSITION_TIME,
+                                      true,
+                                      HELIOS_SCREEN_TRANSITION_DEFAULT);
+        return;
+    }
     
     if (code == LV_EVENT_PRESSED) {
         panel_events_cb(LV_EVENT_PRESSED);
@@ -443,6 +498,19 @@ static void home_screen_event_cb(lv_event_t * e)
         panel_events_cb(LV_EVENT_RELEASED);
     }
 
+}
+
+static void selector_watchface_clicked_cb(lv_event_t * e)
+{
+    uint32_t index = (uint32_t)(uintptr_t)lv_event_get_user_data(e);
+
+    if (!helios_watchfaces_set_active(index)) return;
+
+    helios_screen_load_transition(screen_home(),
+                                  LV_SCR_LOAD_ANIM_FADE_OUT,
+                                  HELIOS_SCREEN_TRANSITION_TIME,
+                                  true,
+                                  HELIOS_SCREEN_TRANSITION_DEFAULT);
 }
 
 static void lv_obj_animate_y(lv_obj_t *obj, int32_t start, int32_t end, int32_t duration)
@@ -490,7 +558,7 @@ static void screen_gesture_event_cb(lv_event_t * e)
         helios_screen_load_transition(
             action->screen_fn(),
             action->anim,
-            500,
+            HELIOS_SCREEN_TRANSITION_TIME,
             true,
             action->transition
         );
@@ -532,7 +600,7 @@ static void settings_item_clicked_cb(lv_event_t * e)
 
     helios_screen_load_transition(screen,
                                   LV_SCR_LOAD_ANIM_OVER_LEFT,
-                                  500,
+                                  HELIOS_SCREEN_TRANSITION_TIME,
                                   true,
                                   HELIOS_SCREEN_TRANSITION_APP_OPEN_LEFT);
     

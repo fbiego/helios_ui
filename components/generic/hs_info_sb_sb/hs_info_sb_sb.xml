@@ -8,6 +8,7 @@
 	<api>
 		<prop name="label" type="subject" default="sb_placeholder" />
 		<prop name="info" type="subject" default="sb_placeholder" />
+		<prop name="info_space" type="int" default="0" />
 	</api>
 
 	<styles>
@@ -38,6 +39,7 @@
 			width="content"
 			style_text_align="right"
 			style_text_color="0xaaa"
+			style_text_letter_space="$info_space"
 		/>
 
 		<event_cb callback="on_hs_info_cb" trigger="all" />

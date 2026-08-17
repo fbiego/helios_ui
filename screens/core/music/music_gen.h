@@ -2,8 +2,8 @@
  * @file music_gen.h
  */
 
-#ifndef MUSIC_H
-#define MUSIC_H
+#ifndef LVGL_PRO_MUSIC_GEN_H
+#define LVGL_PRO_MUSIC_GEN_H
 
 #ifdef __cplusplus
 extern "C" {
@@ -45,4 +45,4 @@ lv_obj_t * music_create(void);
 } /*extern "C"*/
 #endif
 
-#endif /*MUSIC_H*/
+#endif /*LVGL_PRO_MUSIC_GEN_H*/

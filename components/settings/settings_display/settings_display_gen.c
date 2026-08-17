@@ -76,13 +76,10 @@ lv_obj_t * settings_display_create(lv_obj_t * parent)
 
         lv_obj_t * wd_list_title_0 = wd_list_get_title(wd_list_0);
         lv_obj_set_height(wd_list_title_0, LV_SIZE_CONTENT);
-        lv_obj_t * hs_card_0 = hs_card_create(wd_list_title_0);
-        lv_obj_set_width(hs_card_0, LV_SIZE_CONTENT);
-        lv_obj_set_align(hs_card_0, LV_ALIGN_CENTER);
-        lv_obj_set_flag(hs_card_0, LV_OBJ_FLAG_CLICKABLE, false);
-        lv_obj_set_style_max_width(hs_card_0, lv_pct(100), 0);
-        lv_obj_t * hs_text_normal_0 = hs_text_normal_create(hs_card_0);
-        lv_label_set_translation_tag(hs_text_normal_0, "display");
+        lv_obj_t * hs_title_pill_0 = hs_title_pill_create(wd_list_title_0, "display");
+        lv_obj_set_width(hs_title_pill_0, LV_SIZE_CONTENT);
+        lv_obj_set_align(hs_title_pill_0, LV_ALIGN_CENTER);
+        lv_obj_set_style_max_width(hs_title_pill_0, lv_pct(100), 0);
 
         lv_obj_t * wd_list_container_0 = wd_list_get_container(wd_list_0);
         lv_obj_add_style(wd_list_container_0, &style_base, 0);
@@ -92,15 +89,15 @@ lv_obj_t * settings_display_create(lv_obj_t * parent)
         lv_obj_bind_style(wd_list_container_0, &style_pad_rect, LV_STATE_USER_1, &sb_screen_size, 0);
         lv_obj_bind_style(wd_list_container_0, &style_pad_rect_360, LV_STATE_USER_1, &sb_screen_size, 1);
         lv_obj_bind_style(wd_list_container_0, &style_pad_rect_240, LV_STATE_USER_1, &sb_screen_size, 2);
+        lv_obj_t * hs_card_0 = hs_card_create(wd_list_container_0);
+        hs_slider_create(hs_card_0, "Brightness", "brightness", &sb_screen_brightness);
+
+        hs_line_create(hs_card_0);
+
+        hs_dropdown_create(hs_card_0, "Timeout", "timeout", &sb_screen_timeout, "timeout_5\ntimeout_10\ntimeout_20\ntimeout_30\nalways_on");
+
         lv_obj_t * hs_card_1 = hs_card_create(wd_list_container_0);
-        hs_slider_create(hs_card_1, "Brightness", "brightness", &sb_screen_brightness);
-
-        hs_line_create(hs_card_1);
-
-        hs_dropdown_create(hs_card_1, "Timeout", "timeout", &sb_screen_timeout, "timeout_5\ntimeout_10\ntimeout_20\ntimeout_30\nalways_on");
-
-        lv_obj_t * hs_card_2 = hs_card_create(wd_list_container_0);
-        lv_obj_t * hs_title_0 = hs_title_create(hs_card_2, "Select", "rotation", &sb_battery_percent);
+        lv_obj_t * hs_title_0 = hs_title_create(hs_card_1, "Select", "rotation", &sb_battery_percent);
         lv_obj_t * wd_segment_0 = wd_segment_create(hs_title_0);
         wd_segment_bind_value(wd_segment_0, &sb_screen_rotation);
         hs_button_icon_create(wd_segment_0, icon_arrow_up, 0, &sb_placeholder);
@@ -113,9 +110,9 @@ lv_obj_t * settings_display_create(lv_obj_t * parent)
         lv_obj_t * hs_button_icon_3 = hs_button_icon_create(wd_segment_0, icon_arrow_up, 2700, &sb_placeholder);
         lv_obj_bind_state_if_eq(hs_button_icon_3, &sb_screen_type, LV_STATE_DISABLED, 1);
 
-        hs_line_create(hs_card_2);
+        hs_line_create(hs_card_1);
 
-        hs_switch_create(hs_card_2, "Circular Scroll", "raise_to_wake", &sb_list_circular_mode);
+        hs_switch_create(hs_card_1, "Circular Scroll", "raise_to_wake", &sb_list_circular_mode);
 
         the_root = wd_list_0;
     }

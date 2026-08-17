@@ -26,7 +26,7 @@ extern "C" {
 /*********************
  *      DEFINES
  *********************/
-
+#define HELIOS_SCREEN_TRANSITION_TIME 200
 /**********************
  *      TYPEDEFS
  **********************/
@@ -64,6 +64,8 @@ lv_obj_t * screen_notifications(void);
 lv_obj_t * screen_settings(void);
 
 lv_obj_t * screen_widgets(void);
+
+lv_obj_t * screen_selector(void);
 
 lv_obj_t * screen_weather(void);
 

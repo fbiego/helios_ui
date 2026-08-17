@@ -82,6 +82,8 @@ lv_obj_t * hs_title_pill_create(lv_obj_t * parent, const char * tag)
         lv_label_set_long_mode(hs_text_normal_0, LV_LABEL_LONG_MODE_SCROLL_CIRCULAR);
         lv_obj_set_align(hs_text_normal_0, LV_ALIGN_CENTER);
 
+        lv_obj_add_event_cb(lv_obj_0, on_hs_title_pill_cb, LV_EVENT_ALL, NULL);
+
         the_root = lv_obj_0;
     }
     #endif

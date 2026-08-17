@@ -1,7 +1,7 @@
 /*******************************************************************************
  * Size: 30 px
  * Bpp: 4
- * Opts: --font /fonts/raw/NotoSans-Medium.ttf -o /fonts/NS_Medium_ru_30_data.c --size 30 --bpp 4 --format lvgl --no-compress --symbols «»АБВДЕЗИКМНОПРСТУФХЦЧШЭЯабвгдежзийклмнопрстуфцчшщыьюя --range 0x20-0x7F --lv-fallback NS_Medium_el_30_data
+ * Opts: --font /fonts/raw/NotoSans-Medium.ttf -o /fonts/NS_Medium_ru_30_data.c --size 30 --bpp 4 --format lvgl --no-compress --symbols «»АБВДЕЗИКМНОПРСТУФХЦЧШЭЯабвгдежзийклмнопрстуфхцчшщыьюя --range 0x20-0x7F --lv-fallback NS_Medium_el_30_data
  ******************************************************************************/
 
 #ifdef __has_include
@@ -3121,6 +3121,25 @@ static LV_ATTRIBUTE_LARGE_CONST const uint8_t glyph_bitmap[] = {
     0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x3f,
     0xfe, 0x00, 0x00, 0x00, 0x00, 0x00,
 
+    /* U+0445 "х" */
+    0x3f, 0xff, 0x60, 0x00, 0x00, 0x08, 0xff, 0xf2,
+    0x08, 0xff, 0xf1, 0x00, 0x00, 0x2f, 0xff, 0x60,
+    0x00, 0xdf, 0xfa, 0x00, 0x00, 0xbf, 0xfc, 0x00,
+    0x00, 0x3f, 0xff, 0x50, 0x05, 0xff, 0xf2, 0x00,
+    0x00, 0x09, 0xff, 0xe0, 0x1e, 0xff, 0x70, 0x00,
+    0x00, 0x00, 0xdf, 0xf9, 0x9f, 0xfc, 0x00, 0x00,
+    0x00, 0x00, 0x3f, 0xff, 0xff, 0xf2, 0x00, 0x00,
+    0x00, 0x00, 0x09, 0xff, 0xff, 0x70, 0x00, 0x00,
+    0x00, 0x00, 0x03, 0xff, 0xff, 0x20, 0x00, 0x00,
+    0x00, 0x00, 0x0c, 0xff, 0xff, 0xb0, 0x00, 0x00,
+    0x00, 0x00, 0x7f, 0xfe, 0xef, 0xf6, 0x00, 0x00,
+    0x00, 0x02, 0xff, 0xf4, 0x6f, 0xff, 0x10, 0x00,
+    0x00, 0x0c, 0xff, 0xa0, 0x0b, 0xff, 0xb0, 0x00,
+    0x00, 0x7f, 0xff, 0x10, 0x02, 0xff, 0xf6, 0x00,
+    0x02, 0xff, 0xf6, 0x00, 0x00, 0x7f, 0xff, 0x10,
+    0x0c, 0xff, 0xc0, 0x00, 0x00, 0x0d, 0xff, 0xb0,
+    0x7f, 0xff, 0x20, 0x00, 0x00, 0x03, 0xff, 0xf5,
+
     /* U+0446 "ц" */
     0x8f, 0xfa, 0x00, 0x00, 0x00, 0x3f, 0xff, 0x00,
     0x08, 0xff, 0xa0, 0x00, 0x00, 0x03, 0xff, 0xf0,
@@ -3464,14 +3483,15 @@ static const lv_font_fmt_txt_glyph_dsc_t glyph_dsc[] = {
     {.bitmap_index = 21421, .adv_w = 229, .box_w = 14, .box_h = 17, .ofs_x = 0, .ofs_y = 0},
     {.bitmap_index = 21540, .adv_w = 253, .box_w = 16, .box_h = 24, .ofs_x = 0, .ofs_y = -7},
     {.bitmap_index = 21732, .adv_w = 364, .box_w = 21, .box_h = 31, .ofs_x = 1, .ofs_y = -7},
-    {.bitmap_index = 22058, .adv_w = 299, .box_w = 17, .box_h = 22, .ofs_x = 2, .ofs_y = -5},
-    {.bitmap_index = 22245, .adv_w = 289, .box_w = 15, .box_h = 17, .ofs_x = 1, .ofs_y = 0},
-    {.bitmap_index = 22373, .adv_w = 437, .box_w = 23, .box_h = 17, .ofs_x = 2, .ofs_y = 0},
-    {.bitmap_index = 22569, .adv_w = 439, .box_w = 26, .box_h = 22, .ofs_x = 2, .ofs_y = -5},
-    {.bitmap_index = 22855, .adv_w = 378, .box_w = 20, .box_h = 17, .ofs_x = 2, .ofs_y = 0},
-    {.bitmap_index = 23025, .adv_w = 268, .box_w = 14, .box_h = 17, .ofs_x = 2, .ofs_y = 0},
-    {.bitmap_index = 23144, .adv_w = 391, .box_w = 22, .box_h = 17, .ofs_x = 2, .ofs_y = 0},
-    {.bitmap_index = 23331, .adv_w = 281, .box_w = 16, .box_h = 17, .ofs_x = 0, .ofs_y = 0}
+    {.bitmap_index = 22058, .adv_w = 255, .box_w = 16, .box_h = 17, .ofs_x = 0, .ofs_y = 0},
+    {.bitmap_index = 22194, .adv_w = 299, .box_w = 17, .box_h = 22, .ofs_x = 2, .ofs_y = -5},
+    {.bitmap_index = 22381, .adv_w = 289, .box_w = 15, .box_h = 17, .ofs_x = 1, .ofs_y = 0},
+    {.bitmap_index = 22509, .adv_w = 437, .box_w = 23, .box_h = 17, .ofs_x = 2, .ofs_y = 0},
+    {.bitmap_index = 22705, .adv_w = 439, .box_w = 26, .box_h = 22, .ofs_x = 2, .ofs_y = -5},
+    {.bitmap_index = 22991, .adv_w = 378, .box_w = 20, .box_h = 17, .ofs_x = 2, .ofs_y = 0},
+    {.bitmap_index = 23161, .adv_w = 268, .box_w = 14, .box_h = 17, .ofs_x = 2, .ofs_y = 0},
+    {.bitmap_index = 23280, .adv_w = 391, .box_w = 22, .box_h = 17, .ofs_x = 2, .ofs_y = 0},
+    {.bitmap_index = 23467, .adv_w = 281, .box_w = 16, .box_h = 17, .ofs_x = 0, .ofs_y = 0}
 };
 
 /*---------------------
@@ -3489,8 +3509,8 @@ static const uint8_t glyph_id_ofs_list_2[] = {
     20, 0, 0, 0, 0, 21, 0, 22,
     23, 24, 25, 26, 27, 28, 29, 30,
     31, 32, 33, 34, 35, 36, 37, 38,
-    39, 40, 41, 42, 43, 0, 44, 45,
-    46, 47, 0, 48, 49, 0, 50, 51
+    39, 40, 41, 42, 43, 44, 45, 46,
+    47, 48, 0, 49, 50, 0, 51, 52
 };
 
 /*Collect the unicode lists and glyph_id offsets*/

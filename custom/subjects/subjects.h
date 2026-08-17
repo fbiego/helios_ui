@@ -166,34 +166,10 @@ void helios_subject_set_time_month(int32_t value);
 void helios_subject_set_time_year(int32_t value);
 
 /**
- * Month short set function.
- * @param value    New value
- */
-void helios_subject_set_time_month_short(const char * value);
-
-/**
- * Month long set function.
- * @param value    New value
- */
-void helios_subject_set_time_month_long(const char * value);
-
-/**
  * Weekday index set function.
  * @param value    New value
  */
 void helios_subject_set_time_weekday(int32_t value);
-
-/**
- * Weekday short set function.
- * @param value    New value
- */
-void helios_subject_set_time_weekday_short(const char * value);
-
-/**
- * Weekday long set function.
- * @param value    New value
- */
-void helios_subject_set_time_weekday_long(const char * value);
 
 /**
  * System ble connection set function.
@@ -202,13 +178,19 @@ void helios_subject_set_time_weekday_long(const char * value);
 void helios_subject_set_system_connection(int32_t value);
 
 /**
+ * System ble connection string connected/disconnected set function.
+ * @param value    New value
+ */
+void helios_subject_set_system_connection_str(const char * value);
+
+/**
  * Chronos library version set function.
  * @param value    New value
  */
 void helios_subject_set_chronos_esp_version(const char * value);
 
 /**
- * Navio Chronos app version set function.
+ * Chronos app version set function.
  * @param value    New value
  */
 void helios_subject_set_chronos_app_version(const char * value);
@@ -368,6 +350,60 @@ void helios_subject_set_music_package(const char * value);
  * @param value    New value
  */
 void helios_subject_set_music_album_color(lv_color_t value);
+
+/**
+ * Phone manufacturer set function.
+ * @param value    New value
+ */
+void helios_subject_set_phone_manufacturer(const char * value);
+
+/**
+ * Phone model set function.
+ * @param value    New value
+ */
+void helios_subject_set_phone_model(const char * value);
+
+/**
+ * Phone SDK version set function.
+ * @param value    New value
+ */
+void helios_subject_set_phone_sdk(int32_t value);
+
+/**
+ * Phone battery set function.
+ * @param value    New value
+ */
+void helios_subject_set_phone_battery(int32_t value);
+
+/**
+ * Phone charging set function.
+ * @param value    New value
+ */
+void helios_subject_set_phone_charging(int32_t value);
+
+/**
+ * Phone charging string yes/no set function.
+ * @param value    New value
+ */
+void helios_subject_set_phone_charging_str(const char * value);
+
+/**
+ * Chronos App code set function.
+ * @param value    New value
+ */
+void helios_subject_set_chronos_app_code(int32_t value);
+
+/**
+ * Phone last sync set function.
+ * @param value    New value
+ */
+void helios_subject_set_phone_last_sync(const char * value);
+
+/**
+ * Weather condition code set function.
+ * @param value    New value
+ */
+void helios_subject_set_weather_code(int32_t value);
 
 /**
  * (icon_weather) Weather icon set function.
@@ -530,6 +566,24 @@ void helios_subject_sound_volume_change(int32_t value);
 void helios_subject_focusable_change(int32_t value);
 
 /**
+ * Month change callback.
+ * @param value    Updated value
+ */
+void helios_subject_time_month_change(int32_t value);
+
+/**
+ * Weekday index change callback.
+ * @param value    Updated value
+ */
+void helios_subject_time_weekday_change(int32_t value);
+
+/**
+ * System ble connection change callback.
+ * @param value    Updated value
+ */
+void helios_subject_system_connection_change(int32_t value);
+
+/**
  * Music state change callback.
  * @param value    Updated value
  */
@@ -540,6 +594,18 @@ void helios_subject_music_state_change(int32_t value);
  * @param value    Updated value
  */
 void helios_subject_music_package_change(const char * value);
+
+/**
+ * Phone charging change callback.
+ * @param value    Updated value
+ */
+void helios_subject_phone_charging_change(int32_t value);
+
+/**
+ * Weather condition code change callback.
+ * @param value    Updated value
+ */
+void helios_subject_weather_code_change(int32_t value);
 
 /**
  * Stopwatch state change callback.

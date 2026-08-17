@@ -2,8 +2,8 @@
  * @file control_slider_gen.h
  */
 
-#ifndef CONTROL_SLIDER_H
-#define CONTROL_SLIDER_H
+#ifndef LVGL_PRO_CONTROL_SLIDER_GEN_H
+#define LVGL_PRO_CONTROL_SLIDER_GEN_H
 
 #ifdef __cplusplus
 extern "C" {
@@ -43,4 +43,4 @@ lv_obj_t * control_slider_create(lv_obj_t * parent, const void * icon_left, cons
 } /*extern "C"*/
 #endif
 
-#endif /*CONTROL_SLIDER_H*/
+#endif /*LVGL_PRO_CONTROL_SLIDER_GEN_H*/

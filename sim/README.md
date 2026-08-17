@@ -25,9 +25,9 @@ The performance and the hardware-dependent parts cannot be simulated this way.
 **From the command line** (run from the project root, the parent of this folder):
 
 ```bash
-cmake -S sim -B build -DCMAKE_BUILD_TYPE=Debug
-cmake --build build -j
-cmake --build build --target run
+cmake -S sim -B build/sim -DCMAKE_BUILD_TYPE=Debug
+cmake --build build/sim -j
+cmake --build build/sim --target run
 ```
 
 ## Dependencies
@@ -55,8 +55,7 @@ brew install cmake llvm python sdl2
 
 When configured, the simulator automatically:
 
-1. Fetches LVGL via CMake `FetchContent` (using LVGL v9.5.0 by default, can be modified in `CMakeLists.txt`)
+1. Fetches LVGL via CMake `FetchContent` into the shared `build/_deps/lvgl-src` folder (using LVGL v9.5.0 by default, can be modified in `CMakeLists.txt`)
 2. Generates `lv_conf.h` from the platform-specific `lv_conf_*.defaults`
 3. Builds your exported UI as the `lib-ui` library
 4. Reads the project name and display size from `project.xml` and passes them to `main.c`
-

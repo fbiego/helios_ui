@@ -2,8 +2,8 @@
  * @file navigation_gen.h
  */
 
-#ifndef NAVIGATION_H
-#define NAVIGATION_H
+#ifndef LVGL_PRO_NAVIGATION_GEN_H
+#define LVGL_PRO_NAVIGATION_GEN_H
 
 #ifdef __cplusplus
 extern "C" {
@@ -45,4 +45,4 @@ lv_obj_t * navigation_create(void);
 } /*extern "C"*/
 #endif
 
-#endif /*NAVIGATION_H*/
+#endif /*LVGL_PRO_NAVIGATION_GEN_H*/

@@ -143,6 +143,7 @@ lv_obj_t * notification_item_create(lv_obj_t * parent, const void * icon, const 
         lv_obj_t * hs_text_normal_0 = hs_text_normal_create(hs_container_1);
         lv_label_set_text(hs_text_normal_0, title);
         lv_obj_set_width(hs_text_normal_0, lv_pct(100));
+        lv_label_set_long_mode(hs_text_normal_0, LV_LABEL_LONG_MODE_SCROLL_CIRCULAR);
 
         lv_obj_t * hs_text_small_0 = hs_text_small_create(hs_container_1);
         lv_label_set_text(hs_text_small_0, time);

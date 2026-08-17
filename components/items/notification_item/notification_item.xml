@@ -82,7 +82,7 @@
 
 			<hs_container clickable="false">
 				<style name="style_text_cont" />
-				<hs_text_normal text="$title" width="100%" />
+				<hs_text_normal text="$title" width="100%" long_mode="scroll_circular" />
 
 				<hs_text_small text="$time" width="100%" />
 			</hs_container>

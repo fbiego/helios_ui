@@ -2,8 +2,8 @@
  * @file control_button_gen.h
  */
 
-#ifndef CONTROL_BUTTON_H
-#define CONTROL_BUTTON_H
+#ifndef LVGL_PRO_CONTROL_BUTTON_GEN_H
+#define LVGL_PRO_CONTROL_BUTTON_GEN_H
 
 #ifdef __cplusplus
 extern "C" {
@@ -43,4 +43,4 @@ lv_obj_t * control_button_create(lv_obj_t * parent, const void * icon);
 } /*extern "C"*/
 #endif
 
-#endif /*CONTROL_BUTTON_H*/
+#endif /*LVGL_PRO_CONTROL_BUTTON_GEN_H*/

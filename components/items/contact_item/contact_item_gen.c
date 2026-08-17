@@ -80,16 +80,6 @@ lv_obj_t * contact_item_create(lv_obj_t * parent, const char * name, const char 
         lv_obj_add_style(lv_obj_0, &style_base, 0);
         lv_obj_bind_style(lv_obj_0, &style_base_360, 0, &sb_screen_size, 1);
         lv_obj_bind_style(lv_obj_0, &style_base_240, 0, &sb_screen_size, 2);
-        lv_obj_t * wd_image_0 = wd_image_create(lv_obj_0);
-        wd_image_set_src(wd_image_0, icon_user);
-        lv_obj_set_flag(wd_image_0, LV_OBJ_FLAG_CLICKABLE, false);
-        wd_image_set_scale_0(wd_image_0, 256);
-        wd_image_set_scale_1(wd_image_0, 190);
-        wd_image_set_scale_2(wd_image_0, 120);
-        wd_image_set_size_1(wd_image_0, 55);
-        wd_image_set_size_2(wd_image_0, 30);
-        wd_image_bind_scale(wd_image_0, &sb_screen_size);
-
         lv_obj_t * hs_column_0 = hs_column_create(lv_obj_0);
         lv_obj_set_flex_grow(hs_column_0, 1);
         lv_obj_t * hs_text_normal_0 = hs_text_normal_create(hs_column_0);

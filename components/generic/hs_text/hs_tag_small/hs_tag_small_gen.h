@@ -2,8 +2,8 @@
  * @file hs_tag_small_gen.h
  */
 
-#ifndef HS_TAG_SMALL_H
-#define HS_TAG_SMALL_H
+#ifndef LVGL_PRO_HS_TAG_SMALL_GEN_H
+#define LVGL_PRO_HS_TAG_SMALL_GEN_H
 
 #ifdef __cplusplus
 extern "C" {
@@ -43,4 +43,4 @@ lv_obj_t * hs_tag_small_create(lv_obj_t * parent);
 } /*extern "C"*/
 #endif
 
-#endif /*HS_TAG_SMALL_H*/
+#endif /*LVGL_PRO_HS_TAG_SMALL_GEN_H*/

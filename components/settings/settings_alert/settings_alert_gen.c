@@ -76,13 +76,10 @@ lv_obj_t * settings_alert_create(lv_obj_t * parent)
 
         lv_obj_t * wd_list_title_0 = wd_list_get_title(wd_list_0);
         lv_obj_set_height(wd_list_title_0, LV_SIZE_CONTENT);
-        lv_obj_t * hs_card_0 = hs_card_create(wd_list_title_0);
-        lv_obj_set_width(hs_card_0, LV_SIZE_CONTENT);
-        lv_obj_set_align(hs_card_0, LV_ALIGN_CENTER);
-        lv_obj_set_flag(hs_card_0, LV_OBJ_FLAG_CLICKABLE, false);
-        lv_obj_set_style_max_width(hs_card_0, lv_pct(100), 0);
-        lv_obj_t * hs_text_normal_0 = hs_text_normal_create(hs_card_0);
-        lv_label_set_translation_tag(hs_text_normal_0, "alerts");
+        lv_obj_t * hs_title_pill_0 = hs_title_pill_create(wd_list_title_0, "alerts");
+        lv_obj_set_width(hs_title_pill_0, LV_SIZE_CONTENT);
+        lv_obj_set_align(hs_title_pill_0, LV_ALIGN_CENTER);
+        lv_obj_set_style_max_width(hs_title_pill_0, lv_pct(100), 0);
 
         lv_obj_t * wd_list_container_0 = wd_list_get_container(wd_list_0);
         lv_obj_add_style(wd_list_container_0, &style_base, 0);
@@ -92,21 +89,21 @@ lv_obj_t * settings_alert_create(lv_obj_t * parent)
         lv_obj_bind_style(wd_list_container_0, &style_pad_rect, LV_STATE_USER_1, &sb_screen_size, 0);
         lv_obj_bind_style(wd_list_container_0, &style_pad_rect_360, LV_STATE_USER_1, &sb_screen_size, 1);
         lv_obj_bind_style(wd_list_container_0, &style_pad_rect_240, LV_STATE_USER_1, &sb_screen_size, 2);
+        lv_obj_t * hs_card_0 = hs_card_create(wd_list_container_0);
+        lv_obj_set_style_pad_ver(hs_card_0, 5, 0);
+        hs_switch_create(hs_card_0, "Circular Scroll", "sound", &sb_list_circular_mode);
+
+        hs_line_create(hs_card_0);
+
+        hs_switch_create(hs_card_0, "Circular Scroll", "vibration", &sb_list_circular_mode);
+
+        hs_line_create(hs_card_0);
+
+        hs_switch_create(hs_card_0, "Circular Scroll", "wake_screen", &sb_list_circular_mode);
+
         lv_obj_t * hs_card_1 = hs_card_create(wd_list_container_0);
         lv_obj_set_style_pad_ver(hs_card_1, 5, 0);
-        hs_switch_create(hs_card_1, "Circular Scroll", "sound", &sb_list_circular_mode);
-
-        hs_line_create(hs_card_1);
-
-        hs_switch_create(hs_card_1, "Circular Scroll", "vibration", &sb_list_circular_mode);
-
-        hs_line_create(hs_card_1);
-
-        hs_switch_create(hs_card_1, "Circular Scroll", "wake_screen", &sb_list_circular_mode);
-
-        lv_obj_t * hs_card_2 = hs_card_create(wd_list_container_0);
-        lv_obj_set_style_pad_ver(hs_card_2, 5, 0);
-        hs_switch_create(hs_card_2, "Circular Scroll", "dnd", &sb_list_circular_mode);
+        hs_switch_create(hs_card_1, "Circular Scroll", "dnd", &sb_list_circular_mode);
 
         the_root = wd_list_0;
     }

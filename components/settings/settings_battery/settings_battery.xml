@@ -23,9 +23,7 @@
 
 	<view extends="wd_list" bind_screen="sb_screen_size">
 		<wd_list-title height="content">
-			<hs_card width="content" align="center" clickable="false" style_max_width="100%">
-				<hs_text_normal translation_tag="battery" />
-			</hs_card>
+			<hs_title_pill width="content" align="center" style_max_width="100%" tag="battery" />
 		</wd_list-title>
 		<wd_list-container>
 			<style name="style_base" />

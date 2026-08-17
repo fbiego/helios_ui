@@ -67,8 +67,11 @@ lv_obj_t * music_widget_create(lv_obj_t * parent)
         lv_style_set_flex_flow(&style_cont, LV_FLEX_FLOW_COLUMN);
         lv_style_set_flex_main_place(&style_cont, LV_FLEX_ALIGN_SPACE_BETWEEN);
         lv_style_set_flex_cross_place(&style_cont, LV_FLEX_ALIGN_CENTER);
+        lv_style_set_pad_bottom(&style_cont, 26);
         lv_style_set_pad_ver(&style_cont_360, 15);
+        lv_style_set_pad_bottom(&style_cont_360, 23);
         lv_style_set_pad_ver(&style_cont_240, 10);
+        lv_style_set_pad_bottom(&style_cont_240, 16);
         lv_style_set_pad_hor(&style_pad_rect, 30);
         lv_style_set_pad_hor(&style_pad_rect_360, 28);
         lv_style_set_pad_hor(&style_pad_rect_240, 15);
@@ -141,7 +144,7 @@ lv_obj_t * music_widget_create(lv_obj_t * parent)
         lv_obj_bind_flag_if_eq(hs_column_1, &sb_system_connection, LV_OBJ_FLAG_HIDDEN, 1);
         lv_obj_t * hs_text_normal_0 = hs_text_normal_create(hs_column_1);
         lv_obj_set_width(hs_text_normal_0, lv_pct(90));
-        lv_label_set_text(hs_text_normal_0, "Not connected");
+        lv_label_set_translation_tag(hs_text_normal_0, "disconnected");
         lv_obj_set_style_text_align(hs_text_normal_0, LV_TEXT_ALIGN_CENTER, 0);
 
         lv_obj_t * hs_text_small_1 = hs_text_small_create(hs_container_0);
@@ -150,6 +153,7 @@ lv_obj_t * music_widget_create(lv_obj_t * parent)
 
         lv_obj_t * hs_row_0 = hs_row_create(hs_container_0);
         lv_obj_set_width(hs_row_0, lv_pct(90));
+        lv_obj_set_style_flex_cross_place(hs_row_0, LV_FLEX_ALIGN_CENTER, 0);
         lv_obj_bind_flag_if_eq(hs_row_0, &sb_system_connection, LV_OBJ_FLAG_HIDDEN, 0);
         lv_obj_t * hs_button_icon_0 = hs_button_icon_create(hs_row_0, icon_vol_down_32, 0, &sb_placeholder);
         lv_obj_set_flex_grow(hs_button_icon_0, 1);
@@ -157,6 +161,8 @@ lv_obj_t * music_widget_create(lv_obj_t * parent)
 
         lv_obj_t * hs_container_1 = hs_container_create(hs_row_0);
         lv_obj_set_flex_grow(hs_container_1, 3);
+        lv_obj_t * simple_bar_0 = simple_bar_create(hs_container_1);
+        lv_bar_bind_value(simple_bar_0, &sb_sound_volume);
 
         lv_obj_t * hs_button_icon_1 = hs_button_icon_create(hs_row_0, icon_vol_up_32, 0, &sb_placeholder);
         lv_obj_set_flex_grow(hs_button_icon_1, 1);

@@ -3,8 +3,8 @@
  *
  */
 
-#ifndef WD_OBJ_GEN_H
-#define WD_OBJ_GEN_H
+#ifndef LVGL_PRO_WD_OBJ_GEN_H
+#define LVGL_PRO_WD_OBJ_GEN_H
 
 #ifdef __cplusplus
 extern "C" {
@@ -57,4 +57,4 @@ void wd_obj_bind_bg_color(lv_obj_t * wd_obj, lv_subject_t * bind_bg_color);
 } /*extern "C"*/
 #endif
 
-#endif /*WD_OBJ_GEN_H*/
+#endif /*LVGL_PRO_WD_OBJ_GEN_H*/

@@ -8,6 +8,7 @@ The functions below acquire `lv_lock()` / `lv_unlock()` internally when they mut
 
 - Use `helios_subject_set_*()` for subject-backed values.
 - Use the app runtime APIs below for dynamic list data such as notifications, contacts, weather, and app registration.
+- Use `custom/watchfaces/watchface_manager.h` to register external watchfaces and restore the active watchface.
 - Do not keep returned item pointers outside the call site. The current storage is static RAM and may be changed by later API calls.
 - Data survives LVGL screen deletion because it is stored in `custom/apps`, not inside screen objects.
 - Data does not survive reboot unless your platform code reloads it into these APIs at startup.
@@ -76,12 +77,12 @@ void helios_contacts_clear(void);
 Header: `custom/apps/weather/weather.h`
 
 ```c
-bool helios_weather_hourly_add(const void * icon,
+bool helios_weather_hourly_add(int32_t icon_id,
                                const char * time,
                                const char * temp,
                                const char * humidity);
 
-bool helios_weather_daily_add(const void * icon,
+bool helios_weather_daily_add(int32_t icon_id,
                               const char * day,
                               const char * temp);
 
@@ -89,7 +90,7 @@ void helios_weather_hourly_clear(void);
 void helios_weather_daily_clear(void);
 ```
 
-Use the clear functions before loading a full replacement forecast. Use the add functions to append rows to the generated hourly and daily forecast containers.
+Use the clear functions before loading a full replacement forecast. Use the add functions to append rows to the generated hourly and daily forecast containers. Pass a `helios_weather_icon_id_t` value; the API resolves it to the matching weather image internally.
 
 ## App Registry
 
@@ -125,6 +126,41 @@ Use `helios_apps_register_simple()` when `create_cb` is an LVGL Editor generated
 Use `helios_apps_register_simple_events()` when a simple app also needs an event callback attached to its screen, such as the stopwatch screen.
 
 If `create_cb` is `NULL`, the app item is displayed but tapping it does not launch anything.
+
+Apps can self-register from their own `.c` file with constructor macros:
+
+```c
+HELIOS_REGISTER_APP(icon_application, "My App", "my_app", my_app_create, LV_SCR_LOAD_ANIM_OVER_LEFT);
+HELIOS_REGISTER_SIMPLE_APP(icon_music, "Music", "music", music_create, LV_SCR_LOAD_ANIM_OVER_LEFT);
+```
+
+The constructor only queues a registration callback. The callback runs from `helios_apps_init_all()` after generated assets are initialized, so image globals such as `icon_application` are valid.
+
+## Watchface Registry
+
+Header: `custom/watchfaces/watchface_manager.h`
+
+Full guide: `custom/watchfaces/README.md`
+
+```c
+bool helios_watchfaces_register(const char * name,
+                                const char * tag,
+                                helios_watchface_create_cb_t create_cb,
+                                const void * preview);
+
+bool helios_watchfaces_set_active(uint32_t index);
+uint32_t helios_watchfaces_active_index(void);
+```
+
+Use `helios_watchfaces_register()` for external watchfaces. External watchfaces use one preview image; the built-in default watchface uses the internal multi-preview API because it ships different previews for different screen resolutions.
+
+Watchfaces can also self-register from their own `.c` file:
+
+```c
+HELIOS_REGISTER_WATCHFACE("My Face", "my_face", my_watchface_create_cb, img_my_face_preview);
+```
+
+The home screen renders the active registered watchface. Long-pressing home opens the selector, which scrolls to the active watchface.
 
 ## Stopwatch
 

@@ -2,8 +2,8 @@
  * @file hs_slider_gen.h
  */
 
-#ifndef HS_SLIDER_H
-#define HS_SLIDER_H
+#ifndef LVGL_PRO_HS_SLIDER_GEN_H
+#define LVGL_PRO_HS_SLIDER_GEN_H
 
 #ifdef __cplusplus
 extern "C" {
@@ -43,4 +43,4 @@ lv_obj_t * hs_slider_create(lv_obj_t * parent, const char * label, const char * 
 } /*extern "C"*/
 #endif
 
-#endif /*HS_SLIDER_H*/
+#endif /*LVGL_PRO_HS_SLIDER_GEN_H*/

@@ -118,6 +118,7 @@ lv_obj_t * stopwatch_create(void)
         lv_obj_set_style_pad_top(hs_column_0, 14, 0);
         lv_obj_set_style_pad_bottom(hs_column_0, 10, 0);
         lv_obj_set_flex_grow(hs_column_0, 1);
+        lv_obj_set_flag(hs_column_0, LV_OBJ_FLAG_SCROLLABLE, false);
         lv_obj_add_style(hs_column_0, &style_cont, 0);
         lv_obj_bind_style(hs_column_0, &style_cont_360, 0, &sb_screen_size, 1);
         lv_obj_bind_style(hs_column_0, &style_cont_240, 0, &sb_screen_size, 2);

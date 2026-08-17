@@ -3,8 +3,8 @@
  *
  */
 
-#ifndef WD_SEGMENT_GEN_H
-#define WD_SEGMENT_GEN_H
+#ifndef LVGL_PRO_WD_SEGMENT_GEN_H
+#define LVGL_PRO_WD_SEGMENT_GEN_H
 
 #ifdef __cplusplus
 extern "C" {
@@ -64,4 +64,4 @@ void wd_segment_bind_value(lv_obj_t * wd_segment, lv_subject_t * bind_value);
 } /*extern "C"*/
 #endif
 
-#endif /*WD_SEGMENT_GEN_H*/
+#endif /*LVGL_PRO_WD_SEGMENT_GEN_H*/

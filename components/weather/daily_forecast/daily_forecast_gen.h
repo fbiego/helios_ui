@@ -2,8 +2,8 @@
  * @file daily_forecast_gen.h
  */
 
-#ifndef DAILY_FORECAST_H
-#define DAILY_FORECAST_H
+#ifndef LVGL_PRO_DAILY_FORECAST_GEN_H
+#define LVGL_PRO_DAILY_FORECAST_GEN_H
 
 #ifdef __cplusplus
 extern "C" {
@@ -43,4 +43,4 @@ lv_obj_t * daily_forecast_create(lv_obj_t * parent);
 } /*extern "C"*/
 #endif
 
-#endif /*DAILY_FORECAST_H*/
+#endif /*LVGL_PRO_DAILY_FORECAST_GEN_H*/

@@ -3,8 +3,8 @@
  *
  */
 
-#ifndef WD_LABEL_GEN_H
-#define WD_LABEL_GEN_H
+#ifndef LVGL_PRO_WD_LABEL_GEN_H
+#define LVGL_PRO_WD_LABEL_GEN_H
 
 #ifdef __cplusplus
 extern "C" {
@@ -78,4 +78,4 @@ void wd_label_bind_text(lv_obj_t * wd_label, lv_subject_t * bind_text);
 } /*extern "C"*/
 #endif
 
-#endif /*WD_LABEL_GEN_H*/
+#endif /*LVGL_PRO_WD_LABEL_GEN_H*/

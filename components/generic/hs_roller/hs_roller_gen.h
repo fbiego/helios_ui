@@ -2,8 +2,8 @@
  * @file hs_roller_gen.h
  */
 
-#ifndef HS_ROLLER_H
-#define HS_ROLLER_H
+#ifndef LVGL_PRO_HS_ROLLER_GEN_H
+#define LVGL_PRO_HS_ROLLER_GEN_H
 
 #ifdef __cplusplus
 extern "C" {
@@ -43,4 +43,4 @@ lv_obj_t * hs_roller_create(lv_obj_t * parent, const char * options);
 } /*extern "C"*/
 #endif
 
-#endif /*HS_ROLLER_H*/
+#endif /*LVGL_PRO_HS_ROLLER_GEN_H*/

@@ -26,9 +26,9 @@ extern "C" {
  *********************/
 
 #define HELIOS_NOTIFICATIONS_MAX           16
-#define HELIOS_NOTIFICATION_TITLE_MAX      32
+#define HELIOS_NOTIFICATION_TITLE_MAX      64
 #define HELIOS_NOTIFICATION_TIME_MAX       12
-#define HELIOS_NOTIFICATION_MESSAGE_MAX    192
+#define HELIOS_NOTIFICATION_MESSAGE_MAX    512
 
 /**********************
  *      TYPEDEFS

@@ -2,8 +2,8 @@
  * @file hs_container_gen.h
  */
 
-#ifndef HS_CONTAINER_H
-#define HS_CONTAINER_H
+#ifndef LVGL_PRO_HS_CONTAINER_GEN_H
+#define LVGL_PRO_HS_CONTAINER_GEN_H
 
 #ifdef __cplusplus
 extern "C" {
@@ -43,4 +43,4 @@ lv_obj_t * hs_container_create(lv_obj_t * parent);
 } /*extern "C"*/
 #endif
 
-#endif /*HS_CONTAINER_H*/
+#endif /*LVGL_PRO_HS_CONTAINER_GEN_H*/

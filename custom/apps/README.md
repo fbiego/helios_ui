@@ -67,8 +67,8 @@ Weather data is split into hourly and daily forecast rows.
 helios_weather_hourly_clear();
 helios_weather_daily_clear();
 
-helios_weather_hourly_add(icon_weather, "18:00", "21°", "42%");
-helios_weather_daily_add(icon_weather, "Thu", "20°");
+helios_weather_hourly_add(HELIOS_WEATHER_ICON_RAIN, "18:00", "21°", "42%");
+helios_weather_daily_add(HELIOS_WEATHER_ICON_CLOUD, "Thu", "20°");
 ```
 
 The weather screen keeps the generated weather cards, then clears and redraws the hourly row and daily column from this API.
@@ -94,6 +94,27 @@ helios_apps_register(
 );
 ```
 
+External apps can also self-register from their own `.c` file with a constructor macro:
+
+```c
+static lv_obj_t * my_app_create(void)
+{
+    lv_obj_t * screen = lv_obj_create(NULL);
+    /* build screen */
+    return screen;
+}
+
+HELIOS_REGISTER_APP(
+    icon_application,
+    "My App",
+    "my_app",
+    my_app_create,
+    LV_SCR_LOAD_ANIM_OVER_LEFT
+);
+```
+
+The macro does not register the app immediately inside the constructor. It stores a small initializer callback, then the app manager runs that callback during `helios_apps_init_all()`, after generated images and subjects are initialized.
+
 For generated screens that only need the common app gesture, register the generated create function as a simple app:
 
 ```c
@@ -101,6 +122,18 @@ helios_apps_register_simple(
     icon_phone_link,
     "Phone Link",
     "",
+    phone_create,
+    LV_SCR_LOAD_ANIM_OVER_LEFT
+);
+```
+
+Or use the matching constructor macro:
+
+```c
+HELIOS_REGISTER_SIMPLE_APP(
+    icon_phone_link,
+    "Phone Link",
+    "phone_link",
     phone_create,
     LV_SCR_LOAD_ANIM_OVER_LEFT
 );

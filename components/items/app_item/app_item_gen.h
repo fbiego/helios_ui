@@ -2,8 +2,8 @@
  * @file app_item_gen.h
  */
 
-#ifndef APP_ITEM_H
-#define APP_ITEM_H
+#ifndef LVGL_PRO_APP_ITEM_GEN_H
+#define LVGL_PRO_APP_ITEM_GEN_H
 
 #ifdef __cplusplus
 extern "C" {
@@ -43,4 +43,4 @@ lv_obj_t * app_item_create(lv_obj_t * parent, const void * icon, const char * ap
 } /*extern "C"*/
 #endif
 
-#endif /*APP_ITEM_H*/
+#endif /*LVGL_PRO_APP_ITEM_GEN_H*/

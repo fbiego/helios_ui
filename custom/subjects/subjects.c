@@ -50,8 +50,13 @@ void helios_subjects_init(void)
     lv_subject_add_observer(&sb_language, int_subject_observer_cb, helios_subject_language_change);
     lv_subject_add_observer(&sb_sound_volume, int_subject_observer_cb, helios_subject_sound_volume_change);
     lv_subject_add_observer(&sb_focusable, int_subject_observer_cb, helios_subject_focusable_change);
+    lv_subject_add_observer(&sb_time_month, int_subject_observer_cb, helios_subject_time_month_change);
+    lv_subject_add_observer(&sb_time_weekday, int_subject_observer_cb, helios_subject_time_weekday_change);
+    lv_subject_add_observer(&sb_system_connection, int_subject_observer_cb, helios_subject_system_connection_change);
     lv_subject_add_observer(&sb_music_state, int_subject_observer_cb, helios_subject_music_state_change);
     lv_subject_add_observer(&sb_music_package, string_subject_observer_cb, helios_subject_music_package_change);
+    lv_subject_add_observer(&sb_phone_charging, int_subject_observer_cb, helios_subject_phone_charging_change);
+    lv_subject_add_observer(&sb_weather_code, int_subject_observer_cb, helios_subject_weather_code_change);
     lv_subject_add_observer(&sb_stopwatch_state, int_subject_observer_cb, helios_subject_stopwatch_state_change);
     lv_subject_add_observer(&sb_stopwatch_button_start_state, int_subject_observer_cb, helios_subject_stopwatch_button_start_state_change);
     lv_subject_add_observer(&sb_stopwatch_button_reset_state, int_subject_observer_cb, helios_subject_stopwatch_button_reset_state_change);
@@ -209,20 +214,6 @@ void helios_subject_set_time_year(int32_t value)
     lv_unlock();
 }
 
-void helios_subject_set_time_month_short(const char * value)
-{
-    lv_lock();
-    lv_subject_copy_string(&sb_time_month_short, value);
-    lv_unlock();
-}
-
-void helios_subject_set_time_month_long(const char * value)
-{
-    lv_lock();
-    lv_subject_copy_string(&sb_time_month_long, value);
-    lv_unlock();
-}
-
 void helios_subject_set_time_weekday(int32_t value)
 {
     lv_lock();
@@ -230,24 +221,17 @@ void helios_subject_set_time_weekday(int32_t value)
     lv_unlock();
 }
 
-void helios_subject_set_time_weekday_short(const char * value)
-{
-    lv_lock();
-    lv_subject_copy_string(&sb_time_weekday_short, value);
-    lv_unlock();
-}
-
-void helios_subject_set_time_weekday_long(const char * value)
-{
-    lv_lock();
-    lv_subject_copy_string(&sb_time_weekday_long, value);
-    lv_unlock();
-}
-
 void helios_subject_set_system_connection(int32_t value)
 {
     lv_lock();
     lv_subject_set_int(&sb_system_connection, value);
+    lv_unlock();
+}
+
+void helios_subject_set_system_connection_str(const char * value)
+{
+    lv_lock();
+    lv_subject_copy_string(&sb_system_connection_str, value);
     lv_unlock();
 }
 
@@ -447,6 +431,69 @@ void helios_subject_set_music_album_color(lv_color_t value)
     lv_unlock();
 }
 
+void helios_subject_set_phone_manufacturer(const char * value)
+{
+    lv_lock();
+    lv_subject_copy_string(&sb_phone_manufacturer, value);
+    lv_unlock();
+}
+
+void helios_subject_set_phone_model(const char * value)
+{
+    lv_lock();
+    lv_subject_copy_string(&sb_phone_model, value);
+    lv_unlock();
+}
+
+void helios_subject_set_phone_sdk(int32_t value)
+{
+    lv_lock();
+    lv_subject_set_int(&sb_phone_sdk, value);
+    lv_unlock();
+}
+
+void helios_subject_set_phone_battery(int32_t value)
+{
+    lv_lock();
+    lv_subject_set_int(&sb_phone_battery, value);
+    lv_unlock();
+}
+
+void helios_subject_set_phone_charging(int32_t value)
+{
+    lv_lock();
+    lv_subject_set_int(&sb_phone_charging, value);
+    lv_unlock();
+}
+
+void helios_subject_set_phone_charging_str(const char * value)
+{
+    lv_lock();
+    lv_subject_copy_string(&sb_phone_charging_str, value);
+    lv_unlock();
+}
+
+void helios_subject_set_chronos_app_code(int32_t value)
+{
+    lv_lock();
+    lv_subject_set_int(&sb_chronos_app_code, value);
+    lv_unlock();
+}
+
+void helios_subject_set_phone_last_sync(const char * value)
+{
+    lv_lock();
+    lv_subject_copy_string(&sb_phone_last_sync, value);
+    lv_unlock();
+}
+
+void helios_subject_set_weather_code(int32_t value)
+{
+    lv_lock();
+    lv_subject_set_int(&sb_weather_code, value);
+    lv_unlock();
+}
+
 void helios_subject_set_weather_icon(void * value)
 {
     lv_lock();
@@ -612,6 +659,21 @@ void __attribute__((weak)) helios_subject_focusable_change(int32_t value)
     LV_LOG_USER("Subject focusable changed %d", value);
 }
 
+void __attribute__((weak)) helios_subject_time_month_change(int32_t value)
+{
+    LV_LOG_USER("Subject time_month changed %d", value);
+}
+
+void __attribute__((weak)) helios_subject_time_weekday_change(int32_t value)
+{
+    LV_LOG_USER("Subject time_weekday changed %d", value);
+}
+
+void __attribute__((weak)) helios_subject_system_connection_change(int32_t value)
+{
+    LV_LOG_USER("Subject system_connection changed %d", value);
+}
+
 void __attribute__((weak)) helios_subject_music_state_change(int32_t value)
 {
     LV_LOG_USER("Subject music_state changed %d", value);
@@ -620,6 +682,16 @@ void __attribute__((weak)) helios_subject_music_state_change(int32_t value)
 void __attribute__((weak)) helios_subject_music_package_change(const char * value)
 {
     LV_LOG_USER("Subject music_package changed %s", value);
+}
+
+void __attribute__((weak)) helios_subject_phone_charging_change(int32_t value)
+{
+    LV_LOG_USER("Subject phone_charging changed %d", value);
+}
+
+void __attribute__((weak)) helios_subject_weather_code_change(int32_t value)
+{
+    LV_LOG_USER("Subject weather_code changed %d", value);
 }
 
 void __attribute__((weak)) helios_subject_stopwatch_state_change(int32_t value)

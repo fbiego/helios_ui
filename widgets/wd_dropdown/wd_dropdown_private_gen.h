@@ -3,8 +3,8 @@
  *
  */
 
-#ifndef WD_DROPDOWN_PRIVATE_H
-#define WD_DROPDOWN_PRIVATE_H
+#ifndef LVGL_PRO_WD_DROPDOWN_PRIVATE_GEN_H
+#define LVGL_PRO_WD_DROPDOWN_PRIVATE_GEN_H
 
 #ifdef __cplusplus
 extern "C" {
@@ -61,4 +61,4 @@ extern const lv_obj_class_t wd_dropdown_class;
 } /*extern "C"*/
 #endif
 
-#endif /*WD_DROPDOWN_PRIVATE_H*/
+#endif /*LVGL_PRO_WD_DROPDOWN_PRIVATE_GEN_H*/

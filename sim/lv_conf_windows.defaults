@@ -31,13 +31,13 @@ LV_LOG_PRINTF           1
 
 # File system: lets the UI load file-based assets (images, fonts) exported by
 # the Editor. The UI is initialized with asset path "A:" (drive letter 'A').
-LV_USE_FS_STDIO         1
+LV_USE_FS_STDIO         0
 LV_FS_STDIO_LETTER      'A'
 
 # Asset decoders commonly produced by the Editor.
-LV_USE_LODEPNG          1
-LV_USE_TINY_TTF         1
-LV_TINY_TTF_FILE_SUPPORT 1
+LV_USE_LODEPNG          0
+LV_USE_TINY_TTF         0
+LV_TINY_TTF_FILE_SUPPORT 0
 
 # Widgets used by the examples that are off by default in lv_conf_template.h.
 LV_USE_QRCODE           1
@@ -49,6 +49,8 @@ LV_FONT_MONTSERRAT_24   1
 
 # Show the FPS / CPU overlay. Set to 1 to enable.
 LV_USE_PERF_MONITOR     0
+LV_USE_SYSMON           1
+LV_USE_MEM_MONITOR      1
 
 # lv_obj name is required by the C code exported from the Editor.
 LV_USE_OBJ_NAME         1
@@ -56,4 +58,8 @@ LV_USE_OBJ_NAME         1
 
 # To support translations
 LV_USE_TRANSLATION 1
-LV_USE_FLOAT            1
+
+LV_USE_FLOAT    1
+
+LV_USE_STDLIB_MALLOC    LV_STDLIB_BUILTIN
+LV_MEM_SIZE             (512 * 1024U)

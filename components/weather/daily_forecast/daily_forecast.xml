@@ -52,6 +52,6 @@
 			bind_scale="sb_screen_size"
 			flex_grow="1"
 		/>
-		<hs_text_normal flex_grow="2" text="19°" style_text_align="center" />
+		<hs_text_normal flex_grow="2" text="19°/12°" style_text_align="center" style_text_letter_space="-1" />
 	</view>
 </component>

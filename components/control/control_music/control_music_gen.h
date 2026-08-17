@@ -2,8 +2,8 @@
  * @file control_music_gen.h
  */
 
-#ifndef CONTROL_MUSIC_H
-#define CONTROL_MUSIC_H
+#ifndef LVGL_PRO_CONTROL_MUSIC_GEN_H
+#define LVGL_PRO_CONTROL_MUSIC_GEN_H
 
 #ifdef __cplusplus
 extern "C" {
@@ -43,4 +43,4 @@ lv_obj_t * control_music_create(lv_obj_t * parent);
 } /*extern "C"*/
 #endif
 
-#endif /*CONTROL_MUSIC_H*/
+#endif /*LVGL_PRO_CONTROL_MUSIC_GEN_H*/

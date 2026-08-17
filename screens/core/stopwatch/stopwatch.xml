@@ -39,6 +39,7 @@
 				style_pad_top="14"
 				style_pad_bottom="10"
 				flex_grow="1"
+				scrollable="false"
 			>
 				<style name="style_cont" />
 				<bind_style name="style_cont_360" subject="sb_screen_size" ref_value="1" />

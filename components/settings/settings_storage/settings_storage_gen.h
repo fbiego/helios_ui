@@ -2,8 +2,8 @@
  * @file settings_storage_gen.h
  */
 
-#ifndef SETTINGS_STORAGE_H
-#define SETTINGS_STORAGE_H
+#ifndef LVGL_PRO_SETTINGS_STORAGE_GEN_H
+#define LVGL_PRO_SETTINGS_STORAGE_GEN_H
 
 #ifdef __cplusplus
 extern "C" {
@@ -43,4 +43,4 @@ lv_obj_t * settings_storage_create(lv_obj_t * parent);
 } /*extern "C"*/
 #endif
 
-#endif /*SETTINGS_STORAGE_H*/
+#endif /*LVGL_PRO_SETTINGS_STORAGE_GEN_H*/

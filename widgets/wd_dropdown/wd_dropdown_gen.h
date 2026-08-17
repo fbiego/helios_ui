@@ -3,8 +3,8 @@
  *
  */
 
-#ifndef WD_DROPDOWN_GEN_H
-#define WD_DROPDOWN_GEN_H
+#ifndef LVGL_PRO_WD_DROPDOWN_GEN_H
+#define LVGL_PRO_WD_DROPDOWN_GEN_H
 
 #ifdef __cplusplus
 extern "C" {
@@ -71,4 +71,4 @@ void wd_dropdown_bind_value(lv_obj_t * wd_dropdown, lv_subject_t * bind_value);
 } /*extern "C"*/
 #endif
 
-#endif /*WD_DROPDOWN_GEN_H*/
+#endif /*LVGL_PRO_WD_DROPDOWN_GEN_H*/

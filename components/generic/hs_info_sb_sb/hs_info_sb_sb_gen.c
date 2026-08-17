@@ -30,7 +30,7 @@
  *   GLOBAL FUNCTIONS
  **********************/
 
-lv_obj_t * hs_info_sb_sb_create(lv_obj_t * parent, lv_subject_t * label, lv_subject_t * info)
+lv_obj_t * hs_info_sb_sb_create(lv_obj_t * parent, lv_subject_t * label, lv_subject_t * info, int32_t info_space)
 {
     LV_TRACE_OBJ_CREATE("begin");
 
@@ -84,6 +84,7 @@ lv_obj_t * hs_info_sb_sb_create(lv_obj_t * parent, lv_subject_t * label, lv_subj
         lv_obj_set_width(hs_text_normal_1, LV_SIZE_CONTENT);
         lv_obj_set_style_text_align(hs_text_normal_1, LV_TEXT_ALIGN_RIGHT, 0);
         lv_obj_set_style_text_color(hs_text_normal_1, lv_color_hex3(0xaaa), 0);
+        lv_obj_set_style_text_letter_space(hs_text_normal_1, info_space, 0);
 
         lv_obj_add_event_cb(lv_obj_0, on_hs_info_cb, LV_EVENT_ALL, NULL);
 

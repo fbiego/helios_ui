@@ -2,8 +2,8 @@
  * @file hs_space_gen.h
  */
 
-#ifndef HS_SPACE_H
-#define HS_SPACE_H
+#ifndef LVGL_PRO_HS_SPACE_GEN_H
+#define LVGL_PRO_HS_SPACE_GEN_H
 
 #ifdef __cplusplus
 extern "C" {
@@ -43,4 +43,4 @@ lv_obj_t * hs_space_create(lv_obj_t * parent);
 } /*extern "C"*/
 #endif
 
-#endif /*HS_SPACE_H*/
+#endif /*LVGL_PRO_HS_SPACE_GEN_H*/

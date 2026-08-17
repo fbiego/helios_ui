@@ -2,8 +2,8 @@
  * @file hs_card_gen.h
  */
 
-#ifndef HS_CARD_H
-#define HS_CARD_H
+#ifndef LVGL_PRO_HS_CARD_GEN_H
+#define LVGL_PRO_HS_CARD_GEN_H
 
 #ifdef __cplusplus
 extern "C" {
@@ -43,4 +43,4 @@ lv_obj_t * hs_card_create(lv_obj_t * parent);
 } /*extern "C"*/
 #endif
 
-#endif /*HS_CARD_H*/
+#endif /*LVGL_PRO_HS_CARD_GEN_H*/

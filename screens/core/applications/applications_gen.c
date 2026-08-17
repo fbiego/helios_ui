@@ -107,7 +107,7 @@ lv_obj_t * applications_create(void)
         wd_list_bind_screen(app_list, &sb_screen_size);
         lv_obj_t * wd_list_title_0 = wd_list_get_title(app_list);
         lv_obj_set_height(wd_list_title_0, LV_SIZE_CONTENT);
-        lv_obj_t * hs_title_pill_0 = hs_title_pill_create(wd_list_title_0, "Applications");
+        lv_obj_t * hs_title_pill_0 = hs_title_pill_create(wd_list_title_0, "applications");
         lv_obj_set_width(hs_title_pill_0, LV_SIZE_CONTENT);
         lv_obj_set_align(hs_title_pill_0, LV_ALIGN_CENTER);
         lv_obj_set_style_max_width(hs_title_pill_0, lv_pct(100), 0);
@@ -138,7 +138,7 @@ lv_obj_t * applications_create(void)
 
         app_item_create(wd_list_container_0, icon_chat, "Notifications", "notifications");
 
-        app_item_create(wd_list_container_0, icon_phone_link, "Phone Link", "");
+        app_item_create(wd_list_container_0, icon_phone_link, "Phone Link", "phone_link");
 
         app_item_create(wd_list_container_0, icon_gear, "Settings", "settings");
 

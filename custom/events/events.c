@@ -47,6 +47,7 @@ static lv_obj_t * weather_daily_column;
 **********************/
 static void applications_render_all(lv_obj_t * list);
 static void applications_render_one(lv_obj_t * list, const helios_app_t * app);
+static void applications_refresh_scroll_effect(void);
 static void applications_observer_cb(helios_apps_event_t event,
                                      const helios_app_t * app,
                                      void * user_data);
@@ -74,56 +75,16 @@ static void weather_render_hourly(lv_obj_t * parent, const helios_hourly_forecas
 static void weather_render_daily(lv_obj_t * parent, const helios_daily_forecast_t * forecast);
 static void weather_set_hourly(lv_obj_t * obj, const helios_hourly_forecast_t * forecast);
 static void weather_set_daily(lv_obj_t * obj, const helios_daily_forecast_t * forecast);
+static const char * weather_day_tag(const char * day);
 static void weather_observer_cb(helios_weather_event_t event, void * user_data);
 static lv_obj_t * child_at(lv_obj_t * obj, int32_t index);
+static int32_t hs_title_pill_label_text_width(lv_obj_t * label);
 static void restore_scroll_y(lv_obj_t * obj, int32_t scroll_y);
 
 /**********************
 *   GLOBAL FUNCTIONS
 **********************/
 
-void on_settings_clicked_cb(lv_event_t * e)
-{
-    LV_UNUSED(e);
-    lv_screen_load_anim(screen_settings(), LV_SCR_LOAD_ANIM_OVER_LEFT, 500, 0, true);
-}
-
-void on_weather_clicked_cb(lv_event_t * e)
-{
-    LV_UNUSED(e);
-    lv_screen_load_anim(screen_weather(), LV_SCR_LOAD_ANIM_OVER_LEFT, 500, 0, true);
-}
-
-void on_notifications_clicked_cb(lv_event_t * e)
-{
-    LV_UNUSED(e);
-    notifications_to_apps = true;
-    lv_screen_load_anim(screen_notifications(), LV_SCR_LOAD_ANIM_OVER_LEFT, 500, 0, true);
-}
-
-void on_contacts_clicked_cb(lv_event_t * e)
-{
-    LV_UNUSED(e);
-    lv_screen_load_anim(screen_contacts(), LV_SCR_LOAD_ANIM_OVER_LEFT, 500, 0, true);
-}
-
-void on_navigation_clicked_cb(lv_event_t * e)
-{
-    LV_UNUSED(e);
-    lv_screen_load_anim(simple_app_screen_create(navigation_create), LV_SCR_LOAD_ANIM_OVER_LEFT, 500, 0, true);
-}
-
-void on_music_clicked_cb(lv_event_t * e)
-{
-    LV_UNUSED(e);
-    lv_screen_load_anim(simple_app_screen_create(music_create), LV_SCR_LOAD_ANIM_OVER_LEFT, 500, 0, true);
-}
-
-void on_phone_clicked_cb(lv_event_t * e)
-{
-    LV_UNUSED(e);
-    lv_screen_load_anim(simple_app_screen_create(phone_create), LV_SCR_LOAD_ANIM_OVER_LEFT, 500, 0, true);
-}
 
 void on_simulator_event_cb(lv_event_t * e)
 {
@@ -152,9 +113,10 @@ void helios_subject_music_state_change(int32_t value)
     }
 }
 
-void on_music_control_cb(lv_event_t *e)
+void __attribute__((weak)) on_music_control_cb(lv_event_t *e)
 {
-    LV_UNUSED(e);
+    const char *action = lv_event_get_user_data(e);
+    LV_LOG_USER("music control action: %s", action);
 }
 
 void on_hs_info_cb(lv_event_t * e)
@@ -235,6 +197,38 @@ void on_hs_info_cb(lv_event_t * e)
     }
 }
 
+void on_hs_title_pill_cb(lv_event_t * e)
+{
+    lv_event_code_t code = lv_event_get_code(e);
+    if (code != LV_EVENT_SIZE_CHANGED &&
+        code != LV_EVENT_STYLE_CHANGED &&
+        code != LV_EVENT_CHILD_CHANGED &&
+        code != LV_EVENT_TRANSLATION_LANGUAGE_CHANGED) {
+        return;
+    }
+
+    lv_obj_t * pill = lv_event_get_current_target(e);
+    if (!pill || lv_obj_get_child_count(pill) < 1) return;
+
+    lv_obj_t * label = lv_obj_get_child(pill, 0);
+    int32_t pill_width = lv_obj_get_width(pill);
+    if (!label || pill_width <= 0) return;
+
+    int32_t pad_left = lv_obj_get_style_pad_left(pill, LV_PART_MAIN);
+    int32_t pad_right = lv_obj_get_style_pad_right(pill, LV_PART_MAIN);
+    int32_t content_width = pill_width - pad_left - pad_right;
+    if (content_width <= 0) return;
+
+    int32_t text_width = hs_title_pill_label_text_width(label);
+    if (text_width > content_width) {
+        if (lv_obj_get_width(label) != content_width) {
+            lv_obj_set_width(label, content_width);
+        }
+    } else {
+        lv_obj_set_width(label, LV_SIZE_CONTENT);
+    }
+}
+
 void screen_applications_events_cb(lv_event_t *e)
 {
     lv_obj_t * applications = lv_event_get_current_target(e);
@@ -244,6 +238,10 @@ void screen_applications_events_cb(lv_event_t *e)
         applications_list = get_list_from_wd(applications, "app_list");
         applications_render_all(applications_list);
         helios_apps_observer_add(applications_observer_cb, NULL);
+    }
+
+    if (code == LV_EVENT_SCREEN_LOADED) {
+        applications_refresh_scroll_effect();
     }
 
     if (code == LV_EVENT_DELETE) {
@@ -373,6 +371,14 @@ static void applications_render_one(lv_obj_t * list, const helios_app_t * app)
     }
 }
 
+static void applications_refresh_scroll_effect(void)
+{
+    if (!applications_list) return;
+
+    lv_obj_update_layout(applications_list);
+    lv_obj_send_event(applications_list, LV_EVENT_SCROLL, NULL);
+}
+
 static void applications_observer_cb(helios_apps_event_t event,
                                      const helios_app_t * app,
                                      void * user_data)
@@ -383,10 +389,12 @@ static void applications_observer_cb(helios_apps_event_t event,
 
     if (event == HELIOS_APPS_EVENT_ADDED) {
         applications_render_one(applications_list, app);
+        applications_refresh_scroll_effect();
         return;
     }
 
     applications_render_all(applications_list);
+    applications_refresh_scroll_effect();
 }
 
 static void app_item_clicked_cb(lv_event_t * e)
@@ -593,10 +601,28 @@ static void weather_set_daily(lv_obj_t * obj, const helios_daily_forecast_t * fo
     lv_obj_t * icon = child_at(obj, 1);
     lv_obj_t * temp = child_at(obj, 2);
 
-    if (day) lv_label_set_text(day, forecast->day);
+    if (day) {
+        const char * tag = weather_day_tag(forecast->day);
+        if (tag) lv_label_set_translation_tag(day, tag);
+        lv_label_set_text(day, forecast->day);
+    }
     if (icon) wd_image_set_src(icon, forecast->icon);
     if (temp) lv_label_set_text(temp, forecast->temp);
 }
+
+static const char * weather_day_tag(const char * day)
+{
+    if (!day) return NULL;
+    if (lv_strcmp(day, "Sun") == 0) return "sun";
+    if (lv_strcmp(day, "Mon") == 0) return "mon";
+    if (lv_strcmp(day, "Tue") == 0) return "tue";
+    if (lv_strcmp(day, "Wed") == 0) return "wed";
+    if (lv_strcmp(day, "Thur") == 0) return "thur";
+    if (lv_strcmp(day, "Fri") == 0) return "fri";
+    if (lv_strcmp(day, "Sat") == 0) return "sat";
+    return NULL;
+}
+
 
 static void weather_observer_cb(helios_weather_event_t event, void * user_data)
 {
@@ -610,6 +636,19 @@ static lv_obj_t * child_at(lv_obj_t * obj, int32_t index)
 {
     if (!obj || index < 0 || index >= (int32_t)lv_obj_get_child_count(obj)) return NULL;
     return lv_obj_get_child(obj, index);
+}
+
+static int32_t hs_title_pill_label_text_width(lv_obj_t * label)
+{
+    const char * text = lv_label_get_text(label);
+    const lv_font_t * font = lv_obj_get_style_text_font(label, LV_PART_MAIN);
+    int32_t letter_space = lv_obj_get_style_text_letter_space(label, LV_PART_MAIN);
+    int32_t line_space = lv_obj_get_style_text_line_space(label, LV_PART_MAIN);
+    lv_point_t text_size;
+
+    if (!text) text = "";
+    lv_text_get_size(&text_size, text, font, letter_space, line_space, LV_COORD_MAX, LV_TEXT_FLAG_NONE);
+    return text_size.x;
 }
 
 static void restore_scroll_y(lv_obj_t * obj, int32_t scroll_y)

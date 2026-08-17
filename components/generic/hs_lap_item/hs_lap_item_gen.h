@@ -2,8 +2,8 @@
  * @file hs_lap_item_gen.h
  */
 
-#ifndef HS_LAP_ITEM_H
-#define HS_LAP_ITEM_H
+#ifndef LVGL_PRO_HS_LAP_ITEM_GEN_H
+#define LVGL_PRO_HS_LAP_ITEM_GEN_H
 
 #ifdef __cplusplus
 extern "C" {
@@ -43,4 +43,4 @@ lv_obj_t * hs_lap_item_create(lv_obj_t * parent, const char * title, const char 
 } /*extern "C"*/
 #endif
 
-#endif /*HS_LAP_ITEM_H*/
+#endif /*LVGL_PRO_HS_LAP_ITEM_GEN_H*/

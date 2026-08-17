@@ -3,8 +3,8 @@
  *
  */
 
-#ifndef WD_ARCOIRIS_GEN_H
-#define WD_ARCOIRIS_GEN_H
+#ifndef LVGL_PRO_WD_ARCOIRIS_GEN_H
+#define LVGL_PRO_WD_ARCOIRIS_GEN_H
 
 #ifdef __cplusplus
 extern "C" {
@@ -57,4 +57,4 @@ void wd_arcoiris_set_thickness(lv_obj_t * wd_arcoiris, int32_t thickness);
 } /*extern "C"*/
 #endif
 
-#endif /*WD_ARCOIRIS_GEN_H*/
+#endif /*LVGL_PRO_WD_ARCOIRIS_GEN_H*/

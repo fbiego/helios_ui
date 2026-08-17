@@ -2,8 +2,8 @@
  * @file timer_countdown_gen.h
  */
 
-#ifndef TIMER_COUNTDOWN_H
-#define TIMER_COUNTDOWN_H
+#ifndef LVGL_PRO_TIMER_COUNTDOWN_GEN_H
+#define LVGL_PRO_TIMER_COUNTDOWN_GEN_H
 
 #ifdef __cplusplus
 extern "C" {
@@ -43,4 +43,4 @@ lv_obj_t * timer_countdown_create(lv_obj_t * parent);
 } /*extern "C"*/
 #endif
 
-#endif /*TIMER_COUNTDOWN_H*/
+#endif /*LVGL_PRO_TIMER_COUNTDOWN_GEN_H*/

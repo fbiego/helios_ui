@@ -9,13 +9,40 @@
 #include "helios_ui_gen.h"
 
 #if defined(LV_USE_XML) && LV_USE_XML
+#include "build/_deps/lvgl-src/xmls/lv_animimg_private_gen.h"
+#include "build/_deps/lvgl-src/xmls/lv_arc_private_gen.h"
+#include "build/_deps/lvgl-src/xmls/lv_bar_private_gen.h"
+#include "build/_deps/lvgl-src/xmls/lv_button_private_gen.h"
+#include "build/_deps/lvgl-src/xmls/lv_buttonmatrix_private_gen.h"
+#include "build/_deps/lvgl-src/xmls/lv_calendar_private_gen.h"
+#include "build/_deps/lvgl-src/xmls/lv_canvas_private_gen.h"
+#include "build/_deps/lvgl-src/xmls/lv_chart_private_gen.h"
+#include "build/_deps/lvgl-src/xmls/lv_checkbox_private_gen.h"
+#include "build/_deps/lvgl-src/xmls/lv_dropdown_private_gen.h"
+#include "build/_deps/lvgl-src/xmls/lv_image_private_gen.h"
+#include "build/_deps/lvgl-src/xmls/lv_keyboard_private_gen.h"
+#include "build/_deps/lvgl-src/xmls/lv_label_private_gen.h"
+#include "build/_deps/lvgl-src/xmls/lv_obj_private_gen.h"
+#include "build/_deps/lvgl-src/xmls/lv_qrcode_private_gen.h"
+#include "build/_deps/lvgl-src/xmls/lv_roller_private_gen.h"
+#include "build/_deps/lvgl-src/xmls/lv_scale_private_gen.h"
+#include "build/_deps/lvgl-src/xmls/lv_slider_private_gen.h"
+#include "build/_deps/lvgl-src/xmls/lv_spangroup_private_gen.h"
+#include "build/_deps/lvgl-src/xmls/lv_spinbox_private_gen.h"
+#include "build/_deps/lvgl-src/xmls/lv_switch_private_gen.h"
+#include "build/_deps/lvgl-src/xmls/lv_table_private_gen.h"
+#include "build/_deps/lvgl-src/xmls/lv_tabview_private_gen.h"
+#include "build/_deps/lvgl-src/xmls/lv_textarea_private_gen.h"
 #include "widgets/wd_arcoiris/wd_arcoiris_private_gen.h"
 #include "widgets/wd_dropdown/wd_dropdown_private_gen.h"
 #include "widgets/wd_image/wd_image_private_gen.h"
 #include "widgets/wd_label/wd_label_private_gen.h"
 #include "widgets/wd_list/wd_list_private_gen.h"
 #include "widgets/wd_obj/wd_obj_private_gen.h"
+#include "widgets/wd_panel/wd_panel_private_gen.h"
 #include "widgets/wd_segment/wd_segment_private_gen.h"
+#include "widgets/wf_analog/wf_analog_private_gen.h"
+#include "widgets/wf_item/wf_item_private_gen.h"
 #endif /* LV_USE_XML */
 
 /*********************
@@ -43,105 +70,152 @@ static uint32_t helios_ui_target = HELIOS_UI_TARGET_ALL;
  *----------------*/
 
 #ifndef LV_EDITOR_PREVIEW
-    static const char * translation_languages[] = {"en", "pt", "de", "es", "fr", "hu", "ru", "el", "th", "zh", "ja", "hi", NULL};
-    static const char * translation_tags[] = {"id", "locale", "sun", "mon", "tue", "wed", "thur", "fri", "sat", "jan", "feb", "mar", "apr", "jun", "jul", "aug", "sept", "oct", "nov", "dec", "sunday", "monday", "tuesday", "wednesday", "thursday", "friday", "saturday", "january", "february", "march", "april", "may", "june", "july", "august", "september", "october", "november", "december", "contacts", "files", "fitness", "health", "music", "navigation", "notifications", "settings", "sleep", "stopwatch", "timer", "weather", "display", "system", "alerts", "battery", "about", "storage", "brightness", "timeout", "rotation", "raise_to_wake", "circular_scroll", "grid_mode", "language", "reboot", "shutdown", "factory_reset", "sound", "vibration", "wake_screen", "dnd", "voltage", "temperature", "usage", "format", "firmware", "hourly_forecast", "daily_forecast", "timeout_5", "timeout_10", "timeout_20", "timeout_30", "always_on", "updated_at", "cloudy", "ram", "psram", "flash", "type", "steps", "watchfaces", "sd_card", "clear_all", "no_notifications", "camera", "music_control", NULL};
+    static const char * translation_languages[] = {"en", "pt", "de", "es", "fr", "hu", "ru", "el", "th", "zh", "ja", "hi", "vi", NULL};
+    static const char * translation_tags[] = {"id", "locale", "sun", "mon", "tue", "wed", "thur", "fri", "sat", "jan", "feb", "mar", "apr", "jun", "jul", "aug", "sept", "oct", "nov", "dec", "sunday", "monday", "tuesday", "wednesday", "thursday", "friday", "saturday", "january", "february", "march", "april", "may", "june", "july", "august", "september", "october", "november", "december", "contacts", "files", "fitness", "health", "music", "navigation", "notifications", "settings", "sleep", "stopwatch", "timer", "weather", "display", "system", "alerts", "battery", "about", "storage", "brightness", "timeout", "rotation", "raise_to_wake", "circular_scroll", "grid_mode", "language", "reboot", "shutdown", "factory_reset", "sound", "vibration", "wake_screen", "dnd", "voltage", "temperature", "usage", "format", "firmware", "hourly_forecast", "daily_forecast", "timeout_5", "timeout_10", "timeout_20", "timeout_30", "always_on", "updated_at", "cloudy", "ram", "psram", "flash", "type", "steps", "watchfaces", "sd_card", "clear_all", "no_notifications", "camera", "music_control", "reset", "inactive", "connected", "disconnected", "nav_info", "nav_start", "navio_info", "en", "pt", "de", "es", "fr", "hu", "ru", "el", "th", "zh", "ja", "hi", "vi", "proceed", "cancel", "reset_info", "reset_title", "icon_size", "system_time", "arrival_time", "directions", "applications", "phone_link", "status", "last_sync", "charging", "yes", "no", "find_phone", "version", "code", "sun_cloud", "sunny", "snow", "rainy", "tornado", "wind", "haze", "ai", "unique", NULL};
     static const char * translation_texts[] = {
-        "en", "pt", "de", "es", "fr", "hu", "ru", "el", "th", "zh", "ja", "hi", /* id */
-        "English", "Portuguese", "German", "Spanish", "French", "Hungarian", "Russian", "Greek", "Thai", "Chinese", "Japanese", "Hindi", /* locale */
-        "Sun", "Sol", "Sonne", "Sol", "Soleil", "Nap", "Солнце", "Ήλιος", "ดวงอาทิตย์", "太阳", "太陽", "सूरज", /* sun */
-        "Mon", "seg", "Montag", "Lun", "Lun", "Hétfő", "Пн", "Δευ", "จันทร์", "星期一", "月曜日", "सोमवार", /* mon */
-        "Tue", "ter", "Di.", "Mar", "Mar", "Kedd", "Вт", "Τρί", "อังคาร", "星期二", "火曜日", "मंगल", /* tue */
-        "Wed", "qua", "Heiraten", "Casarse", "Épouser", "Házasodik", "Обвенчались", "Νυμφεύομαι", "วันพุธ", "星期三", "水曜日", "बुधवार", /* wed */
-        "Thur", "Quinta-feira", "Donnerstag", "Jueves", "Jeu", "Csütörtök", "Чт", "Πέμ", "วันพฤหัสบดี", "周四", "木曜日", "गुरु", /* thur */
-        "Fri", "sex", "Freitag", "Vie", "Ven", "Péntek", "Пятница", "Παρ", "ศุกร์", "星期五", "金曜日", "शुक्र", /* fri */
-        "Sat", "Sentado", "Sa", "Se sentó", "Assis", "Ült", "Сб", "Σάβ", "นั่ง", "星期六", "土曜日", "बैठा", /* sat */
-        "Jan", "janeiro", "Januar", "Ene", "Jan", "Január", "Янв", "Ιαν", "ม.ค", "一月", "ジャン", "जनवरी", /* jan */
-        "Feb", "fevereiro", "Februar", "Feb", "Fév", "Február", "февраль", "Φεβ", "กุมภาพันธ์", "二月", "2月", "फ़रवरी", /* feb */
-        "Mar", "Mar", "Beschädigen", "Mar", "Mar", "Március", "март", "Αφανίζω", "มีนาคม", "三月", "3月", "मार्च", /* mar */
-        "Apr", "abril", "April", "Abr", "Avr", "Április", "Апр", "Απρ", "เมษายน", "四月", "4月", "अप्रैल", /* apr */
-        "Jun", "junho", "Juni", "Jun", "Juin", "Június", "Джун", "Ιούνιος", "จุน", "俊", "ジュン", "जून", /* jun */
-        "Jul", "julho", "Jul", "Jul", "Juillet", "Július", "июль", "Ιούλ", "กรกฎาคม", "七月", "7月", "जुलाई", /* jul */
-        "Aug", "agosto", "August", "Ago", "août", "Augusztus", "Август", "Αυγ", "ส.ค.", "八月", "8月", "अगस्त", /* aug */
-        "Sep", "Setembro", "September", "Sep", "Sep", "Szept.", "Сентябрь", "Σεπ", "กันยายน", "九月", "9月", "सितम्बर", /* sept */
-        "Oct", "Outubro", "Oktober", "Oct", "Octobre", "Október", "Октябрь", "Οκτ", "ตุลาคม", "十月", "10月", "अक्टूबर", /* oct */
-        "Nov", "novembro", "November", "Nov", "Nov", "November", "Ноябрь", "Νοέμβριος", "พฤศจิกายน", "十一月", "11月", "नवंबर", /* nov */
-        "Dec", "Dezembro", "Dezember", "Dic", "Déc", "December", "Декабрь", "Δεκ", "ธันวาคม", "12月", "12月", "दिसम्बर", /* dec */
-        "Sunday", "Domingo", "Sonntag", "Domingo", "Dimanche", "vasárnap", "Воскресенье", "Κυριακή", "วันอาทิตย์", "星期日", "日曜日", "रविवार", /* sunday */
-        "Monday", "Segunda-feira", "Montag", "Lunes", "Lundi", "hétfő", "Понедельник", "Δευτέρα", "วันจันทร์", "周一", "月曜日", "सोमवार", /* monday */
-        "Tuesday", "Terça-feira", "Dienstag", "Martes", "Mardi", "kedd", "Вторник", "Τρίτη", "วันอังคาร", "周二", "火曜日", "मंगलवार", /* tuesday */
-        "Wednesday", "Quarta-feira", "Mittwoch", "Miércoles", "Mercredi", "szerda", "Среда", "Τετάρτη", "วันพุธ", "周三", "水曜日", "बुधवार", /* wednesday */
-        "Thursday", "Quinta-feira", "Donnerstag", "Jueves", "Jeudi", "csütörtök", "Четверг", "Πέμπτη", "วันพฤหัสบดี", "周四", "木曜日", "गुरुवार", /* thursday */
-        "Friday", "Sexta-feira", "Freitag", "Viernes", "Vendredi", "péntek", "Пятница", "Παρασκευή", "วันศุกร์", "星期五", "金曜日", "शुक्रवार", /* friday */
-        "Saturday", "Sábado", "Samstag", "Sábado", "Samedi", "szombat", "Суббота", "Σάββατο", "วันเสาร์", "周六", "土曜日", "शनिवार", /* saturday */
-        "January", "Janeiro", "Januar", "Enero", "Janvier", "január", "Январь", "Ιανουάριος", "มกราคม", "一月", "1月", "जनवरी", /* january */
-        "February", "Fevereiro", "Februar", "Febrero", "Février", "február", "Февраль", "Φεβρουάριος", "กุมภาพันธ์", "二月", "2月", "फ़रवरी", /* february */
-        "March", "Marchar", "Marsch", "Marzo", "Mars", "március", "Маршировать", "Πορεία", "มีนาคม", "行进", "行進", "मार्च", /* march */
-        "April", "abril", "April", "Abril", "Avril", "április", "Апрель", "Απρίλιος", "เมษายน", "四月", "4月", "अप्रैल", /* april */
-        "May", "Poderia", "Mai", "Puede", "Peut", "május", "Может", "Μάιος", "อาจ", "可能", "5月", "मई", /* may */
-        "June", "Junho", "Juni", "Junio", "Juin", "június", "Июнь", "Ιούνιος", "มิถุนายน", "六月", "6月", "जून", /* june */
-        "July", "Julho", "Juli", "Julio", "Juillet", "július", "Июль", "Ιούλιος", "กรกฎาคม", "七月", "7月", "जुलाई", /* july */
-        "August", "Agosto", "August", "Agosto", "Août", "augusztus", "Август", "Αύγουστος", "สิงหาคม", "八月", "8月", "अगस्त", /* august */
-        "September", "Setembro", "September", "Septiembre", "Septembre", "szeptember", "Сентябрь", "Σεπτέμβριος", "กันยายน", "九月", "9月", "सितम्बर", /* september */
-        "October", "outubro", "Oktober", "Octubre", "Octobre", "október", "Октябрь", "Οκτώβριος", "ตุลาคม", "十月", "10月", "अक्टूबर", /* october */
-        "November", "novembro", "November", "Noviembre", "Novembre", "november", "Ноябрь", "Νοέμβριος", "พฤศจิกายน", "十一月", "11月", "नवंबर", /* november */
-        "December", "dezembro", "Dezember", "Diciembre", "Décembre", "december", "Декабрь", "Δεκέμβριος", "ธันวาคม", "十二月", "12月", "दिसंबर", /* december */
-        "Contacts", "Contatos", "Kontakte", "Contactos", "Contacts", "Kapcsolatok", "Контакты", "Επαφές", "การติดต่อ", "联系方式", "連絡先", "संपर्क", /* contacts */
-        "Files", "Arquivos", "Dateien", "Archivos", "Fichiers", "Fájlok", "Файлы", "Αρχεία", "ไฟล์", "文件", "ファイル", "फ़ाइलें", /* files */
-        "Fitness", "Fitness", "Fitness", "Aptitud física", "Aptitude", "Fitnesz", "Фитнес", "Καταλληλότητα", "ฟิตเนส", "健康", "フィットネス", "स्वास्थ्य", /* fitness */
-        "Health", "Saúde", "Gesundheit", "Salud", "Santé", "Egészség", "Здоровье", "Υγεία", "สุขภาพ", "健康", "健康", "स्वास्थ्य", /* health */
-        "Music", "Música", "Musik", "Música", "Musique", "Zene", "Музыка", "Μουσική", "ดนตรี", "音乐", "音楽", "संगीत", /* music */
-        "Navigation", "Navegação", "Navigation", "Navegación", "Navigation", "Navigáció", "Навигация", "Πλοήγηση", "การนำทาง", "导航", "ナビゲーション", "मार्गदर्शन", /* navigation */
-        "Notifications", "Notificações", "Benachrichtigungen", "Notificaciones", "Notifications", "Értesítések", "Уведомления", "Ειδοποιήσεις", "การแจ้งเตือน", "通知", "通知", "सूचनाएं", /* notifications */
-        "Settings", "Configurações", "Einstellungen", "Ajustes", "Paramètres", "Beállítások", "Настройки", "Ρυθμίσεις", "การตั้งค่า", "设置", "設定", "सेटिंग्स", /* settings */
-        "Sleep", "Dormir", "Schlafen", "Dormir", "Dormir", "Alvás", "Спать", "Υπνος", "นอน", "睡觉", "寝る", "नींद", /* sleep */
-        "Stopwatch", "Cronômetro", "Stoppuhr", "Cronógrafo", "Chronomètre", "Stopperóra", "Секундомер", "Χρονόμετρο", "นาฬิกาจับเวลา", "跑表", "ストップウォッチ", "स्टॉपवॉच देखनी", /* stopwatch */
-        "Timer", "Temporizador", "Timer", "Minutero", "Minuteur", "Időzítő", "Таймер", "Μετρών την ώραν", "ตัวจับเวลา", "定时器", "タイマー", "घड़ी", /* timer */
-        "Weather", "Clima", "Wetter", "Clima", "Météo", "Időjárás", "Погода", "Καιρός", "สภาพอากาศ", "天气", "天気", "मौसम", /* weather */
-        "Display", "Mostrar", "Anzeige", "Mostrar", "Afficher", "Kijelző", "Отображать", "Επίδειξη", "แสดง", "展示", "画面", "प्रदर्शन", /* display */
-        "System", "Sistema", "System", "Sistema", "Système", "Rendszer", "Система", "Σύστημα", "ระบบ", "系统", "システム", "प्रणाली", /* system */
-        "Alerts", "Alertas", "Warnmeldungen", "Alertas", "Alertes", "Riasztások", "Оповещения", "Ειδοποιήσεις", "การแจ้งเตือน", "警报", "アラート", "अलर्ट", /* alerts */
-        "Battery", "Bateria", "Batterie", "Batería", "Batterie", "Akkumulátor", "Батарея", "Μπαταρία", "แบตเตอรี่", "电池", "バッテリー", "बैटरी", /* battery */
-        "About", "Sobre", "Um", "Acerca de", "À propos", "Körülbelül", "О", "Για", "เกี่ยวกับ", "关于", "について", "के बारे में", /* about */
-        "Storage", "Armazenar", "Lagerung", "Almacenamiento", "Stockage", "Tárolás", "Хранилище", "Αποθήκευση", "พื้นที่จัดเก็บ", "贮存", "ストレージ", "भंडारण", /* storage */
-        "Brightness", "Brilho", "Helligkeit", "Brillo", "Luminosité", "Fényesség", "Яркость", "Λάμψη", "ความสว่าง", "亮度", "輝度", "चमक", /* brightness */
-        "Timeout", "Tempo esgotado", "Time-out", "Se acabó el tiempo", "Temps mort", "Időtúllépés", "Тайм-аут", "Χρονικό όριο", "หมดเวลา", "暂停", "タイムアウト", "समय समाप्त", /* timeout */
-        "Rotation", "Rotação", "Drehung", "Rotación", "Rotation", "Forgás", "Вращение", "Περιστροφή", "การหมุน", "旋转", "回転", "घुमाएँ", /* rotation */
-        "Raise to wake", "Levante para acordar", "Zum Aufwecken hochziehen", "Levantarse para despertar", "Lever pour réveiller", "Ébredés", "Поднимитесь, чтобы проснуться", "Σήκωσε για να ξυπνήσεις", "ยกขึ้นเพื่อปลุก", "起身唤醒", "起こすために持ち上げる", "जगाने के लिए उठाएँ", /* raise_to_wake */
-        "Circular scroll", "Pergaminho circular", "Kreisförmige Schriftrolle", "Pergamino circular", "rouleau circulaire", "Kör alakú görgetés", "Круглый свиток", "Κυκλική κύλιση", "ม้วนกลม", "圆形卷轴", "円形スクロール", "वृत्ताकार स्क्रॉल", /* circular_scroll */
-        "Grid mode", "Modo de grade", "Rastermodus", "Modo cuadrícula", "Mode grille", "Rács mód", "Режим сетки", "Λειτουργία πλέγματος", "โหมดตาราง", "网格模式", "グリッドモード", "ग्रिड मोड", /* grid_mode */
-        "Language", "Linguagem", "Sprache", "Idioma", "Langue", "Nyelv", "Язык", "Γλώσσα", "ภาษา", "语言", "言語", "भाषा", /* language */
-        "Reboot", "Reinício", "Neustart", "Reiniciar", "Redémarrage", "Újraindítás", "Перезагрузить", "Επανεκκίνηση", "รีบูต", "重启", "リブート", "रीबूट", /* reboot */
-        "Shutdown", "Desligar", "Abschalten", "Cerrar", "Fermer", "Leállítás", "Неисправность", "Κλείσιμο", "ปิดระบบ", "关闭", "シャットダウン", "शट डाउन", /* shutdown */
-        "Factory Reset", "Restauração de fábrica", "Werksreset", "Restablecimiento de fábrica", "Réinitialisation d'usine", "Gyári visszaállítás", "Сброс к заводским настройкам", "Επαναφορά εργοστασιακών ρυθμίσεων", "รีเซ็ตเป็นค่าจากโรงงาน", "恢复出厂设置", "工場出荷時設定にリセット", "नए यंत्र जैसी सेटिंग", /* factory_reset */
-        "Sound", "Som", "Klang", "Sonido", "Son", "Hang", "Звук", "Ήχος", "เสียง", "声音", "音", "आवाज़", /* sound */
-        "Vibration", "Vibração", "Vibration", "Vibración", "Vibration", "Rezgés", "Вибрация", "Δόνηση", "การสั่นสะเทือน", "振动", "振動", "कंपन", /* vibration */
-        "Wake screen", "Tela de ativação", "Bildschirm aufwecken", "Pantalla de activación", "Écran de réveil", "Képernyő felébresztése", "Экран пробуждения", "Οθόνη αφύπνισης", "หน้าจอปลุก", "唤醒屏幕", "起動画面", "जाग्रत स्क्रीन", /* wake_screen */
-        "DND Mode", "Modo Não Perturbe", "Nicht stören-Modus", "Modo No Molestar", "Mode Ne pas déranger", "DND mód", "Режим «Не беспокоить»", "Λειτουργία DND", "โหมดห้ามรบกวน", "勿扰模式", "おやすみモード", "डीएनडी मोड", /* dnd */
-        "Voltage", "Tensão", "Stromspannung", "Voltaje", "Tension", "Feszültség", "Напряжение", "Δυναμικό", "แรงดันไฟฟ้า", "电压", "電圧", "वोल्टेज", /* voltage */
-        "Temperatue", "Temperatura", "Temperatur", "Temperatura", "Température", "Hőmérséklet", "Температура", "Θερμοκρασία", "อุณหภูมิ", "温度", "温度", "तापमान", /* temperature */
-        "Usage", "Uso", "Verwendung", "Uso", "Usage", "Használat", "Использование", "Χρήση", "การใช้งาน", "用法", "使用法", "प्रयोग", /* usage */
-        "Format", "Formatar", "Format", "Formato", "Format", "Formátum", "Формат", "Σχήμα και διάταξις βιβλίου", "รูปแบบ", "格式", "形式", "प्रारूप", /* format */
-        "Firmware", "Firmware", "Firmware", "Firmware", "Micrologiciel", "Firmware", "Прошивка", "Υλικολογισμικό", "เฟิร์มแวร์", "固件", "ファームウェア", "फर्मवेयर", /* firmware */
-        "Hourly Forecast", "Previsão horária", "Stündliche Vorhersage", "Pronóstico por hora", "Prévisions horaires", "Óránkénti előrejelzés", "Почасовой прогноз", "Ωριαία Πρόβλεψη", "พยากรณ์อากาศรายชั่วโมง", "逐小时预报", "時間別予報", "घंटेवार पूर्वानुमान", /* hourly_forecast */
-        "Daily Forecast", "Previsão diária", "Tagesvorhersage", "Pronóstico diario", "Prévisions quotidiennes", "Napi előrejelzés", "Ежедневный прогноз", "Ημερήσια Πρόγνωση", "พยากรณ์อากาศประจำวัน", "每日天气预报", "日々の天気予報", "दैनिक पूर्वानुमान", /* daily_forecast */
-        "5 seconds", "5 segundos", "5 Sekunden", "5 segundos", "5 secondes", "5 másodperc", "5 секунд", "5 δευτερόλεπτα", "5 วินาที", "5秒", "5秒", "5 सेकंड", /* timeout_5 */
-        "10 seconds", "10 segundos", "10 Sekunden", "10 segundos", "10 secondes", "10 másodperc", "10 секунд", "10 δευτερόλεπτα", "10 วินาที", "10秒", "10秒", "10 सेकंड", /* timeout_10 */
-        "20 seconds", "20 segundos", "20 Sekunden", "20 segundos", "20 secondes", "20 másodperc", "20 секунд", "20 δευτερόλεπτα", "20 วินาที", "20秒", "20秒", "20 सेकंड", /* timeout_20 */
-        "30 seconds", "30 segundos", "30 Sekunden", "30 segundos", "30 secondes", "30 másodperc", "30 секунд", "30 δευτερόλεπτα", "30 วินาที", "30秒", "30秒", "30 सेकंड", /* timeout_30 */
-        "Always On", "Sempre ligado", "Immer eingeschaltet", "Siempre encendido", "Toujours allumé", "Mindig bekapcsolva", "Всегда включено", "Πάντα ενεργοποιημένο", "เปิดใช้งานตลอดเวลา", "始终开启", "常時接続", "हमेशा बने रहें", /* always_on */
-        "Updated at", "Atualizado em", "Aktualisiert am", "Actualizado en", "Mise à jour le", "Frissítve:", "Обновлено в", "Ενημερώθηκε στις", "อัปเดตเมื่อ", "更新于", "更新日時", "अपडेट किया गया", /* updated_at */
-        "Cloudy", "Nublado", "Wolkig", "Nublado", "Nuageux", "Felhős", "Облачно", "Νεφελώδης", "เมฆมาก", "多云", "曇り", "बादलों से घिरा", /* cloudy */
-        "RAM", "BATER", "RAM", "RAM", "BÉLIER", "RAM", "БАРАН", "ΕΜΒΟΛΟ", "แรม", "内存", "ラム", "टक्कर मारना", /* ram */
-        "PSRAM", "PSRAM", "PSRAM", "PSRAM", "PSRAM", "PSRAM", "ПСРАМ", "PSRAM", "พีเอสแรม", "PSRAM", "PSRAM", "पीएसआरएएम", /* psram */
-        "Flash", "Clarão", "Blitz", "Destello", "Éclair", "Vaku", "Вспышка", "Λάμψη", "แฟลช", "闪光", "フラッシュ", "चमक", /* flash */
-        "Type", "Tipo", "Typ", "Tipo", "Taper", "Típus", "Тип", "Τύπος", "พิมพ์", "类型", "タイプ", "प्रकार", /* type */
-        "Steps", "Passos", "Schritte", "Pasos", "Mesures", "Lépések", "Шаги", "Βήματα", "ขั้นตอน", "步骤", "手順", "चरण", /* steps */
-        "Watchfaces", "Mostradores de relógio", "Zifferblätter", "Esferas de reloj", "Cadrans de montre", "Óraszámlapok", "Циферблаты", "Προσόψεις ρολογιού", "หน้าปัดนาฬิกา", "表盘", "ウォッチフェイス", "वॉचफेस", /* watchfaces */
-        "SD Card", "Cartão SD", "SD-Karte", "Tarjeta SD", "Carte SD", "SD-kártya", "SD-карта", "Κάρτα SD", "การ์ด SD", "SD卡", "SDカード", "एसडी कार्ड", /* sd_card */
-        "Clear All", "Limpar tudo", "Alles löschen", "Borrar todo", "Effacer tout", "Összes törlése", "Очистить все", "Εκκαθάριση όλων", "ล้างทั้งหมด", "全部清除", "すべてクリア", "सभी साफ करें", /* clear_all */
-        "No notifications avaialble, check back later", "Nenhuma notificação disponível. Volte mais tarde.", "Es sind keine Benachrichtigungen verfügbar. Bitte versuchen Sie es später erneut.", "No hay notificaciones disponibles, vuelva a intentarlo más tarde.", "Aucune notification disponible, veuillez réessayer plus tard.", "Nincsenek elérhető értesítések, nézz vissza később", "Уведомления недоступны, зайдите позже.", "Δεν υπάρχουν διαθέσιμες ειδοποιήσεις, ελέγξτε ξανά αργότερα", "ไม่มีการแจ้งเตือนใดๆ โปรดตรวจสอบอีกครั้งในภายหลัง", "暂无通知，请稍后查看。", "通知はありません。後ほどご確認ください。", "कोई सूचना उपलब्ध नहीं है, कृपया बाद में दोबारा देखें।", /* no_notifications */
-        "Camera", "Câmera", "Kamera", "Cámara", "Caméra", "Kamera", "Камера", "Κάμερα", "กล้อง", "相机", "カメラ", "कैमरा", /* camera */
-        "Music Control", "Controle de música", "Musiksteuerung", "Control de música", "Contrôle de la musique", "Zenevezérlés", "Управление музыкой", "Έλεγχος μουσικής", "การควบคุมดนตรี", "音乐控制", "音楽コントロール", "संगीत नियंत्रण", /* music_control */
+        "en", "pt", "de", "es", "fr", "hu", "ru", "el", "th", "zh", "ja", "hi", "vi", /* id */
+        "English", "Portuguese", "German", "Spanish", "French", "Hungarian", "Russian", "Greek", "Thai", "Chinese", "Japanese", "Hindi", "Vietnamese", /* locale */
+        "Sun", "Sol", "Sonne", "Sol", "Soleil", "Nap", "Солнце", "Ήλιος", "ดวงอาทิตย์", "太阳", "太陽", "सूरज", "Mặt trời", /* sun */
+        "Mon", "seg", "Montag", "Lun", "Lun", "Hétfő", "Пн", "Δευ", "จันทร์", "星期一", "月曜日", "सोमवार", "Thứ Hai", /* mon */
+        "Tue", "ter", "Di.", "Mar", "Mar", "Kedd", "Вт", "Τρί", "อังคาร", "星期二", "火曜日", "मंगल", "Thứ Ba", /* tue */
+        "Wed", "qua", "Heiraten", "Casarse", "Épouser", "Házasodik", "Обвенчались", "Νυμφεύομαι", "วันพุธ", "星期三", "水曜日", "बुधवार", "Thứ Tư", /* wed */
+        "Thur", "Quinta-feira", "Donnerstag", "Jueves", "Jeu", "Csütörtök", "Чт", "Πέμ", "วันพฤหัสบดี", "周四", "木曜日", "गुरु", "Thứ năm", /* thur */
+        "Fri", "sex", "Freitag", "Vie", "Ven", "Péntek", "Пятница", "Παρ", "ศุกร์", "星期五", "金曜日", "शुक्र", "Thứ Sáu", /* fri */
+        "Sat", "Sentado", "Sa", "Se sentó", "Assis", "Ült", "Сб", "Σάβ", "นั่ง", "星期六", "土曜日", "बैठा", "Đã ngồi", /* sat */
+        "Jan", "janeiro", "Januar", "Ene", "Jan", "Január", "Янв", "Ιαν", "ม.ค", "一月", "ジャン", "जनवरी", "Tháng một", /* jan */
+        "Feb", "fevereiro", "Februar", "Feb", "Fév", "Február", "февраль", "Φεβ", "กุมภาพันธ์", "二月", "2月", "फ़रवरी", "Tháng Hai", /* feb */
+        "Mar", "Mar", "Beschädigen", "Mar", "Mar", "Március", "март", "Αφανίζω", "มีนาคม", "三月", "3月", "मार्च", "Tháng 3", /* mar */
+        "Apr", "abril", "April", "Abr", "Avr", "Április", "Апр", "Απρ", "เมษายน", "四月", "4月", "अप्रैल", "Tháng Tư", /* apr */
+        "Jun", "junho", "Juni", "Jun", "Juin", "Június", "Джун", "Ιούνιος", "จุน", "俊", "ジュン", "जून", "Tháng Sáu", /* jun */
+        "Jul", "julho", "Jul", "Jul", "Juillet", "Július", "июль", "Ιούλ", "กรกฎาคม", "七月", "7月", "जुलाई", "Tháng bảy", /* jul */
+        "Aug", "agosto", "August", "Ago", "août", "Augusztus", "Август", "Αυγ", "ส.ค.", "八月", "8月", "अगस्त", "Tháng Tám", /* aug */
+        "Sep", "Setembro", "September", "Sep", "Sep", "Szept.", "Сентябрь", "Σεπ", "กันยายน", "九月", "9月", "सितम्बर", "Tháng 9", /* sept */
+        "Oct", "Outubro", "Oktober", "Oct", "Octobre", "Október", "Октябрь", "Οκτ", "ตุลาคม", "十月", "10月", "अक्टूबर", "Tháng 10", /* oct */
+        "Nov", "novembro", "November", "Nov", "Nov", "November", "Ноябрь", "Νοέμβριος", "พฤศจิกายน", "十一月", "11月", "नवंबर", "Tháng 11", /* nov */
+        "Dec", "Dezembro", "Dezember", "Dic", "Déc", "December", "Декабрь", "Δεκ", "ธันวาคม", "12月", "12月", "दिसम्बर", "Tháng mười hai", /* dec */
+        "Sunday", "Domingo", "Sonntag", "Domingo", "Dimanche", "vasárnap", "Воскресенье", "Κυριακή", "วันอาทิตย์", "星期日", "日曜日", "रविवार", "Chủ nhật", /* sunday */
+        "Monday", "Segunda-feira", "Montag", "Lunes", "Lundi", "hétfő", "Понедельник", "Δευτέρα", "วันจันทร์", "周一", "月曜日", "सोमवार", "Thứ hai", /* monday */
+        "Tuesday", "Terça-feira", "Dienstag", "Martes", "Mardi", "kedd", "Вторник", "Τρίτη", "วันอังคาร", "周二", "火曜日", "मंगलवार", "Thứ ba", /* tuesday */
+        "Wednesday", "Quarta-feira", "Mittwoch", "Miércoles", "Mercredi", "szerda", "Среда", "Τετάρτη", "วันพุธ", "周三", "水曜日", "बुधवार", "Thứ Tư", /* wednesday */
+        "Thursday", "Quinta-feira", "Donnerstag", "Jueves", "Jeudi", "csütörtök", "Четверг", "Πέμπτη", "วันพฤหัสบดี", "周四", "木曜日", "गुरुवार", "Thứ năm", /* thursday */
+        "Friday", "Sexta-feira", "Freitag", "Viernes", "Vendredi", "péntek", "Пятница", "Παρασκευή", "วันศุกร์", "星期五", "金曜日", "शुक्रवार", "Thứ sáu", /* friday */
+        "Saturday", "Sábado", "Samstag", "Sábado", "Samedi", "szombat", "Суббота", "Σάββατο", "วันเสาร์", "周六", "土曜日", "शनिवार", "Thứ bảy", /* saturday */
+        "January", "Janeiro", "Januar", "Enero", "Janvier", "január", "Январь", "Ιανουάριος", "มกราคม", "一月", "1月", "जनवरी", "Tháng Một", /* january */
+        "February", "Fevereiro", "Februar", "Febrero", "Février", "február", "Февраль", "Φεβρουάριος", "กุมภาพันธ์", "二月", "2月", "फ़रवरी", "Tháng hai", /* february */
+        "March", "Marchar", "Marsch", "Marzo", "Mars", "március", "Маршировать", "Πορεία", "มีนาคม", "行进", "行進", "मार्च", "Bước đều", /* march */
+        "April", "abril", "April", "Abril", "Avril", "április", "Апрель", "Απρίλιος", "เมษายน", "四月", "4月", "अप्रैल", "Tháng tư", /* april */
+        "May", "Poderia", "Mai", "Puede", "Peut", "május", "Может", "Μάιος", "อาจ", "可能", "5月", "मई", "Có thể", /* may */
+        "June", "Junho", "Juni", "Junio", "Juin", "június", "Июнь", "Ιούνιος", "มิถุนายน", "六月", "6月", "जून", "Tháng sáu", /* june */
+        "July", "Julho", "Juli", "Julio", "Juillet", "július", "Июль", "Ιούλιος", "กรกฎาคม", "七月", "7月", "जुलाई", "Tháng bảy", /* july */
+        "August", "Agosto", "August", "Agosto", "Août", "augusztus", "Август", "Αύγουστος", "สิงหาคม", "八月", "8月", "अगस्त", "Tháng tám", /* august */
+        "September", "Setembro", "September", "Septiembre", "Septembre", "szeptember", "Сентябрь", "Σεπτέμβριος", "กันยายน", "九月", "9月", "सितम्बर", "Tháng 9", /* september */
+        "October", "outubro", "Oktober", "Octubre", "Octobre", "október", "Октябрь", "Οκτώβριος", "ตุลาคม", "十月", "10月", "अक्टूबर", "Tháng Mười", /* october */
+        "November", "novembro", "November", "Noviembre", "Novembre", "november", "Ноябрь", "Νοέμβριος", "พฤศจิกายน", "十一月", "11月", "नवंबर", "Tháng mười một", /* november */
+        "December", "dezembro", "Dezember", "Diciembre", "Décembre", "december", "Декабрь", "Δεκέμβριος", "ธันวาคม", "十二月", "12月", "दिसंबर", "Tháng 12", /* december */
+        "Contacts", "Contatos", "Kontakte", "Contactos", "Contacts", "Kapcsolatok", "Контакты", "Επαφές", "การติดต่อ", "联系方式", "連絡先", "संपर्क", "Liên hệ", /* contacts */
+        "Files", "Arquivos", "Dateien", "Archivos", "Fichiers", "Fájlok", "Файлы", "Αρχεία", "ไฟล์", "文件", "ファイル", "फ़ाइलें", "Tệp tin", /* files */
+        "Fitness", "Fitness", "Fitness", "Aptitud física", "Aptitude", "Fitnesz", "Фитнес", "Καταλληλότητα", "ฟิตเนส", "健康", "フィットネス", "स्वास्थ्य", "Sự thích hợp", /* fitness */
+        "Health", "Saúde", "Gesundheit", "Salud", "Santé", "Egészség", "Здоровье", "Υγεία", "สุขภาพ", "健康", "健康", "स्वास्थ्य", "Sức khỏe", /* health */
+        "Music", "Música", "Musik", "Música", "Musique", "Zene", "Музыка", "Μουσική", "ดนตรี", "音乐", "音楽", "संगीत", "Âm nhạc", /* music */
+        "Navigation", "Navegação", "Navigation", "Navegación", "Navigation", "Navigáció", "Навигация", "Πλοήγηση", "การนำทาง", "导航", "ナビゲーション", "मार्गदर्शन", "Điều hướng", /* navigation */
+        "Notifications", "Notificações", "Benachrichtigungen", "Notificaciones", "Notifications", "Értesítések", "Уведомления", "Ειδοποιήσεις", "การแจ้งเตือน", "通知", "通知", "सूचनाएं", "Thông báo", /* notifications */
+        "Settings", "Configurações", "Einstellungen", "Ajustes", "Paramètres", "Beállítások", "Настройки", "Ρυθμίσεις", "การตั้งค่า", "设置", "設定", "सेटिंग्स", "Cài đặt", /* settings */
+        "Sleep", "Dormir", "Schlafen", "Dormir", "Dormir", "Alvás", "Спать", "Υπνος", "นอน", "睡觉", "寝る", "नींद", "Ngủ", /* sleep */
+        "Stopwatch", "Cronômetro", "Stoppuhr", "Cronógrafo", "Chronomètre", "Stopperóra", "Секундомер", "Χρονόμετρο", "นาฬิกาจับเวลา", "跑表", "ストップウォッチ", "स्टॉपवॉच देखनी", "Đồng hồ bấm giờ", /* stopwatch */
+        "Timer", "Temporizador", "Timer", "Minutero", "Minuteur", "Időzítő", "Таймер", "Μετρών την ώραν", "ตัวจับเวลา", "定时器", "タイマー", "घड़ी", "Hẹn giờ", /* timer */
+        "Weather", "Clima", "Wetter", "Clima", "Météo", "Időjárás", "Погода", "Καιρός", "สภาพอากาศ", "天气", "天気", "मौसम", "Thời tiết", /* weather */
+        "Display", "Mostrar", "Anzeige", "Mostrar", "Afficher", "Kijelző", "Отображать", "Επίδειξη", "แสดง", "展示", "画面", "प्रदर्शन", "Trưng bày", /* display */
+        "System", "Sistema", "System", "Sistema", "Système", "Rendszer", "Система", "Σύστημα", "ระบบ", "系统", "システム", "प्रणाली", "Hệ thống", /* system */
+        "Alerts", "Alertas", "Warnmeldungen", "Alertas", "Alertes", "Riasztások", "Оповещения", "Ειδοποιήσεις", "การแจ้งเตือน", "警报", "アラート", "अलर्ट", "Thông báo", /* alerts */
+        "Battery", "Bateria", "Batterie", "Batería", "Batterie", "Akkumulátor", "Батарея", "Μπαταρία", "แบตเตอรี่", "电池", "バッテリー", "बैटरी", "Ắc quy", /* battery */
+        "About", "Sobre", "Um", "Acerca de", "À propos", "Körülbelül", "О", "Για", "เกี่ยวกับ", "关于", "について", "के बारे में", "Về", /* about */
+        "Storage", "Armazenar", "Lagerung", "Almacenamiento", "Stockage", "Tárolás", "Хранилище", "Αποθήκευση", "พื้นที่จัดเก็บ", "贮存", "ストレージ", "भंडारण", "Kho", /* storage */
+        "Brightness", "Brilho", "Helligkeit", "Brillo", "Luminosité", "Fényesség", "Яркость", "Λάμψη", "ความสว่าง", "亮度", "輝度", "चमक", "Độ sáng", /* brightness */
+        "Timeout", "Tempo esgotado", "Time-out", "Se acabó el tiempo", "Temps mort", "Időtúllépés", "Тайм-аут", "Χρονικό όριο", "หมดเวลา", "暂停", "タイムアウト", "समय समाप्त", "Hết giờ", /* timeout */
+        "Rotation", "Rotação", "Drehung", "Rotación", "Rotation", "Forgás", "Вращение", "Περιστροφή", "การหมุน", "旋转", "回転", "घुमाएँ", "Xoay", /* rotation */
+        "Raise to wake", "Levante para acordar", "Zum Aufwecken hochziehen", "Levantarse para despertar", "Lever pour réveiller", "Ébredés", "Поднимитесь, чтобы проснуться", "Σήκωσε για να ξυπνήσεις", "ยกขึ้นเพื่อปลุก", "起身唤醒", "起こすために持ち上げる", "जगाने के लिए उठाएँ", "Dậy để thức dậy", /* raise_to_wake */
+        "Circular scroll", "Pergaminho circular", "Kreisförmige Schriftrolle", "Pergamino circular", "rouleau circulaire", "Kör alakú görgetés", "Круглый свиток", "Κυκλική κύλιση", "ม้วนกลม", "圆形卷轴", "円形スクロール", "वृत्ताकार स्क्रॉल", "Cuộn tròn", /* circular_scroll */
+        "Grid mode", "Modo de grade", "Rastermodus", "Modo cuadrícula", "Mode grille", "Rács mód", "Режим сетки", "Λειτουργία πλέγματος", "โหมดตาราง", "网格模式", "グリッドモード", "ग्रिड मोड", "Chế độ lưới", /* grid_mode */
+        "Language", "Linguagem", "Sprache", "Idioma", "Langue", "Nyelv", "Язык", "Γλώσσα", "ภาษา", "语言", "言語", "भाषा", "Ngôn ngữ", /* language */
+        "Reboot", "Reinício", "Neustart", "Reiniciar", "Redémarrage", "Újraindítás", "Перезагрузить", "Επανεκκίνηση", "รีบูต", "重启", "リブート", "रीबूट", "Khởi động lại", /* reboot */
+        "Shutdown", "Desligar", "Abschalten", "Cerrar", "Fermer", "Leállítás", "Неисправность", "Κλείσιμο", "ปิดระบบ", "关闭", "シャットダウン", "शट डाउन", "Tắt máy", /* shutdown */
+        "Factory Reset", "Restauração de fábrica", "Werksreset", "Restablecimiento de fábrica", "Réinitialisation d'usine", "Gyári visszaállítás", "Сброс к заводским настройкам", "Επαναφορά εργοστασιακών ρυθμίσεων", "รีเซ็ตเป็นค่าจากโรงงาน", "恢复出厂设置", "工場出荷時設定にリセット", "नए यंत्र जैसी सेटिंग", "Khôi phục cài đặt gốc", /* factory_reset */
+        "Sound", "Som", "Klang", "Sonido", "Son", "Hang", "Звук", "Ήχος", "เสียง", "声音", "音", "आवाज़", "Âm thanh", /* sound */
+        "Vibration", "Vibração", "Vibration", "Vibración", "Vibration", "Rezgés", "Вибрация", "Δόνηση", "การสั่นสะเทือน", "振动", "振動", "कंपन", "Rung động", /* vibration */
+        "Wake screen", "Tela de ativação", "Bildschirm aufwecken", "Pantalla de activación", "Écran de réveil", "Képernyő felébresztése", "Экран пробуждения", "Οθόνη αφύπνισης", "หน้าจอปลุก", "唤醒屏幕", "起動画面", "जाग्रत स्क्रीन", "Màn hình khởi động", /* wake_screen */
+        "DND Mode", "Modo Não Perturbe", "Nicht stören-Modus", "Modo No Molestar", "Mode Ne pas déranger", "DND mód", "Режим «Не беспокоить»", "Λειτουργία DND", "โหมดห้ามรบกวน", "勿扰模式", "おやすみモード", "डीएनडी मोड", "Chế độ Không làm phiền", /* dnd */
+        "Voltage", "Tensão", "Stromspannung", "Voltaje", "Tension", "Feszültség", "Напряжение", "Δυναμικό", "แรงดันไฟฟ้า", "电压", "電圧", "वोल्टेज", "Điện áp", /* voltage */
+        "Temperatue", "Temperatura", "Temperatur", "Temperatura", "Température", "Hőmérséklet", "Температура", "Θερμοκρασία", "อุณหภูมิ", "温度", "温度", "तापमान", "Nhiệt độ", /* temperature */
+        "Usage", "Uso", "Verwendung", "Uso", "Usage", "Használat", "Использование", "Χρήση", "การใช้งาน", "用法", "使用法", "प्रयोग", "Cách sử dụng", /* usage */
+        "Format", "Formatar", "Format", "Formato", "Format", "Formátum", "Формат", "Σχήμα και διάταξις βιβλίου", "รูปแบบ", "格式", "形式", "प्रारूप", "Định dạng", /* format */
+        "Firmware", "Firmware", "Firmware", "Firmware", "Micrologiciel", "Firmware", "Прошивка", "Υλικολογισμικό", "เฟิร์มแวร์", "固件", "ファームウェア", "फर्मवेयर", "Phần mềm cơ sở", /* firmware */
+        "Hourly Forecast", "Previsão horária", "Stündliche Vorhersage", "Pronóstico por hora", "Prévisions horaires", "Óránkénti előrejelzés", "Почасовой прогноз", "Ωριαία Πρόβλεψη", "พยากรณ์อากาศรายชั่วโมง", "逐小时预报", "時間別予報", "घंटेवार पूर्वानुमान", "Dự báo theo giờ", /* hourly_forecast */
+        "Daily Forecast", "Previsão diária", "Tagesvorhersage", "Pronóstico diario", "Prévisions quotidiennes", "Napi előrejelzés", "Ежедневный прогноз", "Ημερήσια Πρόγνωση", "พยากรณ์อากาศประจำวัน", "每日天气预报", "日々の天気予報", "दैनिक पूर्वानुमान", "Dự báo hàng ngày", /* daily_forecast */
+        "5 seconds", "5 segundos", "5 Sekunden", "5 segundos", "5 secondes", "5 másodperc", "5 секунд", "5 δευτερόλεπτα", "5 วินาที", "5秒", "5秒", "5 सेकंड", "5 giây", /* timeout_5 */
+        "10 seconds", "10 segundos", "10 Sekunden", "10 segundos", "10 secondes", "10 másodperc", "10 секунд", "10 δευτερόλεπτα", "10 วินาที", "10秒", "10秒", "10 सेकंड", "10 giây", /* timeout_10 */
+        "20 seconds", "20 segundos", "20 Sekunden", "20 segundos", "20 secondes", "20 másodperc", "20 секунд", "20 δευτερόλεπτα", "20 วินาที", "20秒", "20秒", "20 सेकंड", "20 giây", /* timeout_20 */
+        "30 seconds", "30 segundos", "30 Sekunden", "30 segundos", "30 secondes", "30 másodperc", "30 секунд", "30 δευτερόλεπτα", "30 วินาที", "30秒", "30秒", "30 सेकंड", "30 giây", /* timeout_30 */
+        "Always On", "Sempre ligado", "Immer eingeschaltet", "Siempre encendido", "Toujours allumé", "Mindig bekapcsolva", "Всегда включено", "Πάντα ενεργοποιημένο", "เปิดใช้งานตลอดเวลา", "始终开启", "常時接続", "हमेशा बने रहें", "Luôn bật", /* always_on */
+        "Updated at", "Atualizado em", "Aktualisiert am", "Actualizado en", "Mise à jour le", "Frissítve:", "Обновлено в", "Ενημερώθηκε στις", "อัปเดตเมื่อ", "更新于", "更新日時", "अपडेट किया गया", "Đã cập nhật lúc", /* updated_at */
+        "Cloudy", "Nublado", "Wolkig", "Nublado", "Nuageux", "Felhős", "Облачно", "Νεφελώδης", "เมฆมาก", "多云", "曇り", "बादलों से घिरा", "Nhiều mây", /* cloudy */
+        "RAM", "BATER", "RAM", "RAM", "BÉLIER", "RAM", "БАРАН", "ΕΜΒΟΛΟ", "แรม", "内存", "ラム", "टक्कर मारना", "ĐẬP", /* ram */
+        "PSRAM", "PSRAM", "PSRAM", "PSRAM", "PSRAM", "PSRAM", "ПСРАМ", "PSRAM", "พีเอสแรม", "PSRAM", "PSRAM", "पीएसआरएएम", "PSRAM", /* psram */
+        "Flash", "Clarão", "Blitz", "Destello", "Éclair", "Vaku", "Вспышка", "Λάμψη", "แฟลช", "闪光", "フラッシュ", "चमक", "Flash", /* flash */
+        "Type", "Tipo", "Typ", "Tipo", "Taper", "Típus", "Тип", "Τύπος", "พิมพ์", "类型", "タイプ", "प्रकार", "Kiểu", /* type */
+        "Steps", "Passos", "Schritte", "Pasos", "Mesures", "Lépések", "Шаги", "Βήματα", "ขั้นตอน", "步骤", "手順", "चरण", "Các bước", /* steps */
+        "Watchfaces", "Mostradores de relógio", "Zifferblätter", "Esferas de reloj", "Cadrans de montre", "Óraszámlapok", "Циферблаты", "Προσόψεις ρολογιού", "หน้าปัดนาฬิกา", "表盘", "ウォッチフェイス", "वॉचफेस", "Mặt đồng hồ", /* watchfaces */
+        "SD Card", "Cartão SD", "SD-Karte", "Tarjeta SD", "Carte SD", "SD-kártya", "SD-карта", "Κάρτα SD", "การ์ด SD", "SD卡", "SDカード", "एसडी कार्ड", "Thẻ SD", /* sd_card */
+        "Clear All", "Limpar tudo", "Alles löschen", "Borrar todo", "Effacer tout", "Összes törlése", "Очистить все", "Εκκαθάριση όλων", "ล้างทั้งหมด", "全部清除", "すべてクリア", "सभी साफ करें", "Xóa tất cả", /* clear_all */
+        "No notifications avaialble, check back later", "Nenhuma notificação disponível. Volte mais tarde.", "Es sind keine Benachrichtigungen verfügbar. Bitte versuchen Sie es später erneut.", "No hay notificaciones disponibles, vuelva a intentarlo más tarde.", "Aucune notification disponible, veuillez réessayer plus tard.", "Nincsenek elérhető értesítések, nézz vissza később", "Уведомления недоступны, зайдите позже.", "Δεν υπάρχουν διαθέσιμες ειδοποιήσεις, ελέγξτε ξανά αργότερα", "ไม่มีการแจ้งเตือนใดๆ โปรดตรวจสอบอีกครั้งในภายหลัง", "暂无通知，请稍后查看。", "通知はありません。後ほどご確認ください。", "कोई सूचना उपलब्ध नहीं है, कृपया बाद में दोबारा देखें।", "Hiện không có thông báo nào, vui lòng kiểm tra lại sau.", /* no_notifications */
+        "Camera", "Câmera", "Kamera", "Cámara", "Caméra", "Kamera", "Камера", "Κάμερα", "กล้อง", "相机", "カメラ", "कैमरा", "Máy ảnh", /* camera */
+        "Music Control", "Controle de música", "Musiksteuerung", "Control de música", "Contrôle de la musique", "Zenevezérlés", "Управление музыкой", "Έλεγχος μουσικής", "การควบคุมดนตรี", "音乐控制", "音楽コントロール", "संगीत नियंत्रण", "Điều khiển âm nhạc", /* music_control */
+        "Reset", "Reiniciar", "Zurücksetzen", "Reiniciar", "Réinitialiser", "Visszaállítás", "Перезагрузить", "Επαναφορά", "รีเซ็ต", "重置", "リセット", "रीसेट करें", "Cài lại", /* reset */
+        "Inactive", "Inativo", "Inaktiv", "Inactivo", "Inactif", "Inaktív", "Неактивный", "Αδρανής", "ไม่ใช้งาน", "非活跃状态", "非アクティブ", "निष्क्रिय", "Không hoạt động", /* inactive */
+        "Connected", "Conectado", "Verbunden", "Conectado", "Connecté", "Csatlakoztatva", "Подключено", "Συνδεδεμένος", "เชื่อมต่อแล้ว", "已连接", "接続済み", "जुड़े हुए", "Đã kết nối", /* connected */
+        "Disconnected", "Desconectado", "Getrennt", "Desconectado", "Déconnecté", "Szétkapcsolt", "Отключено", "Ασύνδετος", "ตัดการเชื่อมต่อ", "断开连接", "接続が切断されました", "डिस्कनेक्ट किया गया", "Đã ngắt kết nối", /* disconnected */
+        "Connect to Chronos app and start navigation.", "Conecte-se ao aplicativo Chronos e inicie a navegação.", "Verbinde dich mit der Chronos-App und starte die Navigation.", "Conéctate a la aplicación Chronos e inicia la navegación.", "Connectez-vous à l'application Chronos et lancez la navigation.", "Csatlakozz a Chronos alkalmazáshoz, és indítsd el a navigációt.", "Подключитесь к приложению Chronos и начните навигацию.", "Συνδεθείτε στην εφαρμογή Chronos και ξεκινήστε την πλοήγηση.", "เชื่อมต่อแอป Chronos และเริ่มการนำทาง", "连接到 Chronos 应用并开始导航。", "Chronosアプリに接続してナビゲーションを開始してください。", "Chronos ऐप से कनेक्ट करें और नेविगेशन शुरू करें।", "Kết nối với ứng dụng Chronos và bắt đầu hành trình.", /* nav_info */
+        "Start navigation on the connected phone", "Inicie a navegação no telefone conectado.", "Starten Sie die Navigation auf dem verbundenen Telefon", "Iniciar la navegación en el teléfono conectado", "Lancer la navigation sur le téléphone connecté", "Navigáció indítása a csatlakoztatott telefonon", "Запустить навигацию на подключенном телефоне", "Έναρξη πλοήγησης στο συνδεδεμένο τηλέφωνο", "เริ่มการนำทางบนโทรศัพท์ที่เชื่อมต่ออยู่", "在已连接的手机上开始导航", "接続されたスマートフォンでナビゲーションを開始します。", "कनेक्टेड फ़ोन पर नेविगेशन शुरू करें", "Bắt đầu điều hướng trên điện thoại đã kết nối.", /* nav_start */
+        "A navigation firmware for ESP32 devices based on ChronosESP32 library and Chronos app, made with ♥️ in Kenya using LVGL Pro by fbiego 🛠️", "Um firmware de navegação para dispositivos ESP32 baseado na biblioteca ChronosESP32 e no aplicativo Chronos, feito com ♥️ no Quênia usando LVGL Pro por fbiego 🛠️", "Eine Navigations-Firmware für ESP32-Geräte, die auf der ChronosESP32-Bibliothek und der Chronos-App basiert und mit ♥️ in Kenia unter Verwendung von LVGL Pro von fbiego entwickelt wurde 🛠️", "Un firmware de navegación para dispositivos ESP32 basado en la biblioteca ChronosESP32 y la aplicación Chronos, creado con ♥️ en Kenia usando LVGL Pro por fbiego 🛠️", "Un micrologiciel de navigation pour les appareils ESP32 basé sur la bibliothèque ChronosESP32 et l'application Chronos, fabriqué avec ♥️ au Kenya à l'aide de LVGL Pro par fbiego 🛠️", "Egy navigációs firmware ESP32 eszközökhöz, a ChronosESP32 könyvtár és a Chronos alkalmazás alapján, ♥️-vel készítve Kenyában, az LVGL Pro használatával fbiego által 🛠️", "Прошивка навигации для устройств ESP32 на базе библиотеки ChronosESP32 и приложения Chronos, сделанная с ♥️ в Кении с использованием LVGL Pro от fbiego 🛠️", "Ένα υλικολογισμικό πλοήγησης για συσκευές ESP32 που βασίζεται στη βιβλιοθήκη ChronosESP32 και την εφαρμογή Chronos, κατασκευασμένο με ♥️ στην Κένυα χρησιμοποιώντας το LVGL Pro από τον fbiego 🛠️", "เฟิร์มแวร์การนำทางสำหรับอุปกรณ์ ESP32 ที่อิงตามไลบรารี ChronosESP32 และแอป Chronos สร้างขึ้นด้วย ♥️ ในเคนยา โดยใช้ LVGL Pro โดย fbiego 🛠️", "基于 ChronosESP32 库和 Chronos 应用程序的 ESP32 设备导航固件，由 fbiego 在肯尼亚使用 LVGL Pro 倾情打造 ♥️ 🛠️", "ChronosESP32ライブラリとChronosアプリに基づいたESP32デバイス用のナビゲーションファームウェア。fbiegoによってLVGL Proを使用してケニアで♥️を込めて作られました。🛠️", "ChronosESP32 लाइब्रेरी और Chronos ऐप पर आधारित ESP32 उपकरणों के लिए एक नेविगेशन फर्मवेयर, जिसे fbiego द्वारा LVGL Pro का उपयोग करके केन्या में ♥️ के साथ बनाया गया है 🛠️", "Phần mềm điều hướng dành cho thiết bị ESP32 dựa trên thư viện ChronosESP32 và ứng dụng Chronos, được tạo ra bằng ♥️ tại Kenya bằng LVGL Pro của fbiego 🛠️", /* navio_info */
+        "English", "English", "English", "English", "English", "English", "English", "English", "English", "English", "English", "English", "English", /* en */
+        "Portuguese", "Portuguese", "Portuguese", "Portuguese", "Portuguese", "Portuguese", "Portuguese", "Portuguese", "Portuguese", "Portuguese", "Portuguese", "Portuguese", "Portuguese", /* pt */
+        "German", "German", "German", "German", "German", "German", "German", "German", "German", "German", "German", "German", "German", /* de */
+        "Spanish", "Spanish", "Spanish", "Spanish", "Spanish", "Spanish", "Spanish", "Spanish", "Spanish", "Spanish", "Spanish", "Spanish", "Spanish", /* es */
+        "French", "French", "French", "French", "French", "French", "French", "French", "French", "French", "French", "French", "French", /* fr */
+        "Hungarian", "Hungarian", "Hungarian", "Hungarian", "Hungarian", "Hungarian", "Hungarian", "Hungarian", "Hungarian", "Hungarian", "Hungarian", "Hungarian", "Hungarian", /* hu */
+        "Russian", "Russian", "Russian", "Russian", "Russian", "Russian", "Russian", "Russian", "Russian", "Russian", "Russian", "Russian", "Russian", /* ru */
+        "Greek", "Greek", "Greek", "Greek", "Greek", "Greek", "Greek", "Greek", "Greek", "Greek", "Greek", "Greek", "Greek", /* el */
+        "Thai", "Thai", "Thai", "Thai", "Thai", "Thai", "Thai", "Thai", "Thai", "Thai", "Thai", "Thai", "Thai", /* th */
+        "Chinese", "Chinese", "Chinese", "Chinese", "Chinese", "Chinese", "Chinese", "Chinese", "Chinese", "Chinese", "Chinese", "Chinese", "Chinese", /* zh */
+        "Japanese", "Japanese", "Japanese", "Japanese", "Japanese", "Japanese", "Japanese", "Japanese", "Japanese", "Japanese", "Japanese", "Japanese", "Japanese", /* ja */
+        "Hindi", "Hindi", "Hindi", "Hindi", "Hindi", "Hindi", "Hindi", "Hindi", "Hindi", "Hindi", "Hindi", "Hindi", "Hindi", /* hi */
+        "Vietnamese", "Vietnamese", "Vietnamese", "Vietnamese", "Vietnamese", "Vietnamese", "Vietnamese", "Vietnamese", "Vietnamese", "Vietnamese", "Vietnamese", "Vietnamese", "Vietnamese", /* vi */
+        "Proceed", "Prosseguir", "Fortfahren", "Proceder", "Procéder", "Folytatás", "Продолжить", "Προχωρώ", "ดำเนินการ", "继续", "進む", "आगे बढ़ना", "Tiếp tục", /* proceed */
+        "Cancel", "Cancelar", "Stornieren", "Cancelar", "Annuler", "Mégsem", "Отмена", "Ματαίωση", "ยกเลิก", "取消", "キャンセル", "रद्द करना", "Hủy bỏ", /* cancel */
+        "Are you sure you want to reset the system? This will erase all data and settings.", "Tem certeza de que deseja redefinir o sistema? Isso apagará todos os dados e configurações.", "Sind Sie sicher, dass Sie das System zurücksetzen möchten? Dadurch werden alle Daten und Einstellungen gelöscht.", "¿Seguro que quieres reiniciar el sistema? Esto borrará todos los datos y la configuración.", "Êtes-vous sûr de vouloir réinitialiser le système ? Cette opération effacera toutes les données et tous les paramètres.", "Biztosan visszaállítja a rendszert? Ez minden adatot és beállítást töröl.", "Вы уверены, что хотите сбросить систему? Это приведет к удалению всех данных и настроек.", "Είστε βέβαιοι ότι θέλετε να επαναφέρετε το σύστημα; Αυτή η ενέργεια θα διαγράψει όλα τα δεδομένα και τις ρυθμίσεις.", "คุณแน่ใจหรือไม่ว่าต้องการรีเซ็ตระบบ? การดำเนินการนี้จะลบข้อมูลและการตั้งค่าทั้งหมด", "您确定要重置系统吗？这将清除所有数据和设置。", "システムをリセットしてもよろしいですか？リセットすると、すべてのデータと設定が消去されます。", "क्या आप वाकई सिस्टम को रीसेट करना चाहते हैं? इससे सारा डेटा और सेटिंग्स मिट जाएंगी।", "Bạn có chắc chắn muốn khôi phục cài đặt gốc không? Thao tác này sẽ xóa tất cả dữ liệu và cài đặt.", /* reset_info */
+        "Reset System", "Reiniciar sistema", "System zurücksetzen", "Reiniciar sistema", "Réinitialiser le système", "Rendszer visszaállítása", "Сбросить систему", "Επαναφορά συστήματος", "รีเซ็ตระบบ", "重置系统", "システムのリセット", "सिस्टम रीसेट करें", "Khôi phục hệ thống", /* reset_title */
+        "Icon size", "Tamanho do ícone", "Symbolgröße", "Tamaño del icono", "Taille de l'icône", "Ikonméret", "Размер значка", "Μέγεθος εικονιδίου", "ขนาดไอคอน", "图标大小", "アイコンサイズ", "आइकन का आकार", "Kích thước biểu tượng", /* icon_size */
+        "System time", "Hora do sistema", "Systemzeit", "Hora del sistema", "Heure système", "Rendszeridő", "Системное время", "Ώρα συστήματος", "เวลาของระบบ", "系统时间", "システム時刻", "सिस्टम समय", "Thời gian hệ thống", /* system_time */
+        "Arrival time", "Hora de chegada", "Ankunftszeit", "Hora de llegada", "Heure d'arrivée", "Érkezési idő", "Время прибытия", "Ώρα άφιξης", "เวลาที่มาถึง", "到达时间", "到着時間", "आगमन समय", "Thời gian đến", /* arrival_time */
+        "Directions", "Instruções", "Wegbeschreibung", "Instrucciones", "Instructions", "Útvonalterv", "Направления", "Οδηγίες", "ทิศทาง", "方向", "方向", "दिशा-निर्देश", "Hướng dẫn", /* directions */
+        "Applications", "Aplicações", "Anwendungen", "Aplicaciones", "Applications", "Alkalmazások", "Приложения", "Εφαρμογές", "แอปพลิเคชัน", "应用程序", "アプリケーション", "आवेदन", "Ứng dụng", /* applications */
+        "Phone Link", "Ligação telefônica", "Telefonverbindung", "Enlace telefónico", "Lien téléphonique", "Telefonkapcsolat", "Телефонная ссылка", "Τηλεφωνική σύνδεση", "โทรศัพท์เชื่อมต่อ", "电话链接", "電話回線", "फ़ोन लिंक", "Kết nối điện thoại", /* phone_link */
+        "Status", "Status", "Status", "Estado", "Statut", "Állapot", "Статус", "Κατάσταση", "สถานะ", "地位", "状態", "स्थिति", "Trạng thái", /* status */
+        "Last Sync", "Última sincronização", "Letzte Synchronisierung", "Última sincronización", "Dernière synchronisation", "Utolsó szinkronizálás", "Последняя синхронизация", "Τελευταίος συγχρονισμός", "การซิงค์ครั้งล่าสุด", "上次同步", "最終同期", "अंतिम सिंक", "Lần đồng bộ cuối cùng", /* last_sync */
+        "Charging", "Carregando", "Laden", "Carga", "Chargement", "Töltés", "Зарядка", "Φόρτιση", "กำลังชาร์จ", "收费", "充電", "चार्ज", "Đang sạc", /* charging */
+        "Yes", "Sim", "Ja", "Sí", "Oui", "Igen", "Да", "Ναί", "ใช่", "是的", "はい", "हाँ", "Đúng", /* yes */
+        "No", "Não", "NEIN", "No", "Non", "Nem", "Нет", "Οχι", "เลขที่", "不", "いいえ", "नहीं", "KHÔNG", /* no */
+        "Find Phone", "Encontrar telefone", "Telefon finden", "Buscar teléfono", "Localiser mon téléphone", "Telefon keresése", "Найти телефон", "Βρείτε τηλέφωνο", "ค้นหาโทรศัพท์", "查找手机", "スマートフォンを探す", "फ़ोन ढूंढें", "Tìm điện thoại", /* find_phone */
+        "Version", "Versão", "Version", "Versión", "Version", "Változat", "Версия", "Εκδοχή", "เวอร์ชั่น", "版本", "バージョン", "संस्करण", "Phiên bản", /* version */
+        "Code", "Código", "Code", "Código", "Code", "Kód", "Код", "Κώδικας", "รหัส", "代码", "コード", "कोड", "Mã số", /* code */
+        "Partly Cloudy", "Parcialmente nublado", "Teilweise bewölkt", "Parcialmente nublado", "Partiellement nuageux", "Részben felhős", "Переменная облачность", "Μερικώς Νεφελώδης", "มีเมฆบางส่วน", "多云", "所により曇り", "आंशिक रूप से बादल छाएंगे", "Trời nhiều mây một phần", /* sun_cloud */
+        "Sunny", "Ensolarado", "Sonnig", "Soleado", "Ensoleillé", "Napos", "Солнечно", "Ηλιόλουστος", "แดดจัด", "阳光明媚", "晴れ", "धूप वाला", "Nhiều nắng", /* sunny */
+        "Snow", "Neve", "Schnee", "Nieve", "Neige", "Hó", "Снег", "Χιόνι", "หิมะ", "雪", "雪", "बर्फ", "Tuyết", /* snow */
+        "Rainy", "Chuvoso", "Regnerisch", "Lluvioso", "Pluvieux", "Esős", "Дождливый", "Βροχερός", "ฝนตก", "雷尼", "雨", "बरसाती", "Trời mưa", /* rainy */
+        "Tornado", "Tornado", "Tornado", "Tornado", "Tornade", "Tornádó", "Торнадо", "Ανεμοστρόβιλος", "พายุทอร์นาโด", "龙卷风", "竜巻", "बवंडर", "Lốc xoáy", /* tornado */
+        "Windy", "Ventoso", "Windig", "Ventoso", "Venteux", "Szeles", "Ветрено", "Ανεμώδης", "ลมแรง", "风", "風が強い", "तूफ़ानी", "Có gió", /* wind */
+        "Haze", "Confusão", "Dunst", "Bruma", "Brume", "Köd", "Туман", "Ομίχλη", "หมอก", "阴霾", "ヘイズ", "धुंध", "Sương mù", /* haze */
+        "AI generated", "Generado por IA", "KI-generiert", "Gerado por IA", "Généré par l'IA", "Mesterséges intelligencia által generált", "Сгенерировано ИИ", "Δημιουργήθηκε από AI", "สร้างโดย AI", "AI生成", "AI生成", "AI GENERATED", NULL, /* ai */
+        "️ ,?.♥🛠", "️ -,?.♥áâãçêíóôõúÚ🛠", "️ -,?.♥äößü🛠", "️ ,?¿.♥áéíñóúÚ🛠", "️  -,?.'♥ÀàÉéèÊôû🛠", "️ -,:?.♥áÁéÉíóÓöÖőúÚüÜ🛠", "️ -,?.«»♥аАбБВвгДдеЕжЗзиИйкКлмМнНоОПпрРСстТуУфФХхцЦчЧшШщыьЭюяЯ🛠", "️ ,;.♥αΑάβΒγΓΔδεΕέΈζηΗΉήθΘιΙίκΚλΛμΜΝνξοΟόΠπρΡςΣσΤτυΥύφΦχΧψωΩώΏ🛠", "️็่้์ ?.♥ๆกขคฆงจชซฎณดตถทธนบปฝพฟภมยรฤลวศษสหฬอะัาำิีึืุูเแโใไ🛠", "️ ，？。♥一七三上不乐九二于云五亚亮代件位使俊倾停健光全八六关内出到制动勿十卡卷厂压取可同后向吗启周和唤器四固图圆在地型基声备复多大天太始媚存定导将小尼屏展已幕并序库应度康开式形态恢您情所手打扰找报振据接控收数文断新方旋无日时明星是暂更月有期本机查标格模次步每气池法活消清温版状用由电的盘相看睡知码确示秒程稍类系终统继续网置联肯能航行表要觉言设话语请警贮费起跃跑身转轴达这进连逐通造部醒重链闪闭间阳阴除雪雷霾非音预风骤龙🛠", "️ 、？。♥々ーァアあイィいウェえォおカかがキクくグケゲげこコごさサシしジスすズセせタたダだチちッつっづテてでデトとドどナにニネのはバビフブプヘべほマまみムむめメモもャやュョよラらリりルるレれロろをンん上予作使健充先円最出切別到刻動去同向回土圧基報場天太始定寝工巻常度康式強形後態所手持振探接断新方日時晴曇曜更月期木楽気水法消済温火状用画着知確秒竜終絡続線荷行言設話認語起転輝込通連進金開間陽雨雪電非面音順風🛠", "️़ँं -,?।♥अआइईउएऐऔकखगघचछजटठडढणतथदधनपफबभमयरलवशषसहािीुूृेैॉोौ्🛠", NULL, /* unique */
     };
 #endif
 
@@ -355,6 +429,68 @@ const void * icon_weather_temp_down_icon = NULL;
 extern const void * icon_weather_temp_down_icon_data;
 const void * icon_weather_uv_icon = NULL;
 extern const void * icon_weather_uv_icon_data;
+const void * icon_nt_messenger = NULL;
+extern const void * icon_nt_messenger_data;
+const void * icon_nt_whatsapp = NULL;
+extern const void * icon_nt_whatsapp_data;
+const void * icon_nt_twitter = NULL;
+extern const void * icon_nt_twitter_data;
+const void * icon_nt_mail = NULL;
+extern const void * icon_nt_mail_data;
+const void * icon_nt_qq = NULL;
+extern const void * icon_nt_qq_data;
+const void * icon_nt_skype = NULL;
+extern const void * icon_nt_skype_data;
+const void * icon_nt_line = NULL;
+extern const void * icon_nt_line_data;
+const void * icon_nt_weibo = NULL;
+extern const void * icon_nt_weibo_data;
+const void * icon_nt_kakao = NULL;
+extern const void * icon_nt_kakao_data;
+const void * icon_nt_viber = NULL;
+extern const void * icon_nt_viber_data;
+const void * icon_nt_vk = NULL;
+extern const void * icon_nt_vk_data;
+const void * icon_nt_wechat = NULL;
+extern const void * icon_nt_wechat_data;
+const void * icon_nt_paypal = NULL;
+extern const void * icon_nt_paypal_data;
+const void * icon_nt_chat = NULL;
+extern const void * icon_nt_chat_data;
+const void * icon_nt_telegram = NULL;
+extern const void * icon_nt_telegram_data;
+const void * icon_nt_instagram = NULL;
+extern const void * icon_nt_instagram_data;
+const void * icon_nt_calendar = NULL;
+extern const void * icon_nt_calendar_data;
+const void * icon_nt_hangouts = NULL;
+extern const void * icon_nt_hangouts_data;
+const void * icon_nt_download = NULL;
+extern const void * icon_nt_download_data;
+const void * icon_nt_facebook = NULL;
+extern const void * icon_nt_facebook_data;
+const void * icon_nt_snapchat = NULL;
+extern const void * icon_nt_snapchat_data;
+const void * icon_nt_tiktok = NULL;
+extern const void * icon_nt_tiktok_data;
+const void * icon_nt_dingtalk = NULL;
+extern const void * icon_nt_dingtalk_data;
+const void * icon_wt_sun_cloud = NULL;
+extern const void * icon_wt_sun_cloud_data;
+const void * icon_wt_sun = NULL;
+extern const void * icon_wt_sun_data;
+const void * icon_wt_rain = NULL;
+extern const void * icon_wt_rain_data;
+const void * icon_wt_cloud = NULL;
+extern const void * icon_wt_cloud_data;
+const void * icon_wt_tornado = NULL;
+extern const void * icon_wt_tornado_data;
+const void * icon_wt_snow = NULL;
+extern const void * icon_wt_snow_data;
+const void * icon_wt_wind = NULL;
+extern const void * icon_wt_wind_data;
+const void * icon_wt_haze = NULL;
+extern const void * icon_wt_haze_data;
 const void * img_music_album = NULL;
 extern const void * img_music_album_data;
 const void * icon_vol_down_32 = NULL;
@@ -428,6 +564,7 @@ lv_subject_t sb_time_hour_analog;
 lv_subject_t sb_time_minute_analog;
 lv_subject_t sb_time_seconds_analog;
 lv_subject_t sb_time_am_pm;
+lv_subject_t sb_time_am;
 lv_subject_t sb_time_day;
 lv_subject_t sb_time_month;
 lv_subject_t sb_time_year;
@@ -436,7 +573,13 @@ lv_subject_t sb_time_month_long;
 lv_subject_t sb_time_weekday;
 lv_subject_t sb_time_weekday_short;
 lv_subject_t sb_time_weekday_long;
+lv_subject_t sb_activity_steps;
+lv_subject_t sb_activity_kcal;
+lv_subject_t sb_activity_distance;
+lv_subject_t sb_health_bpm;
+lv_subject_t sb_health_oxygen;
 lv_subject_t sb_system_connection;
+lv_subject_t sb_system_connection_str;
 lv_subject_t sb_chronos_esp_version;
 lv_subject_t sb_chronos_app_version;
 lv_subject_t sb_firmware_version;
@@ -465,6 +608,15 @@ lv_subject_t sb_music_state_icon;
 lv_subject_t sb_music_icon;
 lv_subject_t sb_music_package;
 lv_subject_t sb_music_album_color;
+lv_subject_t sb_phone_manufacturer;
+lv_subject_t sb_phone_model;
+lv_subject_t sb_phone_sdk;
+lv_subject_t sb_phone_battery;
+lv_subject_t sb_phone_charging;
+lv_subject_t sb_phone_charging_str;
+lv_subject_t sb_chronos_app_code;
+lv_subject_t sb_phone_last_sync;
+lv_subject_t sb_weather_code;
 lv_subject_t sb_weather_icon;
 lv_subject_t sb_weather_temp;
 lv_subject_t sb_weather_location;
@@ -997,6 +1149,130 @@ void helios_ui_init_gen(const char * asset_path)
         if (!icon_weather_uv_icon) {
             icon_weather_uv_icon = &icon_weather_uv_icon_data;
         }
+        /* icon_nt_messenger */
+        if (!icon_nt_messenger) {
+            icon_nt_messenger = &icon_nt_messenger_data;
+        }
+        /* icon_nt_whatsapp */
+        if (!icon_nt_whatsapp) {
+            icon_nt_whatsapp = &icon_nt_whatsapp_data;
+        }
+        /* icon_nt_twitter */
+        if (!icon_nt_twitter) {
+            icon_nt_twitter = &icon_nt_twitter_data;
+        }
+        /* icon_nt_mail */
+        if (!icon_nt_mail) {
+            icon_nt_mail = &icon_nt_mail_data;
+        }
+        /* icon_nt_qq */
+        if (!icon_nt_qq) {
+            icon_nt_qq = &icon_nt_qq_data;
+        }
+        /* icon_nt_skype */
+        if (!icon_nt_skype) {
+            icon_nt_skype = &icon_nt_skype_data;
+        }
+        /* icon_nt_line */
+        if (!icon_nt_line) {
+            icon_nt_line = &icon_nt_line_data;
+        }
+        /* icon_nt_weibo */
+        if (!icon_nt_weibo) {
+            icon_nt_weibo = &icon_nt_weibo_data;
+        }
+        /* icon_nt_kakao */
+        if (!icon_nt_kakao) {
+            icon_nt_kakao = &icon_nt_kakao_data;
+        }
+        /* icon_nt_viber */
+        if (!icon_nt_viber) {
+            icon_nt_viber = &icon_nt_viber_data;
+        }
+        /* icon_nt_vk */
+        if (!icon_nt_vk) {
+            icon_nt_vk = &icon_nt_vk_data;
+        }
+        /* icon_nt_wechat */
+        if (!icon_nt_wechat) {
+            icon_nt_wechat = &icon_nt_wechat_data;
+        }
+        /* icon_nt_paypal */
+        if (!icon_nt_paypal) {
+            icon_nt_paypal = &icon_nt_paypal_data;
+        }
+        /* icon_nt_chat */
+        if (!icon_nt_chat) {
+            icon_nt_chat = &icon_nt_chat_data;
+        }
+        /* icon_nt_telegram */
+        if (!icon_nt_telegram) {
+            icon_nt_telegram = &icon_nt_telegram_data;
+        }
+        /* icon_nt_instagram */
+        if (!icon_nt_instagram) {
+            icon_nt_instagram = &icon_nt_instagram_data;
+        }
+        /* icon_nt_calendar */
+        if (!icon_nt_calendar) {
+            icon_nt_calendar = &icon_nt_calendar_data;
+        }
+        /* icon_nt_hangouts */
+        if (!icon_nt_hangouts) {
+            icon_nt_hangouts = &icon_nt_hangouts_data;
+        }
+        /* icon_nt_download */
+        if (!icon_nt_download) {
+            icon_nt_download = &icon_nt_download_data;
+        }
+        /* icon_nt_facebook */
+        if (!icon_nt_facebook) {
+            icon_nt_facebook = &icon_nt_facebook_data;
+        }
+        /* icon_nt_snapchat */
+        if (!icon_nt_snapchat) {
+            icon_nt_snapchat = &icon_nt_snapchat_data;
+        }
+        /* icon_nt_tiktok */
+        if (!icon_nt_tiktok) {
+            icon_nt_tiktok = &icon_nt_tiktok_data;
+        }
+        /* icon_nt_dingtalk */
+        if (!icon_nt_dingtalk) {
+            icon_nt_dingtalk = &icon_nt_dingtalk_data;
+        }
+        /* icon_wt_sun_cloud */
+        if (!icon_wt_sun_cloud) {
+            icon_wt_sun_cloud = &icon_wt_sun_cloud_data;
+        }
+        /* icon_wt_sun */
+        if (!icon_wt_sun) {
+            icon_wt_sun = &icon_wt_sun_data;
+        }
+        /* icon_wt_rain */
+        if (!icon_wt_rain) {
+            icon_wt_rain = &icon_wt_rain_data;
+        }
+        /* icon_wt_cloud */
+        if (!icon_wt_cloud) {
+            icon_wt_cloud = &icon_wt_cloud_data;
+        }
+        /* icon_wt_tornado */
+        if (!icon_wt_tornado) {
+            icon_wt_tornado = &icon_wt_tornado_data;
+        }
+        /* icon_wt_snow */
+        if (!icon_wt_snow) {
+            icon_wt_snow = &icon_wt_snow_data;
+        }
+        /* icon_wt_wind */
+        if (!icon_wt_wind) {
+            icon_wt_wind = &icon_wt_wind_data;
+        }
+        /* icon_wt_haze */
+        if (!icon_wt_haze) {
+            icon_wt_haze = &icon_wt_haze_data;
+        }
         /* img_music_album */
         if (!img_music_album) {
             img_music_album = &img_music_album_data;
@@ -1176,6 +1452,7 @@ void helios_ui_init_gen(const char * asset_path)
                            UI_SUBJECT_STRING_LENGTH,
                            "am"
                           );
+    lv_subject_init_int(&sb_time_am, -1);
     lv_subject_init_int(&sb_time_day, 5);
     lv_subject_init_int(&sb_time_month, 10);
     lv_subject_init_int(&sb_time_year, 2025);
@@ -1212,7 +1489,20 @@ void helios_ui_init_gen(const char * asset_path)
                            UI_SUBJECT_STRING_LENGTH,
                            "sunday"
                           );
+    lv_subject_init_int(&sb_activity_steps, 2735);
+    lv_subject_init_int(&sb_activity_kcal, 163);
+    lv_subject_init_int(&sb_activity_distance, 157);
+    lv_subject_init_int(&sb_health_bpm, 72);
+    lv_subject_init_int(&sb_health_oxygen, 98);
     lv_subject_init_int(&sb_system_connection, 0);
+    static char sb_system_connection_str_buf[UI_SUBJECT_STRING_LENGTH];
+    static char sb_system_connection_str_prev_buf[UI_SUBJECT_STRING_LENGTH];
+    lv_subject_init_string(&sb_system_connection_str,
+                           sb_system_connection_str_buf,
+                           sb_system_connection_str_prev_buf,
+                           UI_SUBJECT_STRING_LENGTH,
+                           "disconnected"
+                          );
     static char sb_chronos_esp_version_buf[UI_SUBJECT_STRING_LENGTH];
     static char sb_chronos_esp_version_prev_buf[UI_SUBJECT_STRING_LENGTH];
     lv_subject_init_string(&sb_chronos_esp_version,
@@ -1378,6 +1668,45 @@ void helios_ui_init_gen(const char * asset_path)
                            "music"
                           );
     lv_subject_init_int(&sb_music_album_color, 0);
+    static char sb_phone_manufacturer_buf[UI_SUBJECT_STRING_LENGTH];
+    static char sb_phone_manufacturer_prev_buf[UI_SUBJECT_STRING_LENGTH];
+    lv_subject_init_string(&sb_phone_manufacturer,
+                           sb_phone_manufacturer_buf,
+                           sb_phone_manufacturer_prev_buf,
+                           UI_SUBJECT_STRING_LENGTH,
+                           "Google"
+                          );
+    static char sb_phone_model_buf[UI_SUBJECT_STRING_LENGTH];
+    static char sb_phone_model_prev_buf[UI_SUBJECT_STRING_LENGTH];
+    lv_subject_init_string(&sb_phone_model,
+                           sb_phone_model_buf,
+                           sb_phone_model_prev_buf,
+                           UI_SUBJECT_STRING_LENGTH,
+                           "Pixel 7"
+                          );
+    lv_subject_init_int(&sb_phone_sdk, 37);
+    lv_subject_init_int(&sb_phone_battery, 50);
+    lv_subject_init_int(&sb_phone_charging, 0);
+    static char sb_phone_charging_str_buf[UI_SUBJECT_STRING_LENGTH];
+    static char sb_phone_charging_str_prev_buf[UI_SUBJECT_STRING_LENGTH];
+    lv_subject_init_string(&sb_phone_charging_str,
+                           sb_phone_charging_str_buf,
+                           sb_phone_charging_str_prev_buf,
+                           UI_SUBJECT_STRING_LENGTH,
+                           "no"
+                          );
+    lv_subject_init_int(&sb_chronos_app_code, 53);
+    static char sb_phone_last_sync_buf[UI_SUBJECT_STRING_LENGTH];
+    static char sb_phone_last_sync_prev_buf[UI_SUBJECT_STRING_LENGTH];
+    lv_subject_init_string(&sb_phone_last_sync,
+                           sb_phone_last_sync_buf,
+                           sb_phone_last_sync_prev_buf,
+                           UI_SUBJECT_STRING_LENGTH,
+                           "2d 4h"
+                          );
+    lv_subject_init_int(&sb_weather_code, 0);
+    lv_subject_set_min_value_int(&sb_weather_code, 0);
+    lv_subject_set_max_value_int(&sb_weather_code, 7);
     lv_subject_init_int(&sb_weather_icon, 0);
     lv_subject_init_int(&sb_weather_temp, 23);
     static char sb_weather_location_buf[UI_SUBJECT_STRING_LENGTH];
@@ -1441,13 +1770,40 @@ void helios_ui_init_gen(const char * asset_path)
 
 #if defined(LV_USE_XML) && LV_USE_XML
     /* Register widgets */
+    lv_animimg_register();
+    lv_arc_register();
+    lv_bar_register();
+    lv_button_register();
+    lv_buttonmatrix_register();
+    lv_calendar_register();
+    lv_canvas_register();
+    lv_chart_register();
+    lv_checkbox_register();
+    lv_dropdown_register();
+    lv_image_register();
+    lv_keyboard_register();
+    lv_label_register();
+    lv_obj_register();
+    lv_qrcode_register();
+    lv_roller_register();
+    lv_scale_register();
+    lv_slider_register();
+    lv_spangroup_register();
+    lv_spinbox_register();
+    lv_switch_register();
+    lv_table_register();
+    lv_tabview_register();
+    lv_textarea_register();
     wd_arcoiris_register();
     wd_dropdown_register();
     wd_image_register();
     wd_label_register();
     wd_list_register();
     wd_obj_register();
+    wd_panel_register();
     wd_segment_register();
+    wf_analog_register();
+    wf_item_register();
 
     /* Check all fonts / default if needed. This prevents fonts that are used in one target but
        defined in another from causing assertion failures during rendering of the Preview. */
@@ -1582,6 +1938,7 @@ void helios_ui_init_gen(const char * asset_path)
     lv_xml_register_subject(NULL, "sb_time_minute_analog", &sb_time_minute_analog);
     lv_xml_register_subject(NULL, "sb_time_seconds_analog", &sb_time_seconds_analog);
     lv_xml_register_subject(NULL, "sb_time_am_pm", &sb_time_am_pm);
+    lv_xml_register_subject(NULL, "sb_time_am", &sb_time_am);
     lv_xml_register_subject(NULL, "sb_time_day", &sb_time_day);
     lv_xml_register_subject(NULL, "sb_time_month", &sb_time_month);
     lv_xml_register_subject(NULL, "sb_time_year", &sb_time_year);
@@ -1590,7 +1947,13 @@ void helios_ui_init_gen(const char * asset_path)
     lv_xml_register_subject(NULL, "sb_time_weekday", &sb_time_weekday);
     lv_xml_register_subject(NULL, "sb_time_weekday_short", &sb_time_weekday_short);
     lv_xml_register_subject(NULL, "sb_time_weekday_long", &sb_time_weekday_long);
+    lv_xml_register_subject(NULL, "sb_activity_steps", &sb_activity_steps);
+    lv_xml_register_subject(NULL, "sb_activity_kcal", &sb_activity_kcal);
+    lv_xml_register_subject(NULL, "sb_activity_distance", &sb_activity_distance);
+    lv_xml_register_subject(NULL, "sb_health_bpm", &sb_health_bpm);
+    lv_xml_register_subject(NULL, "sb_health_oxygen", &sb_health_oxygen);
     lv_xml_register_subject(NULL, "sb_system_connection", &sb_system_connection);
+    lv_xml_register_subject(NULL, "sb_system_connection_str", &sb_system_connection_str);
     lv_xml_register_subject(NULL, "sb_chronos_esp_version", &sb_chronos_esp_version);
     lv_xml_register_subject(NULL, "sb_chronos_app_version", &sb_chronos_app_version);
     lv_xml_register_subject(NULL, "sb_firmware_version", &sb_firmware_version);
@@ -1619,6 +1982,15 @@ void helios_ui_init_gen(const char * asset_path)
     lv_xml_register_subject(NULL, "sb_music_icon", &sb_music_icon);
     lv_xml_register_subject(NULL, "sb_music_package", &sb_music_package);
     lv_xml_register_subject(NULL, "sb_music_album_color", &sb_music_album_color);
+    lv_xml_register_subject(NULL, "sb_phone_manufacturer", &sb_phone_manufacturer);
+    lv_xml_register_subject(NULL, "sb_phone_model", &sb_phone_model);
+    lv_xml_register_subject(NULL, "sb_phone_sdk", &sb_phone_sdk);
+    lv_xml_register_subject(NULL, "sb_phone_battery", &sb_phone_battery);
+    lv_xml_register_subject(NULL, "sb_phone_charging", &sb_phone_charging);
+    lv_xml_register_subject(NULL, "sb_phone_charging_str", &sb_phone_charging_str);
+    lv_xml_register_subject(NULL, "sb_chronos_app_code", &sb_chronos_app_code);
+    lv_xml_register_subject(NULL, "sb_phone_last_sync", &sb_phone_last_sync);
+    lv_xml_register_subject(NULL, "sb_weather_code", &sb_weather_code);
     lv_xml_register_subject(NULL, "sb_weather_icon", &sb_weather_icon);
     lv_xml_register_subject(NULL, "sb_weather_temp", &sb_weather_temp);
     lv_xml_register_subject(NULL, "sb_weather_location", &sb_weather_location);
@@ -1639,6 +2011,7 @@ void helios_ui_init_gen(const char * asset_path)
     /* Register callbacks */
     lv_xml_register_event_cb(NULL, "on_music_control_cb", on_music_control_cb);
     lv_xml_register_event_cb(NULL, "on_hs_info_cb", on_hs_info_cb);
+    lv_xml_register_event_cb(NULL, "on_hs_title_pill_cb", on_hs_title_pill_cb);
     lv_xml_register_event_cb(NULL, "on_simulator_event_cb", on_simulator_event_cb);
 #endif
 
@@ -1691,6 +2064,37 @@ void helios_ui_init_gen(const char * asset_path)
     lv_xml_register_image(NULL, "icon_weather_temp_up_icon", icon_weather_temp_up_icon);
     lv_xml_register_image(NULL, "icon_weather_temp_down_icon", icon_weather_temp_down_icon);
     lv_xml_register_image(NULL, "icon_weather_uv_icon", icon_weather_uv_icon);
+    lv_xml_register_image(NULL, "icon_nt_messenger", icon_nt_messenger);
+    lv_xml_register_image(NULL, "icon_nt_whatsapp", icon_nt_whatsapp);
+    lv_xml_register_image(NULL, "icon_nt_twitter", icon_nt_twitter);
+    lv_xml_register_image(NULL, "icon_nt_mail", icon_nt_mail);
+    lv_xml_register_image(NULL, "icon_nt_qq", icon_nt_qq);
+    lv_xml_register_image(NULL, "icon_nt_skype", icon_nt_skype);
+    lv_xml_register_image(NULL, "icon_nt_line", icon_nt_line);
+    lv_xml_register_image(NULL, "icon_nt_weibo", icon_nt_weibo);
+    lv_xml_register_image(NULL, "icon_nt_kakao", icon_nt_kakao);
+    lv_xml_register_image(NULL, "icon_nt_viber", icon_nt_viber);
+    lv_xml_register_image(NULL, "icon_nt_vk", icon_nt_vk);
+    lv_xml_register_image(NULL, "icon_nt_wechat", icon_nt_wechat);
+    lv_xml_register_image(NULL, "icon_nt_paypal", icon_nt_paypal);
+    lv_xml_register_image(NULL, "icon_nt_chat", icon_nt_chat);
+    lv_xml_register_image(NULL, "icon_nt_telegram", icon_nt_telegram);
+    lv_xml_register_image(NULL, "icon_nt_instagram", icon_nt_instagram);
+    lv_xml_register_image(NULL, "icon_nt_calendar", icon_nt_calendar);
+    lv_xml_register_image(NULL, "icon_nt_hangouts", icon_nt_hangouts);
+    lv_xml_register_image(NULL, "icon_nt_download", icon_nt_download);
+    lv_xml_register_image(NULL, "icon_nt_facebook", icon_nt_facebook);
+    lv_xml_register_image(NULL, "icon_nt_snapchat", icon_nt_snapchat);
+    lv_xml_register_image(NULL, "icon_nt_tiktok", icon_nt_tiktok);
+    lv_xml_register_image(NULL, "icon_nt_dingtalk", icon_nt_dingtalk);
+    lv_xml_register_image(NULL, "icon_wt_sun_cloud", icon_wt_sun_cloud);
+    lv_xml_register_image(NULL, "icon_wt_sun", icon_wt_sun);
+    lv_xml_register_image(NULL, "icon_wt_rain", icon_wt_rain);
+    lv_xml_register_image(NULL, "icon_wt_cloud", icon_wt_cloud);
+    lv_xml_register_image(NULL, "icon_wt_tornado", icon_wt_tornado);
+    lv_xml_register_image(NULL, "icon_wt_snow", icon_wt_snow);
+    lv_xml_register_image(NULL, "icon_wt_wind", icon_wt_wind);
+    lv_xml_register_image(NULL, "icon_wt_haze", icon_wt_haze);
     lv_xml_register_image(NULL, "img_music_album", img_music_album);
     lv_xml_register_image(NULL, "icon_vol_down_32", icon_vol_down_32);
     lv_xml_register_image(NULL, "icon_vol_up_32", icon_vol_up_32);
@@ -1706,7 +2110,7 @@ void helios_ui_init_gen(const char * asset_path)
     lv_xml_register_image(NULL, "icon_restart", icon_restart);
 #endif
 
-#if defined(LV_USE_XML) && LV_USE_XML == 0
+#if !defined(LV_USE_XML) || LV_USE_XML == 0
     /*--------------------
      *  Permanent screens
      *-------------------*/
@@ -1741,6 +2145,11 @@ void __attribute__((weak)) on_hs_info_cb(lv_event_t * e)
 {
     LV_UNUSED(e);
     LV_LOG("on_hs_info_cb was called\n");
+}
+void __attribute__((weak)) on_hs_title_pill_cb(lv_event_t * e)
+{
+    LV_UNUSED(e);
+    LV_LOG("on_hs_title_pill_cb was called\n");
 }
 void __attribute__((weak)) on_simulator_event_cb(lv_event_t * e)
 {

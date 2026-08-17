@@ -90,6 +90,8 @@ lv_obj_t * weather_widget_create(lv_obj_t * parent)
         lv_obj_t * hs_text_normal_0 = hs_text_normal_create(lv_obj_0);
         lv_label_bind_text(hs_text_normal_0, &sb_weather_location, NULL);
         lv_obj_set_style_text_align(hs_text_normal_0, LV_TEXT_ALIGN_CENTER, 0);
+        lv_label_set_long_mode(hs_text_normal_0, LV_LABEL_LONG_MODE_SCROLL_CIRCULAR);
+        lv_obj_set_width(hs_text_normal_0, lv_pct(80));
 
         lv_obj_t * wd_image_0 = wd_image_create(lv_obj_0);
         lv_obj_set_flag(wd_image_0, LV_OBJ_FLAG_CLICKABLE, false);

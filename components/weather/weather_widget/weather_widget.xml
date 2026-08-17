@@ -37,7 +37,12 @@
 		<style name="style_base" />
 		<bind_style name="style_pad_360" subject="sb_screen_size" ref_value="1" />
 		<bind_style name="style_pad_240" subject="sb_screen_size" ref_value="2" />
-		<hs_text_normal bind_text="sb_weather_location" style_text_align="center" />
+		<hs_text_normal
+			bind_text="sb_weather_location"
+			style_text_align="center"
+			long_mode="scroll_circular"
+			width="80%"
+		/>
 		<wd_image
 			clickable="false"
 			src="icon_weather"

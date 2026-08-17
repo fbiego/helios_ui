@@ -36,11 +36,34 @@ static uint32_t hourly_count;
 static uint32_t daily_count;
 static bool inited;
 
+static const void ** weather_icons[] = {
+    &icon_wt_sun_cloud,
+    &icon_wt_sun,
+    &icon_wt_snow,
+    &icon_wt_rain,
+    &icon_wt_cloud,
+    &icon_wt_tornado,
+    &icon_wt_wind,
+    &icon_wt_haze,
+};
+
+static const char * weather_conditions[] = {
+    "sun_cloud",
+    "sunny",
+    "snow",
+    "rainy",
+    "cloudy",
+    "tornado",
+    "wind",
+    "haze",
+};
+
 /***********************
  *  STATIC PROTOTYPES
  **********************/
 
 static void notify_observers(void);
+static uint32_t normalize_icon_id(int32_t icon_id);
 static void copy_text(char * dst, uint32_t dst_size, const char * src);
 
 /**********************
@@ -52,15 +75,15 @@ void helios_weather_init(void)
     if (inited) return;
     inited = true;
 
-    helios_weather_hourly_add(icon_weather, "12:00", "22°", "35%");
-    helios_weather_hourly_add(icon_weather, "13:00", "23°", "33%");
-    helios_weather_hourly_add(icon_weather, "14:00", "23°", "34%");
-    helios_weather_hourly_add(icon_weather, "15:00", "21°", "39%");
+    helios_weather_hourly_add(HELIOS_WEATHER_ICON_CLOUD, "12:00", "22°", "35%");
+    helios_weather_hourly_add(HELIOS_WEATHER_ICON_SUN, "13:00", "23°", "33%");
+    helios_weather_hourly_add(HELIOS_WEATHER_ICON_SUN, "14:00", "23°", "34%");
+    helios_weather_hourly_add(HELIOS_WEATHER_ICON_RAIN, "15:00", "21°", "39%");
 
-    helios_weather_daily_add(icon_weather, "Sun", "19°");
-    helios_weather_daily_add(icon_weather, "Mon", "21°");
-    helios_weather_daily_add(icon_weather, "Tue", "20°");
-    helios_weather_daily_add(icon_weather, "Wed", "18°");
+    helios_weather_daily_add(HELIOS_WEATHER_ICON_SUN, "Sun", "19°");
+    helios_weather_daily_add(HELIOS_WEATHER_ICON_SUN_CLOUD, "Mon", "21°");
+    helios_weather_daily_add(HELIOS_WEATHER_ICON_CLOUD, "Tue", "20°");
+    helios_weather_daily_add(HELIOS_WEATHER_ICON_RAIN, "Wed", "18°");
 }
 
 uint32_t helios_weather_hourly_count(void)
@@ -85,7 +108,18 @@ const helios_daily_forecast_t * helios_weather_daily_get(uint32_t index)
     return &daily[index];
 }
 
-bool helios_weather_hourly_add(const void * icon, const char * time, const char * temp, const char * humidity)
+const void * helios_weather_icon_get(int32_t icon_id)
+{
+    const void * icon = *weather_icons[normalize_icon_id(icon_id)];
+    return icon ? icon : icon_weather;
+}
+
+const char * helios_weather_condition_get(int32_t icon_id)
+{
+    return weather_conditions[normalize_icon_id(icon_id)];
+}
+
+bool helios_weather_hourly_add(int32_t icon_id, const char * time, const char * temp, const char * humidity)
 {
     lv_lock();
 
@@ -95,7 +129,8 @@ bool helios_weather_hourly_add(const void * icon, const char * time, const char 
     }
 
     helios_hourly_forecast_t * item = &hourly[hourly_count++];
-    item->icon = icon;
+    item->icon_id = icon_id;
+    item->icon = helios_weather_icon_get(icon_id);
     copy_text(item->time, sizeof(item->time), time);
     copy_text(item->temp, sizeof(item->temp), temp);
     copy_text(item->humidity, sizeof(item->humidity), humidity);
@@ -105,7 +140,7 @@ bool helios_weather_hourly_add(const void * icon, const char * time, const char 
     return true;
 }
 
-bool helios_weather_daily_add(const void * icon, const char * day, const char * temp)
+bool helios_weather_daily_add(int32_t icon_id, const char * day, const char * temp)
 {
     lv_lock();
 
@@ -115,7 +150,8 @@ bool helios_weather_daily_add(const void * icon, const char * day, const char * 
     }
 
     helios_daily_forecast_t * item = &daily[daily_count++];
-    item->icon = icon;
+    item->icon_id = icon_id;
+    item->icon = helios_weather_icon_get(icon_id);
     copy_text(item->day, sizeof(item->day), day);
     copy_text(item->temp, sizeof(item->temp), temp);
 
@@ -192,6 +228,14 @@ static void notify_observers(void)
             observers[i].cb(HELIOS_WEATHER_EVENT_CHANGED, observers[i].user_data);
         }
     }
+}
+
+static uint32_t normalize_icon_id(int32_t icon_id)
+{
+    int32_t count = HELIOS_WEATHER_ICON_COUNT;
+    int32_t normalized = icon_id % count;
+    if (normalized < 0) normalized += count;
+    return (uint32_t)normalized;
 }
 
 static void copy_text(char * dst, uint32_t dst_size, const char * src)

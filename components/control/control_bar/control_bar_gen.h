@@ -2,8 +2,8 @@
  * @file control_bar_gen.h
  */
 
-#ifndef CONTROL_BAR_H
-#define CONTROL_BAR_H
+#ifndef LVGL_PRO_CONTROL_BAR_GEN_H
+#define LVGL_PRO_CONTROL_BAR_GEN_H
 
 #ifdef __cplusplus
 extern "C" {
@@ -43,4 +43,4 @@ lv_obj_t * control_bar_create(lv_obj_t * parent, lv_subject_t * bind_subject, co
 } /*extern "C"*/
 #endif
 
-#endif /*CONTROL_BAR_H*/
+#endif /*LVGL_PRO_CONTROL_BAR_GEN_H*/

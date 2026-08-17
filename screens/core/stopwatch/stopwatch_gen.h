@@ -2,8 +2,8 @@
  * @file stopwatch_gen.h
  */
 
-#ifndef STOPWATCH_H
-#define STOPWATCH_H
+#ifndef LVGL_PRO_STOPWATCH_GEN_H
+#define LVGL_PRO_STOPWATCH_GEN_H
 
 #ifdef __cplusplus
 extern "C" {
@@ -45,4 +45,4 @@ lv_obj_t * stopwatch_create(void);
 } /*extern "C"*/
 #endif
 
-#endif /*STOPWATCH_H*/
+#endif /*LVGL_PRO_STOPWATCH_GEN_H*/

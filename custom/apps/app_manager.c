@@ -30,9 +30,12 @@ typedef struct {
 
 static helios_app_t apps[HELIOS_APPS_MAX];
 static helios_apps_observer_t observers[HELIOS_APPS_OBSERVER_MAX];
+static helios_app_initializer_cb_t initializers[HELIOS_APP_INITIALIZERS_MAX];
 static uint32_t app_count;
+static uint32_t initializer_count;
 static uint32_t next_app_id = 1;
 static bool inited;
+static bool initializers_ran;
 
 /***********************
  *  STATIC PROTOTYPES
@@ -135,6 +138,30 @@ bool helios_apps_register_simple_events_transition(const void * icon,
     return app_register(icon, name, tag, create_cb, HELIOS_APP_LAUNCH_SIMPLE, anim, event_cb, transition);
 }
 
+bool helios_apps_initializer_add(helios_app_initializer_cb_t cb)
+{
+    if (!cb) return false;
+
+    for (uint32_t i = 0; i < initializer_count; i++) {
+        if (initializers[i] == cb) return true;
+    }
+
+    if (initializer_count >= HELIOS_APP_INITIALIZERS_MAX) return false;
+
+    initializers[initializer_count++] = cb;
+    return true;
+}
+
+void helios_apps_run_initializers(void)
+{
+    if (initializers_ran) return;
+    initializers_ran = true;
+
+    for (uint32_t i = 0; i < initializer_count; i++) {
+        if (initializers[i]) initializers[i]();
+    }
+}
+
 void helios_apps_clear(void)
 {
     lv_lock();
@@ -163,7 +190,7 @@ void helios_apps_launch(const helios_app_t * app)
         lv_obj_add_event_cb(screen, app->event_cb, LV_EVENT_ALL, NULL);
     }
 
-    helios_screen_load_transition(screen, app->anim, 500, true, app->transition);
+    helios_screen_load_transition(screen, app->anim, HELIOS_SCREEN_TRANSITION_TIME, true, app->transition);
 }
 
 bool helios_apps_observer_add(helios_apps_observer_cb_t cb, void * user_data)

@@ -22,9 +22,7 @@
 
 	<view extends="wd_list" bind_screen="sb_screen_size">
 		<wd_list-title height="content">
-			<hs_card width="content" align="center" clickable="false" style_max_width="100%">
-				<hs_text_normal translation_tag="system" />
-			</hs_card>
+			<hs_title_pill width="content" align="center" style_max_width="100%" tag="system" />
 		</wd_list-title>
 		<wd_list-container>
 			<style name="style_base" />
@@ -42,7 +40,7 @@
 				<hs_line />
 				<hs_dropdown
 					tag="language"
-					options="English&#10;Portuguese&#10;German&#10;Spanish&#10;French&#10;Hungarian&#10;Russian&#10;Greek&#10;Thai&#10;Chinese&#10;Japanese&#10;Hindi"
+					options="en&#10;pt&#10;de&#10;es&#10;fr&#10;hu&#10;ru&#10;el&#10;th&#10;zh&#10;ja&#10;hi&#10;vi"
 					bind_value="sb_language"
 				/>
 			</hs_card>

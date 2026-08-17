@@ -2,8 +2,8 @@
  * @file hs_title_gen.h
  */
 
-#ifndef HS_TITLE_H
-#define HS_TITLE_H
+#ifndef LVGL_PRO_HS_TITLE_GEN_H
+#define LVGL_PRO_HS_TITLE_GEN_H
 
 #ifdef __cplusplus
 extern "C" {
@@ -43,4 +43,4 @@ lv_obj_t * hs_title_create(lv_obj_t * parent, const char * label, const char * t
 } /*extern "C"*/
 #endif
 
-#endif /*HS_TITLE_H*/
+#endif /*LVGL_PRO_HS_TITLE_GEN_H*/

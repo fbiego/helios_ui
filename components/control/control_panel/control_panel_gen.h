@@ -2,8 +2,8 @@
  * @file control_panel_gen.h
  */
 
-#ifndef CONTROL_PANEL_H
-#define CONTROL_PANEL_H
+#ifndef LVGL_PRO_CONTROL_PANEL_GEN_H
+#define LVGL_PRO_CONTROL_PANEL_GEN_H
 
 #ifdef __cplusplus
 extern "C" {
@@ -43,4 +43,4 @@ lv_obj_t * control_panel_create(lv_obj_t * parent);
 } /*extern "C"*/
 #endif
 
-#endif /*CONTROL_PANEL_H*/
+#endif /*LVGL_PRO_CONTROL_PANEL_GEN_H*/

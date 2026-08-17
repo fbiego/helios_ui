@@ -2,8 +2,8 @@
  * @file hs_info_sb_gen.h
  */
 
-#ifndef HS_INFO_SB_H
-#define HS_INFO_SB_H
+#ifndef LVGL_PRO_HS_INFO_SB_GEN_H
+#define LVGL_PRO_HS_INFO_SB_GEN_H
 
 #ifdef __cplusplus
 extern "C" {
@@ -43,4 +43,4 @@ lv_obj_t * hs_info_sb_create(lv_obj_t * parent, const char * label, const char *
 } /*extern "C"*/
 #endif
 
-#endif /*HS_INFO_SB_H*/
+#endif /*LVGL_PRO_HS_INFO_SB_GEN_H*/

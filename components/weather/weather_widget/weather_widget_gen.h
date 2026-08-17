@@ -2,8 +2,8 @@
  * @file weather_widget_gen.h
  */
 
-#ifndef WEATHER_WIDGET_H
-#define WEATHER_WIDGET_H
+#ifndef LVGL_PRO_WEATHER_WIDGET_GEN_H
+#define LVGL_PRO_WEATHER_WIDGET_GEN_H
 
 #ifdef __cplusplus
 extern "C" {
@@ -43,4 +43,4 @@ lv_obj_t * weather_widget_create(lv_obj_t * parent);
 } /*extern "C"*/
 #endif
 
-#endif /*WEATHER_WIDGET_H*/
+#endif /*LVGL_PRO_WEATHER_WIDGET_GEN_H*/

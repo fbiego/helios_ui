@@ -9,6 +9,12 @@
 #include "helios_ui.h"
 #include "helios_ui_gen.h"
 #include "custom/apps/app_init.h"
+#include "custom/apps/weather/weather.h"
+
+
+#if defined (LV_SIM_BUILD)
+#include <time.h>
+#endif
 
 /*********************
  *      DEFINES
@@ -31,11 +37,28 @@ static int lang_tag_get_index(const char * str, int def);
 static void set_screen(int32_t w, int32_t h);
 
 
+#if defined (LV_SIM_BUILD)
+static void update_time_cb(lv_timer_t *timer);
+#endif
 /**********************
  *  STATIC VARIABLES
  **********************/
 static const char * lang_tags[] = {
-    "en", "pt", "de", "es", "fr", "hu", "ru", "el", "th", "zh", "ja", "hi"
+    "en", "pt", "de", "es", "fr", "hu", "ru", "el", "th", "zh", "ja", "hi", "vi"
+};
+
+static const char * days_short[] = {
+    "sun", "mon", "tue", "wed", "thu", "fri", "sat"
+};
+static const char * days_long[] = {
+    "sunday", "monday", "tuesday", "wednesday", "thursday", "friday", "saturday"
+};
+
+static const char * months_short[] = {
+    "jan", "feb", "mar", "apr", "may", "jun", "jul", "aug", "sep", "oct", "nov", "dec"
+};
+static const char * months_long[] = {
+    "january", "february", "march", "april", "may", "june", "july", "august", "september", "october", "november", "december"
 };
 
 /**********************
@@ -84,6 +107,13 @@ void helios_ui_init(const char * asset_path)
     lv_obj_set_style_bg_opa(lv_layer_top(), 0, 0);
 #endif
 
+#if defined (LV_SIM_BUILD)
+    helios_subject_set_system_connection(1);
+    
+    lv_timer_t * timer = lv_timer_create(update_time_cb, 1000, NULL);
+    
+#endif
+
 
     char buf[32];
     lv_snprintf(buf, sizeof(buf), "v%d.%d.%d", LVGL_VERSION_MAJOR, LVGL_VERSION_MINOR, LVGL_VERSION_PATCH);
@@ -113,6 +143,35 @@ void  helios_subject_screen_brightness_change(int32_t value)
     lv_obj_set_style_bg_opa(lv_layer_top(), lv_map(value, 0, 100, 255, 0), 0);
 }
 #endif
+
+void helios_subject_time_month_change(int32_t value)
+{
+    lv_subject_copy_string(&sb_time_month_short, months_short[(value - 1) % 12]);
+    lv_subject_copy_string(&sb_time_month_long, months_long[(value - 1) % 12]);
+}
+
+void helios_subject_time_weekday_change(int32_t value)
+{
+    lv_subject_copy_string(&sb_time_weekday_short, days_short[value % 7]);
+    lv_subject_copy_string(&sb_time_weekday_long, days_long[value % 7]);
+}
+
+void helios_subject_weather_code_change(int32_t value)
+{
+    helios_subject_set_weather_icon((void *)helios_weather_icon_get(value));
+    helios_subject_set_weather_condition(helios_weather_condition_get(value));
+}
+
+void helios_subject_system_connection_change(int32_t value)
+{
+    helios_subject_set_system_connection_str(value ? "connected" : "disconnected");
+}
+
+void helios_subject_phone_charging_change(int32_t value)
+{
+    helios_subject_set_phone_charging_str(value ? "yes" : "no");
+}
+
 
 /**********************
  *   STATIC FUNCTIONS
@@ -192,3 +251,24 @@ static int lang_tag_get_index(const char * str, int def)
 
     return 0;
 }
+
+
+#if defined (LV_SIM_BUILD)
+static void update_time_cb(lv_timer_t *timer)
+{
+    time_t now = time(0);
+    struct tm *tm_now = localtime(&now);
+
+    char time_now[16] = "--:--";
+    lv_snprintf(time_now, sizeof(time_now), "%02d:%02d", tm_now->tm_hour, tm_now->tm_min);
+    helios_subject_set_time_string(time_now);
+
+    helios_subject_set_time_hour(tm_now->tm_hour);
+    helios_subject_set_time_minute(tm_now->tm_min);
+    helios_subject_set_time_seconds(tm_now->tm_sec);
+    helios_subject_set_time_day(tm_now->tm_mday);
+    helios_subject_set_time_month(tm_now->tm_mon + 1);
+    helios_subject_set_time_year(tm_now->tm_year + 1900);
+    helios_subject_set_time_weekday(tm_now->tm_wday);
+}
+#endif

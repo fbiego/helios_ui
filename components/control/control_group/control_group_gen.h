@@ -2,8 +2,8 @@
  * @file control_group_gen.h
  */
 
-#ifndef CONTROL_GROUP_H
-#define CONTROL_GROUP_H
+#ifndef LVGL_PRO_CONTROL_GROUP_GEN_H
+#define LVGL_PRO_CONTROL_GROUP_GEN_H
 
 #ifdef __cplusplus
 extern "C" {
@@ -43,4 +43,4 @@ lv_obj_t * control_group_create(lv_obj_t * parent);
 } /*extern "C"*/
 #endif
 
-#endif /*CONTROL_GROUP_H*/
+#endif /*LVGL_PRO_CONTROL_GROUP_GEN_H*/

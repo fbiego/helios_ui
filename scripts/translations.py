@@ -110,15 +110,15 @@ def generate(strings):
     output = ""
     for s in strings:
         word = s.split(SEPARATOR)
-        if word[0].strip() == "" or word[0] == "formula" or word[0] == "#VALUE!":
+        if word[0].strip() == "" or word[0] == "formula" or word[0] == "ai" or word[0] == "unique" or word[0] == "#VALUE!":
             continue
         if word[0] == "id":
             tags.extend(word[1:])
             print(tags)
             output = f'<translations languages="{' '.join(tags)}">\n'
 
-            for t in tags:
-                print(f'case {tags.index(t)}: lv_translation_set_language("{t}"); break;\n')
+            # for t in tags:
+            #     print(f'case {tags.index(t)}: lv_translation_set_language("{t}"); break;\n')
         if word[0] == "locale":
             print('\n'.join(word[1:]))
 

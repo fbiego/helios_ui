@@ -24,13 +24,13 @@
 
 				<hs_text_normal text="Navigation" width="90%" style_text_align="center" bind_text="sb_nav_text" />
 				<wd_image
-					src="icon_turn_left"
 					scale_0="500"
 					scale_1="385"
 					scale_2="256"
 					size_0="94"
 					size_1="72"
 					size_2="48"
+					bind_src="sb_nav_icon"
 					bind_scale="sb_screen_size"
 					style_image_recolor="0xffffff"
 					style_image_recolor_opa="255"

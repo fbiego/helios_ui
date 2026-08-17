@@ -2,8 +2,8 @@
  * @file helios_ui_gen.h
  */
 
-#ifndef HELIOS_UI_GEN_H
-#define HELIOS_UI_GEN_H
+#ifndef LVGL_PRO_HELIOS_UI_GEN_H
+#define LVGL_PRO_HELIOS_UI_GEN_H
 
 #ifndef UI_SUBJECT_STRING_LENGTH
 #define UI_SUBJECT_STRING_LENGTH 256
@@ -57,7 +57,7 @@ bool helios_ui_check_target(uint32_t target);
 #define COLOR_DANGER lv_color_hex(0xf62525)
 #define COLOR_BUTTON_PRIMARY lv_color_hex(0x181146)
 #define COLOR_BUTTON_DANGER lv_color_hex(0x2c0d0b)
-#define UI_VERSION "v0.0.1"
+#define UI_VERSION "v0.1.0"
 
 
 #ifndef LV_XML_EVAL_STRING_BUF_SIZE
@@ -207,6 +207,37 @@ extern const void * icon_weather_humidity_icon;
 extern const void * icon_weather_temp_up_icon;
 extern const void * icon_weather_temp_down_icon;
 extern const void * icon_weather_uv_icon;
+extern const void * icon_nt_messenger;
+extern const void * icon_nt_whatsapp;
+extern const void * icon_nt_twitter;
+extern const void * icon_nt_mail;
+extern const void * icon_nt_qq;
+extern const void * icon_nt_skype;
+extern const void * icon_nt_line;
+extern const void * icon_nt_weibo;
+extern const void * icon_nt_kakao;
+extern const void * icon_nt_viber;
+extern const void * icon_nt_vk;
+extern const void * icon_nt_wechat;
+extern const void * icon_nt_paypal;
+extern const void * icon_nt_chat;
+extern const void * icon_nt_telegram;
+extern const void * icon_nt_instagram;
+extern const void * icon_nt_calendar;
+extern const void * icon_nt_hangouts;
+extern const void * icon_nt_download;
+extern const void * icon_nt_facebook;
+extern const void * icon_nt_snapchat;
+extern const void * icon_nt_tiktok;
+extern const void * icon_nt_dingtalk;
+extern const void * icon_wt_sun_cloud;
+extern const void * icon_wt_sun;
+extern const void * icon_wt_rain;
+extern const void * icon_wt_cloud;
+extern const void * icon_wt_tornado;
+extern const void * icon_wt_snow;
+extern const void * icon_wt_wind;
+extern const void * icon_wt_haze;
 extern const void * img_music_album;
 extern const void * icon_vol_down_32;
 extern const void * icon_vol_up_32;
@@ -250,6 +281,7 @@ extern lv_subject_t sb_time_hour_analog;
 extern lv_subject_t sb_time_minute_analog;
 extern lv_subject_t sb_time_seconds_analog;
 extern lv_subject_t sb_time_am_pm;
+extern lv_subject_t sb_time_am;
 extern lv_subject_t sb_time_day;
 extern lv_subject_t sb_time_month;
 extern lv_subject_t sb_time_year;
@@ -258,7 +290,13 @@ extern lv_subject_t sb_time_month_long;
 extern lv_subject_t sb_time_weekday;
 extern lv_subject_t sb_time_weekday_short;
 extern lv_subject_t sb_time_weekday_long;
+extern lv_subject_t sb_activity_steps;
+extern lv_subject_t sb_activity_kcal;
+extern lv_subject_t sb_activity_distance;
+extern lv_subject_t sb_health_bpm;
+extern lv_subject_t sb_health_oxygen;
 extern lv_subject_t sb_system_connection;
+extern lv_subject_t sb_system_connection_str;
 extern lv_subject_t sb_chronos_esp_version;
 extern lv_subject_t sb_chronos_app_version;
 extern lv_subject_t sb_firmware_version;
@@ -287,6 +325,15 @@ extern lv_subject_t sb_music_state_icon;
 extern lv_subject_t sb_music_icon;
 extern lv_subject_t sb_music_package;
 extern lv_subject_t sb_music_album_color;
+extern lv_subject_t sb_phone_manufacturer;
+extern lv_subject_t sb_phone_model;
+extern lv_subject_t sb_phone_sdk;
+extern lv_subject_t sb_phone_battery;
+extern lv_subject_t sb_phone_charging;
+extern lv_subject_t sb_phone_charging_str;
+extern lv_subject_t sb_chronos_app_code;
+extern lv_subject_t sb_phone_last_sync;
+extern lv_subject_t sb_weather_code;
 extern lv_subject_t sb_weather_icon;
 extern lv_subject_t sb_weather_temp;
 extern lv_subject_t sb_weather_location;
@@ -314,6 +361,7 @@ extern lv_subject_t sb_stopwatch_button_reset_icon;
 
 void on_music_control_cb(lv_event_t * e);
 void on_hs_info_cb(lv_event_t * e);
+void on_hs_title_pill_cb(lv_event_t * e);
 void on_simulator_event_cb(lv_event_t * e);
 
 /**
@@ -369,6 +417,7 @@ void helios_ui_init_gen(const char * asset_path);
 #include "components/items/app_item/app_item_gen.h"
 #include "components/items/contact_item/contact_item_gen.h"
 #include "components/items/notification_item/notification_item_gen.h"
+#include "components/items/panel_dot_item/panel_dot_item_gen.h"
 #include "components/music/music_info/music_info_gen.h"
 #include "components/music/music_widget/music_widget_gen.h"
 #include "components/settings/settings_about/settings_about_gen.h"
@@ -377,8 +426,10 @@ void helios_ui_init_gen(const char * asset_path);
 #include "components/settings/settings_display/settings_display_gen.h"
 #include "components/settings/settings_storage/settings_storage_gen.h"
 #include "components/settings/settings_system/settings_system_gen.h"
+#include "components/simple/simple_bar/simple_bar_gen.h"
 #include "components/timers/timer_countdown/timer_countdown_gen.h"
 #include "components/timers/timer_list/timer_list_gen.h"
+#include "components/watchfaces/face_preview/face_preview_gen.h"
 #include "components/watchfaces/watchface_default/watchface_default_gen.h"
 #include "components/weather/daily_forecast/daily_forecast_gen.h"
 #include "components/weather/hourly_forecast/hourly_forecast_gen.h"
@@ -391,9 +442,10 @@ void helios_ui_init_gen(const char * asset_path);
 #include "screens/core/navigation/navigation_gen.h"
 #include "screens/core/notifications/notifications_gen.h"
 #include "screens/core/phone/phone_gen.h"
+#include "screens/core/sc_timer/sc_timer_gen.h"
+#include "screens/core/selector/selector_gen.h"
 #include "screens/core/settings/settings_gen.h"
 #include "screens/core/stopwatch/stopwatch_gen.h"
-#include "screens/core/timer/timer_gen.h"
 #include "screens/core/weather/weather_gen.h"
 #include "screens/core/widgets/widgets_gen.h"
 #include "screens/simulator/simulator_gen.h"
@@ -403,10 +455,13 @@ void helios_ui_init_gen(const char * asset_path);
 #include "widgets/wd_label/wd_label_gen.h"
 #include "widgets/wd_list/wd_list_gen.h"
 #include "widgets/wd_obj/wd_obj_gen.h"
+#include "widgets/wd_panel/wd_panel_gen.h"
 #include "widgets/wd_segment/wd_segment_gen.h"
+#include "widgets/wf_analog/wf_analog_gen.h"
+#include "widgets/wf_item/wf_item_gen.h"
 
 #ifdef __cplusplus
 } /*extern "C"*/
 #endif
 
-#endif /*HELIOS_UI_GEN_H*/
+#endif /*LVGL_PRO_HELIOS_UI_GEN_H*/

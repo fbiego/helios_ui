@@ -40,6 +40,7 @@ void helios_apps_init_all(void)
     helios_notifications_init();
     helios_stopwatch_init();
     helios_weather_init();
+    helios_watchfaces_init_all();
 
     helios_apps_register_transition(icon_contacts,
                                     "Contacts",
@@ -70,7 +71,7 @@ void helios_apps_init_all(void)
                                     HELIOS_SCREEN_TRANSITION_APP_OPEN_LEFT);
     helios_apps_register_simple_transition(icon_phone_link,
                                            "Phone Link",
-                                           "",
+                                           "phone_link",
                                            phone_create,
                                            LV_SCR_LOAD_ANIM_OVER_LEFT,
                                            HELIOS_SCREEN_TRANSITION_APP_OPEN_LEFT);
@@ -88,13 +89,15 @@ void helios_apps_init_all(void)
                                                   LV_SCR_LOAD_ANIM_OVER_LEFT,
                                                   screen_stopwatch_events_cb,
                                                   HELIOS_SCREEN_TRANSITION_APP_OPEN_LEFT);
-    helios_apps_register_simple(icon_timer, "Timer", "timer", timer_create, LV_SCR_LOAD_ANIM_OVER_LEFT);
+    helios_apps_register_simple(icon_timer, "Timer", "timer", sc_timer_create, LV_SCR_LOAD_ANIM_OVER_LEFT);
     helios_apps_register_transition(icon_weather,
                                     "Weather",
                                     "weather",
                                     screen_weather,
                                     LV_SCR_LOAD_ANIM_OVER_LEFT,
                                     HELIOS_SCREEN_TRANSITION_APP_OPEN_LEFT);
+
+    helios_apps_run_initializers();
 }
 
 /**********************

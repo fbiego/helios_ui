@@ -102,24 +102,26 @@ lv_obj_t * weather_create(void)
         lv_label_set_text(hs_text_normal_0, "Hourly Forecast");
         lv_label_set_translation_tag(hs_text_normal_0, "hourly_forecast");
         lv_obj_set_style_text_align(hs_text_normal_0, LV_TEXT_ALIGN_CENTER, 0);
+        lv_label_set_long_mode(hs_text_normal_0, LV_LABEL_LONG_MODE_SCROLL_CIRCULAR);
 
         hs_line_create(hs_card_0);
 
-        lv_obj_t * hs_row_0 = hs_row_create(hs_card_0);
-        lv_obj_set_style_pad_column(hs_row_0, 10, 0);
-        hourly_forecast_create(hs_row_0);
+        lv_obj_t * hourly_cont = hs_row_create(hs_card_0);
+        lv_obj_set_name(hourly_cont, "hourly_cont");
+        lv_obj_set_style_pad_column(hourly_cont, 10, 0);
+        hourly_forecast_create(hourly_cont);
 
-        hourly_forecast_create(hs_row_0);
+        hourly_forecast_create(hourly_cont);
 
-        hourly_forecast_create(hs_row_0);
+        hourly_forecast_create(hourly_cont);
 
-        hourly_forecast_create(hs_row_0);
+        hourly_forecast_create(hourly_cont);
 
-        hourly_forecast_create(hs_row_0);
+        hourly_forecast_create(hourly_cont);
 
-        hourly_forecast_create(hs_row_0);
+        hourly_forecast_create(hourly_cont);
 
-        hourly_forecast_create(hs_row_0);
+        hourly_forecast_create(hourly_cont);
 
         lv_obj_t * hs_card_1 = hs_card_create(wd_list_container_0);
         lv_obj_t * hs_text_normal_1 = hs_text_normal_create(hs_card_1);
@@ -127,30 +129,32 @@ lv_obj_t * weather_create(void)
         lv_label_set_text(hs_text_normal_1, "Daily Forecast");
         lv_label_set_translation_tag(hs_text_normal_1, "daily_forecast");
         lv_obj_set_style_text_align(hs_text_normal_1, LV_TEXT_ALIGN_CENTER, 0);
+        lv_label_set_long_mode(hs_text_normal_1, LV_LABEL_LONG_MODE_SCROLL_CIRCULAR);
 
-        lv_obj_t * hs_column_0 = hs_column_create(hs_card_1);
-        lv_obj_set_style_pad_row(hs_column_0, 2, 0);
-        daily_forecast_create(hs_column_0);
+        lv_obj_t * daily_cont = hs_column_create(hs_card_1);
+        lv_obj_set_name(daily_cont, "daily_cont");
+        lv_obj_set_style_pad_row(daily_cont, 2, 0);
+        daily_forecast_create(daily_cont);
 
-        daily_forecast_create(hs_column_0);
+        daily_forecast_create(daily_cont);
 
-        daily_forecast_create(hs_column_0);
+        daily_forecast_create(daily_cont);
 
-        daily_forecast_create(hs_column_0);
+        daily_forecast_create(daily_cont);
 
-        daily_forecast_create(hs_column_0);
+        daily_forecast_create(daily_cont);
 
-        daily_forecast_create(hs_column_0);
+        daily_forecast_create(daily_cont);
 
-        daily_forecast_create(hs_column_0);
+        daily_forecast_create(daily_cont);
 
-        lv_obj_t * hs_column_1 = hs_column_create(wd_list_container_0);
-        lv_obj_t * hs_text_small_0 = hs_text_small_create(hs_column_1);
+        lv_obj_t * hs_column_0 = hs_column_create(wd_list_container_0);
+        lv_obj_t * hs_text_small_0 = hs_text_small_create(hs_column_0);
         lv_obj_set_width(hs_text_small_0, lv_pct(100));
         lv_label_set_translation_tag(hs_text_small_0, "updated_at");
         lv_obj_set_style_text_align(hs_text_small_0, LV_TEXT_ALIGN_CENTER, 0);
 
-        lv_obj_t * hs_text_small_1 = hs_text_small_create(hs_column_1);
+        lv_obj_t * hs_text_small_1 = hs_text_small_create(hs_column_0);
         lv_obj_set_width(hs_text_small_1, lv_pct(100));
         lv_label_bind_text(hs_text_small_1, &sb_weather_update_time, NULL);
         lv_obj_set_style_text_align(hs_text_small_1, LV_TEXT_ALIGN_CENTER, 0);

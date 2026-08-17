@@ -96,8 +96,9 @@ lv_obj_t * daily_forecast_create(lv_obj_t * parent)
 
         lv_obj_t * hs_text_normal_1 = hs_text_normal_create(lv_obj_0);
         lv_obj_set_flex_grow(hs_text_normal_1, 2);
-        lv_label_set_text(hs_text_normal_1, "19°");
+        lv_label_set_text(hs_text_normal_1, "19°/12°");
         lv_obj_set_style_text_align(hs_text_normal_1, LV_TEXT_ALIGN_CENTER, 0);
+        lv_obj_set_style_text_letter_space(hs_text_normal_1, -1, 0);
 
         the_root = lv_obj_0;
     }

@@ -2,8 +2,8 @@
  * @file weather_gen.h
  */
 
-#ifndef WEATHER_H
-#define WEATHER_H
+#ifndef LVGL_PRO_WEATHER_GEN_H
+#define LVGL_PRO_WEATHER_GEN_H
 
 #ifdef __cplusplus
 extern "C" {
@@ -45,4 +45,4 @@ lv_obj_t * weather_create(void);
 } /*extern "C"*/
 #endif
 
-#endif /*WEATHER_H*/
+#endif /*LVGL_PRO_WEATHER_GEN_H*/

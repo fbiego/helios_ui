@@ -33,7 +33,20 @@ extern "C" {
  *      TYPEDEFS
  **********************/
 
+typedef enum {
+    HELIOS_WEATHER_ICON_SUN_CLOUD = 0,
+    HELIOS_WEATHER_ICON_SUN,
+    HELIOS_WEATHER_ICON_SNOW,
+    HELIOS_WEATHER_ICON_RAIN,
+    HELIOS_WEATHER_ICON_CLOUD,
+    HELIOS_WEATHER_ICON_TORNADO,
+    HELIOS_WEATHER_ICON_WIND,
+    HELIOS_WEATHER_ICON_HAZE,
+    HELIOS_WEATHER_ICON_COUNT,
+} helios_weather_icon_id_t;
+
 typedef struct {
+    int32_t icon_id;
     const void * icon;
     char time[HELIOS_WEATHER_TEXT_MAX];
     char temp[HELIOS_WEATHER_TEXT_MAX];
@@ -41,6 +54,7 @@ typedef struct {
 } helios_hourly_forecast_t;
 
 typedef struct {
+    int32_t icon_id;
     const void * icon;
     char day[HELIOS_WEATHER_TEXT_MAX];
     char temp[HELIOS_WEATHER_TEXT_MAX];
@@ -64,8 +78,11 @@ const helios_hourly_forecast_t * helios_weather_hourly_get(uint32_t index);
 uint32_t helios_weather_daily_count(void);
 const helios_daily_forecast_t * helios_weather_daily_get(uint32_t index);
 
-bool helios_weather_hourly_add(const void * icon, const char * time, const char * temp, const char * humidity);
-bool helios_weather_daily_add(const void * icon, const char * day, const char * temp);
+const void * helios_weather_icon_get(int32_t icon_id);
+const char * helios_weather_condition_get(int32_t icon_id);
+
+bool helios_weather_hourly_add(int32_t icon_id, const char * time, const char * temp, const char * humidity);
+bool helios_weather_daily_add(int32_t icon_id, const char * day, const char * temp);
 void helios_weather_hourly_clear(void);
 void helios_weather_daily_clear(void);
 

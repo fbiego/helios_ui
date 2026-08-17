@@ -2,8 +2,8 @@
  * @file info_dialog_gen.h
  */
 
-#ifndef INFO_DIALOG_H
-#define INFO_DIALOG_H
+#ifndef LVGL_PRO_INFO_DIALOG_GEN_H
+#define LVGL_PRO_INFO_DIALOG_GEN_H
 
 #ifdef __cplusplus
 extern "C" {
@@ -43,4 +43,4 @@ lv_obj_t * info_dialog_create(lv_obj_t * parent, const char * title, const char 
 } /*extern "C"*/
 #endif
 
-#endif /*INFO_DIALOG_H*/
+#endif /*LVGL_PRO_INFO_DIALOG_GEN_H*/

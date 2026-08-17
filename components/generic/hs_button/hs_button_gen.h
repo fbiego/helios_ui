@@ -2,8 +2,8 @@
  * @file hs_button_gen.h
  */
 
-#ifndef HS_BUTTON_H
-#define HS_BUTTON_H
+#ifndef LVGL_PRO_HS_BUTTON_GEN_H
+#define LVGL_PRO_HS_BUTTON_GEN_H
 
 #ifdef __cplusplus
 extern "C" {
@@ -43,4 +43,4 @@ lv_obj_t * hs_button_create(lv_obj_t * parent, const char * label, const char * 
 } /*extern "C"*/
 #endif
 
-#endif /*HS_BUTTON_H*/
+#endif /*LVGL_PRO_HS_BUTTON_GEN_H*/
