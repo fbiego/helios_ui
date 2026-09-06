@@ -67,7 +67,7 @@ void helios_apps_init_all(void)
                                            HELIOS_SCREEN_TRANSITION_APP_OPEN_LEFT);
     helios_apps_register_simple_events_transition(icon_mpesa_watch,
                                                   "M-Pesa",
-                                                  "mpesa",
+                                                  "M-PESA",
                                                   helios_mpesa_screen_create,
                                                   LV_SCR_LOAD_ANIM_OVER_LEFT,
                                                   helios_mpesa_screen_events_cb,

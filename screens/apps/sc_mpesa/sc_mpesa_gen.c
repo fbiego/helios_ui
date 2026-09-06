@@ -177,6 +177,7 @@ lv_obj_t * sc_mpesa_create(void)
 
         lv_obj_t * transaction_list = hs_column_create(wd_list_container_0);
         lv_obj_set_name(transaction_list, "transaction_list");
+        lv_obj_set_flex_flow(transaction_list, LV_FLEX_FLOW_COLUMN_REVERSE);
         lv_obj_bind_style(transaction_list, &style_pad_row, 0, &sb_screen_size, 0);
         lv_obj_bind_style(transaction_list, &style_pad_row_360, 0, &sb_screen_size, 1);
         lv_obj_bind_style(transaction_list, &style_pad_row_240, 0, &sb_screen_size, 2);

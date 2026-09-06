@@ -83,7 +83,7 @@
 
 				<hs_text_small bind_text="sb_mpesa_recent_text" style_text_color="0x888888" />
 
-				<hs_column name="transaction_list">
+				<hs_column name="transaction_list" flex_flow="column_reverse">
 					<bind_style name="style_pad_row" subject="sb_screen_size" ref_value="0" />
 					<bind_style name="style_pad_row_360" subject="sb_screen_size" ref_value="1" />
 					<bind_style name="style_pad_row_240" subject="sb_screen_size" ref_value="2" />
