@@ -42,6 +42,9 @@ static bool initializers_ran;
  **********************/
 
 static void notify_observers(helios_apps_event_t event, const helios_app_t * app);
+static bool app_should_precede(const helios_app_t * app, const helios_app_t * other);
+static int32_t app_name_cmp(const char * a, const char * b);
+static char app_ascii_tolower(char c);
 static bool app_register(const void * icon,
                          const char * name,
                          const char * tag,
@@ -254,20 +257,61 @@ static bool app_register(const void * icon,
         return false;
     }
 
-    helios_app_t * app = &apps[app_count++];
-    app->id = next_app_id++;
-    app->icon = icon;
-    app->create_cb = create_cb;
-    app->launch_mode = launch_mode;
-    app->transition = transition;
-    app->event_cb = event_cb;
-    app->anim = anim;
-    copy_text(app->name, sizeof(app->name), name);
-    copy_text(app->tag, sizeof(app->tag), tag);
+    helios_app_t app;
+    app.id = next_app_id++;
+    app.icon = icon;
+    app.create_cb = create_cb;
+    app.launch_mode = launch_mode;
+    app.transition = transition;
+    app.event_cb = event_cb;
+    app.anim = anim;
+    copy_text(app.name, sizeof(app.name), name);
+    copy_text(app.tag, sizeof(app.tag), tag);
 
-    notify_observers(HELIOS_APPS_EVENT_ADDED, app);
+    uint32_t insert_at = app_count;
+    while (insert_at > 0 && app_should_precede(&app, &apps[insert_at - 1])) {
+        apps[insert_at] = apps[insert_at - 1];
+        insert_at--;
+    }
+
+    apps[insert_at] = app;
+    app_count++;
+
+    notify_observers(HELIOS_APPS_EVENT_ADDED, &apps[insert_at]);
     lv_unlock();
     return true;
+}
+
+static bool app_should_precede(const helios_app_t * app, const helios_app_t * other)
+{
+    int32_t cmp = app_name_cmp(app->name, other->name);
+    if (cmp != 0) return cmp < 0;
+
+    return app->id < other->id;
+}
+
+static int32_t app_name_cmp(const char * a, const char * b)
+{
+    if (!a) a = "";
+    if (!b) b = "";
+
+    while (*a && *b) {
+        char ac = app_ascii_tolower(*a);
+        char bc = app_ascii_tolower(*b);
+
+        if (ac != bc) return (int32_t)(unsigned char)ac - (int32_t)(unsigned char)bc;
+
+        a++;
+        b++;
+    }
+
+    return (int32_t)(unsigned char)*a - (int32_t)(unsigned char)*b;
+}
+
+static char app_ascii_tolower(char c)
+{
+    if (c >= 'A' && c <= 'Z') return (char)(c - 'A' + 'a');
+    return c;
 }
 
 static void notify_observers(helios_apps_event_t event, const helios_app_t * app)

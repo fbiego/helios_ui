@@ -384,14 +384,9 @@ static void applications_observer_cb(helios_apps_event_t event,
                                      void * user_data)
 {
     LV_UNUSED(user_data);
+    LV_UNUSED(app);
 
     if (!applications_list) return;
-
-    if (event == HELIOS_APPS_EVENT_ADDED) {
-        applications_render_one(applications_list, app);
-        applications_refresh_scroll_effect();
-        return;
-    }
 
     applications_render_all(applications_list);
     applications_refresh_scroll_effect();

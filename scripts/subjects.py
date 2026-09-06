@@ -319,7 +319,7 @@ def generate_source(subjects):
     for s in subjects:
         if "change" in s["access"]:
             lines.append(
-                f"    lv_subject_add_observer(&{s['name']}, {s['type']}_subject_observer_cb, {PROJECT_NAME_STRIPPED}_subject_{s['short']}_change);"
+                f"    lv_subject_add_observer(&{s['name']}, {s['type']}_subject_observer_cb, (void *){PROJECT_NAME_STRIPPED}_subject_{s['short']}_change);"
             )
     lines.append("")
     lines.append("}\n")
