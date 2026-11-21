@@ -70,7 +70,7 @@ vibration	Vibration	Vibração	Vibration	Vibración	Vibration	Rezgés	Вибра
 wake_screen	Wake screen	Tela de ativação	Bildschirm aufwecken	Pantalla de activación	Écran de réveil	Képernyő felébresztése	Экран пробуждения	Οθόνη αφύπνισης	หน้าจอปลุก	唤醒屏幕	起動画面	जाग्रत स्क्रीन	Màn hình khởi động
 dnd	DND Mode	Modo Não Perturbe	Nicht stören-Modus	Modo No Molestar	Mode Ne pas déranger	DND mód	Режим «Не беспокоить»	Λειτουργία DND	โหมดห้ามรบกวน	勿扰模式	おやすみモード	डीएनडी मोड	Chế độ Không làm phiền
 voltage	Voltage	Tensão	Stromspannung	Voltaje	Tension	Feszültség	Напряжение	Δυναμικό	แรงดันไฟฟ้า	电压	電圧	वोल्टेज	Điện áp
-temperature	Temperatue	Temperatura	Temperatur	Temperatura	Température	Hőmérséklet	Температура	Θερμοκρασία	อุณหภูมิ	温度	温度	तापमान	Nhiệt độ
+temperature	Temperature	Temperatura	Temperatur	Temperatura	Température	Hőmérséklet	Температура	Θερμοκρασία	อุณหภูมิ	温度	温度	तापमान	Nhiệt độ
 usage	Usage	Uso	Verwendung	Uso	Usage	Használat	Использование	Χρήση	การใช้งาน	用法	使用法	प्रयोग	Cách sử dụng
 format	Format	Formatar	Format	Formato	Format	Formátum	Формат	Σχήμα και διάταξις βιβλίου	รูปแบบ	格式	形式	प्रारूप	Định dạng
 firmware	Firmware	Firmware	Firmware	Firmware	Micrologiciel	Firmware	Прошивка	Υλικολογισμικό	เฟิร์มแวร์	固件	ファームウェア	फर्मवेयर	Phần mềm cơ sở
@@ -94,7 +94,7 @@ clear_all	Clear All	Limpar tudo	Alles löschen	Borrar todo	Effacer tout	Összes 
 no_notifications	No notifications avaialble, check back later	Nenhuma notificação disponível. Volte mais tarde.	Es sind keine Benachrichtigungen verfügbar. Bitte versuchen Sie es später erneut.	No hay notificaciones disponibles, vuelva a intentarlo más tarde.	Aucune notification disponible, veuillez réessayer plus tard.	Nincsenek elérhető értesítések, nézz vissza később	Уведомления недоступны, зайдите позже.	Δεν υπάρχουν διαθέσιμες ειδοποιήσεις, ελέγξτε ξανά αργότερα	ไม่มีการแจ้งเตือนใดๆ โปรดตรวจสอบอีกครั้งในภายหลัง	暂无通知，请稍后查看。	通知はありません。後ほどご確認ください。	कोई सूचना उपलब्ध नहीं है, कृपया बाद में दोबारा देखें।	Hiện không có thông báo nào, vui lòng kiểm tra lại sau.
 camera	Camera	Câmera	Kamera	Cámara	Caméra	Kamera	Камера	Κάμερα	กล้อง	相机	カメラ	कैमरा	Máy ảnh
 music_control	Music Control	Controle de música	Musiksteuerung	Control de música	Contrôle de la musique	Zenevezérlés	Управление музыкой	Έλεγχος μουσικής	การควบคุมดนตรี	音乐控制	音楽コントロール	संगीत नियंत्रण	Điều khiển âm nhạc
-													#VALUE!
+													
 reset	Reset	Reiniciar	Zurücksetzen	Reiniciar	Réinitialiser	Visszaállítás	Перезагрузить	Επαναφορά	รีเซ็ต	重置	リセット	रीसेट करें	Cài lại
 inactive	Inactive	Inativo	Inaktiv	Inactivo	Inactif	Inaktív	Неактивный	Αδρανής	ไม่ใช้งาน	非活跃状态	非アクティブ	निष्क्रिय	Không hoạt động
 connected	Connected	Conectado	Verbunden	Conectado	Connecté	Csatlakoztatva	Подключено	Συνδεδεμένος	เชื่อมต่อแล้ว	已连接	接続済み	जुड़े हुए	Đã kết nối
@@ -123,7 +123,7 @@ icon_size	Icon size	Tamanho do ícone	Symbolgröße	Tamaño del icono	Taille de 
 system_time	System time	Hora do sistema	Systemzeit	Hora del sistema	Heure système	Rendszeridő	Системное время	Ώρα συστήματος	เวลาของระบบ	系统时间	システム時刻	सिस्टम समय	Thời gian hệ thống
 arrival_time	Arrival time	Hora de chegada	Ankunftszeit	Hora de llegada	Heure d'arrivée	Érkezési idő	Время прибытия	Ώρα άφιξης	เวลาที่มาถึง	到达时间	到着時間	आगमन समय	Thời gian đến
 directions	Directions	Instruções	Wegbeschreibung	Instrucciones	Instructions	Útvonalterv	Направления	Οδηγίες	ทิศทาง	方向	方向	दिशा-निर्देश	Hướng dẫn
-													
+large_text	Large text	Texto grande	Großer Text	Texto grande	Texte en gros caractères	Nagy szöveg	Крупный текст	Μεγάλο κείμενο	ข้อความขนาดใหญ่	大字	大きな文字	बड़ी किताब	Chữ lớn
 applications	Applications	Aplicações	Anwendungen	Aplicaciones	Applications	Alkalmazások	Приложения	Εφαρμογές	แอปพลิเคชัน	应用程序	アプリケーション	आवेदन	Ứng dụng
 phone_link	Phone Link	Ligação telefônica	Telefonverbindung	Enlace telefónico	Lien téléphonique	Telefonkapcsolat	Телефонная ссылка	Τηλεφωνική σύνδεση	โทรศัพท์เชื่อมต่อ	电话链接	電話回線	फ़ोन लिंक	Kết nối điện thoại
 status	Status	Status	Status	Estado	Statut	Állapot	Статус	Κατάσταση	สถานะ	地位	状態	स्थिति	Trạng thái
@@ -143,8 +143,22 @@ rainy	Rainy	Chuvoso	Regnerisch	Lluvioso	Pluvieux	Esős	Дождливый	Βρο
 tornado	Tornado	Tornado	Tornado	Tornado	Tornade	Tornádó	Торнадо	Ανεμοστρόβιλος	พายุทอร์นาโด	龙卷风	竜巻	बवंडर	Lốc xoáy
 wind	Windy	Ventoso	Windig	Ventoso	Venteux	Szeles	Ветрено	Ανεμώδης	ลมแรง	风	風が強い	तूफ़ानी	Có gió
 haze	Haze	Confusão	Dunst	Bruma	Brume	Köd	Туман	Ομίχλη	หมอก	阴霾	ヘイズ	धुंध	Sương mù
+helios_info	A smartwatch UI made with ♥️ in Kenya using LVGL Pro by fbiego 🛠️	Uma interface de smartwatch feita com ♥️ no Quênia usando LVGL Pro da fbiego 🛠️	Eine mit ♥️ in Kenia mit LVGL Pro von fbiego entwickelte Smartwatch-Benutzeroberfläche 🛠️	Una interfaz de usuario para reloj inteligente hecha con ♥️ en Kenia usando LVGL Pro de fbiego 🛠️	Une interface utilisateur pour smartwatch conçue avec ♥️ au Kenya à l'aide de LVGL Pro par fbiego 🛠️	Egy okosóra felhasználói felület, amelyet ♥️-val készítettek Kenyában az fbiego 🛠️ LVGL Pro használatával	Пользовательский интерфейс для умных часов, созданный с любовью в Кении с использованием LVGL Pro от fbiego 🛠️	Ένα περιβάλλον χρήστη smartwatch φτιαγμένο με ♥️ στην Κένυα χρησιμοποιώντας LVGL Pro από την fbiego 🛠️	อินเทอร์เฟซผู้ใช้สำหรับสมาร์ทวอทช์ สร้างสรรค์ด้วย ♥️ ในประเทศเคนยา โดยใช้ LVGL Pro จาก fbiego 🛠️	一款由fbiego在肯尼亚使用LVGL Pro精心打造的智能手表用户界面🛠️	ケニアでfbiegoによるLVGL Proを使用して♥️を込めて作られたスマートウォッチUI🛠️	केन्या में fbiego के LVGL Pro का उपयोग करके प्यार से बनाया गया एक स्मार्टवॉच यूआई 🛠️	Giao diện người dùng đồng hồ thông minh được tạo ra bằng ♥️ tại Kenya bằng LVGL Pro của fbiego 🛠️
+left	Left	Esquerda	Links	Izquierda	Gauche	Balra	Левый	Αριστερά	ซ้าย	左边	左	बाएं	Bên trái
+right	Right	Certo	Rechts	Bien	Droite	Jobbra	Верно	Δικαίωμα	ขวา	正确的	右	सही	Phải
+gesture_nav	Gesture navigation	Navegação por gestos	Gestensteuerung	Navegación por gestos	Navigation gestuelle	Gesztusnavigáció	Навигация с помощью жестов	Πλοήγηση με κινήσεις	การนำทางด้วยท่าทาง	手势导航	ジェスチャーナビゲーション	जेस्चर नेविगेशन	Điều hướng bằng cử chỉ
+diagnostics	Diagnostics	Diagnóstico	Diagnostik	Diagnóstico	Diagnostic	Diagnosztika	Диагностика	Διαγνωστικά	การวินิจฉัยโรค	诊断	診断	निदान	Chẩn đoán
+haptics	Haptics	Háptica	Haptik	Háptica	Haptique	Haptikus ingerek	Тактильные ощущения	Απτική	การสัมผัส	触觉	触覚	हैप्टिक्स	Phản hồi xúc giác
+buzzer	Buzzer	Buzina	Summer	Zumbador	Ronfleur	Berregő	Зуммер	Βομβητής	เสียงกริ่ง	蜂鸣器	ブザー	बजर	Chuông
+remaining	Remaining	Restante	Übrig	Restante	Restant	Többi	Оставшийся	Παραμένων	ที่เหลืออยู่	其余的	残り	शेष	Còn lại
+wear_pos	Wear position	Posição de uso	Verschleißposition	Posición de uso	Position de port	Viselési pozíció	Положение износа	Θέση ένδυσης	ตำแหน่งการสวมใส่	佩戴位置	装着位置	पहनने की स्थिति	Vị trí đeo
+gesture_info	Use hand gesture to control the watch. Ensure to set the correct wear position for better detection.	Use gestos com as mãos para controlar o relógio. Certifique-se de posicioná-lo corretamente para melhor detecção.	Steuern Sie die Uhr per Handgesten. Achten Sie auf die korrekte Trageposition für eine optimale Erkennung.	Utilice gestos con la mano para controlar el reloj. Asegúrese de colocarlo en la posición correcta para una mejor detección.	Utilisez les gestes de la main pour contrôler la montre. Veillez à bien la positionner pour une meilleure détection.	Kézmozdulatokkal irányítsa az órát. A jobb észlelés érdekében ügyeljen a megfelelő viselési pozíció beállítására.	Для управления часами используйте жесты рук. Для лучшего распознавания убедитесь, что вы правильно установили положение часов на руке.	Χρησιμοποιήστε χειρονομίες για να ελέγξετε το ρολόι. Βεβαιωθείτε ότι έχετε ρυθμίσει τη σωστή θέση χρήσης για καλύτερη ανίχνευση.	ใช้ท่าทางมือในการควบคุมนาฬิกา ตรวจสอบให้แน่ใจว่าได้ตั้งตำแหน่งการสวมใส่ที่ถูกต้องเพื่อการตรวจจับที่ดีขึ้น	使用手势控制手表。请确保佩戴位置正确，以便更好地识别手表。	手のジェスチャーで時計を操作します。より正確な検出のために、正しい装着位置を設定してください。	घड़ी को नियंत्रित करने के लिए हाथ के इशारों का उपयोग करें। बेहतर पहचान के लिए घड़ी को सही ढंग से पहनें।	Sử dụng cử chỉ tay để điều khiển đồng hồ. Đảm bảo đeo đúng vị trí để nhận diện tốt hơn.
+incoming_call	Incoming call	Chamada recebida	Eingehender Anruf	Llamada entrante	Appel entrant	Bejövő hívás	Входящий звонок	Εισερχόμενη κλήση	สายเรียกเข้า	来电	着信	एक फोन आ रहा है	Cuộc gọi đến
+													
+													
+													
 													
 													
 formula	Formula	Fórmula	Formel	Fórmula	Formule	Képlet	Формула	Τύπος	สูตร	公式	式	FORMULA	Công thức
-ai	AI generated	Generado por IA	KI-generiert	Gerado por IA	Généré par l'IA	Mesterséges intelligencia által generált	Сгенерировано ИИ	Δημιουργήθηκε από AI	สร้างโดย AI	AI生成	AI生成	AI GENERATED	
-unique	️ ,?.♥🛠	️ -,?.♥áâãçêíóôõúÚ🛠	️ -,?.♥äößü🛠	️ ,?¿.♥áéíñóúÚ🛠	️  -,?.'♥ÀàÉéèÊôû🛠	️ -,:?.♥áÁéÉíóÓöÖőúÚüÜ🛠	️ -,?.«»♥аАбБВвгДдеЕжЗзиИйкКлмМнНоОПпрРСстТуУфФХхцЦчЧшШщыьЭюяЯ🛠	️ ,;.♥αΑάβΒγΓΔδεΕέΈζηΗΉήθΘιΙίκΚλΛμΜΝνξοΟόΠπρΡςΣσΤτυΥύφΦχΧψωΩώΏ🛠	️็่้์ ?.♥ๆกขคฆงจชซฎณดตถทธนบปฝพฟภมยรฤลวศษสหฬอะัาำิีึืุูเแโใไ🛠	️ ，？。♥一七三上不乐九二于云五亚亮代件位使俊倾停健光全八六关内出到制动勿十卡卷厂压取可同后向吗启周和唤器四固图圆在地型基声备复多大天太始媚存定导将小尼屏展已幕并序库应度康开式形态恢您情所手打扰找报振据接控收数文断新方旋无日时明星是暂更月有期本机查标格模次步每气池法活消清温版状用由电的盘相看睡知码确示秒程稍类系终统继续网置联肯能航行表要觉言设话语请警贮费起跃跑身转轴达这进连逐通造部醒重链闪闭间阳阴除雪雷霾非音预风骤龙🛠	️ 、？。♥々ーァアあイィいウェえォおカかがキクくグケゲげこコごさサシしジスすズセせタたダだチちッつっづテてでデトとドどナにニネのはバビフブプヘべほマまみムむめメモもャやュョよラらリりルるレれロろをンん上予作使健充先円最出切別到刻動去同向回土圧基報場天太始定寝工巻常度康式強形後態所手持振探接断新方日時晴曇曜更月期木楽気水法消済温火状用画着知確秒竜終絡続線荷行言設話認語起転輝込通連進金開間陽雨雪電非面音順風🛠	️़ँं -,?।♥अआइईउएऐऔकखगघचछजटठडढणतथदधनपफबभमयरलवशषसहािीुूृेैॉोौ्🛠	
+ai	AI generated	Generado por IA	KI-generiert	Gerado por IA	Généré par l'IA	Mesterséges intelligencia által generált	Сгенерировано ИИ	Δημιουργήθηκε από AI	สร้างโดย AI	AI生成	AI生成	AI GENERATED	Được tạo bởi AI
+unique	️ ,?.♥🛠	️ -,?.♥áâãçêíóôõúÚ🛠	️ -,?.♥äößü🛠	️ ,?¿.♥áéíñóúÚ🛠	️  -,?.'♥ÀàçÉéèÊôû🛠	️ -,:?.♥áÁéÉíóÓöÖőúÚüÜ🛠	️ -,?.«»♥аАбБВвгДдеЕжЗзиИйкКлЛмМнНоОПпрРСстТуУфФХхцЦчЧшШщыьЭюяЯ🛠	️ ,;.♥αΑάβΒγΓΔδεΕέΈζηΗΉήθΘιΙίκΚλΛμΜΝνξοΟόΠπρΡςΣσΤτυΥύφΦχΧψωΩώΏ🛠	️็่้์ ?.♥ๆกขคฆงจชซญฎณดตถทธนบปผฝพฟภมยรฤลวศษสหฬอะัาำิีึืุูเแโใไ🛠	️ ，？。♥一七三上不乐九二于云五亚亮代件位使俊倾停健光全八六关内出到制动勿十卡卷厂压取可同后向吗启周和唤器四固图圆在地型基声备复多大天太始媚字存定导将小尼屏展左已幕并序库应度康开式形心态恢您情户所手打扰找报振据接控收数文断新方旋无日时明星是智暂更月有期本机查标格模次款步每气池法活消清温版状用由电界的盘相看睡知码确示秒程稍类精系终统继续网置联肯能航行表要觉言设话语请警贮费起跃跑身转轴边达这进连逐通造部醒重链闪闭间阳阴除雪雷霾非面音预风骤龙🛠	️ 、？。♥々ーァアあイィいウェえォおカかがキきクくグケゲげこコごさサシしジスすズセせタたダだチちッつっづテてでデトとドどナなにニネのはバビフブプヘべほマまみムむめメモもャやュョよラらリりルるレれロろをンん上予作使健充先円最出切別到刻動去同向回土圧基報場大天太始字定寝工左巻常度康式強形後態所手持振探接文断新方日時晴曇曜更月期木楽気水法消済温火状用画着知確秒竜終絡続線荷行言設話認語起転輝込通連進金開間陽雨雪電非面音順風🛠	️़ँं -,?।♥अआइईउएऐऔकखगघचछजटठडढणतथदधनपफबभमयरलवशषसहािीुूृेैॉोौ्🛠	️́ ,?.♥áàăẮắằÂâấầẫãảạặậẬĐđêếềểẽẻẹệíìịóòôÔốồỏơớờởợộúùủưứỨữửựụ🛠

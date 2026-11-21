@@ -30,6 +30,14 @@ cmake --build build/sim -j
 cmake --build build/sim --target run
 ```
 
+To run the home-screen touch regression tests without opening a window:
+
+```bash
+cmake -S sim -B build/sim -DHELIOS_BUILD_GESTURE_TESTS=ON
+cmake --build build/sim --target home_gestures -j
+ctest --test-dir build/sim --output-on-failure
+```
+
 ## Dependencies
 
 - **All platforms:** CMake (≥ 3.16), Python 3, a C compiler and a debugger

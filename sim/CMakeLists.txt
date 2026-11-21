@@ -166,3 +166,14 @@ add_custom_target(run
   COMMAND $<TARGET_FILE:${PROJECT_NAME}>
   WORKING_DIRECTORY ${UI_DIR}
   DEPENDS ${PROJECT_NAME})
+
+option(HELIOS_BUILD_GESTURE_TESTS "Build headless home-screen gesture regression tests" OFF)
+if(HELIOS_BUILD_GESTURE_TESTS)
+  enable_testing()
+  add_executable(home_gestures ../tests/home_gestures.c)
+  target_link_libraries(home_gestures PRIVATE lib-ui lvgl ${BACKEND_LIBS})
+  if(NOT WIN32)
+    target_link_libraries(home_gestures PRIVATE m pthread)
+  endif()
+  add_test(NAME home_gestures COMMAND home_gestures)
+endif()

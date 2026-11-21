@@ -120,7 +120,7 @@ void helios_ui_init(const char * asset_path)
     lv_subject_copy_string(&sb_lvgl_version, buf);
 
 #if !defined(LV_EDITOR_PREVIEW)
-    lv_screen_load(simulator_create());
+    lv_screen_load(boot_create());
 #endif
 }
 
@@ -275,5 +275,11 @@ static void update_time_cb(lv_timer_t *timer)
     helios_subject_set_time_month(tm_now->tm_mon + 1);
     helios_subject_set_time_year(tm_now->tm_year + 1900);
     helios_subject_set_time_weekday(tm_now->tm_wday);
+}
+
+void __attribute__((weak)) on_diagnostic_click(lv_event_t * e)
+{
+    LV_UNUSED(e);
+    LV_LOG("on_diagnostic_click was called\n");
 }
 #endif

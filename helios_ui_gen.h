@@ -19,10 +19,8 @@ extern "C" {
 
 #ifdef LV_LVGL_H_INCLUDE_SIMPLE
     #include "lvgl.h"
-    #include "lvgl_private.h"
 #else
     #include "lvgl/lvgl.h"
-    #include "lvgl/lvgl_private.h"
 #endif
 
 
@@ -44,6 +42,7 @@ bool helios_ui_check_target(uint32_t target);
 #define HELIOS_UI_TARGET_TARGET_240   (1 << 4)
 #define HELIOS_UI_TARGET_TARGET_390   (1 << 5)
 #define HELIOS_UI_TARGET_TARGET_410   (1 << 6)
+#define HELIOS_UI_TARGET_TARGET_480   (1 << 7)
 #define HELIOS_UI_TARGET_ALL          0x0FFFFFFF
 
 /* By default compile for all targets, allowing to switch to any targets at runtime */
@@ -53,16 +52,31 @@ bool helios_ui_check_target(uint32_t target);
 
 #define HELIOS_UI_CHECK_COMPILE_TARGET(target) (HELIOS_UI_COMPILE_TARGET & (target) ? 1 : 0)
 
-#define COLOR_PRIMARY lv_color_hex(0x0534ff)
-#define COLOR_DANGER lv_color_hex(0xf62525)
-#define COLOR_BUTTON_PRIMARY lv_color_hex(0x181146)
-#define COLOR_BUTTON_DANGER lv_color_hex(0x2c0d0b)
-#define UI_VERSION "v1.0.0"
+#define COLOR_PRIMARY (lv_color_hex(0x0534ff))
+#define COLOR_DANGER (lv_color_hex(0xf62525))
+#define COLOR_BUTTON_PRIMARY (lv_color_hex(0x181146))
+#define COLOR_BUTTON_DANGER (lv_color_hex(0x2c0d0b))
+#define UI_VERSION ("v1.0.0")
 
 
 #ifndef LV_XML_EVAL_STRING_BUF_SIZE
     #define LV_XML_EVAL_STRING_BUF_SIZE 256
 #endif
+
+/**
+ * Animation path of a style transition with a `bezier(…)` easing. The control
+ * points come from the transition descriptor's `user_data`, as a transition
+ * descriptor cannot store animation parameters itself.
+ */
+static inline int32_t helios_ui_style_transition_bezier_path_helper(const lv_anim_t * a)
+{
+    const lv_anim_bezier3_para_t * para = (const lv_anim_bezier3_para_t *)lv_anim_get_user_data(a);
+    if(para == NULL) return lv_anim_path_linear(a);
+
+    lv_anim_t a_tmp = *a;
+    lv_anim_set_bezier3_param(&a_tmp, para->x1, para->y1, para->x2, para->y2);
+    return lv_anim_path_custom_bezier3(&a_tmp);
+}
 
 /**********************
  *      TYPEDEFS
@@ -155,6 +169,9 @@ extern lv_font_t * NS_Medium_jp_18;
 extern lv_font_t * NS_Medium_jp_20;
 extern lv_font_t * NS_Medium_jp_30;
 extern lv_font_t * NS_Medium_jp_40;
+extern lv_font_t * NS_Emoji_20;
+extern lv_font_t * NS_Emoji_14;
+extern lv_font_t * NS_Emoji_18;
 
 
 /*----------------
@@ -203,6 +220,7 @@ extern const void * icon_sleep;
 extern const void * icon_user;
 extern const void * icon_spotify;
 extern const void * icon_phone_link;
+extern const void * icon_diagnostics;
 extern const void * icon_weather_humidity_icon;
 extern const void * icon_weather_temp_up_icon;
 extern const void * icon_weather_temp_down_icon;
@@ -262,6 +280,17 @@ extern const void * icon_text_hide;
 extern const void * icon_text_show;
 extern const void * icon_mpesa_watch;
 extern const void * icon_mpesa_watch_32;
+extern const void * face_preview;
+extern const void * img_slider_left_60;
+extern const void * img_slider_left_90;
+extern const void * img_slider_left_110;
+extern const void * img_slider_right_60;
+extern const void * img_slider_right_90;
+extern const void * img_slider_right_110;
+extern const void * icon_steps;
+extern const void * icon_calories;
+extern const void * img_call;
+extern const void * icon_route;
 
 /*----------------
  * Subjects
@@ -306,6 +335,7 @@ extern lv_subject_t sb_activity_kcal;
 extern lv_subject_t sb_activity_distance;
 extern lv_subject_t sb_health_bpm;
 extern lv_subject_t sb_health_oxygen;
+extern lv_subject_t sb_activity_progress;
 extern lv_subject_t sb_system_connection;
 extern lv_subject_t sb_system_connection_str;
 extern lv_subject_t sb_os_name;
@@ -346,6 +376,7 @@ extern lv_subject_t sb_phone_charging;
 extern lv_subject_t sb_phone_charging_str;
 extern lv_subject_t sb_chronos_app_code;
 extern lv_subject_t sb_phone_last_sync;
+extern lv_subject_t sb_caller_name;
 extern lv_subject_t sb_weather_code;
 extern lv_subject_t sb_weather_icon;
 extern lv_subject_t sb_weather_temp;
@@ -368,6 +399,12 @@ extern lv_subject_t sb_mpesa_balance_hidden;
 extern lv_subject_t sb_mpesa_hidden_icon;
 extern lv_subject_t sb_mpesa_balance_text;
 extern lv_subject_t sb_mpesa_recent_text;
+extern lv_subject_t sb_diagnostic_bmi270;
+extern lv_subject_t sb_diagnostic_battery;
+extern lv_subject_t sb_notif_sound;
+extern lv_subject_t sb_notif_vibration;
+extern lv_subject_t sb_gesture_navigation;
+extern lv_subject_t sb_wrist_position;
 
 /**********************
  * GLOBAL PROTOTYPES
@@ -378,9 +415,15 @@ extern lv_subject_t sb_mpesa_recent_text;
  *----------------*/
 
 void on_music_control_cb(lv_event_t * e);
+void on_slider_release(lv_event_t * e);
 void on_hs_info_cb(lv_event_t * e);
 void on_hs_title_pill_cb(lv_event_t * e);
+void on_diagnostic_click(lv_event_t * e);
 void on_simulator_event_cb(lv_event_t * e);
+
+/*----------------
+ * Easing Callbacks
+ *----------------*/
 
 /**
  * Initialize the component library
@@ -407,6 +450,8 @@ void helios_ui_init_gen(const char * asset_path);
 #include "components/control/control_slider/control_slider_gen.h"
 #include "components/control/control_switch/control_switch_gen.h"
 #include "components/dialogs/info_dialog/info_dialog_gen.h"
+#include "components/dialogs/notification_dialog/notification_dialog_gen.h"
+#include "components/generic/hs_arc/hs_arc_gen.h"
 #include "components/generic/hs_bar/hs_bar_gen.h"
 #include "components/generic/hs_button_icon/hs_button_icon_gen.h"
 #include "components/generic/hs_button_text/hs_button_text_gen.h"
@@ -418,6 +463,7 @@ void helios_ui_init_gen(const char * asset_path);
 #include "components/generic/hs_dropdown/hs_dropdown_gen.h"
 #include "components/generic/hs_info_sb_sb/hs_info_sb_sb_gen.h"
 #include "components/generic/hs_info_sb/hs_info_sb_gen.h"
+#include "components/generic/hs_info_tag_sb/hs_info_tag_sb_gen.h"
 #include "components/generic/hs_info/hs_info_gen.h"
 #include "components/generic/hs_lap_item/hs_lap_item_gen.h"
 #include "components/generic/hs_line/hs_line_gen.h"
@@ -457,7 +503,10 @@ void helios_ui_init_gen(const char * asset_path);
 #include "screens/apps/sc_mpesa/sc_mpesa_gen.h"
 #include "screens/core/applications/applications_gen.h"
 #include "screens/core/boot/boot_gen.h"
+#include "screens/core/call/call_gen.h"
 #include "screens/core/contacts/contacts_gen.h"
+#include "screens/core/diagnostics/diagnostics_gen.h"
+#include "screens/core/fitness/fitness_gen.h"
 #include "screens/core/home/home_gen.h"
 #include "screens/core/music/music_gen.h"
 #include "screens/core/navigation/navigation_gen.h"
